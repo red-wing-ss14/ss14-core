@@ -71,10 +71,6 @@
     - state: on
       map: ["bars"]
       visible: false
-    - state: light
-      map: ["light"]
-      visible: false
-      shader: unshaded
   - type: Item
     size: Normal
     sprite: _Amour/Objects/Devices/jukebox.rsi
