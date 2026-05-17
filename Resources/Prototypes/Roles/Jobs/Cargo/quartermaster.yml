@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2020 Peter Wedder <burneddi@gmail.com>
+# SPDX-FileCopyrightText: 2020 Peter Wedder <burneddi@gmail.com>
 # SPDX-FileCopyrightText: 2021 20kdc <asdd2808@gmail.com>
 # SPDX-FileCopyrightText: 2021 Paul Ritter <ritter.paul1@gmail.com>
 # SPDX-FileCopyrightText: 2021 Paul Ritter <ritter.paul1@googlemail.com>
@@ -130,22 +130,15 @@
   description: job-description-qm
   playTimeTracker: JobQuartermaster
   requirements:
-    - !type:OverallPlaytimeRequirement # Amour edit - 1 hr minimum
-      time: 18000 # 5 hrs
-    - !type:DepartmentTimeRequirement # Amour edit - 1 hr minimum
+    - !type:RoleTimeRequirement
+      role: JobCargoTechnician
+      time: 18000 #5 hrs
+    - !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 9000 #2.5 hrs
+    - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 7200 # 2 hrs # Amour-Edit
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:AllOfRequirement
-          requirements:
-            - !type:RoleTimeRequirement
-              role: JobCargoTechnician
-              time: 9000 #2.50 hrs
-            - !type:RoleTimeRequirement
-              role: JobSalvageSpecialist
-              time: 4500 #1.25 hrs
+      time: 36000 #10 hours
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
@@ -157,7 +150,11 @@
 #  - QuartermasterSOP
 #  - CargoSOP
 #  - Command
-  goobcoins: 70 #Goob content # Amour-Edit
+  goobcoins: 40 #Goob content
+  # Orion-Start
+  salary: 100
+  payrollDepartmentAccount: Command
+  # Orion-End
   access:
   - Cargo
   - Salvage

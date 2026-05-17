@@ -33,7 +33,7 @@ public sealed partial class QuantumServerComponent : Component
     public EntProtoId AvatarPrototype = "MobHuman";
 
     [DataField, AutoNetworkedField]
-    public EntProtoId RewardCachePrototype = "CrateBitrunSecure";
+    public EntProtoId RewardCachePrototype = "CrateBitrunSecureReward";
 
     [DataField, AutoNetworkedField]
     public TimeSpan Cooldown = TimeSpan.FromMinutes(2);
@@ -46,6 +46,9 @@ public sealed partial class QuantumServerComponent : Component
 
     [DataField]
     public int BroadcastWirelessRange = UnboundedBroadcastRange;
+
+    [DataField]
+    public ProtoId<EntityTablePrototype> DeliveryPeacefulLootTable = "BitrunningDeliveryPeacefulLoot";
 
     [DataField]
     public ProtoId<EntityTablePrototype> DeliveryEasyLootTable = "BitrunningDeliveryEasyLoot";

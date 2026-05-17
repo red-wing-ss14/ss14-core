@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
+# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
 # SPDX-FileCopyrightText: 2020 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Bright <nsmoak10@yahoo.com>
 # SPDX-FileCopyrightText: 2020 Bright0 <55061890+Bright0@users.noreply.github.com>
@@ -79,17 +79,18 @@
   description: job-description-serviceworker
   playTimeTracker: JobServiceWorker
   requirements:
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:DepartmentTimeRequirement
-          department: Civilian
-          time: 900 #15 min
+  - !type:DepartmentTimeRequirement
+    department: Civilian
+    time: 1800 #0.5 hr
   startingGear: ServiceWorkerGear
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-service
   guides: [ Service ] # goobstation
-  goobcoins: 30 #Goob content # Amour-Edit
+  goobcoins: 10 #Goob content
+  # Orion-Start
+  salary: 45
+  payrollDepartmentAccount: Service
+  # Orion-End
   access:
   - Service
   - Maintenance

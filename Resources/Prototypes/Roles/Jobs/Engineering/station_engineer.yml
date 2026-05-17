@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
+# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
 # SPDX-FileCopyrightText: 2020 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Bright <nsmoak10@yahoo.com>
 # SPDX-FileCopyrightText: 2020 Bright0 <55061890+Bright0@users.noreply.github.com>
@@ -74,17 +74,18 @@
   description: job-description-engineer
   playTimeTracker: JobStationEngineer
   requirements:
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:DepartmentTimeRequirement
-          department: Engineering
-          time: 7200 #2.5 hrs
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 9000 #2.5 hrs
   startingGear: StationEngineerGear
   icon: "JobIconStationEngineer"
   supervisors: job-supervisors-ce
   guides: [ Engineering ] # goobstation
-  goobcoins: 30 #Goob content # Amour-Edit
+  goobcoins: 20 #Goob content
+  # Orion-Start
+  salary: 80
+  payrollDepartmentAccount: Engineering
+  # Orion-End
   access:
   - Maintenance
   - Engineering

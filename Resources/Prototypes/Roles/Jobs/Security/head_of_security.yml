@@ -170,6 +170,10 @@
   # - SpaceLaw # Disabled until guide is created
   # Amour-Edit-End
   goobcoins: 45 #Goob content
+  # Orion-Start
+  salary: 120
+  payrollDepartmentAccount: Command
+  # Orion-End
   access:
   - HeadOfSecurity
   - Command

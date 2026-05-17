@@ -100,6 +100,7 @@ bitrunning-ui-domain-info = { $description }
 
 bitrunning-ui-virtual-domains = Virtual Domains
 bitrunning-ui-broadcast = Broadcast
+bitrunning-ui-broadcast-tooltip = Station viewers can watch your avatar broadcast.
 bitrunning-ui-server-points-badge = { $points } §
 bitrunning-ui-domain-reward = Server { $server } / NP { $np }
 bitrunning-ui-scanner-inline = Scanner: { $scanner }
@@ -125,3 +126,5 @@ bitrunning-ui-cooldown-active = Cooldown in progress
 bitrunning-ui-clients-header-count = Connected Clients ({ $count })
 bitrunning-ui-domain-cost = § { $cost }
 bitrunning-ui-domain-cost-tooltip = Required server points to start this domain.
+
+bitrunning-avatar-disconnect-blocked = Neural link is unstable after recent damage. Disconnect available in { $seconds }s.

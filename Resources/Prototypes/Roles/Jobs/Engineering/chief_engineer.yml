@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
+# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
 # SPDX-FileCopyrightText: 2020 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Bright <nsmoak10@yahoo.com>
 # SPDX-FileCopyrightText: 2020 Bright0 <55061890+Bright0@users.noreply.github.com>
@@ -134,22 +134,15 @@
   description: job-description-ce
   playTimeTracker: JobChiefEngineer
   requirements:
-    - !type:DepartmentTimeRequirement # Amour edit - 1 hr minimum
+    - !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 18000 #5 hrs
+    - !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 21600 #6 hrs
+    - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 10800 # 3 h
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:AllOfRequirement
-          requirements:
-            - !type:RoleTimeRequirement
-              role: JobAtmosphericTechnician
-              time: 9000 #2.50 hrs
-            - !type:RoleTimeRequirement
-              role: JobStationEngineer
-              time: 10800 #3 hrs
-    - !type:AgeRequirement # Amour
-      requiredAge: 23
+      time: 36000 #10 hrs
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
@@ -162,7 +155,11 @@
 #  - EngineeringSOP
 #  - Command
 #  - EmergenciesSOP
-  goobcoins: 80 #Goob content # Amour-Edit
+  goobcoins: 40 #Goob content
+  # Orion-Start
+  salary: 120
+  payrollDepartmentAccount: Command
+  # Orion-End
   access:
   - Maintenance
   - Engineering

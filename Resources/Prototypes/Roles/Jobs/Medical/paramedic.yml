@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
+# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
 # SPDX-FileCopyrightText: 2020 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Bright <nsmoak10@yahoo.com>
 # SPDX-FileCopyrightText: 2020 Bright0 <55061890+Bright0@users.noreply.github.com>
@@ -81,9 +81,9 @@
   description: job-description-paramedic
   playTimeTracker: JobParamedic
   requirements:
-    - !type:RoleTimeRequirement # Amour-Edit
-      role: JobMedicalDoctor
-      time: 9000 #2.5 hrs
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 9000 #2.5 hrs
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
@@ -91,7 +91,11 @@
 #  - MedicalDoctor # Orion-Edit: Removed because dont have this SOP
 #  - Medical # Orion-Edit: Removed because dont have this SOP
   - Medicine
-  goobcoins: 15 #Goob content # Amour-Edit
+  goobcoins: 20 #Goob content
+  # Orion-Start
+  salary: 75
+  payrollDepartmentAccount: Medical
+  # Orion-End
   access:
   - Medical
   - Maintenance

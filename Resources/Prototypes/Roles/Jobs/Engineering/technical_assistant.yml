@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2022 Jukereise <altjupiterfive@gmail.com>
+# SPDX-FileCopyrightText: 2022 Jukereise <altjupiterfive@gmail.com>
 # SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
 # SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2022 Morber <14136326+Morb0@users.noreply.github.com>
@@ -63,11 +63,8 @@
   description: job-description-technical-assistant
   playTimeTracker: JobTechnicalAssistant
   requirements:
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:OverallPlaytimeRequirement
-          time: 7200 # 2 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 7200 # 2 hrs
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 36000 #10 hrs
@@ -79,7 +76,11 @@
   - Construction
   - Power
   - Networking
-  goobcoins: 30 #Goob content # Amour-Edit
+  goobcoins: 20 #Goob content
+  # Orion-Start
+  salary: 35
+  payrollDepartmentAccount: Engineering
+  # Orion-End
   access:
   - Maintenance
   - Engineering

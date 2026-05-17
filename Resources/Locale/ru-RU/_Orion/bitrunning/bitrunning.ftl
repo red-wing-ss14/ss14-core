@@ -100,6 +100,7 @@ bitrunning-ui-domain-info = { $description }
 
 bitrunning-ui-virtual-domains = Виртуальные домены
 bitrunning-ui-broadcast = Вещание
+bitrunning-ui-broadcast-tooltip = Зрители смогут следить за трансляцией ваших аватаров на камерах развлечений.
 bitrunning-ui-server-points-badge = { $points } §
 bitrunning-ui-domain-reward = Сервер { $server } / СО { $np }
 bitrunning-ui-scanner-inline = Сканер: { $scanner }
@@ -125,3 +126,5 @@ bitrunning-ui-cooldown-active = Идёт охлаждение
 bitrunning-ui-clients-header-count = Подключённые клиенты ({ $count })
 bitrunning-ui-domain-cost = § { $cost }
 bitrunning-ui-domain-cost-tooltip = Необходимое количество очков сервера для запуска домена.
+
+bitrunning-avatar-disconnect-blocked = Нейросвязь нестабильна после недавнего урона. Отключение будет доступно через { $seconds }с.

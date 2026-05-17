@@ -38,7 +38,7 @@ public sealed partial class BitrunningObjectiveEncryptedCacheSpawnMarkerComponen
 public sealed partial class BitrunningObjectiveCacheCrateSpawnMarkerComponent : Component
 {
     [DataField]
-    public EntProtoId CratePrototype = "CrateBitrunSecure";
+    public EntProtoId CratePrototype = "BitrunningObjectiveCacheStructure";
 }
 
 /// <summary>
@@ -99,4 +99,18 @@ public sealed partial class BitrunningDomainEnemyObjectiveComponent : Component
 {
     [DataField]
     public int Points = 1;
+
+    public EntityUid? DomainMapUid;
 }
+
+/// <summary>
+/// Marks an enemy objective entity that already granted elimination progress.
+/// </summary>
+[RegisterComponent]
+public sealed partial class BitrunningEnemyObjectiveCountedComponent : Component;
+
+/// <summary>
+/// Marks a reward cache crate that should disappear immediately after being opened.
+/// </summary>
+[RegisterComponent]
+public sealed partial class BitrunningDespawnOnOpenComponent : Component;

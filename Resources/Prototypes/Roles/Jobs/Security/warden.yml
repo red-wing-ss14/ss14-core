@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
+# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
 # SPDX-FileCopyrightText: 2020 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Bright <nsmoak10@yahoo.com>
 # SPDX-FileCopyrightText: 2020 Bright0 <55061890+Bright0@users.noreply.github.com>
@@ -135,26 +135,32 @@
   description: job-description-warden
   playTimeTracker: JobWarden
   requirements:
-    # Amour-Edit-Start
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 21600 #6 hrs # Amour-Edit
+      time: 18000 #5 hrs
     - !type:RoleTimeRequirement
       role: JobBrigmedic
-      time: 14400 #4 hrs # Amour-Edit
-    # Amour-Edit-End
-    - !type:DiscordLinkRequirement # Amour
+      time: 18000 #5 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # 10 hrs
   weight: 5
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos
   canBeAntag: false
   guides: # goobstation
-  # Amour-Edit-Start
-  # - SpaceLaw # Disabled until guide is created
-  # Amour-Edit-End
+  - SpaceLaw
+  # Orion-Edit-Start
+  - SOP-Security-Warden
+  - SOP-Security
+  # Orion-Edit-End
   - KravMaga
-  goobcoins: 75 #Goob content # Amour-Edit
+  goobcoins: 35 #Goob content
+  # Orion-Start
+  salary: 90
+  payrollDepartmentAccount: Security
+  # Orion-End
   access:
   - Security
   - Brig

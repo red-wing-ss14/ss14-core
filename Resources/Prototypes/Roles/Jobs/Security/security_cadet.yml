@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2022 Jukereise <altjupiterfive@gmail.com>
+# SPDX-FileCopyrightText: 2022 Jukereise <altjupiterfive@gmail.com>
 # SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
 # SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2022 Morber <14136326+Morb0@users.noreply.github.com>
@@ -101,21 +101,26 @@
   playTimeTracker: JobSecurityCadet
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 18000 #5 hrs # Amour-Edit
+      time: 36000 #10 hrs
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 72000 #20 hrs # Amour-Edit
-      inverted: true # stop playing cadet if you're good at security!
-    - !type:DiscordLinkRequirement # Amour
+      time: 36000 #10 hrs
+      inverted: true # stop playing intern if you're good at security!
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
   canBeAntag: false
   guides: # goobstation
-  # Amour-Edit-Start
-  # - SpaceLaw # Disabled until guide is created
-  # Amour-Edit-End
-  goobcoins: 20 #Goob content # Amour-Edit
+  # Orion-Edit-Start
+  - SpaceLaw
+  - SOP-Security-Cadet
+  - SOP-Security
+  # Orion-Edit-End
+  goobcoins: 30 #Goob content
+  # Orion-Start
+  salary: 45
+  payrollDepartmentAccount: Security
+  # Orion-End
   access:
   - Security
   - Brig

@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
+# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
 # SPDX-FileCopyrightText: 2020 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Bright <nsmoak10@yahoo.com>
 # SPDX-FileCopyrightText: 2020 Bright0 <55061890+Bright0@users.noreply.github.com>
@@ -139,26 +139,34 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 3600 #1 h # Amour-Edit
+      time: 14400 # 4 hours
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 7200 #2 hrs # Amour-Edit
+      time: 14400 # 4 hours
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 7200 #2 hrs # Amour-Edit
+      time: 14400 # 4 hours
     - !type:DepartmentTimeRequirement
-      department: Cargo
-      time: 3600 #1 h # Amour-Edit
-    - !type:DiscordLinkRequirement
-    - !type:AgeRequirement # Amour
-      requiredAge: 23
+      department: Security
+      time: 14400 # 4 hours
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 14400 # 4 hours
+    - !type:SpeciesRequirement # Goob - None Felinid
+      inverted: true
+      species:
+      - Felinid
 #  guides: # goobstation | Orion-Edit: Removed because dont have this SOP
 #  - Command
 #  - Succession
 #  - StandardProceduresSOP
 #  - HeadOfPersonnelSOP
 #  - Writing
-  goobcoins: 70 #Goob content # Amour-Edit
+  goobcoins: 40 #Goob content
+  # Orion-Start
+  salary: 110
+  payrollDepartmentAccount: Command
+  # Orion-End
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"

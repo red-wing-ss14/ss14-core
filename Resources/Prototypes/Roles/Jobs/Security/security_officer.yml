@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
+# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
 # SPDX-FileCopyrightText: 2020 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Bright <nsmoak10@yahoo.com>
 # SPDX-FileCopyrightText: 2020 Bright0 <55061890+Bright0@users.noreply.github.com>
@@ -91,17 +91,22 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 14400 #4 hrs # Amour-Edit
-    - !type:DiscordLinkRequirement # Amour
+      time: 9000 #2.5 hrs
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos
   canBeAntag: false
   guides: # goobstation
-  # Amour-Edit-Start
-  # - SpaceLaw # Disabled until guide is created
-  # Amour-Edit-End
-  goobcoins: 20 #Goob content # Amour-Edit
+  # Orion-Edit-Start
+  - SpaceLaw
+  - SOP-Security-Officer
+  - SOP-Security
+  # Orion-Edit-End
+  goobcoins: 30 #Goob content
+  # Orion-Start
+  salary: 85
+  payrollDepartmentAccount: Security
+  # Orion-End
   access:
   - Security
   - Brig

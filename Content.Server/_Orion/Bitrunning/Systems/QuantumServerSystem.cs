@@ -1,16 +1,22 @@
 using System.Linq;
 using System.Numerics;
 using Content.Goobstation.Common.Effects;
+using Content.Goobstation.Common.Mind;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server._Orion.Bitrunning.Components;
 using Content.Server._Orion.CloningAppearance.Systems;
 using Content.Server.Actions;
+using Content.Server.Antag.Components;
+using Content.Server.Chat.Systems;
 using Content.Server.Clothing.Systems;
 using Content.Server.DeviceNetwork.Components;
+using Content.Server.DoAfter;
 using Content.Server.Ghost;
 using Content.Server.Ghost.Roles.Components;
+using Content.Server.Mobs;
 using Content.Server.NPC.HTN;
+using Content.Server.Polymorph.Components;
 using Content.Server.Preferences.Managers;
 using Content.Server.Stunnable;
 using Content.Server.SurveillanceCamera;
@@ -23,13 +29,16 @@ using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.DoAfter;
 using Content.Shared.Emag.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.NPC.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Parallax;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
@@ -78,9 +87,16 @@ public sealed class QuantumServerSystem : EntitySystem
     [Dependency] private readonly IServerPreferencesManager _preferences = default!;
     [Dependency] private readonly CloningAppearanceSystem _cloningAppearance = default!;
     [Dependency] private readonly SparksSystem _sparks = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly DeathgaspSystem _deathgasp = default!;
+    [Dependency] private readonly DoAfterSystem _doAfter = default!;
 
     private static readonly EntProtoId ExitBlindnessStatusEffect = "StatusEffectBitrunningExitBlindness";
     private const string ServerSourcePort = "BitrunningServerSource";
+
+    private static readonly TimeSpan DisconnectActionBlockDuration = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan DisconnectActionDoAfterDuration = TimeSpan.FromSeconds(5);
 
     public override void Initialize()
     {
@@ -93,8 +109,12 @@ public sealed class QuantumServerSystem : EntitySystem
         SubscribeLocalEvent<AvatarConnectionComponent, MobStateChangedEvent>(OnAvatarStateChanged);
         SubscribeLocalEvent<AvatarConnectionComponent, BitrunningDisconnectAvatarActionEvent>(OnAvatarDisconnectAction);
         SubscribeLocalEvent<GhostAttemptHandleEvent>(OnGhostAttemptForAvatar);
+        SubscribeLocalEvent<AvatarConnectionComponent, BitrunningDisconnectAvatarDoAfterEvent>(OnAvatarDisconnectDoAfter);
         SubscribeLocalEvent<AvatarConnectionComponent, SuicideEvent>(OnAvatarSuicide);
         SubscribeLocalEvent<AvatarConnectionComponent, PolymorphedEvent>(OnAvatarPolymorphed);
+        SubscribeLocalEvent<AvatarConnectionComponent, EntitySpokeEvent>(OnAvatarSpoke);
+        SubscribeLocalEvent<AvatarConnectionComponent, GetAntagSelectionBlockerEvent>(OnAvatarGetAntagSelectionBlocker);
+        SubscribeLocalEvent<AvatarConnectionComponent, EntityTerminatingEvent>(OnAvatarTerminating);
     }
 
     private void OnServerInit(Entity<QuantumServerComponent> ent, ref ComponentInit args)
@@ -368,6 +388,10 @@ public sealed class QuantumServerSystem : EntitySystem
 
     public bool StopDomain(Entity<QuantumServerComponent> serverEnt, bool immediate = false)
     {
+        serverEnt.Comp.State = immediate
+            ? BitrunningServerState.Ready
+            : BitrunningServerState.CoolingDown;
+
         if (serverEnt.Comp.ActiveConnections.Count > 0)
             _audio.PlayPvs(serverEnt.Comp.DomainAlertSound, serverEnt.Owner);
         else
@@ -399,12 +423,10 @@ public sealed class QuantumServerSystem : EntitySystem
 
         if (immediate)
         {
-            serverEnt.Comp.State = BitrunningServerState.Ready;
             serverEnt.Comp.CooldownEndTime = TimeSpan.Zero;
         }
         else
         {
-            serverEnt.Comp.State = BitrunningServerState.CoolingDown;
             var effectiveEfficiency = Math.Max(serverEnt.Comp.CooldownEfficiency, 0.001f);
             var delay = TimeSpan.FromSeconds(serverEnt.Comp.Cooldown.TotalSeconds / effectiveEfficiency);
             serverEnt.Comp.CooldownEndTime = _timing.CurTime + delay;
@@ -505,19 +527,26 @@ public sealed class QuantumServerSystem : EntitySystem
         if (HasComp<ActorComponent>(avatarUid))
             return false;
 
-        if (connection.OriginalBody == null || connection.OriginalBody != user)
-            return false;
-
         if (TryComp<MobStateComponent>(avatarUid, out var state) && state.CurrentState == MobState.Dead)
             return false;
 
         if (!_mind.TryGetMind(user, out var mindId, out var mind))
             return false;
 
+        var isOriginalBodyReconnect = connection.OriginalBody == user;
+        var isMindOwnerReconnect = connection.RunnerMind == mindId;
+        if (!isOriginalBodyReconnect && !isMindOwnerReconnect)
+            return false;
+
         _mind.TransferTo(mindId, avatarUid, mind: mind);
         _actions.AddAction(avatarUid, ref connection.DisconnectActionEntity, connection.DisconnectActionPrototype, avatarUid);
         EnsureComp<AvatarNavRelayComponent>(avatarUid).RelayEntity = pod.Owner;
         EnsureComp<AvatarNavRelayComponent>(pod.Owner).RelayEntity = avatarUid;
+
+        connection.Netpod = pod.Owner;
+        connection.OriginalBody = user;
+        if (pod.Comp.LinkedServer != null)
+            connection.Server = pod.Comp.LinkedServer;
 
         if (connection.Server != null && TryComp<QuantumServerComponent>(connection.Server.Value, out var server))
         {
@@ -597,7 +626,7 @@ public sealed class QuantumServerSystem : EntitySystem
 
         harmful |= IsAvatarInCriticalState(avatarUid);
 
-        _actions.RemoveAction(connection.DisconnectActionEntity);
+        ReleaseAvatarHands(avatarUid);
 
         var originalBody = connection.OriginalBody;
         var serverUid = connection.Server;
@@ -607,11 +636,16 @@ public sealed class QuantumServerSystem : EntitySystem
         if (originalBody is { } bodyUid && podUid is { } netpodUid && TryComp<NetpodComponent>(netpodUid, out var podComp))
             PlayLocalSound(bodyUid, podComp.DisconnectSound);
 
-        if (canRedirectToBitrunner && originalBody is { } redirectedBody)
-            TransferAvatarDamageToBitrunner((avatarUid, connection), redirectedBody, harmful);
-
         if (originalBody is { } bodyToTransfer && TryResolveRunnerMind((avatarUid, connection), out var mindId))
             _mind.TransferTo(mindId, bodyToTransfer);
+
+        connection.OriginalBody = null;
+
+        if (harmful && canRedirectToBitrunner && originalBody is { } redirectedBody && !IsAvatarInCriticalState(redirectedBody))
+            TransferAvatarDamageToBitrunner((avatarUid, connection), redirectedBody, true);
+
+        if (harmful && IsAvatarInCriticalState(avatarUid))
+            KillAvatar(avatarUid);
 
         if (podUid != null && TryComp<NetpodComponent>(podUid.Value, out var pod))
         {
@@ -624,14 +658,13 @@ public sealed class QuantumServerSystem : EntitySystem
                 ? containerComp.BodyContainer.ContainedEntity
                 : null;
 
-            if (harmful || connection.DeleteOnDisconnect)
+            if (connection.DeleteOnDisconnect)
                 pod.Avatar = null;
 
             Dirty(podUid.Value, pod);
             _netpod.UpdateVisuals((podUid.Value, pod));
 
-            if (!canRedirectToBitrunner)
-                _netpod.EjectOccupant(podUid.Value);
+            _netpod.EjectOccupant(podUid.Value);
         }
 
         ApplyBitrunningExitEffects(originalBody, serverUid);
@@ -642,8 +675,16 @@ public sealed class QuantumServerSystem : EntitySystem
             Dirty(serverUid.Value, server);
         }
 
-        if (harmful || connection.DeleteOnDisconnect)
+        connection.Netpod = null;
+
+        if (connection.DeleteOnDisconnect)
             QueueDel(avatarUid);
+
+        if (HasComp<ActorComponent>(avatarUid))
+            return;
+
+        _actions.RemoveAction(connection.DisconnectActionEntity);
+        connection.DisconnectActionEntity = null;
     }
 
     public void AddObjectiveProgress(EntityUid serverUid, int points)
@@ -889,6 +930,11 @@ public sealed class QuantumServerSystem : EntitySystem
             return;
 
         ent.Comp.NoHit = false;
+        ent.Comp.DisconnectBlockedUntil = _timing.CurTime + DisconnectActionBlockDuration;
+
+        if (ent.Comp.DisconnectActionEntity is { } disconnectAction)
+            _actions.SetCooldown(disconnectAction, _timing.CurTime, ent.Comp.DisconnectBlockedUntil);
+
         Dirty(ent);
     }
 
@@ -905,7 +951,8 @@ public sealed class QuantumServerSystem : EntitySystem
 
     private bool IsAvatarInCriticalState(EntityUid avatarUid)
     {
-        return TryComp<MobStateComponent>(avatarUid, out var mobState) && mobState.CurrentState == MobState.Critical;
+        return TryComp<MobStateComponent>(avatarUid, out var mobState)
+               && mobState.CurrentState is MobState.SoftCritical or MobState.HardCritical;
     }
 
     private void TransferAvatarDamageToBitrunner(Entity<AvatarConnectionComponent> avatar, EntityUid bodyUid, bool fatal)
@@ -931,13 +978,63 @@ public sealed class QuantumServerSystem : EntitySystem
         _damageable.TryChangeDamage(bodyUid, scaledDamage, ignoreResistances: true, targetPart: TargetBodyPart.Head);
     }
 
+    private void KillAvatar(EntityUid avatarUid)
+    {
+        if (_mobState.IsDead(avatarUid))
+            return;
+
+        _mobState.ChangeMobState(avatarUid, MobState.Dead);
+        _deathgasp.Deathgasp(avatarUid);
+    }
+
     private void OnAvatarDisconnectAction(Entity<AvatarConnectionComponent> ent, ref BitrunningDisconnectAvatarActionEvent args)
     {
         if (args.Handled)
             return;
 
-        DisconnectAvatar(ent, false);
+        var user = args.Performer == EntityUid.Invalid ? ent.Owner : args.Performer;
+        args.Handled = TryRequestDisconnectAvatar(ent.Owner, user, true);
+    }
+
+    private void OnAvatarDisconnectDoAfter(Entity<AvatarConnectionComponent> ent, ref BitrunningDisconnectAvatarDoAfterEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (ent.Comp.DisconnectBlockedUntil > _timing.CurTime)
+            return;
+
+        DisconnectAvatar(ent.Owner, false);
         args.Handled = true;
+    }
+
+    public bool TryRequestDisconnectAvatar(EntityUid avatarUid, EntityUid userUid, bool showPopup)
+    {
+        if (!TryComp<AvatarConnectionComponent>(avatarUid, out var connection))
+            return false;
+
+        var now = _timing.CurTime;
+        if (connection.DisconnectBlockedUntil > now)
+        {
+            if (showPopup)
+            {
+                var remainingSeconds = Math.Max(1, (int) Math.Ceiling((connection.DisconnectBlockedUntil - now).TotalSeconds));
+                _popup.PopupEntity(Loc.GetString("bitrunning-avatar-disconnect-blocked", ("seconds", remainingSeconds)), avatarUid, userUid);
+            }
+
+            return true;
+        }
+
+        var doAfter = new DoAfterArgs(EntityManager, userUid, DisconnectActionDoAfterDuration, new BitrunningDisconnectAvatarDoAfterEvent(), avatarUid, target: avatarUid)
+        {
+            BreakOnDamage = true,
+            BreakOnMove = true,
+            CancelDuplicate = true,
+            NeedHand = false,
+            MovementThreshold = 1.0f,
+        };
+
+        return _doAfter.TryStartDoAfter(doAfter);
     }
 
     private void OnGhostAttemptForAvatar(GhostAttemptHandleEvent ev)
@@ -952,6 +1049,45 @@ public sealed class QuantumServerSystem : EntitySystem
         ev.Handled = true;
         ev.Result = true;
         DisconnectAvatar(currentEntity.Value, true);
+    }
+
+    private void OnAvatarTerminating(Entity<AvatarConnectionComponent> ent, ref EntityTerminatingEvent args)
+    {
+        // Protection if avatar un-polymorphing
+        if (HasComp<PolymorphedEntityComponent>(ent))
+            return;
+
+        if (ent.Comp.Server is { } serverUid && TryComp<QuantumServerComponent>(serverUid, out var server))
+        {
+            server.ActiveConnections.Remove(ent.Owner);
+            Dirty(serverUid, server);
+        }
+
+        if (ent.Comp.Netpod is { } podUid && TryComp<NetpodComponent>(podUid, out var pod))
+        {
+            if (pod.Avatar == ent.Owner)
+                pod.Avatar = null;
+
+            EnsureComp<AvatarNavRelayComponent>(podUid).RelayEntity = null;
+
+            pod.Occupant = TryComp<NetpodContainerComponent>(podUid, out var containerComp)
+                ? containerComp.BodyContainer.ContainedEntity
+                : null;
+
+            Dirty(podUid, pod);
+            _netpod.UpdateVisuals((podUid, pod));
+        }
+
+        if (ent.Comp.OriginalBody is not { } bodyUid || TerminatingOrDeleted(bodyUid))
+            return;
+
+        if (CanRedirectToBitrunnerBody(ent.Comp, bodyUid))
+            TransferAvatarDamageToBitrunner(ent, bodyUid, true);
+
+        if (!TryResolveRunnerMind(ent, out var mindId))
+            return;
+
+        _mind.TransferTo(mindId, bodyUid);
     }
 
     private void OnAvatarSuicide(Entity<AvatarConnectionComponent> ent, ref SuicideEvent args)
@@ -980,8 +1116,10 @@ public sealed class QuantumServerSystem : EntitySystem
         newConnection.NoHit = ent.Comp.NoHit;
         newConnection.DisconnectActionPrototype = ent.Comp.DisconnectActionPrototype;
         newConnection.DeleteOnDisconnect = ent.Comp.DeleteOnDisconnect;
+        newConnection.DisconnectBlockedUntil = ent.Comp.DisconnectBlockedUntil;
 
         _actions.RemoveAction(ent.Comp.DisconnectActionEntity);
+        ent.Comp.DisconnectActionEntity = null;
         _actions.AddAction(newAvatarUid, ref newConnection.DisconnectActionEntity, newConnection.DisconnectActionPrototype, newAvatarUid);
         StripNonAvatarPolymorphComponents(newAvatarUid);
         EnsureComp<AvatarNavRelayComponent>(newAvatarUid).RelayEntity = newConnection.Netpod;
@@ -1009,12 +1147,25 @@ public sealed class QuantumServerSystem : EntitySystem
         _bitrunningDisk.RefreshAvatarEffects(newAvatarUid);
     }
 
+    private static void OnAvatarGetAntagSelectionBlocker(Entity<AvatarConnectionComponent> ent, ref GetAntagSelectionBlockerEvent args)
+    {
+        args.Blocked = true;
+    }
+
+    private static void OnAvatarSpoke(Entity<AvatarConnectionComponent> ent, ref EntitySpokeEvent args)
+    {
+        if (args.Channel != null)
+            args.Channel = null;
+    }
+
     private EntityUid SpawnAvatarForRunner(QuantumServerComponent server, EntityUid user, EntityCoordinates coordinates)
     {
-        if (!ShouldLoadProfileAvatar(server, user) || !TryGetHumanoidProfile(user, out var profile))
-            return Spawn(server.AvatarPrototype, coordinates);
+        var avatar = !ShouldLoadProfileAvatar(server, user) || !TryGetHumanoidProfile(user, out var profile)
+            ? Spawn(server.AvatarPrototype, coordinates)
+            : _cloningAppearance.SpawnProfileEntity(coordinates, profile);
 
-        return _cloningAppearance.SpawnProfileEntity(coordinates, profile);
+        EnsureComp<AntagImmuneComponent>(avatar);
+        return avatar;
     }
 
     private bool TryGetHumanoidProfile(EntityUid user, out HumanoidCharacterProfile profile)
@@ -1070,7 +1221,6 @@ public sealed class QuantumServerSystem : EntitySystem
         RemComp<GhostRoleComponent>(avatar);
         RemComp<GhostTakeoverAvailableComponent>(avatar);
         RemComp<HTNComponent>(avatar);
-        RemComp<NpcFactionMemberComponent>(avatar);
         RemComp<FaunaComponent>(avatar);
     }
 
@@ -1202,6 +1352,23 @@ public sealed class QuantumServerSystem : EntitySystem
                 continue;
 
             QueueDel(uid);
+        }
+    }
+
+    private void ReleaseAvatarHands(EntityUid avatarUid)
+    {
+        foreach (var hand in _hands.EnumerateHands(avatarUid).ToArray())
+        {
+            if (!_hands.TryGetHeldItem(avatarUid, hand, out var held))
+                continue;
+
+            if (TryComp<VirtualItemComponent>(held, out _))
+            {
+                QueueDel(held.Value);
+                continue;
+            }
+
+            _hands.TryDrop(avatarUid, hand);
         }
     }
 }

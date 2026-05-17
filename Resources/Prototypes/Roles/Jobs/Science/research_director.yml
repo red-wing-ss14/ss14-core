@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
+# SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
 # SPDX-FileCopyrightText: 2020 AJCM-git <60196617+AJCM-git@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Bright <nsmoak10@yahoo.com>
 # SPDX-FileCopyrightText: 2020 Bright0 <55061890+Bright0@users.noreply.github.com>
@@ -137,12 +137,12 @@
   description: job-description-rd
   playTimeTracker: JobResearchDirector
   requirements:
+  - !type:RoleTimeRequirement
+    role: JobScientist
+    time: 21600 #6 hrs
   - !type:DepartmentTimeRequirement
     department: Science
-    time: 14400 #4 hrs # Amour-Edit
-  - !type:DiscordLinkRequirement # Amour
-  - !type:AgeRequirement # Amour
-    requiredAge: 23
+    time: 36000 #10 hrs
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
@@ -154,7 +154,11 @@
 #  - Command
 #  - ResearchDirectorSOP
 #  - ScienceSOP
-  goobcoins: 50 #Goob content # Amour-Edit
+  goobcoins: 40 #Goob content
+  # Orion-Start
+  salary: 120
+  payrollDepartmentAccount: Command
+  # Orion-End
   access:
   - Research
   - Command
