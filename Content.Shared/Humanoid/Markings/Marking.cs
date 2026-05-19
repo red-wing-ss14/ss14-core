@@ -206,14 +206,14 @@ namespace Content.Shared.Humanoid.Markings
                 colorStringList.Add(color.ToHex());
 
             // Amour edit start: append optional gradient sections
-            // Format: id@col1,col2,...[#sec1,sec2,...][!G]
+            // Format: id@col1,col2,...[|sec1,sec2,...][!G]
             var result = $"{sanitizedName}@{String.Join(',', colorStringList)}";
             if (_secondaryColors != null && _secondaryColors.Count > 0)
             {
                 List<string> secondaryStringList = new();
                 foreach (Color color in _secondaryColors)
                     secondaryStringList.Add(color.ToHex());
-                result += $"#{String.Join(',', secondaryStringList)}";
+                result += $"|{String.Join(',', secondaryStringList)}";
             }
             if (UseGradient)
                 result += "!G";
@@ -237,11 +237,11 @@ namespace Content.Shared.Humanoid.Markings
             }
 
             List<Color>? secondaryList = null;
-            var hashIdx = payload.IndexOf('#');
-            if (hashIdx >= 0)
+            var pipeIdx = payload.IndexOf('|');
+            if (pipeIdx >= 0)
             {
-                var secPart = payload.Substring(hashIdx + 1);
-                payload = payload.Substring(0, hashIdx);
+                var secPart = payload.Substring(pipeIdx + 1);
+                payload = payload.Substring(0, pipeIdx);
                 if (secPart.Length > 0)
                 {
                     secondaryList = new List<Color>();
