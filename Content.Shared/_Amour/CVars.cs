@@ -51,7 +51,7 @@ public sealed class WhiteCVars
     /// Client-side voice type preference (Barks or TTS).
     /// </summary>
     public static readonly CVarDef<CharacterVoiceType> VoiceType =
-        CVarDef.Create("voice.type", CharacterVoiceType.Barks, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("voice.type", CharacterVoiceType.TTS, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// If the TTS system is enabled or not.
