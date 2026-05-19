@@ -99,8 +99,8 @@
   guides: # goobstation
   # Orion-Edit-Start
   - SpaceLaw
-  - SOP-Security-Officer
-  - SOP-Security
+  # - SOP-Security-Officer # Disabled until guide is created
+  # - SOP-Security # Disabled until guide is created
   # Orion-Edit-End
   goobcoins: 30 #Goob content
   # Orion-Start
