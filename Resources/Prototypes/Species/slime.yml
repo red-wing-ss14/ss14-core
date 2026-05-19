@@ -127,6 +127,14 @@
     LeftHand:
       points: 2
       required: false
+    # Amour start
+    BodyPartGradient:
+      points: 11
+      required: false
+    BodyGradient:
+      points: 1
+      required: false
+    # Amour end
 
 - type: humanoidBaseSprite
   id: MobSlimeMarkingFollowSkin

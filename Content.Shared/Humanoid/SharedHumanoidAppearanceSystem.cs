@@ -316,7 +316,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         humanoid.Species = species;
-        humanoid.MarkingSet.EnsureSpecies(species, humanoid.SkinColor, _markingManager);
+        humanoid.MarkingSet.EnsureSpecies(species, humanoid.SkinColor, _markingManager, null); // Amour add null
         var oldMarkings = humanoid.MarkingSet.GetForwardEnumerator().ToList();
         humanoid.MarkingSet = new(oldMarkings, prototype.MarkingPoints, _markingManager, _proto);
 
@@ -561,7 +561,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             {
                 if (!prototype.ForcedColoring)
                 {
-                    AddMarking(uid, marking.MarkingId, marking.MarkingColors, false);
+                    AddMarking(uid, new Marking(marking), false); // Amour edit: preserve gradient flags and secondary colors on saved markings.
                 }
                 else
                 {
@@ -580,15 +580,31 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (_markingManager.Markings.TryGetValue(profile.Appearance.HairStyleId, out var hairPrototype) &&
             _markingManager.CanBeApplied(profile.Species, profile.Sex, hairPrototype, _proto))
         {
-            AddMarking(uid, profile.Appearance.HairStyleId, hairColor, false);
+            // Amour start
+            var hairMarking = new Marking(profile.Appearance.HairStyleId, new[] { hairColor });
+            if (profile.Appearance.HairUseGradient)
+            {
+                hairMarking.UseGradient = true;
+                hairMarking.SetGradientColor(0, profile.Appearance.HairColor2);
+            }
+            AddMarking(uid, hairMarking, false);
+            // Amour end
         }
 
         if (_markingManager.Markings.TryGetValue(profile.Appearance.FacialHairStyleId, out var facialHairPrototype) &&
             _markingManager.CanBeApplied(profile.Species, profile.Sex, facialHairPrototype, _proto))
         {
-            AddMarking(uid, profile.Appearance.FacialHairStyleId, facialHairColor, false);
+            // Amour start
+            var facialHairMarking = new Marking(profile.Appearance.FacialHairStyleId, new[] { facialHairColor });
+            if (profile.Appearance.FacialHairUseGradient)
+            {
+                facialHairMarking.UseGradient = true;
+                facialHairMarking.SetGradientColor(0, profile.Appearance.FacialHairColor2);
+            }
+            AddMarking(uid, facialHairMarking, false);
+            // Amour end
         }
-
+        
         humanoid.MarkingSet.EnsureSpecies(profile.Species, profile.Appearance.SkinColor, _markingManager, _proto);
 
         // Finally adding marking with forced colors
@@ -681,6 +697,23 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="sync">Whether to immediately sync this marking or not</param>
     /// <param name="forced">If this marking was forced (ignores marking points)</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
+    // Amour edit start
+    public void AddMarking(EntityUid uid, Marking marking, bool sync = true, bool forced = false, HumanoidAppearanceComponent? humanoid = null)
+    {
+        if (!Resolve(uid, ref humanoid)
+            || !_markingManager.Markings.TryGetValue(marking.MarkingId, out var prototype))
+        {
+            return;
+        }
+
+        marking.Forced = forced;
+        humanoid.MarkingSet.AddBack(prototype.MarkingCategory, marking);
+
+        if (sync)
+            Dirty(uid, humanoid);
+    }
+    // Amour edit end
+
     public void AddMarking(EntityUid uid, string marking, IReadOnlyList<Color> colors, bool sync = true, bool forced = false, HumanoidAppearanceComponent? humanoid = null)
     {
         if (!Resolve(uid, ref humanoid)

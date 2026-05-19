@@ -172,6 +172,18 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                 <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
                                 <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
                             </BoxContainer>
+                            <!-- Amour edit start: hair gradient -->
+                            <BoxContainer Margin="10" Orientation="Vertical">
+                                <CheckBox Name="HairGradientToggle" Text="{Loc 'humanoid-profile-editor-hair-gradient-toggle'}" />
+                                <BoxContainer Name="HairGradientColorContainer" Orientation="Vertical" Visible="False">
+                                    <Label Text="{Loc 'humanoid-profile-editor-hair-gradient-color'}" />
+                                </BoxContainer>
+                                <CheckBox Name="FacialHairGradientToggle" Text="{Loc 'humanoid-profile-editor-facial-hair-gradient-toggle'}" />
+                                <BoxContainer Name="FacialHairGradientColorContainer" Orientation="Vertical" Visible="False">
+                                    <Label Text="{Loc 'humanoid-profile-editor-facial-hair-gradient-color'}" />
+                                </BoxContainer>
+                            </BoxContainer>
+                            <!-- Amour edit end -->
                             <!-- Eyes -->
                             <BoxContainer Margin="10" Orientation="Vertical">
                                 <Label Text="{Loc 'humanoid-profile-editor-eyes-label'}" />

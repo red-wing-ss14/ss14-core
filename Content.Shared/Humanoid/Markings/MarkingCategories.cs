@@ -46,6 +46,8 @@ namespace Content.Shared.Humanoid.Markings
 //        Undershirt, // Orion-Edit: Removed
         Tail,
         Overlay,
+        BodyPartGradient, // Amour edit: slime body-part gradient markings.
+        BodyGradient, // Amour edit: shared category for body-wide gradient markings.
     }
 
     public static class MarkingCategoriesConversion

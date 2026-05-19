@@ -454,7 +454,15 @@ namespace Content.Server.Database
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
                     markings
-                ),
+                )
+                {
+                    // Amour start
+                    HairColor2 = Color.FromHex(profile.HairColor2 ?? "#000000"),
+                    HairUseGradient = profile.HairUseGradient ?? false,
+                    FacialHairColor2 = Color.FromHex(profile.FacialHairColor2 ?? "#000000"),
+                    FacialHairUseGradient = profile.FacialHairUseGradient ?? false
+                    // Amour end
+                },
                 spawnPriority,
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
@@ -502,8 +510,16 @@ namespace Content.Server.Database
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
+            // Amour start
+            profile.HairColor2 = appearance.HairColor2.ToHex();
+            profile.HairUseGradient = appearance.HairUseGradient;
+            // Amour end
             profile.FacialHairName = appearance.FacialHairStyleId;
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
+            // Amour start
+            profile.FacialHairColor2 = appearance.FacialHairColor2.ToHex();
+            profile.FacialHairUseGradient = appearance.FacialHairUseGradient;
+            // Amour end
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
@@ -2247,7 +2263,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .Where(r => clientIds.Contains(r.ClientId))
                 .Select(r => (Guid?)r.ClientId)
                 .FirstOrDefaultAsync(cancel);
-            
+
             return found;
         }
 

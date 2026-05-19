@@ -1053,10 +1053,20 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("facial_hair_color");
 
+                    // Amour start
+                    b.Property<string>("FacialHairColor2")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("facial_hair_color2");
+
                     b.Property<string>("FacialHairName")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("facial_hair_name");
+
+                    b.Property<bool?>("FacialHairUseGradient")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("facial_hair_use_gradient");
+                    // Amour end
 
                     b.Property<string>("FlavorText")
                         .IsRequired()
@@ -1078,10 +1088,20 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_color");
 
+                    // Amour start
+                    b.Property<string>("HairColor2")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("hair_color2");
+
                     b.Property<string>("HairName")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_name");
+
+                    b.Property<bool?>("HairUseGradient")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("hair_use_gradient");
+                    // Amour end
 
                     b.Property<float>("Height")
                         .HasColumnType("REAL")

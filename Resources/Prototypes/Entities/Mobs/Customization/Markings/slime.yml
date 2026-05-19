@@ -10,11 +10,113 @@
 #
 # SPDX-License-Identifier: MIT
 
+# Amour start
+- type: marking
+  id: SlimeGradientHeadMale
+  bodyPart: Head
+  markingCategory: BodyPartGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Male
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: head_m
+
+- type: marking
+  id: SlimeGradientHeadFemale
+  bodyPart: Head
+  markingCategory: BodyPartGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Female
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: head_f
+
+- type: marking
+  id: SlimeGradientHeadUnsexed
+  bodyPart: Head
+  markingCategory: BodyPartGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Unsexed
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: head_m
+
+- type: marking
+  id: SlimeGradientChestMale
+  bodyPart: Chest
+  markingCategory: BodyPartGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Male
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: chest_m
+
+- type: marking
+  id: SlimeGradientChestFemale
+  bodyPart: Chest
+  markingCategory: BodyPartGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Female
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: chest_f
+
+- type: marking
+  id: SlimeGradientChestUnsexed
+  bodyPart: Chest
+  markingCategory: BodyPartGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Unsexed
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: chest_m
+
+- type: marking
+  id: SlimeGradientGroinMale
+  bodyPart: Groin
+  markingCategory: BodyPartGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Male
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: groin_m
+
+- type: marking
+  id: SlimeGradientGroinFemale
+  bodyPart: Groin
+  markingCategory: BodyPartGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Female
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: groin_f
+
+- type: marking
+  id: SlimeGradientGroinUnsexed
+  bodyPart: Groin
+  markingCategory: BodyPartGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Unsexed
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: groin_m
+# Amour end
+
 - type: marking
   id: SlimeGradientLeftArm
   bodyPart: LArm
-  markingCategory: LeftArm
+  markingCategory: BodyPartGradient # Amour edit
   speciesRestriction: [SlimePerson]
+  supportsGradient: true # Amour edit
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
     state: gradient_l_arm
@@ -22,8 +124,9 @@
 - type: marking
   id: SlimeGradientRightArm
   bodyPart: RArm
-  markingCategory: RightArm
+  markingCategory: BodyPartGradient # Amour edit
   speciesRestriction: [SlimePerson]
+  supportsGradient: true # Amour edit
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
     state: gradient_r_arm
@@ -31,8 +134,9 @@
 - type: marking
   id: SlimeGradientLeftLeg
   bodyPart: LLeg
-  markingCategory: LeftLeg
+  markingCategory: BodyPartGradient # Amour edit
   speciesRestriction: [SlimePerson]
+  supportsGradient: true # Amour edit
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
     state: gradient_l_leg
@@ -40,8 +144,9 @@
 - type: marking
   id: SlimeGradientRightLeg
   bodyPart: RLeg
-  markingCategory: RightLeg
+  markingCategory: BodyPartGradient # Amour edit
   speciesRestriction: [SlimePerson]
+  supportsGradient: true # Amour edit
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
     state: gradient_r_leg
@@ -49,8 +154,9 @@
 - type: marking
   id: SlimeGradientLeftFoot
   bodyPart: LFoot
-  markingCategory: LeftFoot
+  markingCategory: BodyPartGradient # Amour edit
   speciesRestriction: [SlimePerson]
+  supportsGradient: true # Amour edit
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
     state: gradient_l_foot
@@ -58,8 +164,9 @@
 - type: marking
   id: SlimeGradientRightFoot
   bodyPart: RFoot
-  markingCategory: RightFoot
+  markingCategory: BodyPartGradient # Amour edit
   speciesRestriction: [SlimePerson]
+  supportsGradient: true # Amour edit
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
     state: gradient_r_foot
@@ -67,8 +174,9 @@
 - type: marking
   id: SlimeGradientLeftHand
   bodyPart: LHand
-  markingCategory: LeftHand
+  markingCategory: BodyPartGradient # Amour edit
   speciesRestriction: [SlimePerson]
+  supportsGradient: true # Amour edit
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
     state: gradient_l_hand
@@ -76,8 +184,140 @@
 - type: marking
   id: SlimeGradientRightHand
   bodyPart: RHand
-  markingCategory: RightHand
+  # Amour start: gradient
+  markingCategory: BodyPartGradient
   speciesRestriction: [SlimePerson]
+  supportsGradient: true
   sprites:
   - sprite: Mobs/Customization/slime_parts.rsi
     state: gradient_r_hand
+
+- type: marking
+  id: SlimeGradientBodyMale
+  bodyPart: Head
+  bodyParts:
+  - Head
+  - Chest
+  - Groin
+  - LArm
+  - RArm
+  - LLeg
+  - RLeg
+  - LFoot
+  - RFoot
+  - LHand
+  - RHand
+  markingCategory: BodyGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Male
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: head_m
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: chest_m
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: groin_m
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_arm
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_arm
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_leg
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_leg
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_foot
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_foot
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_hand
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_hand
+
+- type: marking
+  id: SlimeGradientBodyFemale
+  bodyPart: Head
+  bodyParts:
+  - Head
+  - Chest
+  - Groin
+  - LArm
+  - RArm
+  - LLeg
+  - RLeg
+  - LFoot
+  - RFoot
+  - LHand
+  - RHand
+  markingCategory: BodyGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Female
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: head_f
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: chest_f
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: groin_f
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_arm
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_arm
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_leg
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_leg
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_foot
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_foot
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_hand
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_hand
+
+- type: marking
+  id: SlimeGradientBodyUnsexed
+  bodyPart: Head
+  bodyParts:
+  - Head
+  - Chest
+  - Groin
+  - LArm
+  - RArm
+  - LLeg
+  - RLeg
+  - LFoot
+  - RFoot
+  - LHand
+  - RHand
+  markingCategory: BodyGradient
+  speciesRestriction: [SlimePerson]
+  sexRestriction: Unsexed
+  supportsGradient: true
+  sprites:
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: head_m
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: chest_m
+  - sprite: Mobs/Species/Slime/parts.rsi
+    state: groin_m
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_arm
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_arm
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_leg
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_leg
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_foot
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_foot
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_l_hand
+  - sprite: Mobs/Customization/slime_parts.rsi
+    state: gradient_r_hand
+  # Amour end
