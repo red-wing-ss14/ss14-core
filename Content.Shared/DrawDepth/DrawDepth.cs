@@ -72,6 +72,12 @@ namespace Content.Shared.DrawDepth
         /// </summary>
         Puddles = DrawDepthTag.Default - 10,
 
+        // Amour start
+        /// <summary>
+        ///     Chasms and lava.
+        /// </summary>
+        Chasms = DrawDepthTag.Default - 9,
+        // Amour end
         // There's a gap for subfloor entities to retain relative draw depth when revealed by a t-ray scanner.
         /// <summary>
         //     Objects that are on the floor, but should render above puddles. This includes kudzu, holopads, telepads and levers.
