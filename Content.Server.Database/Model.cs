@@ -688,6 +688,12 @@ namespace Content.Server.Database
         public int Age { get; set; }
         public string Sex { get; set; } = null!;
         public string BodyType { get; set; } = null!; // Amour port: WD Slim body types
+        // Amour start
+        public string? HairColor2 { get; set; }
+        public bool? HairUseGradient { get; set; }
+        public string? FacialHairColor2 { get; set; }
+        public bool? FacialHairUseGradient { get; set; }
+        // Amour end
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
         public float Height { get; set; } = 1f; // Goobstation: port EE height/width sliders

@@ -23,6 +23,10 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("markingColor")]
         private List<Color> _markingColors = new();
 
+        // Amour edit start: secondary gradient colors per sprite layer
+        [DataField("markingSecondaryColor")]
+        private List<Color>? _secondaryColors;
+        // Amour edit end
         private Marking()
         {
         }
@@ -55,6 +59,11 @@ namespace Content.Shared.Humanoid.Markings
             _markingColors = new(other.MarkingColors);
             Visible = other.Visible;
             Forced = other.Forced;
+            // Amour edit start
+            UseGradient = other.UseGradient;
+            if (other._secondaryColors != null)
+                _secondaryColors = new List<Color>(other._secondaryColors);
+            // Amour edit end
         }
 
         /// <summary>
@@ -69,6 +78,15 @@ namespace Content.Shared.Humanoid.Markings
         [ViewVariables]
         public IReadOnlyList<Color> MarkingColors => _markingColors;
 
+        // Amour edit start
+        /// <summary>
+        ///     Secondary colors used as the second stop of a vertical gradient
+        ///     when <see cref="UseGradient"/> is enabled. May be null if the
+        ///     marking has never been switched into gradient mode.
+        /// </summary>
+        [ViewVariables]
+        public IReadOnlyList<Color>? SecondaryMarkingColors => _secondaryColors;
+        // Amour edit end
         /// <summary>
         ///     If this marking is currently visible.
         /// </summary>
@@ -81,6 +99,15 @@ namespace Content.Shared.Humanoid.Markings
         [ViewVariables]
         public bool Forced;
 
+        // Amour edit start: gradient coloring for markings (hair/slime body etc.)
+        /// <summary>
+        ///     If true, the marking is rendered using a vertical gradient between
+        ///     the first and the second color from <see cref="MarkingColors"/>.
+        ///     Applied client-side via a dedicated shader.
+        /// </summary>
+        [DataField("useGradient")]
+        public bool UseGradient;
+        // Amour edit end
         public void SetColor(int colorIndex, Color color) =>
             _markingColors[colorIndex] = color;
 
@@ -91,6 +118,29 @@ namespace Content.Shared.Humanoid.Markings
                 _markingColors[i] = color;
             }
         }
+
+        // Amour edit start: helpers for gradient access
+        /// <summary>
+        ///     Returns the secondary gradient color for the given layer index,
+        ///     or the primary color if no secondary is set / gradient is disabled.
+        /// </summary>
+        public Color GetGradientColor(int colorIndex)
+        {
+            if (_secondaryColors != null && colorIndex >= 0 && colorIndex < _secondaryColors.Count)
+                return _secondaryColors[colorIndex];
+            if (colorIndex >= 0 && colorIndex < _markingColors.Count)
+                return _markingColors[colorIndex];
+            return Color.White;
+        }
+
+        public void SetGradientColor(int colorIndex, Color color)
+        {
+            _secondaryColors ??= new List<Color>();
+            while (_secondaryColors.Count <= colorIndex)
+                _secondaryColors.Add(colorIndex < _markingColors.Count ? _markingColors[colorIndex] : Color.White);
+            _secondaryColors[colorIndex] = color;
+        }
+        // Amour edit end
 
         public int CompareTo(Marking? marking)
         {
@@ -119,9 +169,23 @@ namespace Content.Shared.Humanoid.Markings
             return MarkingId.Equals(other.MarkingId)
                 && _markingColors.SequenceEqual(other._markingColors)
                 && Visible.Equals(other.Visible)
-                && Forced.Equals(other.Forced);
+                && Forced.Equals(other.Forced)
+                // Amour edit start
+                && UseGradient.Equals(other.UseGradient)
+                && SecondaryColorsEqual(_secondaryColors, other._secondaryColors);
+                // Amour edit end
         }
 
+        // Amour edit start
+        private static bool SecondaryColorsEqual(List<Color>? a, List<Color>? b)
+        {
+            if (a == null && b == null)
+                return true;
+            if (a == null || b == null)
+                return false;
+            return a.SequenceEqual(b);
+        }
+        // Amour edit end
         // VERY BIG TODO: TURN THIS INTO JSONSERIALIZER IMPLEMENTATION
 
 
@@ -141,7 +205,20 @@ namespace Content.Shared.Humanoid.Markings
             foreach (Color color in _markingColors)
                 colorStringList.Add(color.ToHex());
 
-            return $"{sanitizedName}@{String.Join(',', colorStringList)}";
+            // Amour edit start: append optional gradient sections
+            // Format: id@col1,col2,...[|sec1,sec2,...][!G]
+            var result = $"{sanitizedName}@{String.Join(',', colorStringList)}";
+            if (_secondaryColors != null && _secondaryColors.Count > 0)
+            {
+                List<string> secondaryStringList = new();
+                foreach (Color color in _secondaryColors)
+                    secondaryStringList.Add(color.ToHex());
+                result += $"|{String.Join(',', secondaryStringList)}";
+            }
+            if (UseGradient)
+                result += "!G";
+            return result;
+            // Amour edit end
         }
 
         public static Marking? ParseFromDbString(string input)
@@ -149,11 +226,42 @@ namespace Content.Shared.Humanoid.Markings
             if (input.Length == 0) return null;
             var split = input.Split('@');
             if (split.Length != 2) return null;
+
+            // Amour edit start: parse optional gradient sections
+            var payload = split[1];
+            var useGradient = false;
+            if (payload.EndsWith("!G", StringComparison.Ordinal))
+            {
+                useGradient = true;
+                payload = payload.Substring(0, payload.Length - 2);
+            }
+
+            List<Color>? secondaryList = null;
+            var pipeIdx = payload.IndexOf('|');
+            if (pipeIdx >= 0)
+            {
+                var secPart = payload.Substring(pipeIdx + 1);
+                payload = payload.Substring(0, pipeIdx);
+                if (secPart.Length > 0)
+                {
+                    secondaryList = new List<Color>();
+                    foreach (string color in secPart.Split(','))
+                        secondaryList.Add(Color.FromHex(color));
+                }
+            }
+
             List<Color> colorList = new();
-            foreach (string color in split[1].Split(','))
+            foreach (string color in payload.Split(','))
                 colorList.Add(Color.FromHex(color));
 
-            return new Marking(split[0], colorList);
+            var marking = new Marking(split[0], colorList)
+            {
+                UseGradient = useGradient,
+            };
+            if (secondaryList != null)
+                marking._secondaryColors = secondaryList;
+            return marking;
+            // Amour edit end
         }
     }
 }

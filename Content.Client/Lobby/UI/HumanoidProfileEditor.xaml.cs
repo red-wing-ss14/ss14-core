@@ -642,8 +642,64 @@ namespace Content.Client.Lobby.UI
                 ReloadPreview();
             };
 
-            #endregion Hair
+            // Amour edit start: hair gradient setup.
+            var hairGradientPicker = new Robust.Client.UserInterface.Controls.ColorSelectorSliders
+            {
+                SelectorType = Robust.Client.UserInterface.Controls.ColorSelectorSliders.ColorSelectorType.Hsv,
+            };
+            HairGradientColorContainer.AddChild(hairGradientPicker);
+            hairGradientPicker.OnColorChanged += newColor =>
+            {
+                if (Profile is null)
+                    return;
+                Profile = Profile.WithCharacterAppearance(
+                    Profile.Appearance.WithHairColor2(newColor));
+                ReloadPreview();
+                SetDirty();
+            };
 
+            HairGradientToggle.OnToggled += args =>
+            {
+                if (Profile is null)
+                    return;
+                HairGradientColorContainer.Visible = args.Pressed;
+                Profile = Profile.WithCharacterAppearance(
+                    Profile.Appearance.WithHairUseGradient(args.Pressed));
+                ReloadPreview();
+                SetDirty();
+            };
+
+            var facialHairGradientPicker = new Robust.Client.UserInterface.Controls.ColorSelectorSliders
+            {
+                SelectorType = Robust.Client.UserInterface.Controls.ColorSelectorSliders.ColorSelectorType.Hsv,
+            };
+            FacialHairGradientColorContainer.AddChild(facialHairGradientPicker);
+            facialHairGradientPicker.OnColorChanged += newColor =>
+            {
+                if (Profile is null)
+                    return;
+                Profile = Profile.WithCharacterAppearance(
+                    Profile.Appearance.WithFacialHairColor2(newColor));
+                ReloadPreview();
+                SetDirty();
+            };
+
+            FacialHairGradientToggle.OnToggled += args =>
+            {
+                if (Profile is null)
+                    return;
+                FacialHairGradientColorContainer.Visible = args.Pressed;
+                Profile = Profile.WithCharacterAppearance(
+                    Profile.Appearance.WithFacialHairUseGradient(args.Pressed));
+                ReloadPreview();
+                SetDirty();
+            };
+
+            _amourHairGradientPicker = hairGradientPicker;
+            _amourFacialHairGradientPicker = facialHairGradientPicker;
+            // Amour edit end
+
+            #endregion Hair
             #region SpawnPriority
 
             foreach (var value in Enum.GetValues<SpawnPriorityPreference>())
@@ -2166,7 +2222,7 @@ namespace Content.Client.Lobby.UI
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
 
-            _ttsVoiceMenu?.Dispose(); // Amour 
+            _ttsVoiceMenu?.Dispose(); // Amour
             _ttsVoiceMenu = null;
         }
 
@@ -2677,13 +2733,31 @@ namespace Content.Client.Lobby.UI
             {
                 return;
             }
-            var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor }) };
+            // Amour start
+            var hairMarking = new List<Marking>();
+            if (Profile.Appearance.HairStyleId != HairStyles.DefaultHairStyle)
+            {
+                var marking = new Marking(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor });
+                if (Profile.Appearance.HairUseGradient)
+                {
+                    marking.UseGradient = true;
+                    marking.SetGradientColor(0, Profile.Appearance.HairColor2);
+                }
+                hairMarking.Add(marking);
+            }
 
-            var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor }) };
+            var facialHairMarking = new List<Marking>();
+            if (Profile.Appearance.FacialHairStyleId != HairStyles.DefaultFacialHairStyle)
+            {
+                var marking = new Marking(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor });
+                if (Profile.Appearance.FacialHairUseGradient)
+                {
+                    marking.UseGradient = true;
+                    marking.SetGradientColor(0, Profile.Appearance.FacialHairColor2);
+                }
+                facialHairMarking.Add(marking);
+            }
+            // Amour end
 
             HairStylePicker.UpdateData(
                 hairMarking,
@@ -2693,7 +2767,21 @@ namespace Content.Client.Lobby.UI
                 facialHairMarking,
                 Profile.Species,
                 1);
+            // Amour start
+            HairGradientToggle.Pressed = Profile.Appearance.HairUseGradient;
+            HairGradientColorContainer.Visible = Profile.Appearance.HairUseGradient;
+            if (_amourHairGradientPicker != null)
+                _amourHairGradientPicker.Color = Profile.Appearance.HairColor2;
+
+            FacialHairGradientToggle.Pressed = Profile.Appearance.FacialHairUseGradient;
+            FacialHairGradientColorContainer.Visible = Profile.Appearance.FacialHairUseGradient;
+            if (_amourFacialHairGradientPicker != null)
+                _amourFacialHairGradientPicker.Color = Profile.Appearance.FacialHairColor2;
         }
+
+        private Robust.Client.UserInterface.Controls.ColorSelectorSliders? _amourHairGradientPicker;
+        private Robust.Client.UserInterface.Controls.ColorSelectorSliders? _amourFacialHairGradientPicker;
+        // Amour edit end
 
         private void UpdateCMarkingsHair()
         {
@@ -2723,6 +2811,13 @@ namespace Content.Client.Lobby.UI
             if (hairColor != null)
             {
                 Markings.HairMarking = new(Profile.Appearance.HairStyleId, new List<Color>() { hairColor.Value });
+                // Amour edit start: apply gradient to hair marking in preview
+                if (Profile.Appearance.HairUseGradient)
+                {
+                    Markings.HairMarking.UseGradient = true;
+                    Markings.HairMarking.SetGradientColor(0, Profile.Appearance.HairColor2);
+                }
+                // Amour edit end
             }
             else
             {
@@ -2757,6 +2852,13 @@ namespace Content.Client.Lobby.UI
             if (facialHairColor != null)
             {
                 Markings.FacialHairMarking = new(Profile.Appearance.FacialHairStyleId, new List<Color>() { facialHairColor.Value });
+                // Amour edit start: apply gradient to facial hair marking in preview
+                if (Profile.Appearance.FacialHairUseGradient)
+                {
+                    Markings.FacialHairMarking.UseGradient = true;
+                    Markings.FacialHairMarking.SetGradientColor(0, Profile.Appearance.FacialHairColor2);
+                }
+                // Amour edit end
             }
             else
             {

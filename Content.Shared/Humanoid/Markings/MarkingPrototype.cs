@@ -31,6 +31,32 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("bodyPart", required: true)]
         public HumanoidVisualLayers BodyPart { get; private set; } = default!;
 
+        // Amour edit start
+        /// <summary>
+        ///     Optional per-sprite body part targets. When specified, each sprite
+        ///     is applied over its matching body layer instead of every sprite
+        ///     using <see cref="BodyPart"/>.
+        /// </summary>
+        [DataField("bodyParts")]
+        public List<HumanoidVisualLayers>? BodyParts { get; private set; }
+
+        public HumanoidVisualLayers GetBodyPart(int spriteIndex)
+        {
+            if (BodyParts != null && spriteIndex >= 0 && spriteIndex < BodyParts.Count)
+                return BodyParts[spriteIndex];
+
+            return BodyPart;
+        }
+
+        public bool AppliesToBodyPart(HumanoidVisualLayers layer)
+        {
+            if (BodyPart == layer)
+                return true;
+
+            return BodyParts != null && BodyParts.Contains(layer);
+        }
+        // Amour edit end
+
         [DataField("markingCategory", required: true)]
         public MarkingCategories MarkingCategory { get; private set; } = default!;
 
@@ -81,6 +107,16 @@ namespace Content.Shared.Humanoid.Markings
         public string? Shader { get; private set; } = null;
         /// Impstation end
 
+        // Amour edit start
+        /// <summary>
+        ///     If true, this marking can be rendered with a vertical two-color gradient
+        ///     and the editor UI will expose a second color picker for it.
+        ///     Defaults to false to avoid showing the toggle for markings that don't
+        ///     visually benefit from it.
+        /// </summary>
+        [DataField("supportsGradient")]
+        public bool SupportsGradient { get; private set; } = false;
+        // Amour edit end
         public Marking AsMarking()
         {
             return new Marking(ID, Sprites.Count);

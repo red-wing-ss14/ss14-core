@@ -44,12 +44,27 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     [DataField]
     public Color HairColor { get; set; } = Color.Black;
 
+    // Amour edit start: optional second-stop gradient color for hair.
+    [DataField]
+    public Color HairColor2 { get; set; } = Color.Black;
+
+    [DataField]
+    public bool HairUseGradient { get; set; } = false;
+    // Amour edit end
+
     [DataField("facialHair")]
     public string FacialHairStyleId { get; set; } = HairStyles.DefaultFacialHairStyle;
 
     [DataField]
     public Color FacialHairColor { get; set; } = Color.Black;
 
+    // Amour edit start: optional second-stop gradient color for facial hair.
+    [DataField]
+    public Color FacialHairColor2 { get; set; } = Color.Black;
+
+    [DataField]
+    public bool FacialHairUseGradient { get; set; } = false;
+    // Amour edit end
     [DataField]
     public Color EyeColor { get; set; } = Color.Black;
 
@@ -79,42 +94,146 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
         this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings))
     {
-
+        // Amour start
+        HairColor2 = other.HairColor2;
+        HairUseGradient = other.HairUseGradient;
+        FacialHairColor2 = other.FacialHairColor2;
+        FacialHairUseGradient = other.FacialHairUseGradient;
+        // Amour end
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            // Amour start
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            // Amour end
+        };
     }
-
     public HumanoidCharacterAppearance WithHairColor(Color newColor)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+  // Amour edit start
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+        };
     }
+
+    public HumanoidCharacterAppearance WithHairColor2(Color newColor)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            HairColor2 = newColor,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+        };
+    }
+
+    public HumanoidCharacterAppearance WithHairUseGradient(bool value)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            HairColor2 = HairColor2,
+            HairUseGradient = value,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+        };
+    }
+
+    public HumanoidCharacterAppearance WithFacialHairColor2(Color newColor)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = newColor,
+            FacialHairUseGradient = FacialHairUseGradient,
+        };
+    }
+
+    public HumanoidCharacterAppearance WithFacialHairUseGradient(bool value)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = value,
+        };
+    }
+    // Amour edit end
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            // Amour start
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            // Amour end
+        };
     }
 
     public HumanoidCharacterAppearance WithFacialHairColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings)
+        {
+            // Amour start
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            // Amour end
+        };
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings)
+        {
+            // Amour start
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            // Amour end
+        };
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings);
+        return new HumanoidCharacterAppearance(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings)
+        {
+            // Amour start
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            // Amour end
+        };
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings)
+        {
+            // Amour start
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            // Amour end
+        };
     }
 
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
@@ -243,7 +362,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                 skinColor = Humanoid.SkinColor.ValidSkinTone(speciesProto.SkinColoration, skinColor);
             }
 
-            markingSet.EnsureSpecies(species, skinColor, markingManager);
+            markingSet.EnsureSpecies(species, skinColor, markingManager, null); // Amour add null
             markingSet.EnsureSexes(sex, markingManager);
         }
 
@@ -254,7 +373,15 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             facialHairColor,
             eyeColor,
             skinColor,
-            markingSet.GetForwardEnumerator().ToList());
+            markingSet.GetForwardEnumerator().ToList())
+        {
+            // Amour start
+            HairColor2 = ClampColor(appearance.HairColor2),
+            HairUseGradient = appearance.HairUseGradient,
+            FacialHairColor2 = ClampColor(appearance.FacialHairColor2),
+            FacialHairUseGradient = appearance.FacialHairUseGradient,
+            // Amour end
+        };
     }
 
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
@@ -267,6 +394,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!EyeColor.Equals(other.EyeColor)) return false;
         if (!SkinColor.Equals(other.SkinColor)) return false;
         if (!Markings.SequenceEqual(other.Markings)) return false;
+        // Amour edit start
+        if (!HairColor2.Equals(other.HairColor2)) return false;
+        if (HairUseGradient != other.HairUseGradient) return false;
+        if (!FacialHairColor2.Equals(other.FacialHairColor2)) return false;
+        if (FacialHairUseGradient != other.FacialHairUseGradient) return false;
+        // Amour edit end
         return true;
     }
 
@@ -280,7 +413,13 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                FacialHairColor.Equals(other.FacialHairColor) &&
                EyeColor.Equals(other.EyeColor) &&
                SkinColor.Equals(other.SkinColor) &&
-               Markings.SequenceEqual(other.Markings);
+               Markings.SequenceEqual(other.Markings) &&
+               // Amour start
+               HairColor2.Equals(other.HairColor2) &&
+               HairUseGradient == other.HairUseGradient &&
+               FacialHairColor2.Equals(other.FacialHairColor2) &&
+               FacialHairUseGradient == other.FacialHairUseGradient;
+               // Amour end
     }
 
     public override bool Equals(object? obj)
@@ -290,7 +429,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        // Amour edit: include gradient fields
+        var baseHash = HashCode.Combine(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return HashCode.Combine(baseHash, HairColor2, HairUseGradient, FacialHairColor2, FacialHairUseGradient);
     }
 
     public HumanoidCharacterAppearance Clone()

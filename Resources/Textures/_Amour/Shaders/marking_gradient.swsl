@@ -1,0 +1,17 @@
+uniform highp vec4 Color1; // top color (UV.y = 0)
+uniform highp vec4 Color2; // bottom color (UV.y = 1)
+
+varying highp vec2 localUV;
+
+void vertex() {
+    localUV = tCoord2;
+}
+
+void fragment()
+{
+    highp vec4 baseColor = zTexture(UV);
+
+    highp vec4 gradient = mix(Color1, Color2, clamp(localUV.y, 0.0, 1.0));
+
+    COLOR = vec4(baseColor.rgb * gradient.rgb, baseColor.a * gradient.a);
+}

@@ -28,6 +28,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
@@ -42,6 +43,30 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+
+    // Amour edit start
+    private const string MarkingGradientShaderId = "AmourMarkingGradient";
+ 
+    private static bool MarkingSupportsGradient(MarkingPrototype marking) =>
+        marking.SupportsGradient ||
+        marking.MarkingCategory is MarkingCategories.Hair or MarkingCategories.FacialHair;
+
+    private static bool UsesBodyLayerGradient(MarkingPrototype marking) =>
+        marking.MarkingCategory == MarkingCategories.BodyGradient &&
+        marking.BodyParts is { Count: > 0 };
+
+    private static int GetBodyPartSpriteOffset(MarkingPrototype markingPrototype, HumanoidVisualLayers bodyPart, int spriteIndex)
+    {
+        var offset = 1;
+        for (var i = 0; i < spriteIndex; i++)
+        {
+            if (markingPrototype.GetBodyPart(i) == bodyPart)
+                offset++;
+        }
+
+        return offset;
+    }
+    // Amour edit end
 
     public override void Initialize()
     {
@@ -156,7 +181,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         component.BaseLayers[key] = proto;
 
         if (proto.MatchSkin && !overrideSkin) // Shitmed Change
+        {
+            if (shader == null) // Amour edit
+                sprite.LayerSetShader(layerIndex, null, null); // Amour edit
             layer.Color = component.SkinColor.WithAlpha(proto.LayerAlpha);
+        }
 
         if (proto.BaseSprite != null)
             _sprite.LayerSetSprite((entity.Owner, sprite), layerIndex, proto.BaseSprite);
@@ -214,13 +243,26 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             : profile.Appearance.HairColor;
         var hair = new Marking(profile.Appearance.HairStyleId,
             new[] { hairColor });
+        // Amour edit start
+        if (profile.Appearance.HairUseGradient)
+        {
+            hair.UseGradient = true;
+            hair.SetGradientColor(0, profile.Appearance.HairColor2);
+        }
+        // Amour edit end
 
         var facialHairColor = _markingManager.MustMatchSkin(profile.Species, HumanoidVisualLayers.FacialHair, out var facialHairAlpha, _prototypeManager)
             ? profile.Appearance.SkinColor.WithAlpha(facialHairAlpha)
             : profile.Appearance.FacialHairColor;
         var facialHair = new Marking(profile.Appearance.FacialHairStyleId,
             new[] { facialHairColor });
-
+        // Amour edit start
+        if (profile.Appearance.FacialHairUseGradient)
+        {
+            facialHair.UseGradient = true;
+            facialHair.SetGradientColor(0, profile.Appearance.FacialHairColor2);
+        }
+        // Amour edit end
         if (_markingManager.CanBeApplied(profile.Species, profile.Sex, hair, _prototypeManager))
         {
             markings.AddBack(MarkingCategories.Hair, hair);
@@ -283,7 +325,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             {
                 if (_markingManager.TryGetMarking(marking, out var markingPrototype))
                 {
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, entity);
+                    ApplyMarking(markingPrototype, marking, entity); // Amour edit
                 }
             }
         }
@@ -339,22 +381,77 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             _sprite.RemoveLayer(spriteEnt.AsNullable(), index);
         }
     }
+    // Amour edit start
     private void ApplyMarking(MarkingPrototype markingPrototype,
-        IReadOnlyList<Color>? colors,
-        bool visible,
+        Marking marking,
         Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
-        var humanoid = entity.Comp1;
-        var sprite = entity.Comp2;
-
-        if (!_sprite.LayerMapTryGet((entity.Owner, sprite), markingPrototype.BodyPart, out var targetLayer, false))
+        if (UsesBodyLayerGradient(markingPrototype))
         {
+            ApplyBodyLayerGradient(markingPrototype, marking, entity);
             return;
         }
 
-        visible &= !IsHidden(humanoid, markingPrototype.BodyPart);
-        visible &= humanoid.BaseLayers.TryGetValue(markingPrototype.BodyPart, out var setting)
-           && setting.AllowsMarkings;
+        ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, entity, marking);
+    }
+
+    private void ApplyBodyLayerGradient(
+        MarkingPrototype markingPrototype,
+        Marking marking,
+        Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
+    {
+        if (!marking.Visible)
+            return;
+
+        var humanoid = entity.Comp1;
+        var sprite = entity.Comp2;
+        var color1 = marking.MarkingColors.Count > 0 ? marking.MarkingColors[0] : humanoid.SkinColor;
+        var color2 = marking.GetGradientColor(0);
+        ShaderPrototype? gradientProto = null;
+
+        if (MarkingSupportsGradient(markingPrototype) && marking.UseGradient)
+        {
+            if (!_prototypeManager.TryIndex<ShaderPrototype>(MarkingGradientShaderId, out gradientProto))
+                return;
+        }
+
+        var appliedLayers = new HashSet<HumanoidVisualLayers>();
+        for (var i = 0; i < markingPrototype.Sprites.Count; i++)
+        {
+            var bodyPart = markingPrototype.GetBodyPart(i);
+            if (!appliedLayers.Add(bodyPart) ||
+                !_sprite.LayerMapTryGet((entity.Owner, sprite), bodyPart, out var layerIndex, false) ||
+                !humanoid.BaseLayers.TryGetValue(bodyPart, out var baseLayer) ||
+                !baseLayer.MatchSkin)
+            {
+                continue;
+            }
+
+            if (gradientProto != null)
+            {
+                var shaderInstance = gradientProto.InstanceUnique();
+                shaderInstance.SetParameter("Color1", color1.WithAlpha(baseLayer.LayerAlpha));
+                shaderInstance.SetParameter("Color2", color2.WithAlpha(baseLayer.LayerAlpha));
+                sprite.LayerSetShader(layerIndex, shaderInstance);
+                sprite[layerIndex].Color = Color.White;
+            }
+            else
+            {
+                sprite.LayerSetShader(layerIndex, null, null);
+                sprite[layerIndex].Color = color1.WithAlpha(baseLayer.LayerAlpha);
+            }
+        }
+    }
+    // Amour edit end
+
+    private void ApplyMarking(MarkingPrototype markingPrototype,
+        IReadOnlyList<Color>? colors,
+        bool visible,
+        Entity<HumanoidAppearanceComponent, SpriteComponent> entity,
+        Marking? marking = null) // Amour edit
+    {
+        var humanoid = entity.Comp1;
+        var sprite = entity.Comp2;
 
         for (var j = 0; j < markingPrototype.Sprites.Count; j++)
         {
@@ -365,37 +462,91 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 continue;
             }
 
+            // Amour edit start
+            var bodyPart = markingPrototype.GetBodyPart(j);
+            if (!_sprite.LayerMapTryGet((entity.Owner, sprite), bodyPart, out var targetLayer, false))
+            {
+                continue;
+            }
+
+            var layerVisible = visible && !IsHidden(humanoid, bodyPart);
+            var hasSetting = humanoid.BaseLayers.TryGetValue(bodyPart, out var setting);
+            layerVisible &= hasSetting && setting is { AllowsMarkings: true };
+            var layerOffset = GetBodyPartSpriteOffset(markingPrototype, bodyPart, j);
+            // Amour edit end
             var layerId = $"{markingPrototype.ID}-{rsi.RsiState}";
 
             if (!_sprite.LayerMapTryGet((entity.Owner, sprite), layerId, out var layer, false)) // Goob edit
             {
-                layer = _sprite.AddLayer((entity.Owner, sprite), markingSprite, targetLayer + j + 1); // Goob edit
+                layer = _sprite.AddLayer((entity.Owner, sprite), markingSprite, targetLayer + layerOffset); // Goob edit
                 _sprite.LayerMapSet((entity.Owner, sprite), layerId, layer);
                 _sprite.LayerSetSprite((entity.Owner, sprite), layerId, rsi);
             }
 
-            var hasInfo = humanoid.CustomBaseLayers.TryGetValue(markingPrototype.BodyPart, out var info); // Goobstation
-            // impstation edit begin - check if there's a shader defined in the markingPrototype's shader datafield, and if there is...
-			if (markingPrototype.Shader != null)
-			{
-			// use spriteComponent's layersetshader function to set the layer's shader to that which is specified.
-				sprite.LayerSetShader(layer, markingPrototype.Shader); // Goob edit
-			}
-            else // Goobstation
+            var hasInfo = humanoid.CustomBaseLayers.TryGetValue(bodyPart, out var info); // Goobstation
+
+            // Amour edit start
+            var gradientApplied = false;
+            if (MarkingSupportsGradient(markingPrototype) && marking is { UseGradient: true } && colors != null && j < colors.Count)
             {
-                if (hasInfo && info.Shader != null)
-                    sprite.LayerSetShader(layer, info.Shader);
-                else
-                    sprite.LayerSetShader(layer, null, null);
+                if (_prototypeManager.TryIndex<ShaderPrototype>(MarkingGradientShaderId, out var gradientProto))
+                {
+                    var color1 = colors[j];
+                    var color2 = marking.GetGradientColor(j);
+
+                    // Mix the per-layer humanoid tint into both stops so existing
+                    // skin-tint logic still affects the gradient.
+                    if (hasInfo && info.Color != null)
+                    {
+                        color1 = Color.InterpolateBetween(color1, info.Color.Value, 0.5f);
+                        color2 = Color.InterpolateBetween(color2, info.Color.Value, 0.5f);
+                    }
+
+                    var shaderInstance = gradientProto.InstanceUnique();
+                    shaderInstance.SetParameter("Color1", color1);
+                    shaderInstance.SetParameter("Color2", color2);
+                    sprite.LayerSetShader(layer, shaderInstance);
+                    // The shader already tints the texture, so reset the layer
+                    // modulate to white to avoid double-tinting.
+                    _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+                    gradientApplied = true;
+                }
             }
-			// impstation edit end
 
-            _sprite.LayerSetVisible((entity.Owner, sprite), layerId, visible);
+            if (!gradientApplied)
+            {
+                // impstation edit begin - check if there's a shader defined in the markingPrototype's shader datafield, and if there is...
+                if (markingPrototype.Shader != null)
+                {
+                    // use spriteComponent's layersetshader function to set the layer's shader to that which is specified.
+                    sprite.LayerSetShader(layer, markingPrototype.Shader); // Goob edit
+                }
+                else // Goobstation
+                {
+                    if (hasInfo && info.Shader != null)
+                        sprite.LayerSetShader(layer, info.Shader);
+                    else
+                        sprite.LayerSetShader(layer, null, null);
+                }
+                // impstation edit end
+            }
 
-            if (!visible || setting == null) // this is kinda implied
+            _sprite.LayerSetVisible((entity.Owner, sprite), layerId, layerVisible);
+
+            if (!layerVisible || !hasSetting) // this is kinda implied
             {
                 continue;
             }
+
+            if (gradientApplied)
+            {
+                if (humanoid.MarkingsDisplacement.TryGetValue(bodyPart, out var dispData) && markingPrototype.CanBeDisplaced)
+                {
+                    _displacement.TryAddDisplacement(dispData, (entity.Owner, sprite), targetLayer + layerOffset, layerId, out _);
+                }
+                continue;
+            }
+            // Amour edit end
 
             // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
             // and we need to check the index is correct.
@@ -419,9 +570,9 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 // Goob edit end
             }
 
-            if (humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced)
+            if (humanoid.MarkingsDisplacement.TryGetValue(bodyPart, out var displacementData) && markingPrototype.CanBeDisplaced) // Amour edit
             {
-                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _);
+                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + layerOffset, layerId, out _); // Amour edit
             }
         }
     }
@@ -442,6 +593,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 continue;
 
             var index = _sprite.LayerMapReserve((uid, sprite), layer);
+            sprite.LayerSetShader(index, null, null); // Amour edit
             sprite[index].Color = skinColor.WithAlpha(spriteInfo.LayerAlpha);
         }
     }
@@ -476,8 +628,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         {
             foreach (var marking in markingList)
             {
-                if (_markingManager.TryGetMarking(marking, out var markingPrototype) && markingPrototype.BodyPart == layer)
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.Visible, (ent, ent.Comp, sprite));
+                if (_markingManager.TryGetMarking(marking, out var markingPrototype) && markingPrototype.AppliesToBodyPart(layer)) // Amour edit
+                    ApplyMarking(markingPrototype, marking, (ent, ent.Comp, sprite)); // Amour edit
             }
         }
     }
