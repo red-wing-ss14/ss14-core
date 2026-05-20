@@ -106,7 +106,8 @@ public sealed class DiscordOocBridgeService : IPostInjectInit
                 return;
             }
 
-            var formattedMessage = $"**{EscapeMarkdown(playerName)}:** {message}";
+            var sanitizedMessage = SanitizeMessage(message);
+            var formattedMessage = $"**{EscapeMarkdown(playerName)}:** {sanitizedMessage}";
             await channel.SendMessageAsync(formattedMessage);
         }
         catch (Exception ex)
@@ -206,6 +207,20 @@ public sealed class DiscordOocBridgeService : IPostInjectInit
             .Replace("`", "\\`")
             .Replace("|", "\\|")
             .Replace(">", "\\>");
+    }
+
+    private static string SanitizeMessage(string message)
+    {
+        message = message.Replace("@everyone", "забаньте меня");
+        message = message.Replace("@here", "ㅤhere");
+
+        message = System.Text.RegularExpressions.Regex.Replace(message, @"@([&!]?\d+|[a-zA-Z0-9_]+)", "ㅤ");
+
+        message = System.Text.RegularExpressions.Regex.Replace(message, @"(https?://)", "ㅤ");
+
+        message = EscapeMarkdown(message);
+        
+        return message;
     }
 
     private async Task UpdateStatusLoop(CancellationToken cancellationToken)
