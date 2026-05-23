@@ -1,7 +1,11 @@
-marking-gradient-toggle = Использовать вертикальный градиент
+marking-gradient-toggle = Использовать градиент
 marking-body-gradient-primary-color = Цвет тела:
 marking-body-gradient-secondary-color = Цвет градиента:
+marking-gradient-position = Точка градиента:
+marking-gradient-blur = Размытость:
+marking-gradient-color = Цвет градиента:
+marking-gradient-layer-color = Цвет градиента {$layer}:
 humanoid-profile-editor-hair-gradient-toggle = Волосы: градиент
-humanoid-profile-editor-hair-gradient-color = Цвет градиента волос (верх)
+humanoid-profile-editor-hair-gradient-color = Цвет градиента волос
 humanoid-profile-editor-facial-hair-gradient-toggle = Растительность на лице: градиент
-humanoid-profile-editor-facial-hair-gradient-color = Цвет градиента растительности на лице (верх)
+humanoid-profile-editor-facial-hair-gradient-color = Цвет градиента растительности на лице

@@ -50,6 +50,14 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     [DataField]
     public bool HairUseGradient { get; set; } = false;
+
+    public const float MinHairGradientBlur = 0.5f;
+
+    [DataField]
+    public float HairGradientPosition { get; set; } = Marking.DefaultGradientPosition;
+
+    [DataField]
+    public float HairGradientBlur { get; set; } = Marking.DefaultGradientBlur;
     // Amour edit end
 
     [DataField("facialHair")]
@@ -64,6 +72,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     [DataField]
     public bool FacialHairUseGradient { get; set; } = false;
+
+    [DataField]
+    public float FacialHairGradientPosition { get; set; } = Marking.DefaultGradientPosition;
+
+    [DataField]
+    public float FacialHairGradientBlur { get; set; } = Marking.DefaultGradientBlur;
     // Amour edit end
     [DataField]
     public Color EyeColor { get; set; } = Color.Black;
@@ -97,8 +111,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         // Amour start
         HairColor2 = other.HairColor2;
         HairUseGradient = other.HairUseGradient;
+        HairGradientPosition = other.HairGradientPosition;
+        HairGradientBlur = ClampHairGradientBlur(other.HairGradientBlur);
         FacialHairColor2 = other.FacialHairColor2;
         FacialHairUseGradient = other.FacialHairUseGradient;
+        FacialHairGradientPosition = other.FacialHairGradientPosition;
+        FacialHairGradientBlur = other.FacialHairGradientBlur;
         // Amour end
     }
 
@@ -109,8 +127,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             // Amour start
             HairColor2 = HairColor2,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
             // Amour end
         };
     }
@@ -121,8 +143,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
   // Amour edit start
             HairColor2 = HairColor2,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
         };
     }
 
@@ -132,8 +158,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             HairColor2 = newColor,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
         };
     }
 
@@ -143,8 +173,42 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             HairColor2 = HairColor2,
             HairUseGradient = value,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
+        };
+    }
+
+    public HumanoidCharacterAppearance WithHairGradientPosition(float value)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            HairGradientPosition = Marking.ClampGradientPosition(value),
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
+        };
+    }
+
+    public HumanoidCharacterAppearance WithHairGradientBlur(float value)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(value),
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
         };
     }
 
@@ -154,8 +218,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             HairColor2 = HairColor2,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = newColor,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
         };
     }
 
@@ -165,8 +233,42 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             HairColor2 = HairColor2,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = value,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
+        };
+    }
+
+    public HumanoidCharacterAppearance WithFacialHairGradientPosition(float value)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = Marking.ClampGradientPosition(value),
+            FacialHairGradientBlur = FacialHairGradientBlur,
+        };
+    }
+
+    public HumanoidCharacterAppearance WithFacialHairGradientBlur(float value)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings)
+        {
+            HairColor2 = HairColor2,
+            HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
+            FacialHairColor2 = FacialHairColor2,
+            FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = Marking.ClampGradientBlur(value),
         };
     }
     // Amour edit end
@@ -178,8 +280,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             // Amour start
             HairColor2 = HairColor2,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
             // Amour end
         };
     }
@@ -191,8 +297,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             // Amour start
             HairColor2 = HairColor2,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
             // Amour end
         };
     }
@@ -204,8 +314,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             // Amour start
             HairColor2 = HairColor2,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
             // Amour end
         };
     }
@@ -217,8 +331,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             // Amour start
             HairColor2 = HairColor2,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
             // Amour end
         };
     }
@@ -230,8 +348,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             // Amour start
             HairColor2 = HairColor2,
             HairUseGradient = HairUseGradient,
+            HairGradientPosition = HairGradientPosition,
+            HairGradientBlur = ClampHairGradientBlur(HairGradientBlur),
             FacialHairColor2 = FacialHairColor2,
             FacialHairUseGradient = FacialHairUseGradient,
+            FacialHairGradientPosition = FacialHairGradientPosition,
+            FacialHairGradientBlur = FacialHairGradientBlur,
             // Amour end
         };
     }
@@ -328,6 +450,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         return new(color.RByte, color.GByte, color.BByte);
     }
 
+    public static float ClampHairGradientBlur(float blur) => Math.Clamp(blur, MinHairGradientBlur, 1f);
+
     public static HumanoidCharacterAppearance EnsureValid(HumanoidCharacterAppearance appearance, string species, Sex sex)
     {
         var hairStyleId = appearance.HairStyleId;
@@ -378,8 +502,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             // Amour start
             HairColor2 = ClampColor(appearance.HairColor2),
             HairUseGradient = appearance.HairUseGradient,
+            HairGradientPosition = Marking.ClampGradientPosition(appearance.HairGradientPosition),
+            HairGradientBlur = ClampHairGradientBlur(appearance.HairGradientBlur),
             FacialHairColor2 = ClampColor(appearance.FacialHairColor2),
             FacialHairUseGradient = appearance.FacialHairUseGradient,
+            FacialHairGradientPosition = Marking.ClampGradientPosition(appearance.FacialHairGradientPosition),
+            FacialHairGradientBlur = Marking.ClampGradientBlur(appearance.FacialHairGradientBlur),
             // Amour end
         };
     }
@@ -397,8 +525,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         // Amour edit start
         if (!HairColor2.Equals(other.HairColor2)) return false;
         if (HairUseGradient != other.HairUseGradient) return false;
+        if (!HairGradientPosition.Equals(other.HairGradientPosition)) return false;
+        if (!HairGradientBlur.Equals(other.HairGradientBlur)) return false;
         if (!FacialHairColor2.Equals(other.FacialHairColor2)) return false;
         if (FacialHairUseGradient != other.FacialHairUseGradient) return false;
+        if (!FacialHairGradientPosition.Equals(other.FacialHairGradientPosition)) return false;
+        if (!FacialHairGradientBlur.Equals(other.FacialHairGradientBlur)) return false;
         // Amour edit end
         return true;
     }
@@ -417,8 +549,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                // Amour start
                HairColor2.Equals(other.HairColor2) &&
                HairUseGradient == other.HairUseGradient &&
+               HairGradientPosition.Equals(other.HairGradientPosition) &&
+               HairGradientBlur.Equals(other.HairGradientBlur) &&
                FacialHairColor2.Equals(other.FacialHairColor2) &&
-               FacialHairUseGradient == other.FacialHairUseGradient;
+               FacialHairUseGradient == other.FacialHairUseGradient &&
+               FacialHairGradientPosition.Equals(other.FacialHairGradientPosition) &&
+               FacialHairGradientBlur.Equals(other.FacialHairGradientBlur);
                // Amour end
     }
 
@@ -431,7 +567,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     {
         // Amour edit: include gradient fields
         var baseHash = HashCode.Combine(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
-        return HashCode.Combine(baseHash, HairColor2, HairUseGradient, FacialHairColor2, FacialHairUseGradient);
+        var hairHash = HashCode.Combine(HairColor2, HairUseGradient, HairGradientPosition, HairGradientBlur);
+        var facialHairHash = HashCode.Combine(FacialHairColor2, FacialHairUseGradient, FacialHairGradientPosition, FacialHairGradientBlur);
+        return HashCode.Combine(baseHash, hairHash, facialHairHash);
     }
 
     public HumanoidCharacterAppearance Clone()

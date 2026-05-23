@@ -6,6 +6,7 @@ using System.Text.Json;
 using Content.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -15,9 +16,11 @@ using NpgsqlTypes;
 namespace Content.Server.Database.Migrations.Postgres
 {
     [DbContext(typeof(PostgresServerDbContext))]
-    partial class PostgresServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260523131039_AddHairGradientShapeToProfile")]
+    partial class AddHairGradientShapeToProfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1112,7 +1115,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("facial_hair_color");
 
-                    // Amour start
                     b.Property<string>("FacialHairColor2")
                         .HasColumnType("text")
                         .HasColumnName("facial_hair_color2");
@@ -1133,7 +1135,6 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Property<bool?>("FacialHairUseGradient")
                         .HasColumnType("boolean")
                         .HasColumnName("facial_hair_use_gradient");
-                    // Amour end
 
                     b.Property<string>("FlavorText")
                         .IsRequired()
@@ -1155,7 +1156,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("hair_color");
 
-                    // Amour start
                     b.Property<string>("HairColor2")
                         .HasColumnType("text")
                         .HasColumnName("hair_color2");
@@ -1176,7 +1176,6 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Property<bool?>("HairUseGradient")
                         .HasColumnType("boolean")
                         .HasColumnName("hair_use_gradient");
-                    // Amour end
 
                     b.Property<float>("Height")
                         .HasColumnType("real")
@@ -2285,7 +2284,7 @@ namespace Content.Server.Database.Migrations.Postgres
 
                             b1.HasKey("ConnectionLogId");
 
-                            b1.ToTable("connection_log", (string)null);
+                            b1.ToTable("connection_log");
 
                             b1.WithOwner()
                                 .HasForeignKey("ConnectionLogId")
@@ -2330,7 +2329,7 @@ namespace Content.Server.Database.Migrations.Postgres
 
                             b1.HasKey("PlayerId");
 
-                            b1.ToTable("player", (string)null);
+                            b1.ToTable("player");
 
                             b1.WithOwner()
                                 .HasForeignKey("PlayerId")
@@ -2633,7 +2632,7 @@ namespace Content.Server.Database.Migrations.Postgres
 
                             b1.HasKey("ServerBanId");
 
-                            b1.ToTable("server_ban", (string)null);
+                            b1.ToTable("server_ban");
 
                             b1.WithOwner()
                                 .HasForeignKey("ServerBanId")
@@ -2710,7 +2709,7 @@ namespace Content.Server.Database.Migrations.Postgres
 
                             b1.HasKey("ServerRoleBanId");
 
-                            b1.ToTable("server_role_ban", (string)null);
+                            b1.ToTable("server_role_ban");
 
                             b1.WithOwner()
                                 .HasForeignKey("ServerRoleBanId")

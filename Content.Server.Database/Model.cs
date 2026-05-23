@@ -691,8 +691,12 @@ namespace Content.Server.Database
         // Amour start
         public string? HairColor2 { get; set; }
         public bool? HairUseGradient { get; set; }
+        public float? HairGradientPosition { get; set; }
+        public float? HairGradientBlur { get; set; }
         public string? FacialHairColor2 { get; set; }
         public bool? FacialHairUseGradient { get; set; }
+        public float? FacialHairGradientPosition { get; set; }
+        public float? FacialHairGradientBlur { get; set; }
         // Amour end
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
