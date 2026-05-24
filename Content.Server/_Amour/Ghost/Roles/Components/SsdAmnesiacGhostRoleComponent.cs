@@ -27,4 +27,7 @@ public sealed partial class SsdAmnesiacGhostRoleComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool Taken;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool RequireNukeOperative;
 }
