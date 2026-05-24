@@ -33,13 +33,14 @@
 
 using Content.Server.Ghost.Roles.Raffles;
 using Content.Server.Mind.Commands;
+using Content.Server._Amour.Ghost.Roles; // Amour edit
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Ghost.Roles.Components;
 
 [RegisterComponent]
-[Access(typeof(GhostRoleSystem))]
+[Access(typeof(GhostRoleSystem), typeof(SsdAmnesiacGhostRoleSystem))] // Amour edit
 public sealed partial class GhostRoleComponent : Component
 {
     [DataField("name")] private string _roleName = "Unknown";

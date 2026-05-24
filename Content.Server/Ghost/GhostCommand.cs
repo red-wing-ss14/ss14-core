@@ -68,6 +68,7 @@
 
 using Content.Server.GameTicking;
 using Content.Server.Popups;
+using Content.Server._Amour.Ghost.Roles; // Amour edit
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
@@ -118,10 +119,19 @@ namespace Content.Server.Ghost
                 mind = _entities.GetComponent<MindComponent>(mindId);
             }
 
-            if (!_entities.System<GhostSystem>().OnGhostAttempt(mindId, true, true, mind: mind))
+            // Amour start
+            var previousBody = player.AttachedEntity;
+            var ghosted = _entities.System<GhostSystem>().OnGhostAttempt(mindId, true, true, mind: mind);
+
+            if (!ghosted)
             {
                 shell.WriteLine(Loc.GetString("ghost-command-denied"));
+                return;
             }
+
+            if (previousBody is { Valid: true } body)
+                _entities.System<SsdAmnesiacGhostRoleSystem>().TryCreateImmediateGhostRole(body, mindId, mind, player);
+            // Amour end
         }
     }
 }
