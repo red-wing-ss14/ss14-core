@@ -36,7 +36,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 16
+        Piercing: 15 # Amour edit: 16 > 15
 
 - type: entity
   id: BulletPistolPractice
@@ -59,8 +59,8 @@
     damage:
       types:
         Blunt: 2
-        Heat: 4 # Orion-Edit: 2 > 4
-
+        Heat: 3 # Amour edit: 4 > 3; Orion-Edit: 2 > 4
+        Piercing: 2 # Amour edit: missing > 2
 - type: entity
   id: BulletPistolUranium
   parent: BaseBulletUranium
@@ -70,6 +70,6 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 6
-        Piercing: 8 # Orion-Edit: 10 > 8
+        Radiation: 1 # Amour edit: 6 > 1
+        Piercing: 12 # Amour edit: 8 > 12; Orion-Edit: 10 > 8
       armorPenetration: 0.15 # Orion

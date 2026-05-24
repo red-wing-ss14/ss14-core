@@ -40,8 +40,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 19
-      armorPenetration: 0.2 # Goobstation # Orion-Edit: 0.4 > 0.2
+        Piercing: 17 # Amour edit: 19 > 17
+      armorPenetration: 0.1 # Amour edit: 0.2 > 0.1; Goobstation # Orion-Edit: 0.4 > 0.2
 
 - type: entity
   id: BulletLightRiflePractice
@@ -65,7 +65,8 @@
     damage:
       types:
         Blunt: 4
-        Heat: 5 # Orion-Edit: 4 > 5
+        Heat: 4 # Amour edit: 5 > 4; Orion-Edit: 4 > 5
+        Piercing: 4 # Amour edit: missing > 4
       armorPenetration: 0.10 # Orion
 
 - type: entity
@@ -77,6 +78,6 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 5 # Orion-Edit: 10 > 5
-        Piercing: 11
-      armorPenetration: 0.30 # Orion
+        Radiation: 1 # Amour edit: 5 > 1; Orion-Edit: 10 > 5
+        Piercing: 15 # Amour edit: 11 > 15
+      armorPenetration: 0.3 # Amour edit: 0.30 > 0.3; Orion

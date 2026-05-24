@@ -84,7 +84,7 @@
   id: RedMediumLaser
   damage:
     types:
-      Heat: 17
+      Heat: 19 # Amour edit: 17 > 19
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_laser
@@ -114,9 +114,10 @@
   id: XrayLaser
   damage:
     types:
-      Heat: 10
+      Heat: 15 # Amour edit: 10 > 15
       Radiation: 10
       Ion: 15 #Goobstation
+      Structural: 15 # Amour edit: missing > 15
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_xray
@@ -132,6 +133,7 @@
   damage:
     types:
       Heat: 28
+      Structural: 10 # Amour edit: missing > 10
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_beam_heavy

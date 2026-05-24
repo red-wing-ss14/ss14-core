@@ -422,7 +422,7 @@
     proto: RedLaser
     fireCost: 62.5
   - type: Battery
-    maxCharge: 500
+    maxCharge: 625 # Amour edit: 500 > 625
     startingCharge: 500
 
 - type: entity
@@ -556,7 +556,7 @@
     proto: LightPulse # Goobstation
     fireCost: 200
   - type: Battery
-    maxCharge: 2000
+    maxCharge: 3200 # Amour edit: 2000 > 3200
     startingCharge: 2000
   - type: BatterySelfRecharger # Goobstation - CentComm Job Revamp
     autoRecharge: true
@@ -585,7 +585,7 @@
     sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
   - type: Gun
     selectedMode: SemiAuto
-    fireRate: 3
+    fireRate: 2 # Amour edit: 3 > 2
     availableModes:
       - SemiAuto
       - FullAuto
@@ -593,7 +593,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: Pulse
-    fireCost: 200
+    fireCost: 300 # Amour edit: 200 > 300
   - type: AmmoSelector # Goobstation - Start
     prototypes:
     - Pulse
@@ -608,7 +608,7 @@
     verbText: mode-select-verb-text
     key: enum.AmmoSelectorUiKey.Key # Goobstation - End
   - type: Battery
-    maxCharge: 5000
+    maxCharge: 9000 # Amour edit: 5000 > 9000
     startingCharge: 5000
   # Goobstation
   - type: Tag
@@ -646,7 +646,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: HeavyPulse # Goobstation - Start
-    fireCost: 100
+    fireCost: 500 # Amour edit: 100 > 500
   - type: AmmoSelector
     prototypes:
     - HeavyPulse
@@ -662,7 +662,7 @@
     verbText: mode-select-verb-text
     key: enum.AmmoSelectorUiKey.Key # Goobstation - End
   - type: Battery
-    maxCharge: 40000
+    maxCharge: 20000 # Amour edit: 40000 > 20000
     startingCharge: 40000
   # Goobstation
   - type: Tag
@@ -1173,12 +1173,12 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
   - type: Gun
-    fireRate: 2
+    fireRate: 1.5 # Amour edit: 2 > 1.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletLaserSpread
-    fireCost: 150
+    fireCost: 150 # Amour edit: 180 > 150
   # Goob edit start
   #- type: BatteryWeaponFireModes
   #  fireModes:
@@ -1216,7 +1216,7 @@
     stealGroup: WeaponEnergyShotgun
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
-    maxCharge: 1050 # Goobstation
+    maxCharge: 2400 # Amour edit: 3600 > 2400
     startingCharge: 1050
   # Goob - remove self recharge
   # - type: BatterySelfRecharger

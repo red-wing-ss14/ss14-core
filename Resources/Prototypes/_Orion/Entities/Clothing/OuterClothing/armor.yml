@@ -49,16 +49,16 @@
   - type: Clothing
     sprite: _Orion/Clothing/OuterClothing/Armor/inteq_infiltrator.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.5 # Amour edit: 0.6 > 0.5
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.65
-        Piercing: 0.6
+        Blunt: 0.6 # Amour edit: 0.75 > 0.6
+        Slash: 0.45 # Amour edit: 0.65 > 0.45
+        Piercing: 0.45 # Amour edit: 0.6 > 0.45
         Radiation: 0.9
-        Caustic: 0.9
-        Heat: 0.8
+        Caustic: 0.7 # Amour edit: 0.9 > 0.7
+        Heat: 0.6 # Amour edit: 0.8 > 0.6
   - type: ScannableForPoints # Goob
     points: 1
 
@@ -126,11 +126,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
+        Blunt: 0.55 # Amour edit: 0.5 > 0.55
+        Slash: 0.55 # Amour edit: 0.5 > 0.55
         Piercing: 0.5
-        Heat: 0.8
-
+        Heat: 0.65 # Amour edit: 0.8 > 0.65
+        Caustic: 0.8 # Amour edit: missing > 0.8
 - type: entity
   parent: ClothingOuterArmorBase
   id: ClothingOuterArmorXenonautenLight
@@ -239,8 +239,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.8
+        Blunt: 0.7 # Amour edit: 0.6 > 0.7
+        Slash: 0.7 # Amour edit: 0.8 > 0.7
+        Piercing: 0.9 # Amour edit: missing > 0.9
+        Heat: 0.9 # Amour edit: missing > 0.9
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.85

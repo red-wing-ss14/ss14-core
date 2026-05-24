@@ -21,4 +21,4 @@
     fireRate: 1.5
     selectedMode: SemiAuto
   - type: GunSpreadModifier
-    spread: 1.4
+    spread: 0.8 # Amour edit: 1.4 > 0.8

@@ -47,7 +47,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 35
+        Piercing: 32 # Amour edit: 35 > 32
 
 - type: entity
   id: BulletMagnumPractice
@@ -70,8 +70,8 @@
     damage:
       types:
         Blunt: 7
-        Heat: 10 # Orion-Edit: 7 > 10
-
+        Heat: 5 # Amour edit: 10 > 5; Orion-Edit: 7 > 10
+        Piercing: 10 # Amour edit: missing > 10
 - type: entity
   id: BulletMagnumAP
   name: bullet (.45 magnum armor-piercing)
@@ -93,6 +93,6 @@
   - type: Projectile
     damage:
       types: 
-        Radiation: 10 # Orion-Edit: 15 > 10
-        Piercing: 20
-      armorPenetration: 0.25 # Orion
+        Radiation: 1 # Amour edit: 10 > 1; Orion-Edit: 15 > 10
+        Piercing: 28 # Amour edit: 20 > 28
+      armorPenetration: 0.5 # Amour edit: 0.25 > 0.5; Orion

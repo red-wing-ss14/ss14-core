@@ -122,8 +122,7 @@
     damage:
       types:
         Piercing: 45 # Orion-Edit: 40 > 45
-        Structural: 20 # Orion-Edit: 15 > 20
-
+        Structural: 15 # Amour edit: 20 > 15; Orion-Edit: 15 > 20
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -154,7 +153,7 @@
     damage:
       types:
         Piercing: 10
-        Structural: 15
+        Structural: 10 # Amour edit: 15 > 10
       armorPenetration: -0.1 # Orion
 
 
@@ -181,7 +180,8 @@
     damage:
       types:
         Blunt: 4 # Orion-Edit: 3 > 4
-        Heat: 6 # Orion-Edit: 3 > 6
+        Heat: 3 # Amour edit: 6 > 3; Orion-Edit: 3 > 6
+        Piercing: 8 # Amour edit: missing > 8
       armorPenetration: -0.1 # Orion
   - type: IgnitionSource
     ignited: true
@@ -333,9 +333,10 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 2 # Orion-Edit: 5 > 2
-        Piercing: 5
-      armorPenetration: 0.15 # Orion
+        Radiation: 1 # Amour edit: 2 > 1; Orion-Edit: 5 > 2
+        Structural: 10 # Amour edit: missing > 10
+        Piercing: 10 # Amour edit: missing > 10
+      armorPenetration: 0.2 # Amour edit: 0.15 > 0.2; Orion
 
 - type: entity
   id: PelletShotgunUraniumSpread

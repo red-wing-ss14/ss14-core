@@ -7,8 +7,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 24
-      armorPenetration: 0.25
+        Piercing: 19 # Amour edit: 24 > 19
+      armorPenetration: 0.15 # Amour edit: 0.25 > 0.15
 
 - type: entity
   parent: BaseBulletPractice
@@ -32,7 +32,8 @@
     damage:
       types:
         Blunt: 7
-        Heat: 8
+        Heat: 5 # Amour edit: 8 > 5
+        Piercing: 5 # Amour edit: missing > 5
       armorPenetration: 0.2
 
 - type: entity
@@ -44,6 +45,6 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 7
-        Piercing: 13
+        Radiation: 1 # Amour edit: 7 > 1
+        Piercing: 17 # Amour edit: 13 > 17
       armorPenetration: 0.4

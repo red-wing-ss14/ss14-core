@@ -39,10 +39,10 @@
   - type: Clothing
     sprite: _Orion/Objects/Weapons/Guns/Shotguns/sh-39/tiny.rsi
   - type: BallisticAmmoProvider
-    capacity: 6
+    capacity: 7 # Amour edit: 6 > 7
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 1.7
+    fireRate: 1.5 # Amour edit: 1.7 > 1.5
     cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/_Orion/Weapons/Guns/Shotguns/sh39.ogg
@@ -71,7 +71,7 @@
   - type: Clothing
     sprite: _Orion/Objects/Weapons/Guns/Shotguns/paladin-12/tiny.rsi
   - type: BallisticAmmoProvider
-    capacity: 7
+    capacity: 5 # Amour edit: 7 > 5
     autoCycle: false
     soundRack:
       path: /Audio/_Orion/Weapons/Guns/Shotguns/shotgun_cmb_pump.ogg
@@ -79,14 +79,14 @@
       path: /Audio/_Orion/Weapons/Guns/Shotguns/shotgun_cmb_insert.ogg
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 3
+    fireRate: 1.7 # Amour edit: 3 > 1.7
     cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/_Orion/Weapons/Guns/Shotguns/shotgun_cmb.ogg
       params:
         volume: +2
   - type: GunSpreadModifier
-    spread: 0.9
+    spread: 0.85 # Amour edit: 0.9 > 0.85
   - type: Tag
     tags:
     - WeaponShotgunKammerer
@@ -106,7 +106,7 @@
   - type: Clothing
     sprite: _Orion/Objects/Weapons/Guns/Shotguns/spas-16/tiny.rsi
   - type: BallisticAmmoProvider
-    capacity: 12
+    capacity: 8 # Amour edit: 12 > 8
     autoCycle: false
     soundRack:
       path: /Audio/_Orion/Weapons/Guns/Shotguns/shotgun_cmb_pump.ogg
@@ -114,9 +114,9 @@
       path: /Audio/_Orion/Weapons/Guns/Shotguns/shotgun_cmb_insert.ogg
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 1
+    fireRate: 1.35 # Amour edit: 1 > 1.35
     cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/_Orion/Weapons/Guns/Shotguns/t35.ogg
   - type: GunSpreadModifier
-    spread: 0.8
+    spread: 0.9 # Amour edit: 0.8 > 0.9

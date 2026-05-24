@@ -336,7 +336,7 @@
     - Rifle
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 80
+    autoRechargeRate: 100 # Amour edit: 80 > 100
 
 - type: entity
   name: CR-2 Hera

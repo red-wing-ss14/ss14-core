@@ -70,10 +70,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85
+        Blunt: 0.6 # Amour edit: 0.85 > 0.6
+        Slash: 0.6 # Amour edit: 0.85 > 0.6
+        Piercing: 0.75 # Amour edit: 0.85 > 0.75
+        Heat: 0.9 # Amour edit: 0.85 > 0.9
   - type: HideLayerClothing
     slots:
     - Hair

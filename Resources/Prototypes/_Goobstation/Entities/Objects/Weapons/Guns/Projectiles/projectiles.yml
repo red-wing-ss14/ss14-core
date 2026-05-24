@@ -120,8 +120,8 @@
     damage:
       types:
         Piercing: 45 # Orion-Edit: 35 > 45
-        Structural: 40 # Orion
-      armorPenetration: 0.5
+        Structural: 30 # Amour edit: 40 > 30; Orion
+      armorPenetration: 0.4 # Amour edit: 0.5 > 0.4
     penetrationThreshold: 50
 
 - type: entity
@@ -159,9 +159,10 @@
   id: HeavyPulse
   damage:
     types:
-      Heat: 35 # Damage nerfed slightly to give you a BIT of a chance. You're still fucked though.
+      Heat: 50 # Amour edit: 35 > 50; Damage nerfed slightly to give you a BIT of a chance. You're still fucked though.
       Blunt: 10
       Structural: 80
+      Ion: 20 # Amour edit: missing > 20
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_blue
@@ -176,8 +177,9 @@
   id: LightPulse
   damage:
     types:
-      Heat: 20 # Slightly nerfing damage, otherwise people will bitch about how I'm giving the pulse pistol out like candy
+      Heat: 25 # Amour edit: 20 > 25; Slightly nerfing damage, otherwise people will bitch about how I'm giving the pulse pistol out like candy
       Blunt: 5 # Split damage is cool.
+      Ion: 5 # Amour edit: missing > 5
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_blue
@@ -192,8 +194,9 @@
   id: LaserSniper
   damage:
     types:
-      Heat: 30
+      Heat: 40 # Amour edit: 30 > 40
       Shock: 10
+      Structural: 35 # Amour edit: missing > 35
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_blue
@@ -208,8 +211,9 @@
   id: RedMediumSplitLaser
   damage:
     types:
-      Heat: 17
+      Heat: 10 # Amour edit: 17 > 10
       Shock: 2 # Lecter is slightly armor-piercing and so is this
+      Ion: 10 # Amour edit: missing > 10
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_laser
@@ -258,7 +262,7 @@
 
 - type: hitscan
   id: StunPulse
-  staminaDamage: 80
+  staminaDamage: 40 # Amour edit: 80 > 40
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_blue
@@ -351,7 +355,7 @@
         hard: False
   - type: Ammo
   - type: StaminaDamageOnCollide
-    damage: 33
+    damage: 36 # Amour edit: 33 > 36
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
     damage:
@@ -368,7 +372,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: StaminaDamageOnCollide
-    damage: 27
+    damage: 24 # Amour edit: 27 > 24
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
     damage:

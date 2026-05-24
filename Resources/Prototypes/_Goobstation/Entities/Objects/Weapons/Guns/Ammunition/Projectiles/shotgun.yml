@@ -138,7 +138,6 @@
       types:
         Piercing: 65
         Structural: 25 # Orion
-
 - type: entity
   id: BulletSlugEnsnaring
   name: bullet (8 Gauge ensnaring slug)
@@ -154,6 +153,7 @@
     damage:
       types:
         Piercing: 16 #Low damage, but ensnaring
+        Blunt: 10 # Amour edit: missing > 10
   - type: Ensnaring
     canThrowTrigger: true
     destroyOnRemove: true
@@ -188,7 +188,8 @@
     damage:
       types:
         Piercing: 12
-        Ion: 20
+        Ion: 20 # Amour edit: missing > 20
+        Blunt: 10 # Amour edit: missing > 10
 
 - type: entity
   id: BulletSlugFlash
@@ -216,6 +217,7 @@
     damage:
       types:
         Piercing: 20
+        Blunt: 10 # Amour edit: missing > 10
 
 - type: entity
   id: BulletSlugBeanbagHighCaliber
@@ -254,6 +256,7 @@
     damage:
       types:
         Piercing: 15
+        Blunt: 10 # Amour edit: missing > 10
 
 # Heavy shotgun
 
@@ -361,4 +364,3 @@
     proto: HighCaliberPelletGrenade
     count: 20
     spread: 15
-

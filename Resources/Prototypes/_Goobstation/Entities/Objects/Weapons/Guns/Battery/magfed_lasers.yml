@@ -231,7 +231,7 @@
     maxAngle: 20
     angleIncrease: -5
     angleDecay: -80
-    fireRate: 10
+    fireRate: 10 # Amour edit: 6 > 10
     selectedMode: FullAuto
     availableModes:
       - FullAuto

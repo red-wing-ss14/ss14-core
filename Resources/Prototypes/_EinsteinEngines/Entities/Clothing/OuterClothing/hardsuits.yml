@@ -81,7 +81,7 @@
     highPressureMultiplier: 0.60
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.60
+    damageCoefficient: 0.7 # Amour edit: 0.60 > 0.7
   - type: Armor # Slightly less armour than the standard hardsuit, but far higher mobility.
     coverage:
     - Chest
@@ -92,12 +92,13 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.65
-        Radiation: 0.80
-        Caustic: 0.80
-        Heat: 0.80
+        Blunt: 0.8 # Amour edit: 0.65 > 0.8
+        Slash: 0.8 # Amour edit: 0.65 > 0.8
+        Piercing: 0.8 # Amour edit: 0.65 > 0.8
+        Radiation: 0.25 # Amour edit: 0.80 > 0.25
+        Caustic: 0.5 # Amour edit: 0.80 > 0.5
+        Heat: 0.7 # Amour edit: 0.80 > 0.7
+        Cold: 0.7 # Amour edit: missing > 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -106,7 +107,7 @@
       head: ClothingHeadHelmetHardsuitCombatMedical
   - type: AllowSuitStorage
   - type: StaminaResistance # Goobstation
-    damageCoefficient: 0.6
+    damageCoefficient: 0.7 # Amour edit: 0.6 > 0.7
   - type: ModifyDelayedKnockdown # Goobstation
     delayDelta: 3
     knockdownTimeDelta: -3
@@ -126,7 +127,7 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.40
+    damageCoefficient: 0.5 # Amour edit: 0.40 > 0.5
   - type: Armor # More protective than a standard security hardsuit, but far slower.
     coverage:
     - Chest
@@ -137,12 +138,13 @@
     - Foot
     modifiers:
       coefficients:
-        Blunt: 0.50
-        Slash: 0.50
-        Piercing: 0.40
-        Radiation: 0.70
-        Caustic: 0.70
-        Heat: 0.40
+        Blunt: 0.5 # Amour edit: 0.50 > 0.5
+        Slash: 0.5 # Amour edit: 0.50 > 0.5
+        Piercing: 0.55 # Amour edit: 0.40 > 0.55
+        Radiation: 0.25 # Amour edit: 0.70 > 0.25
+        Caustic: 0.7 # Amour edit: 0.70 > 0.7
+        Heat: 0.6 # Amour edit: 0.40 > 0.6
+        Cold: 0.6 # Amour edit: missing > 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.60
     sprintModifier: 0.60

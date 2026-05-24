@@ -9,7 +9,7 @@
   id: SMGLaser
   damage:
     types:
-      Heat: 12.5 # Orion-Edit: 10.5 > 12.5
+      Heat: 9 # Amour edit: 12.5 > 9; Orion-Edit: 10.5 > 12.5
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: muzzle_beam_light
@@ -24,7 +24,7 @@
   id: SMGLaserIon
   damage:
     types:
-      Ion: 17 # Orion-Edit: 15 > 17
+      Ion: 12 # Amour edit: 17 > 12; Orion-Edit: 15 > 17
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: muzzle_beam_light_ion
@@ -40,7 +40,7 @@
   damage:
     types:
       Heat: 5.5 # Orion-Edit: 4.5 > 5.5
-      Radiation: 8 # Orion-Edit: 6 > 8
+      Radiation: 7 # Amour edit: 8 > 7; Orion-Edit: 6 > 8
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: muzzle_beam_light_xray
@@ -56,7 +56,7 @@
   fireStacks: 0.4
   damage:
     types:
-      Heat: 17 # Orion-Edit: 15 > 17
+      Heat: 10 # Amour edit: 17 > 10; Orion-Edit: 15 > 17
     armorPenetration: -0.2
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
@@ -72,7 +72,7 @@
   id: SMGLaserBluespace
   damage:
     types:
-      Heat: 12 # Orion-Edit: 9 > 12
+      Heat: 7 # Amour edit: 12 > 7; Orion-Edit: 9 > 12
     armorPenetration: 0.4
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
@@ -88,7 +88,7 @@
   id: SMGLaserPulse
   damage:
     types:
-      Heat: 19 # Orion-Edit: 14 > 19
+      Heat: 10 # Amour edit: 19 > 10; Orion-Edit: 14 > 19
     armorPenetration: 1
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
@@ -107,7 +107,7 @@
   id: SniperRedLaser
   damage:
     types:
-      Heat: 15
+      Heat: 19 # Amour edit: 15 > 19
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: muzzle_beam_light
@@ -122,7 +122,7 @@
   id: SniperIonLaser
   damage:
     types:
-      Ion: 21
+      Ion: 23 # Amour edit: 21 > 23
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: muzzle_beam_light_ion
@@ -138,7 +138,7 @@
   damage:
     types:
       Heat: 7.5
-      Radiation: 7.5
+      Radiation: 16 # Amour edit: 7.5 > 16
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: muzzle_beam_light_xray
@@ -170,7 +170,7 @@
   id: SniperBluespaceLaser
   damage:
     types:
-      Heat: 14
+      Heat: 16 # Amour edit: 14 > 16
     armorPenetration: 0.4
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
@@ -238,7 +238,7 @@
   id: RevolverRedLaser
   damage:
     types:
-      Heat: 13
+      Heat: 24 # Amour edit: 13 > 24
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: muzzle_beam_light
@@ -253,7 +253,7 @@
   id: RevolverIonLaser
   damage:
     types:
-      Ion: 18
+      Ion: 30 # Amour edit: 18 > 30
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: muzzle_beam_light_ion
@@ -269,7 +269,7 @@
   damage:
     types:
       Heat: 6
-      Radiation: 6
+      Radiation: 19 # Amour edit: 6 > 19
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: muzzle_beam_light_xray
@@ -285,7 +285,7 @@
   fireStacks: 0.7
   damage:
     types:
-      Heat: 18
+      Heat: 33 # Amour edit: 18 > 33
     armorPenetration: -0.2
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
@@ -301,7 +301,7 @@
   id: RevolverBluespaceLaser
   damage:
     types:
-      Heat: 11.5
+      Heat: 19 # Amour edit: 11.5 > 19
     armorPenetration: 0.4
   muzzleFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi

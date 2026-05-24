@@ -109,12 +109,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.3
+        Blunt: 0.5 # Amour edit: 0.4 > 0.5
+        Slash: 0.5 # Amour edit: 0.4 > 0.5
+        Piercing: 0.45 # Amour edit: 0.3 > 0.45
         Heat: 0.5
+        Caustic: 0.75 # Amour edit: missing > 0.75
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.5 # Amour edit: 0.6 > 0.5
 
 - type: entity
   parent: [ ClothingHeadHelmetRiot, ClothingHeadHelmetArmoredBase ]

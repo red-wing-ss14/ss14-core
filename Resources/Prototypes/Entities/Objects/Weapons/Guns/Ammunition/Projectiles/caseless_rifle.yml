@@ -35,7 +35,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 25 # Goobstation edit
+        Piercing: 17 # Amour edit: 25 > 17; Goobstation edit
       armorPenetration: -0.3 # Goobstation
 
 - type: entity

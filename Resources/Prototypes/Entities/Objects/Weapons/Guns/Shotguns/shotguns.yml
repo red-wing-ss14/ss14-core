@@ -173,7 +173,7 @@
   - type: AmmoCounter
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    fireRate: 3 # Goobstation edit
+    fireRate: 2 # Amour edit: 3 > 2; Goobstation edit
     cameraRecoilScalar: 3 # Orion
     selectedMode: FullAuto
     availableModes:
@@ -229,9 +229,9 @@
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    fireRate: 3
+    fireRate: 2 # Amour edit: 3 > 2
   - type: GunSpreadModifier
-    spread: 0.6
+    spread: 0.7 # Amour edit: 0.6 > 0.7
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -264,10 +264,10 @@
     shape: # Goobstation
     - 0,0,4,1
   - type: BallisticAmmoProvider
-    capacity: 8 # Orion
+    capacity: 9 # Amour edit: 8 > 9; Orion
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    fireRate: 1.7 # Goobstation
+    fireRate: 1.2 # Amour edit: 1.7 > 1.2; Goobstation
     soundGunshot: # Orion
       path: /Audio/_Orion/Weapons/Guns/Shotguns/t35.ogg
 
@@ -301,7 +301,7 @@
       path: /Audio/_Orion/Weapons/Guns/Shotguns/t35.ogg
     # fireRate: 1 # goob
   - type: GunSpreadModifier
-    spread: 0.65 # Orion-Edit: 0.6 > 0.65
+    spread: 0.6 # Amour edit: 0.65 > 0.6; Orion-Edit: 0.6 > 0.65
   - type: Tag
     tags:
     - WeaponShotgunKammerer
@@ -326,7 +326,7 @@
     - 0,0,2,0
     sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
-    fireRate: 3
+    fireRate: 2 # Amour edit: 3 > 2
   - type: GunSpreadModifier
     spread: 1.4
   - type: BallisticAmmoProvider
@@ -363,7 +363,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
   - type: Gun
-    fireRate: 4
+    fireRate: 1 # Amour edit: 4 > 1
   - type: BallisticAmmoProvider
     capacity: 1
   - type: Construction
@@ -411,7 +411,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
+    fireRate: 1 # Amour edit: 4 > 1; No reason to stifle the firerate since you have to manually reload every time anyways.
   - type: BallisticAmmoProvider
     capacity: 1
     proto: null
