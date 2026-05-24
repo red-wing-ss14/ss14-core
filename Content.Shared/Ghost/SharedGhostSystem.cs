@@ -78,7 +78,7 @@ namespace Content.Shared.Ghost
         private void OnAttemptInteract(Entity<GhostComponent> ent, ref InteractionAttemptEvent args)
         {
             // Orion-Edit-Start
-            if (ent.Comp.CanGhostInteract || HasComp<ActivatableUIComponent>(args.Target) && ent.Comp.CanGhostOpenUI) // CorvaxGoob-GhostUIViewing
+            if (ent.Comp.CanGhostInteract) // Amoure remove:  HasComp<ActivatableUIComponent>(args.Target) && ent.Comp.CanGhostOpenUI)
                 return;
 
             args.Cancelled = true;

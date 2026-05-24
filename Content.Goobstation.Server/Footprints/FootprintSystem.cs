@@ -58,7 +58,7 @@ public sealed class FootprintSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<FootprintComponent, FootprintCleanEvent>(OnFootprintClean);
-        SubscribeLocalEvent<FootprintOwnerComponent, MoveEvent>(OnMove);
+        // SubscribeLocalEvent<FootprintOwnerComponent, MoveEvent>(OnMove); Amour commented
         SubscribeLocalEvent<PuddleComponent, MapInitEvent>(OnMapInit);
 
         _noFootprintsQuery = GetEntityQuery<NoFootprintsComponent>();

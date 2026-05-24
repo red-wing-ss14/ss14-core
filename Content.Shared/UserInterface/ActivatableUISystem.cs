@@ -176,7 +176,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
             }
         }
 
-        return args.CanInteract || HasComp<GhostComponent>(args.User) && !component.BlockSpectators;
+        return args.CanInteract || CanGhostViewUI(args.User, uid, component); // Amour edit
     }
 
     private void OnUseInHand(EntityUid uid, ActivatableUIComponent component, UseInHandEvent args)
@@ -237,10 +237,25 @@ public sealed partial class ActivatableUISystem : EntitySystem
         SetCurrentSingleUser(uid, null, component);
     }
 
+    // Amour start
+    public bool TryInteractUI(EntityUid user, EntityUid uiEntity, ActivatableUIComponent? aui = null)
+    {
+        if (!Resolve(uiEntity, ref aui))
+            return false;
+
+        return InteractUI(user, uiEntity, aui);
+    }
+    // Amour end
+
     private bool InteractUI(EntityUid user, EntityUid uiEntity, ActivatableUIComponent aui)
     {
         if (aui.Key == null || !_uiSystem.HasUi(uiEntity, aui.Key))
             return false;
+
+        // Amour start
+        TryComp<GhostComponent>(user, out var ghostComp);
+        var isGhostViewer = ghostComp is { CanGhostInteract: false };
+        // Amour end
 
         if (_uiSystem.IsUiOpen(uiEntity, aui.Key, user))
         {
@@ -248,8 +263,13 @@ public sealed partial class ActivatableUISystem : EntitySystem
             return true;
         }
 
-        if (!_blockerSystem.CanInteract(user, uiEntity) && (!HasComp<GhostComponent>(user) || aui.BlockSpectators))
+        // Amour start
+        if (isGhostViewer && !CanGhostViewUI(user, uiEntity, aui, ghostComp))
             return false;
+
+        if (!_blockerSystem.CanInteract(user, uiEntity) && !isGhostViewer)
+            return false;
+        // Amour end
 
 /* // Orion-Edit
         if (aui.RequiresComplex)
@@ -286,8 +306,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
         }
 
         // Orion-Start
-        TryComp<GhostComponent>(user, out var ghostComp);
-
+        // Amour commented: TryComp<GhostComponent>(user, out var ghostComp);
         if (aui.RequiresComplex && ghostComp is null)
         {
             if (!_blockerSystem.CanComplexInteract(user))
@@ -321,6 +340,25 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
         return true;
     }
+
+    // Amour start
+    private bool CanGhostViewUI(EntityUid user, EntityUid uiEntity, ActivatableUIComponent aui, GhostComponent? ghost = null)
+    {
+        if (ghost == null && !TryComp(user, out ghost))
+            return false;
+
+        if (ghost.CanGhostInteract ||
+            !ghost.CanGhostOpenUI ||
+            aui.BlockSpectators ||
+            aui.SingleUser ||
+            aui.Key == null)
+        {
+            return false;
+        }
+
+        return _uiSystem.TryGetInterfaceData(uiEntity, aui.Key, out var data) && data.RequireInputValidation;
+    }
+    // Amour end
 
     public void SetCurrentSingleUser(EntityUid uid, EntityUid? user, ActivatableUIComponent? aui = null)
     {
