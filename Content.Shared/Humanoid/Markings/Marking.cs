@@ -11,6 +11,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Globalization;
 using System.Linq;
 using Robust.Shared.Serialization;
 
@@ -63,6 +64,8 @@ namespace Content.Shared.Humanoid.Markings
             UseGradient = other.UseGradient;
             if (other._secondaryColors != null)
                 _secondaryColors = new List<Color>(other._secondaryColors);
+            GradientPosition = other.GradientPosition;
+            GradientBlur = other.GradientBlur;
             // Amour edit end
         }
 
@@ -107,6 +110,22 @@ namespace Content.Shared.Humanoid.Markings
         /// </summary>
         [DataField("useGradient")]
         public bool UseGradient;
+
+        public const float DefaultGradientPosition = 0.5f;
+        public const float DefaultGradientBlur = 1f;
+        public const float MinGradientBlur = 0.1f;
+
+        /// <summary>
+        ///     Vertical center of the gradient transition.
+        /// </summary>
+        [DataField("gradientPosition")]
+        public float GradientPosition = DefaultGradientPosition;
+
+        /// <summary>
+        ///     Height of the gradient transition. Values are clamped to avoid a zero-width shader range.
+        /// </summary>
+        [DataField("gradientBlur")]
+        public float GradientBlur = DefaultGradientBlur;
         // Amour edit end
         public void SetColor(int colorIndex, Color color) =>
             _markingColors[colorIndex] = color;
@@ -140,6 +159,12 @@ namespace Content.Shared.Humanoid.Markings
                 _secondaryColors.Add(colorIndex < _markingColors.Count ? _markingColors[colorIndex] : Color.White);
             _secondaryColors[colorIndex] = color;
         }
+
+        public static float ClampGradientPosition(float position) =>
+            float.IsNaN(position) ? DefaultGradientPosition : Math.Clamp(position, 0f, 1f);
+
+        public static float ClampGradientBlur(float blur) =>
+            float.IsNaN(blur) ? DefaultGradientBlur : Math.Clamp(blur, MinGradientBlur, 1f);
         // Amour edit end
 
         public int CompareTo(Marking? marking)
@@ -172,6 +197,8 @@ namespace Content.Shared.Humanoid.Markings
                 && Forced.Equals(other.Forced)
                 // Amour edit start
                 && UseGradient.Equals(other.UseGradient)
+                && GradientPosition.Equals(other.GradientPosition)
+                && GradientBlur.Equals(other.GradientBlur)
                 && SecondaryColorsEqual(_secondaryColors, other._secondaryColors);
                 // Amour edit end
         }
@@ -185,6 +212,7 @@ namespace Content.Shared.Humanoid.Markings
                 return false;
             return a.SequenceEqual(b);
         }
+
         // Amour edit end
         // VERY BIG TODO: TURN THIS INTO JSONSERIALIZER IMPLEMENTATION
 
@@ -206,7 +234,7 @@ namespace Content.Shared.Humanoid.Markings
                 colorStringList.Add(color.ToHex());
 
             // Amour edit start: append optional gradient sections
-            // Format: id@col1,col2,...[|sec1,sec2,...][!G]
+            // Format: id@col1,col2,...[|sec1,sec2,...][|Pposition][|Bblur][!G]
             var result = $"{sanitizedName}@{String.Join(',', colorStringList)}";
             if (_secondaryColors != null && _secondaryColors.Count > 0)
             {
@@ -215,6 +243,15 @@ namespace Content.Shared.Humanoid.Markings
                     secondaryStringList.Add(color.ToHex());
                 result += $"|{String.Join(',', secondaryStringList)}";
             }
+
+            var gradientPosition = ClampGradientPosition(GradientPosition);
+            if (!gradientPosition.Equals(DefaultGradientPosition))
+                result += $"|P{gradientPosition.ToString("G9", CultureInfo.InvariantCulture)}";
+
+            var gradientBlur = ClampGradientBlur(GradientBlur);
+            if (!gradientBlur.Equals(DefaultGradientBlur))
+                result += $"|B{gradientBlur.ToString("G9", CultureInfo.InvariantCulture)}";
+
             if (UseGradient)
                 result += "!G";
             return result;
@@ -236,18 +273,39 @@ namespace Content.Shared.Humanoid.Markings
                 payload = payload.Substring(0, payload.Length - 2);
             }
 
+            var sections = payload.Split('|');
+            payload = sections[0];
             List<Color>? secondaryList = null;
-            var pipeIdx = payload.IndexOf('|');
-            if (pipeIdx >= 0)
+            var gradientPosition = DefaultGradientPosition;
+            var gradientBlur = DefaultGradientBlur;
+            for (var sectionIndex = 1; sectionIndex < sections.Length; sectionIndex++)
             {
-                var secPart = payload.Substring(pipeIdx + 1);
-                payload = payload.Substring(0, pipeIdx);
-                if (secPart.Length > 0)
+                var section = sections[sectionIndex];
+                if (section.StartsWith("P", StringComparison.Ordinal))
                 {
-                    secondaryList = new List<Color>();
-                    foreach (string color in secPart.Split(','))
-                        secondaryList.Add(Color.FromHex(color));
+                    if (float.TryParse(section.Substring(1), NumberStyles.Float, CultureInfo.InvariantCulture, out var position))
+                        gradientPosition = ClampGradientPosition(position);
+                    continue;
                 }
+
+                if (section.StartsWith("B", StringComparison.Ordinal))
+                {
+                    if (float.TryParse(section.Substring(1), NumberStyles.Float, CultureInfo.InvariantCulture, out var blur))
+                        gradientBlur = ClampGradientBlur(blur);
+                    continue;
+                }
+
+                // Older local gradient experiments could write an angle section. The
+                // gradient is vertical now, so keep loading the marking and ignore it.
+                if (section.StartsWith("A", StringComparison.Ordinal))
+                    continue;
+
+                if (section.Length == 0)
+                    continue;
+
+                secondaryList = new List<Color>();
+                foreach (string color in section.Split(','))
+                    secondaryList.Add(Color.FromHex(color));
             }
 
             List<Color> colorList = new();
@@ -257,6 +315,8 @@ namespace Content.Shared.Humanoid.Markings
             var marking = new Marking(split[0], colorList)
             {
                 UseGradient = useGradient,
+                GradientPosition = gradientPosition,
+                GradientBlur = gradientBlur,
             };
             if (secondaryList != null)
                 marking._secondaryColors = secondaryList;

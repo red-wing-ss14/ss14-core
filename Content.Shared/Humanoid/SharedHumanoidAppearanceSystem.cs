@@ -585,6 +585,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             if (profile.Appearance.HairUseGradient)
             {
                 hairMarking.UseGradient = true;
+                hairMarking.GradientPosition = profile.Appearance.HairGradientPosition;
+                hairMarking.GradientBlur = HumanoidCharacterAppearance.ClampHairGradientBlur(profile.Appearance.HairGradientBlur);
                 hairMarking.SetGradientColor(0, profile.Appearance.HairColor2);
             }
             AddMarking(uid, hairMarking, false);
@@ -599,6 +601,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             if (profile.Appearance.FacialHairUseGradient)
             {
                 facialHairMarking.UseGradient = true;
+                facialHairMarking.GradientPosition = profile.Appearance.FacialHairGradientPosition;
+                facialHairMarking.GradientBlur = Marking.ClampGradientBlur(profile.Appearance.FacialHairGradientBlur);
                 facialHairMarking.SetGradientColor(0, profile.Appearance.FacialHairColor2);
             }
             AddMarking(uid, facialHairMarking, false);

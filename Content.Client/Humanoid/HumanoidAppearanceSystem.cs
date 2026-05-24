@@ -66,6 +66,36 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         return offset;
     }
+
+    private static void SetGradientShaderParameters(
+        ShaderInstance shaderInstance,
+        Marking marking,
+        int colorIndex,
+        Color? mixColor = null,
+        float? alpha = null)
+    {
+        var color1 = colorIndex >= 0 && colorIndex < marking.MarkingColors.Count
+            ? marking.MarkingColors[colorIndex]
+            : Color.White;
+        var color2 = marking.GetGradientColor(colorIndex);
+
+        if (mixColor != null)
+        {
+            color1 = Color.InterpolateBetween(color1, mixColor.Value, 0.5f);
+            color2 = Color.InterpolateBetween(color2, mixColor.Value, 0.5f);
+        }
+
+        if (alpha != null)
+        {
+            color1 = color1.WithAlpha(alpha.Value);
+            color2 = color2.WithAlpha(alpha.Value);
+        }
+
+        shaderInstance.SetParameter("Color1", color1);
+        shaderInstance.SetParameter("Color2", color2);
+        shaderInstance.SetParameter("GradientPosition", Marking.ClampGradientPosition(marking.GradientPosition));
+        shaderInstance.SetParameter("GradientBlur", Marking.ClampGradientBlur(marking.GradientBlur));
+    }
     // Amour edit end
 
     public override void Initialize()
@@ -247,6 +277,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         if (profile.Appearance.HairUseGradient)
         {
             hair.UseGradient = true;
+            hair.GradientPosition = profile.Appearance.HairGradientPosition;
+            hair.GradientBlur = HumanoidCharacterAppearance.ClampHairGradientBlur(profile.Appearance.HairGradientBlur);
             hair.SetGradientColor(0, profile.Appearance.HairColor2);
         }
         // Amour edit end
@@ -260,6 +292,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         if (profile.Appearance.FacialHairUseGradient)
         {
             facialHair.UseGradient = true;
+            facialHair.GradientPosition = profile.Appearance.FacialHairGradientPosition;
+            facialHair.GradientBlur = profile.Appearance.FacialHairGradientBlur;
             facialHair.SetGradientColor(0, profile.Appearance.FacialHairColor2);
         }
         // Amour edit end
@@ -406,7 +440,6 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         var humanoid = entity.Comp1;
         var sprite = entity.Comp2;
         var color1 = marking.MarkingColors.Count > 0 ? marking.MarkingColors[0] : humanoid.SkinColor;
-        var color2 = marking.GetGradientColor(0);
         ShaderPrototype? gradientProto = null;
 
         if (MarkingSupportsGradient(markingPrototype) && marking.UseGradient)
@@ -430,8 +463,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             if (gradientProto != null)
             {
                 var shaderInstance = gradientProto.InstanceUnique();
-                shaderInstance.SetParameter("Color1", color1.WithAlpha(baseLayer.LayerAlpha));
-                shaderInstance.SetParameter("Color2", color2.WithAlpha(baseLayer.LayerAlpha));
+                SetGradientShaderParameters(shaderInstance, marking, 0, alpha: baseLayer.LayerAlpha);
                 sprite.LayerSetShader(layerIndex, shaderInstance);
                 sprite[layerIndex].Color = Color.White;
             }
@@ -491,20 +523,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             {
                 if (_prototypeManager.TryIndex<ShaderPrototype>(MarkingGradientShaderId, out var gradientProto))
                 {
-                    var color1 = colors[j];
-                    var color2 = marking.GetGradientColor(j);
-
-                    // Mix the per-layer humanoid tint into both stops so existing
-                    // skin-tint logic still affects the gradient.
-                    if (hasInfo && info.Color != null)
-                    {
-                        color1 = Color.InterpolateBetween(color1, info.Color.Value, 0.5f);
-                        color2 = Color.InterpolateBetween(color2, info.Color.Value, 0.5f);
-                    }
-
                     var shaderInstance = gradientProto.InstanceUnique();
-                    shaderInstance.SetParameter("Color1", color1);
-                    shaderInstance.SetParameter("Color2", color2);
+                    // Mix the per-layer humanoid tint into each stop so existing
+                    // skin-tint logic still affects the gradient.
+                    SetGradientShaderParameters(shaderInstance, marking, j, hasInfo ? info.Color : null);
                     sprite.LayerSetShader(layer, shaderInstance);
                     // The shader already tints the texture, so reset the layer
                     // modulate to white to avoid double-tinting.

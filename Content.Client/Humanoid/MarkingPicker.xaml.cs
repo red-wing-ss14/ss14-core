@@ -46,8 +46,10 @@ public sealed partial class MarkingPicker : Control
 
     // Amour edit start: gradient-mode state for the currently selected marking.
     private List<Color> _currentSecondaryColors = new();
-    private List<BoxContainer> _currentSecondaryContainers = new();
+    private List<BoxContainer> _currentGradientContainers = new();
     private bool _currentUseGradient;
+    private float _currentGradientPosition;
+    private float _currentGradientBlur;
     // Amour edit end
 
     private ItemList.Item? _selectedMarking;
@@ -468,13 +470,15 @@ public sealed partial class MarkingPicker : Control
         _currentMarkingColors.Clear();
         // Amour edit start
         _currentSecondaryColors.Clear();
-        _currentSecondaryContainers.Clear();
+        _currentGradientContainers.Clear();
 
         var listingForSelected = _currentMarkings.Markings[_selectedMarkingCategory];
         var selectedMarking = listingForSelected[listingForSelected.Count - 1 - item.ItemIndex];
         var supportsGradient = MarkingSupportsGradient(prototype);
         var usesSharedColorControls = UsesSharedColorControls(prototype);
         _currentUseGradient = supportsGradient && selectedMarking.UseGradient;
+        _currentGradientPosition = Marking.ClampGradientPosition(selectedMarking.GradientPosition);
+        _currentGradientBlur = Marking.ClampGradientBlur(selectedMarking.GradientBlur);
         // Amour edit end
 
         CMarkingColors.DisposeAllChildren();
@@ -494,7 +498,7 @@ public sealed partial class MarkingPicker : Control
             gradientCheck.OnToggled += args =>
             {
                 _currentUseGradient = args.Pressed;
-                foreach (var c in _currentSecondaryContainers)
+                foreach (var c in _currentGradientContainers)
                     c.Visible = _currentUseGradient;
                 GradientStateChanged();
             };
@@ -511,6 +515,15 @@ public sealed partial class MarkingPicker : Control
 
             for (var i = 0; i < prototype.Sprites.Count; i++)
                 _currentMarkingColors.Add(currentColor);
+
+            // Amour edit start
+            var secondarySource = selectedMarking.SecondaryMarkingColors;
+            var secondaryStart = secondarySource is { Count: > 0 }
+                ? ToSelectorColor(secondarySource[0])
+                : currentColor;
+            for (var i = 0; i < prototype.Sprites.Count; i++)
+                _currentSecondaryColors.Add(secondaryStart);
+            // Amour edit end
 
             var colorContainer = new BoxContainer
             {
@@ -534,40 +547,7 @@ public sealed partial class MarkingPicker : Control
             };
 
             if (supportsGradient)
-            {
-                var secondarySource = selectedMarking.SecondaryMarkingColors;
-                var secondaryStart = secondarySource is { Count: > 0 }
-                    ? ToSelectorColor(secondarySource[0])
-                    : currentColor;
-
-                for (var i = 0; i < prototype.Sprites.Count; i++)
-                    _currentSecondaryColors.Add(secondaryStart);
-
-                var secondaryContainer = new BoxContainer
-                {
-                    Orientation = LayoutOrientation.Vertical,
-                    Visible = _currentUseGradient,
-                };
-                var secondarySelector = new ColorSelectorSliders
-                {
-                    SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv,
-                    Color = secondaryStart,
-                };
-
-                secondaryContainer.AddChild(new Label { Text = Loc.GetString("marking-body-gradient-secondary-color") });
-                secondaryContainer.AddChild(secondarySelector);
-
-                secondarySelector.OnColorChanged += _ =>
-                {
-                    for (var i = 0; i < _currentSecondaryColors.Count; i++)
-                        _currentSecondaryColors[i] = secondarySelector.Color;
-
-                    SecondaryColorChanged();
-                };
-
-                _currentSecondaryContainers.Add(secondaryContainer);
-                CMarkingColors.AddChild(secondaryContainer);
-            }
+                AddGradientEditor(prototype, true, new List<string>());
 
             CMarkingColors.Visible = true;
             return;
@@ -605,6 +585,15 @@ public sealed partial class MarkingPicker : Control
             // Amour end
             colorSelector.Color = currentColor;
             _currentMarkingColors.Add(currentColor);
+            // Amour edit start
+            var secondarySource = selectedMarking.SecondaryMarkingColors;
+            var secondaryStart = secondarySource != null && i < secondarySource.Count
+                ? ToSelectorColor(secondarySource[i])
+                : currentColor;
+            while (_currentSecondaryColors.Count <= i)
+                _currentSecondaryColors.Add(secondaryStart);
+            _currentSecondaryColors[i] = secondaryStart;
+            // Amour edit end
             var colorIndex = _currentMarkingColors.Count - 1;
 
             Action<Color> colorChanged = _ =>
@@ -615,55 +604,113 @@ public sealed partial class MarkingPicker : Control
             };
             colorSelector.OnColorChanged += colorChanged;
 
-            // Amour edit start: secondary color selector for the gradient bottom stop.
-            if (!supportsGradient)
-                continue;
-
-            {
-                var secondaryContainer = new BoxContainer
-                {
-                    Orientation = LayoutOrientation.Vertical,
-                    Visible = _currentUseGradient,
-                };
-                var secondarySelector = new ColorSelectorSliders
-                {
-                    SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv,
-                };
-
-                var secondarySource = selectedMarking.SecondaryMarkingColors;
-                Color secondaryStart;
-                if (secondarySource != null && i < secondarySource.Count)
-                {
-                    secondaryStart = ToSelectorColor(secondarySource[i]);
-                }
-                else
-                {
-                    secondaryStart = currentColor;
-                }
-                secondarySelector.Color = secondaryStart;
-
-                secondaryContainer.AddChild(new Label { Text = $"{stateNames[i]} gradient color:" });
-                secondaryContainer.AddChild(secondarySelector);
-
-                while (_currentSecondaryColors.Count <= i)
-                    _currentSecondaryColors.Add(secondaryStart);
-                _currentSecondaryColors[i] = secondaryStart;
-
-                var secondaryIndex = i;
-                secondarySelector.OnColorChanged += _ =>
-                {
-                    _currentSecondaryColors[secondaryIndex] = secondarySelector.Color;
-                    SecondaryColorChanged();
-                };
-
-                _currentSecondaryContainers.Add(secondaryContainer);
-                CMarkingColors.AddChild(secondaryContainer);
-            }
-            // Amour edit end
         }
+
+        if (supportsGradient)
+            AddGradientEditor(prototype, false, stateNames);
 
         CMarkingColors.Visible = true;
     }
+
+    // Amour edit start
+    private void AddGradientEditor(MarkingPrototype prototype, bool usesSharedColorControls, IReadOnlyList<string> stateNames)
+    {
+        var editor = new BoxContainer
+        {
+            Orientation = LayoutOrientation.Vertical,
+            Visible = _currentUseGradient,
+        };
+        _currentGradientContainers.Add(editor);
+        CMarkingColors.AddChild(editor);
+
+        editor.AddChild(BuildGradientSliderRow(
+            "marking-gradient-position",
+            0,
+            100,
+            Math.Clamp((int) MathF.Round(Marking.ClampGradientPosition(_currentGradientPosition) * 100f), 0, 100),
+            value =>
+            {
+                _currentGradientPosition = value / 100f;
+                GradientStateChanged();
+            }));
+        editor.AddChild(BuildGradientSliderRow(
+            "marking-gradient-blur",
+            10,
+            100,
+            Math.Clamp((int) MathF.Round(Marking.ClampGradientBlur(_currentGradientBlur) * 100f), 10, 100),
+            value =>
+            {
+                _currentGradientBlur = value / 100f;
+                GradientStateChanged();
+            }));
+        AddGradientColorControls(editor, prototype, usesSharedColorControls, stateNames);
+    }
+
+    private BoxContainer BuildGradientSliderRow(
+        string labelId,
+        int minimum,
+        int maximum,
+        int value,
+        Action<int> onValueChanged)
+    {
+        var row = new BoxContainer
+        {
+            Orientation = LayoutOrientation.Horizontal,
+        };
+        row.AddChild(new Label { Text = Loc.GetString(labelId) });
+
+        var slider = new SliderIntInput
+        {
+            MinValue = minimum,
+            MaxValue = maximum,
+            Value = Math.Clamp(value, minimum, maximum),
+            HorizontalExpand = true,
+        };
+        slider.OnValueChanged += onValueChanged;
+        row.AddChild(slider);
+        return row;
+    }
+
+    private void AddGradientColorControls(
+        BoxContainer editor,
+        MarkingPrototype prototype,
+        bool usesSharedColorControls,
+        IReadOnlyList<string> stateNames)
+    {
+        var colorControlCount = usesSharedColorControls ? 1 : prototype.Sprites.Count;
+        for (var colorIndex = 0; colorIndex < colorControlCount; colorIndex++)
+        {
+            var layerIndex = colorIndex;
+            var selector = new ColorSelectorSliders
+            {
+                SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv,
+                Color = ToSelectorColor(_currentSecondaryColors[layerIndex]),
+            };
+            var label = usesSharedColorControls
+                ? Loc.GetString("marking-body-gradient-secondary-color")
+                : layerIndex >= stateNames.Count
+                    ? Loc.GetString("marking-gradient-color")
+                    : Loc.GetString("marking-gradient-layer-color", ("layer", stateNames[layerIndex]));
+
+            editor.AddChild(new Label { Text = label });
+            editor.AddChild(selector);
+            selector.OnColorChanged += _ =>
+            {
+                if (usesSharedColorControls)
+                {
+                    for (var i = 0; i < _currentSecondaryColors.Count; i++)
+                        _currentSecondaryColors[i] = selector.Color;
+                }
+                else
+                {
+                    _currentSecondaryColors[layerIndex] = selector.Color;
+                }
+
+                GradientStateChanged();
+            };
+        }
+    }
+    // Amour edit end
 
     private void ColorChanged(int colorIndex)
     {
@@ -688,9 +735,7 @@ public sealed partial class MarkingPicker : Control
             marking.SetColor(colorIndex, _currentMarkingColors[colorIndex]);
         }
 
-        marking.UseGradient = _currentUseGradient;
-        for (var i = 0; i < _currentSecondaryColors.Count; i++)
-            marking.SetGradientColor(i, _currentSecondaryColors[i]);
+        ApplyCurrentGradient(marking);
         // Amour edit end
         _currentMarkings.Replace(_selectedMarkingCategory, markingIndex, marking);
 
@@ -707,35 +752,20 @@ public sealed partial class MarkingPicker : Control
         if (markingIndex < 0)
             return;
 
-        var marking = new Marking(_currentMarkings.Markings[_selectedMarkingCategory][markingIndex])
-        {
-            UseGradient = _currentUseGradient,
-        };
-        for (var i = 0; i < _currentSecondaryColors.Count; i++)
-            marking.SetGradientColor(i, _currentSecondaryColors[i]);
+        var marking = new Marking(_currentMarkings.Markings[_selectedMarkingCategory][markingIndex]);
+        ApplyCurrentGradient(marking);
 
         _currentMarkings.Replace(_selectedMarkingCategory, markingIndex, marking);
         OnMarkingColorChange?.Invoke(_currentMarkings);
     }
 
-    private void SecondaryColorChanged()
+    private void ApplyCurrentGradient(Marking marking)
     {
-        if (_selectedMarking is null)
-            return;
-        var markingPrototype = (MarkingPrototype) _selectedMarking.Metadata!;
-        var markingIndex = _currentMarkings.FindIndexOf(_selectedMarkingCategory, markingPrototype.ID);
-        if (markingIndex < 0)
-            return;
-
-        var marking = new Marking(_currentMarkings.Markings[_selectedMarkingCategory][markingIndex])
-        {
-            UseGradient = _currentUseGradient,
-        };
+        marking.UseGradient = _currentUseGradient;
+        marking.GradientPosition = Marking.ClampGradientPosition(_currentGradientPosition);
+        marking.GradientBlur = Marking.ClampGradientBlur(_currentGradientBlur);
         for (var i = 0; i < _currentSecondaryColors.Count; i++)
             marking.SetGradientColor(i, _currentSecondaryColors[i]);
-
-        _currentMarkings.Replace(_selectedMarkingCategory, markingIndex, marking);
-        OnMarkingColorChange?.Invoke(_currentMarkings);
     }
     // Amour edit end
     private void MarkingAdd()

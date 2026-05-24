@@ -1058,6 +1058,14 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("facial_hair_color2");
 
+                    b.Property<float?>("FacialHairGradientBlur")
+                        .HasColumnType("REAL")
+                        .HasColumnName("facial_hair_gradient_blur");
+
+                    b.Property<float?>("FacialHairGradientPosition")
+                        .HasColumnType("REAL")
+                        .HasColumnName("facial_hair_gradient_position");
+
                     b.Property<string>("FacialHairName")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -1092,6 +1100,14 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Property<string>("HairColor2")
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_color2");
+
+                    b.Property<float?>("HairGradientBlur")
+                        .HasColumnType("REAL")
+                        .HasColumnName("hair_gradient_blur");
+
+                    b.Property<float?>("HairGradientPosition")
+                        .HasColumnType("REAL")
+                        .HasColumnName("hair_gradient_position");
 
                     b.Property<string>("HairName")
                         .IsRequired()

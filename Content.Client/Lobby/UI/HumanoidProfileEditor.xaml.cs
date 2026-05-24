@@ -204,6 +204,7 @@ namespace Content.Client.Lobby.UI
     public sealed partial class HumanoidProfileEditor : BoxContainer
     {
         [Dependency] private readonly DocumentParsingManager _parsingMan = default!; // Orion
+        private const int HairGradientBlurMinValue = (int) (HumanoidCharacterAppearance.MinHairGradientBlur * 100f);
 
         private readonly IClientPreferencesManager _preferencesManager;
         private readonly IConfigurationManager _cfgManager;
@@ -657,6 +658,33 @@ namespace Content.Client.Lobby.UI
                 ReloadPreview();
                 SetDirty();
             };
+            _amourHairGradientPositionSlider = AddGradientSlider(
+                HairGradientColorContainer,
+                "marking-gradient-position",
+                0,
+                value =>
+                {
+                    if (Profile is null)
+                        return;
+                    Profile = Profile.WithCharacterAppearance(
+                        Profile.Appearance.WithHairGradientPosition(value / 100f));
+                    ReloadPreview();
+                    SetDirty();
+                });
+            _amourHairGradientBlurSlider = AddGradientSlider(
+                HairGradientColorContainer,
+                "marking-gradient-blur",
+                HairGradientBlurMinValue,
+                value =>
+                {
+                    if (Profile is null)
+                        return;
+                    var blur = Math.Max(value / 100f, HumanoidCharacterAppearance.MinHairGradientBlur);
+                    Profile = Profile.WithCharacterAppearance(
+                        Profile.Appearance.WithHairGradientBlur(blur));
+                    ReloadPreview();
+                    SetDirty();
+                });
 
             HairGradientToggle.OnToggled += args =>
             {
@@ -683,6 +711,32 @@ namespace Content.Client.Lobby.UI
                 ReloadPreview();
                 SetDirty();
             };
+            _amourFacialHairGradientPositionSlider = AddGradientSlider(
+                FacialHairGradientColorContainer,
+                "marking-gradient-position",
+                0,
+                value =>
+                {
+                    if (Profile is null)
+                        return;
+                    Profile = Profile.WithCharacterAppearance(
+                        Profile.Appearance.WithFacialHairGradientPosition(value / 100f));
+                    ReloadPreview();
+                    SetDirty();
+                });
+            _amourFacialHairGradientBlurSlider = AddGradientSlider(
+                FacialHairGradientColorContainer,
+                "marking-gradient-blur",
+                10,
+                value =>
+                {
+                    if (Profile is null)
+                        return;
+                    Profile = Profile.WithCharacterAppearance(
+                        Profile.Appearance.WithFacialHairGradientBlur(value / 100f));
+                    ReloadPreview();
+                    SetDirty();
+                });
 
             FacialHairGradientToggle.OnToggled += args =>
             {
@@ -2741,6 +2795,8 @@ namespace Content.Client.Lobby.UI
                 if (Profile.Appearance.HairUseGradient)
                 {
                     marking.UseGradient = true;
+                    marking.GradientPosition = Profile.Appearance.HairGradientPosition;
+                    marking.GradientBlur = HumanoidCharacterAppearance.ClampHairGradientBlur(Profile.Appearance.HairGradientBlur);
                     marking.SetGradientColor(0, Profile.Appearance.HairColor2);
                 }
                 hairMarking.Add(marking);
@@ -2753,6 +2809,8 @@ namespace Content.Client.Lobby.UI
                 if (Profile.Appearance.FacialHairUseGradient)
                 {
                     marking.UseGradient = true;
+                    marking.GradientPosition = Profile.Appearance.FacialHairGradientPosition;
+                    marking.GradientBlur = Profile.Appearance.FacialHairGradientBlur;
                     marking.SetGradientColor(0, Profile.Appearance.FacialHairColor2);
                 }
                 facialHairMarking.Add(marking);
@@ -2772,15 +2830,47 @@ namespace Content.Client.Lobby.UI
             HairGradientColorContainer.Visible = Profile.Appearance.HairUseGradient;
             if (_amourHairGradientPicker != null)
                 _amourHairGradientPicker.Color = Profile.Appearance.HairColor2;
+            if (_amourHairGradientPositionSlider != null)
+                _amourHairGradientPositionSlider.Value = Math.Clamp((int) MathF.Round(Marking.ClampGradientPosition(Profile.Appearance.HairGradientPosition) * 100f), 0, 100);
+            if (_amourHairGradientBlurSlider != null)
+                _amourHairGradientBlurSlider.Value = Math.Clamp((int) MathF.Round(HumanoidCharacterAppearance.ClampHairGradientBlur(Profile.Appearance.HairGradientBlur) * 100f), HairGradientBlurMinValue, 100);
 
             FacialHairGradientToggle.Pressed = Profile.Appearance.FacialHairUseGradient;
             FacialHairGradientColorContainer.Visible = Profile.Appearance.FacialHairUseGradient;
             if (_amourFacialHairGradientPicker != null)
                 _amourFacialHairGradientPicker.Color = Profile.Appearance.FacialHairColor2;
+            if (_amourFacialHairGradientPositionSlider != null)
+                _amourFacialHairGradientPositionSlider.Value = Math.Clamp((int) MathF.Round(Marking.ClampGradientPosition(Profile.Appearance.FacialHairGradientPosition) * 100f), 0, 100);
+            if (_amourFacialHairGradientBlurSlider != null)
+                _amourFacialHairGradientBlurSlider.Value = Math.Clamp((int) MathF.Round(Marking.ClampGradientBlur(Profile.Appearance.FacialHairGradientBlur) * 100f), 10, 100);
         }
 
         private Robust.Client.UserInterface.Controls.ColorSelectorSliders? _amourHairGradientPicker;
         private Robust.Client.UserInterface.Controls.ColorSelectorSliders? _amourFacialHairGradientPicker;
+        private SliderIntInput? _amourHairGradientPositionSlider;
+        private SliderIntInput? _amourHairGradientBlurSlider;
+        private SliderIntInput? _amourFacialHairGradientPositionSlider;
+        private SliderIntInput? _amourFacialHairGradientBlurSlider;
+
+        private SliderIntInput AddGradientSlider(BoxContainer container, string labelId, int minValue, Action<int> onValueChanged)
+        {
+            var row = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+            };
+            row.AddChild(new Label { Text = Loc.GetString(labelId) });
+
+            var slider = new SliderIntInput
+            {
+                MinValue = minValue,
+                MaxValue = 100,
+                HorizontalExpand = true,
+            };
+            slider.OnValueChanged += onValueChanged;
+            row.AddChild(slider);
+            container.AddChild(row);
+            return slider;
+        }
         // Amour edit end
 
         private void UpdateCMarkingsHair()
@@ -2815,6 +2905,8 @@ namespace Content.Client.Lobby.UI
                 if (Profile.Appearance.HairUseGradient)
                 {
                     Markings.HairMarking.UseGradient = true;
+                    Markings.HairMarking.GradientPosition = Profile.Appearance.HairGradientPosition;
+                    Markings.HairMarking.GradientBlur = HumanoidCharacterAppearance.ClampHairGradientBlur(Profile.Appearance.HairGradientBlur);
                     Markings.HairMarking.SetGradientColor(0, Profile.Appearance.HairColor2);
                 }
                 // Amour edit end
@@ -2856,6 +2948,8 @@ namespace Content.Client.Lobby.UI
                 if (Profile.Appearance.FacialHairUseGradient)
                 {
                     Markings.FacialHairMarking.UseGradient = true;
+                    Markings.FacialHairMarking.GradientPosition = Profile.Appearance.FacialHairGradientPosition;
+                    Markings.FacialHairMarking.GradientBlur = Profile.Appearance.FacialHairGradientBlur;
                     Markings.FacialHairMarking.SetGradientColor(0, Profile.Appearance.FacialHairColor2);
                 }
                 // Amour edit end

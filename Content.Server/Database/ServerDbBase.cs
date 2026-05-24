@@ -459,8 +459,12 @@ namespace Content.Server.Database
                     // Amour start
                     HairColor2 = Color.FromHex(profile.HairColor2 ?? "#000000"),
                     HairUseGradient = profile.HairUseGradient ?? false,
+                    HairGradientPosition = Marking.ClampGradientPosition(profile.HairGradientPosition ?? Marking.DefaultGradientPosition),
+                    HairGradientBlur = HumanoidCharacterAppearance.ClampHairGradientBlur(profile.HairGradientBlur ?? Marking.DefaultGradientBlur),
                     FacialHairColor2 = Color.FromHex(profile.FacialHairColor2 ?? "#000000"),
-                    FacialHairUseGradient = profile.FacialHairUseGradient ?? false
+                    FacialHairUseGradient = profile.FacialHairUseGradient ?? false,
+                    FacialHairGradientPosition = Marking.ClampGradientPosition(profile.FacialHairGradientPosition ?? Marking.DefaultGradientPosition),
+                    FacialHairGradientBlur = Marking.ClampGradientBlur(profile.FacialHairGradientBlur ?? Marking.DefaultGradientBlur)
                     // Amour end
                 },
                 spawnPriority,
@@ -513,12 +517,16 @@ namespace Content.Server.Database
             // Amour start
             profile.HairColor2 = appearance.HairColor2.ToHex();
             profile.HairUseGradient = appearance.HairUseGradient;
+            profile.HairGradientPosition = Marking.ClampGradientPosition(appearance.HairGradientPosition);
+            profile.HairGradientBlur = HumanoidCharacterAppearance.ClampHairGradientBlur(appearance.HairGradientBlur);
             // Amour end
             profile.FacialHairName = appearance.FacialHairStyleId;
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
             // Amour start
             profile.FacialHairColor2 = appearance.FacialHairColor2.ToHex();
             profile.FacialHairUseGradient = appearance.FacialHairUseGradient;
+            profile.FacialHairGradientPosition = Marking.ClampGradientPosition(appearance.FacialHairGradientPosition);
+            profile.FacialHairGradientBlur = Marking.ClampGradientBlur(appearance.FacialHairGradientBlur);
             // Amour end
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
