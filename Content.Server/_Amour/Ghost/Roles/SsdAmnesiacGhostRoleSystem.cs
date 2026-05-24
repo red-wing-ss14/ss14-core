@@ -23,7 +23,7 @@ namespace Content.Server._Amour.Ghost.Roles;
 
 public sealed class SsdAmnesiacGhostRoleSystem : EntitySystem
 {
-    private static readonly TimeSpan DisconnectedDelay = TimeSpan.FromMinutes(1); // НЕ ЗАБЫТЬ ПОМЕНЯТЬ НА 10
+    private static readonly TimeSpan DisconnectedDelay = TimeSpan.FromMinutes(10);
     private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
 
     [Dependency] private readonly EuiManager _eui = default!;
