@@ -203,7 +203,6 @@ namespace Content.Shared.Interaction
         [Dependency] private readonly SharedVerbSystem _verbSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
         [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-        [Dependency] private readonly ActivatableUISystem _activatableUI = default!; // Amour
         [Dependency] private readonly SharedStrippableSystem _strippable = default!;
         [Dependency] private readonly SharedPlayerRateLimitManager _rateLimit = default!;
         [Dependency] private readonly TagSystem _tagSystem = default!;
@@ -495,21 +494,6 @@ namespace Content.Shared.Interaction
             return !_tagSystem.HasTag(user, BypassInteractionRangeChecksTag);
         }
 
-        // Amour start
-        private bool TryOpenGhostActivatableUI(EntityUid user, EntityUid? target)
-        {
-            if (target is not { } targetUid ||
-                !_uiQuery.TryComp(targetUid, out var activatableUI) ||
-                !TryComp<GhostComponent>(user, out var ghost) ||
-                ghost.CanGhostInteract)
-            {
-                return false;
-            }
-
-            return _activatableUI.TryInteractUI(user, targetUid, activatableUI);
-        }
-        // Amour end
-
         /// <summary>
         ///     Returns true if the specified entity should hand interact with the target instead of attacking
         /// </summary>
@@ -593,13 +577,8 @@ namespace Content.Shared.Interaction
                 return;
             }
 
-            // Amour start
             if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, target))
-            {
-                TryOpenGhostActivatableUI(user, target);
                 return;
-            }
-            // Amour end
 
             // Check if interacted entity is in the same container, the direct child, or direct parent of the user.
             // Also checks if the item is accessible via some storage UI (e.g., open backpack)
@@ -1324,10 +1303,8 @@ namespace Content.Shared.Interaction
             if (checkUseDelay && delayComponent != null && _useDelay.IsDelayed((used, delayComponent)))
                 return false;
 
-            // Amour start
             if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, used))
-                return TryOpenGhostActivatableUI(user, used);
-            // Amour end
+                return false;
 
             if (checkAccess && !InRangeUnobstructed(user, used))
                 return false;
