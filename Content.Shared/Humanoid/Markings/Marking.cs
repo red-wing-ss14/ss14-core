@@ -160,9 +160,11 @@ namespace Content.Shared.Humanoid.Markings
             _secondaryColors[colorIndex] = color;
         }
 
-        public static float ClampGradientPosition(float position) => Math.Clamp(position, 0f, 1f);
+        public static float ClampGradientPosition(float position) =>
+            float.IsNaN(position) ? DefaultGradientPosition : Math.Clamp(position, 0f, 1f);
 
-        public static float ClampGradientBlur(float blur) => Math.Clamp(blur, MinGradientBlur, 1f);
+        public static float ClampGradientBlur(float blur) =>
+            float.IsNaN(blur) ? DefaultGradientBlur : Math.Clamp(blur, MinGradientBlur, 1f);
         // Amour edit end
 
         public int CompareTo(Marking? marking)

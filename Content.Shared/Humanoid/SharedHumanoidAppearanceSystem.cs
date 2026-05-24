@@ -602,7 +602,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             {
                 facialHairMarking.UseGradient = true;
                 facialHairMarking.GradientPosition = profile.Appearance.FacialHairGradientPosition;
-                facialHairMarking.GradientBlur = profile.Appearance.FacialHairGradientBlur;
+                facialHairMarking.GradientBlur = Marking.ClampGradientBlur(profile.Appearance.FacialHairGradientBlur);
                 facialHairMarking.SetGradientColor(0, profile.Appearance.FacialHairColor2);
             }
             AddMarking(uid, facialHairMarking, false);

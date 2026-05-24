@@ -450,7 +450,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         return new(color.RByte, color.GByte, color.BByte);
     }
 
-    public static float ClampHairGradientBlur(float blur) => Math.Clamp(blur, MinHairGradientBlur, 1f);
+    public static float ClampHairGradientBlur(float blur) =>
+        float.IsNaN(blur) ? Marking.DefaultGradientBlur : Math.Clamp(blur, MinHairGradientBlur, 1f);
 
     public static HumanoidCharacterAppearance EnsureValid(HumanoidCharacterAppearance appearance, string species, Sex sex)
     {
