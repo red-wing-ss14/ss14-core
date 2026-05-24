@@ -68,10 +68,6 @@
         tags:
         - Abductor
   - type: DisarmMalus
-  - type: UseDelay # Amour edit
-    delays:
-      wonderprod-cuffs:
-        length: 1
   - type: ItemSwitch
     state: stun
     showLabel: true
