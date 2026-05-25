@@ -1,7 +1,5 @@
-using Content.Server.Administration.Logs;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
-using Content.Shared.Database;
 using Content.Shared.Interaction;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
@@ -12,7 +10,6 @@ namespace Content.Server.CartridgeLoader.Cartridges;
 public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Amour edit
 /*
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
@@ -52,9 +49,7 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
         }
         if (printed.Task is NanoTaskItem item)
         {
-            program.Tasks.Add(new(program.Counter++, item)); // Amour edit
-            _adminLogger.Add(LogType.Action, LogImpact.Low, // Amour edit
-                $"{ToPrettyString(args.User):user} imported NanoTask from paper: {item.Description} for {item.TaskIsFor}");
+            program.Tasks.Add(new(program.Counter++, printed.Task));
             args.Handled = true;
             Del(args.Used);
             UpdateUiState(new Entity<NanoTaskCartridgeComponent>(uid.Value, program), ent.Owner);
@@ -112,9 +107,6 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
                     return;
 
                 ent.Comp.Tasks.Add(new(ent.Comp.Counter++, task.Item));
-
-                _adminLogger.Add(LogType.Action, LogImpact.Low, // Amour edit
-                    $"{ToPrettyString(message.Actor):user} added NanoTask: {task.Item.Description} for {task.Item.TaskIsFor} (Priority: {task.Item.Priority})");
                 break;
             case NanoTaskUpdateTask task:
             {
@@ -123,28 +115,12 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
 
                 var idx = ent.Comp.Tasks.FindIndex(t => t.Id == task.Item.Id);
                 if (idx != -1)
-                {
                     ent.Comp.Tasks[idx] = task.Item;
-                    _adminLogger.Add(LogType.Action, LogImpact.Low, // Amour edit
-                        $"{ToPrettyString(message.Actor):user} updated NanoTask {task.Item.Id}: {task.Item.Data.Description} for {task.Item.Data.TaskIsFor} (Priority: {task.Item.Data.Priority})");
-                }
                 break;
             }
             case NanoTaskDeleteTask task:
-            // Amour edit start
-            {
-                var removedCount = ent.Comp.Tasks.RemoveAll(t =>
-                {
-                    if (t.Id != task.Id)
-                        return false;
-
-                    _adminLogger.Add(LogType.Action, LogImpact.Low,
-                        $"{ToPrettyString(message.Actor):user} deleted NanoTask {t.Id}: {t.Data.Description} for {t.Data.TaskIsFor}");
-                    return true;
-                });
+                ent.Comp.Tasks.RemoveAll(t => t.Id == task.Id);
                 break;
-            }
-            // Amour edit end
 /* // Orion-Edit
             case NanoTaskPrintTask task:
             {
@@ -158,9 +134,6 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
                 _hands.PickupOrDrop(message.Actor, printed);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/printer.ogg"), ent.Owner);
                 SetupPrintedTask(printed, task.Item);
-
-                _adminLogger.Add(LogType.Action, LogImpact.Low, // Amour edit
-                    $"{ToPrettyString(message.Actor):user} printed NanoTask: {task.Item.Description} for {task.Item.TaskIsFor}");
                 break;
             }
 */
