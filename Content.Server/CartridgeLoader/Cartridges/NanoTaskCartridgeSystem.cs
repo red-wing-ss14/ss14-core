@@ -2,13 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.Database;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Paper;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
@@ -19,10 +13,12 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Amour edit
+/*
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+*/
 
     public override void Initialize()
     {
@@ -73,6 +69,7 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
         UpdateUiState(ent, args.Loader);
     }
 
+/* // Orion-Edit
     private void SetupPrintedTask(EntityUid uid, NanoTaskItem item)
     {
         PaperComponent? paper = null;
@@ -95,6 +92,7 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
 
         _paper.SetContent((uid, paper), msg.ToMarkup());
     }
+*/
 
     /// <summary>
     /// The ui messages received here get wrapped by a CartridgeMessageEvent and are relayed from the <see cref="CartridgeLoaderSystem"/>
@@ -147,6 +145,7 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
                 break;
             }
             // Amour edit end
+/* // Orion-Edit
             case NanoTaskPrintTask task:
             {
                 if (!task.Item.Validate())
@@ -164,6 +163,7 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
                     $"{ToPrettyString(message.Actor):user} printed NanoTask: {task.Item.Description} for {task.Item.TaskIsFor}");
                 break;
             }
+*/
         }
 
         UpdateUiState(ent, GetEntity(args.LoaderUid));
