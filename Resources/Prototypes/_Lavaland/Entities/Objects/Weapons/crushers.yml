@@ -172,12 +172,11 @@
       types:
         Slash: 6
         Blunt: 5
-      armorPenetration: 0.15 # Amour edit: missing > 0.15
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Slash: 14 # Amour edit: 4 > 14
-        Structural: 20 # Amour edit: 8 > 20
+        Slash: 4
+        Structural: 8
 
 - type: entity
   parent: [ BaseWeaponCrusher, BaseSalvageContraband ]
@@ -206,13 +205,12 @@
     damage:
       types:
         Piercing: 5
-        Slash: 5 # Amour edit: 4 > 5
-      armorPenetration: 0.25 # Amour edit: missing > 0.25
+        Slash: 4
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 10 # Amour edit: 3 > 10
-        Structural: 15 # Amour edit: 8 > 15
+        Piercing: 3
+        Structural: 8
 
 - type: entity
   parent: [ BaseWeaponCrusher, BaseSalvageContraband ]
@@ -225,16 +223,14 @@
     state: icon
   - type: MeleeWeapon # Slower attack speed but higher damage makes it more risky and rewarding to use
     attackRate: 0.6
-    angle: 75 # Amour edit: missing > 75
     damage:
       types:
         Blunt: 12
-      armorPenetration: 0.4 # Amour edit: missing > 0.4
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 23 # Amour edit: 13 > 23
-        Structural: 35 # Amour edit: 15 > 35; Breaks weak rocks effectively
+        Blunt: 13
+        Structural: 15 # Breaks weak rocks effectively
   - type: Item
     size: Ginormous
     sprite: _Lavaland/Objects/Weapons/Crushers/crusher_hammer-inhands.rsi
@@ -261,20 +257,17 @@
     sprite: _Lavaland/Objects/Weapons/Crushers/crusher_halberd.rsi
   # Basically a crusher but better
   - type: MeleeWeapon
-    attackRate: 0.9 # Amour edit: missing > 0.9
     range: 2.2
-    angle: 70 # Amour edit: missing > 70
     damage:
       types:
         Slash: 6
         Blunt: 5
-      armorPenetration: 0.2 # Amour edit: missing > 0.2
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 5 # Amour edit: 3 > 5
-        Slash: 9 # Amour edit: 3 > 9
-        Structural: 25 # Amour edit: 15 > 25; Breaks weak rocks effectively
+        Piercing: 3
+        Slash: 3
+        Structural: 15 # Breaks weak rocks effectively
 
 # Random upgrades
 - type: entity
