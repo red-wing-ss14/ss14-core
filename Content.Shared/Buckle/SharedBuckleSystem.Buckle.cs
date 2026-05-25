@@ -181,14 +181,6 @@ public abstract partial class SharedBuckleSystem
         if (args.Cancelled || !ent.Comp.Buckled)
             return;
 
-        // Amour fix start
-        if (args.Puller != ent.Owner)
-        {
-            args.Cancel();
-            return;
-        }
-        // Amour fix end
-
         if (!CanUnbuckle(ent!, args.Puller, false))
         {
             args.Cancel();
