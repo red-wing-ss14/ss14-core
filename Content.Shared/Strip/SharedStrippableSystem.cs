@@ -88,6 +88,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
+using Content.Shared._Amour.SSDIndicator; // Amour
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -413,7 +414,11 @@ public abstract class SharedStrippableSystem : EntitySystem
             DuplicateCondition = DuplicateConditions.SameTool
         };
 
-        _doAfterSystem.TryStartDoAfter(doAfterArgs);
+        // Amour start
+        // _doAfterSystem.TryStartDoAfter(doAfterArgs);
+        if (_doAfterSystem.TryStartDoAfter(doAfterArgs))
+            RaiseLocalEvent(target, new SSDStripAttemptedEvent(user, time));
+        // Amour end
     }
 
     /// <summary>
@@ -627,7 +632,11 @@ public abstract class SharedStrippableSystem : EntitySystem
             DuplicateCondition = DuplicateConditions.SameTool
         };
 
-        _doAfterSystem.TryStartDoAfter(doAfterArgs);
+        // Amour start
+        // _doAfterSystem.TryStartDoAfter(doAfterArgs);
+        if (_doAfterSystem.TryStartDoAfter(doAfterArgs))
+            RaiseLocalEvent(target.Owner, new SSDStripAttemptedEvent(user, time));
+        // Amour end
     }
 
     /// <summary>
