@@ -4,6 +4,7 @@ using Content.Client.Guidebook;
 using Content.Client.Lobby;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
+using Content.Shared._Amour.Humanoid.Prototypes;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -148,6 +149,7 @@ public sealed partial class SpeciesWindow : FancyWindow
 
         var previewProfile = Profile;
         previewProfile = previewProfile.WithSpecies(protoId);
+        previewProfile = previewProfile.WithBodyType(GetPreviewBodyType(proto, previewProfile.BodyType)); // Amour
 
         var skin = proto.SkinColoration;
         switch (skin)
@@ -287,6 +289,24 @@ public sealed partial class SpeciesWindow : FancyWindow
         using var file = _resMan.ContentFileReadText(proto.Description.Value);
         _parsingMan.TryAddMarkup(DetailInfoContainer, file.ReadToEnd());
     }
+
+    // Amour start
+    private string GetPreviewBodyType(SpeciesPrototype species, string currentBodyType)
+    {
+        var validBodyTypes = species.BodyTypes
+            .Where(id => _proto.TryIndex<BodyTypePrototype>(id, out var bodyType) &&
+                !bodyType.SexRestrictions.Contains(Profile.Sex.ToString()))
+            .ToList();
+
+        if (validBodyTypes.Contains(currentBodyType))
+            return currentBodyType;
+
+        if (validBodyTypes.Count > 0)
+            return validBodyTypes[0];
+
+        return species.BodyTypes.FirstOrDefault() ?? currentBodyType;
+    }
+    // Amour end
 
     private sealed partial class SpeciesButton(ProtoId<SpeciesPrototype> proto) : Button
     {

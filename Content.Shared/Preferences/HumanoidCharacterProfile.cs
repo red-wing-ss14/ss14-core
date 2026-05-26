@@ -386,11 +386,20 @@ namespace Content.Shared.Preferences
         public static HumanoidCharacterProfile DefaultWithSpecies(string? species = null)
         {
             species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+            // Amour start
+            var bodyType = SharedHumanoidAppearanceSystem.DefaultBodyType;
+            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
+            if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype) &&
+                speciesPrototype.BodyTypes.Count > 0)
+            {
+                bodyType = speciesPrototype.BodyTypes.First();
+            }
+            // Amour end
 
             return new()
             {
                 Species = species,
-                BodyType = SharedHumanoidAppearanceSystem.DefaultBodyType, // Amour port: WD Slim body types
+                BodyType = bodyType, // Amour port: WD Slim body types
             };
         }
 
