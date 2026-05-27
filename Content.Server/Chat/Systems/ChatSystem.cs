@@ -126,6 +126,7 @@ using Content.Server.GameTicking;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Systems;
+using Content.Shared._Amour.CCVar; // Amour
 using Content.Shared._EinsteinEngines.Language;
 using Content.Shared._Goobstation.Wizard.Chuuni;
 using Content.Shared._Starlight.CollectiveMind;
@@ -265,6 +266,11 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     private void OnGameChange(GameRunLevelChangedEvent ev)
     {
+        // Amour start
+        if (_configurationManager.GetCVar(AmourCCVars.OocAutoToggleEnabled))
+            return;
+        // Amour end
+
         switch (ev.New)
         {
             case GameRunLevel.InRound:

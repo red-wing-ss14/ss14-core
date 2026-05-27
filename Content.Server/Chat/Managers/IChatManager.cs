@@ -123,6 +123,7 @@ namespace Content.Server.Chat.Managers
         void DispatchServerMessage(ICommonSession player, string message, bool suppressLog = false);
 
         void TrySendOOCMessage(ICommonSession player, string message, OOCChatType type);
+        void SetOocEnabledSilently(bool enabled); // Amour
 
         void SendHookOOC(string sender, string message, bool isDiscordBridge = false); // amour add  bool isDiscordBridge = false
         void SendAdminAnnouncement(string message, AdminFlags? flagBlacklist = null, AdminFlags? flagWhitelist = null);

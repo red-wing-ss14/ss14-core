@@ -6,6 +6,18 @@ namespace Content.Shared._Amour.CCVar;
 public sealed class AmourCCVars
 {
     /// <summary>
+    ///     Automatically toggles OOC depending on current online player count.
+    /// </summary>
+    public static readonly CVarDef<bool> OocAutoToggleEnabled =
+        CVarDef.Create("amour.ooc_auto_toggle_enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.NOTIFY);
+
+    /// <summary>
+    ///     OOC is enabled while online is at or below this value, and disabled above it.
+    /// </summary>
+    public static readonly CVarDef<int> OocAutoTogglePlayerThreshold =
+        CVarDef.Create("amour.ooc_auto_toggle_player_threshold", 15, CVar.SERVERONLY);
+
+    /// <summary>
     ///     URL of the Discord bot API for receiving OOC messages from Discord.
     /// </summary>
     public static readonly CVarDef<string> DiscordOocBotApiUrl =

@@ -245,6 +245,7 @@ internal sealed partial class ChatManager : IChatManager
 
     private bool _oocEnabled = true;
     private bool _adminOocEnabled = true;
+    private bool _suppressNextOocAnnouncement; // Amour
 
     private readonly Dictionary<NetUserId, ChatUser> _players = new();
 
@@ -264,8 +265,27 @@ internal sealed partial class ChatManager : IChatManager
         if (_oocEnabled == val) return;
 
         _oocEnabled = val;
+        // Amour start
+        if (_suppressNextOocAnnouncement)
+        {
+            _suppressNextOocAnnouncement = false;
+            return;
+        }
+        // Amour end
+
         DispatchServerAnnouncement(Loc.GetString(val ? "chat-manager-ooc-chat-enabled-message" : "chat-manager-ooc-chat-disabled-message"));
     }
+
+    // Amour start
+    public void SetOocEnabledSilently(bool enabled)
+    {
+        if (_configurationManager.GetCVar(CCVars.OocEnabled) == enabled)
+            return;
+
+        _suppressNextOocAnnouncement = true;
+        _configurationManager.SetCVar(CCVars.OocEnabled, enabled);
+    }
+    // Amour end
 
     private void OnAdminOocEnabledChanged(bool val)
     {
