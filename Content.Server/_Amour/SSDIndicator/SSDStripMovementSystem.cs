@@ -2,6 +2,7 @@ using Content.Shared._Amour.SSDIndicator;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode;
+using Content.Shared.Ghost;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Movement.Components;
@@ -69,7 +70,7 @@ public sealed class SSDStripMovementSystem : EntitySystem
 
     private void OnSSDStripAttempted(Entity<SSDIndicatorComponent> ent, ref SSDStripAttemptedEvent args)
     {
-        if (!ent.Comp.IsSSD)
+        if (!ent.Comp.IsSSD || IsAdminGhost(args.User))
             return;
 
         if (TryComp<BuckleComponent>(ent, out var buckle) && buckle.Buckled)
@@ -84,6 +85,9 @@ public sealed class SSDStripMovementSystem : EntitySystem
         TryPunchStripper(ent.Owner, args.User);
         StartStripStep((ent.Owner, mover), args.Duration, _transform.GetMapCoordinates(ent.Owner, xform));
     }
+
+    private bool IsAdminGhost(EntityUid uid)
+        => TryComp<GhostComponent>(uid, out var ghost) && ghost.CanGhostInteract;
 
     private void TryPunchStripper(EntityUid uid, EntityUid user)
     {
