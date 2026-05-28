@@ -245,4 +245,4 @@
         Heat: 0.9 # Amour edit: missing > 0.9
   - type: ClothingSpeedModifier
     walkModifier: 0.95
-    sprintModifier: 0.85
+    sprintModifier: 0.95 # Amour edit: 0.85 > 0.95

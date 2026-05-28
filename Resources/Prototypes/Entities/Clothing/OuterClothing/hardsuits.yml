@@ -262,8 +262,8 @@
         Cold: 0.55 # Amour edit: missing > 0.55
         Caustic: 0.8 # Amour edit: missing > 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.85 # Amour edit: 0.7 > 0.85
+    sprintModifier: 0.85 # Amour edit: 0.7 > 0.85
   - type: HeldSpeedModifier
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:
@@ -339,8 +339,8 @@
         Heat: 0.8 # Amour edit: missing > 0.8
         Cold: 0.8 # Amour edit: missing > 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.85 # Amour edit: 0.8 > 0.85
+    sprintModifier: 0.85 # Amour edit: 0.8 > 0.85
   - type: HeldSpeedModifier
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:
@@ -428,8 +428,8 @@
         Caustic: 0.7 # Amour edit: 0.8 > 0.7
         Cold: 0.7 # Amour edit: missing > 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.85 # Amour edit: 0.8 > 0.85
+    sprintModifier: 0.85 # Amour edit: 0.8 > 0.85
   - type: HeldSpeedModifier
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:
@@ -702,8 +702,8 @@
         Caustic: 0.6 # Amour edit: 0.7 > 0.6
         Cold: 0.5 # Amour edit: missing > 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.9 # Amour edit: 0.8 > 0.9
+    sprintModifier: 0.9 # Amour edit: 0.8 > 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:
@@ -1119,8 +1119,8 @@
         Caustic: 0.25 # Amour edit: 0.2 > 0.25
         Cold: 0.35 # Amour edit: 0.5 > 0.35
   - type: ClothingSpeedModifier
-    walkModifier: 0.65
-    sprintModifier: 0.65
+    walkModifier: 0.75 # Amour edit: 0.65 > 0.75
+    sprintModifier: 0.75 # Amour edit: 0.65 > 0.75
   - type: HeldSpeedModifier
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:
@@ -1288,8 +1288,8 @@
         Cold: 0.5 # Amour edit: missing > 0.5
         Radiation: 0.25 # Amour edit: missing > 0.25
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.65 # Amour edit: 0.8 > 0.65
+    sprintModifier: 0.65 # Amour edit: 0.8 > 0.65
   - type: HeldSpeedModifier
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:

@@ -14,13 +14,13 @@
     sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_speedloader.rsi
     state: icon-lethal
   - type: Battery
-    maxCharge: 600
-    startingCharge: 600
+    maxCharge: 1200 # Amour edit: 600 > 1200
+    startingCharge: 1200 # Amour edit: 600 > 1200
   - type: BatteryDrinkerSource
     maxAmount: 100
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 40
+    autoRechargeRate: 60 # Amour edit: 40 > 60
     autoRechargePause: true
     autoRechargePauseTime: 12
   - type: AmmoCounter
@@ -37,7 +37,7 @@
   components:
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEnergyGunMagnum
-    fireCost: 100
+    fireCost: 150 # Amour edit: 100 > 150
   - type: Tag
     tags:
       - EnergySpeedloader
@@ -53,7 +53,7 @@
     state: icon-disabling
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEnergyGunDisabler
-    fireCost: 50
+    fireCost: 150 # Amour edit: 50 > 150
   - type: Tag
     tags:
       - EnergySpeedloader
@@ -65,9 +65,15 @@
   name: energy speedloader (pulse)
   description: A rather volatile powercell utilizing phoron to charge destructive energy pulses over time. Phoron will make us all rich.
   components:
+  - type: Battery
+    maxCharge: 1600 # Amour edit: missing > 1600
+    startingCharge: 1600 # Amour edit: missing > 1600
+  - type: BatterySelfRecharger
+    autoRechargePauseTime: 12 # Amour edit: missing > 12
+    autoRechargeRate: 100 # Amour edit: missing > 100
   - type: HitscanBatteryAmmoProvider
     proto: LightPulse
-    fireCost: 50
+    fireCost: 200 # Amour edit: 50 > 200
   - type: Tag
     tags:
     - EnergySpeedloader

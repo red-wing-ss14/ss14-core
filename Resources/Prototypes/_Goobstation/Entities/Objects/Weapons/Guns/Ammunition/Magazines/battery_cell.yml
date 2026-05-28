@@ -58,8 +58,8 @@
       state: o4
       shader: unshaded
   - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
+    maxCharge: 1200 # Amour edit: 1000 > 1200
+    startingCharge: 1200 # Amour edit: 1000 > 1200
   - type: BatteryDrinkerSource
     maxAmount: 200
   - type: Tag
@@ -78,7 +78,7 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_lethal.rsi
   - type: HitscanBatteryAmmoProvider
     proto: SMGLaser
-    fireCost: 50
+    fireCost: 40 # Amour edit: 50 > 40
 # x-ray smg power cell
 - type: entity
   name: x-ray SMG power cell
@@ -91,7 +91,7 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_xray.rsi
   - type: HitscanBatteryAmmoProvider
     proto: SMGLaserXray
-    fireCost: 50
+    fireCost: 40 # Amour edit: 50 > 40
 # overclocked smg power cell
 - type: entity
   name: overclocked SMG power cell
@@ -100,6 +100,9 @@
   suffix: Full
   parent: BaseMilitaryPowerCellSMG
   components:
+  - type: Battery
+    maxCharge: 2000 # Amour edit: missing > 2000
+    startingCharge: 2000 # Amour edit: missing > 2000
   - type: Sprite
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_overcharge.rsi
   - type: HitscanBatteryAmmoProvider
@@ -120,7 +123,7 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_bluespace.rsi
   - type: HitscanBatteryAmmoProvider
     proto: SMGLaserBluespace
-    fireCost: 50
+    fireCost: 75 # Amour edit: 50 > 75
 # pulse smg power cell
 - type: entity
   name: pulse SMG power cell
@@ -129,11 +132,14 @@
   suffix: Full
   parent: BaseMilitaryPowerCellSMG
   components:
-    - type: Sprite
-      sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_bluespace.rsi
-    - type: HitscanBatteryAmmoProvider
-      proto: SMGLaserPulse
-      fireCost: 50
+  - type: Battery
+    maxCharge: 4500 # Amour edit: missing > 4500
+    startingCharge: 4500 # Amour edit: missing > 4500
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_bluespace.rsi
+  - type: HitscanBatteryAmmoProvider
+    proto: SMGLaserPulse
+    fireCost: 150 # Amour edit: 50 > 150
 # ion smg power cell
 - type: entity
   name: ion SMG power cell
@@ -146,7 +152,7 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_ion.rsi
   - type: HitscanBatteryAmmoProvider
     proto: SMGLaserIon
-    fireCost: 50
+    fireCost: 40 # Amour edit: 50 > 40
 # endregion SMG Power Cells
 
 # region Sniper Power Cells
@@ -214,6 +220,9 @@
   suffix: Full
   parent: BaseMilitaryPowerCellSniper
   components:
+  - type: Battery
+    maxCharge: 1800 # Amour edit: missing > 1800
+    startingCharge: 1800 # Amour edit: missing > 1800
   - type: Sprite
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_rifle_overcharge.rsi
   - type: HitscanBatteryAmmoProvider
@@ -234,7 +243,7 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_rifle_bluespace.rsi
   - type: HitscanBatteryAmmoProvider
     proto: SniperBluespaceLaser
-    fireCost: 100
+    fireCost: 150 # Amour edit: 100 > 150
 # pulse sniper power cell
 - type: entity
   name: pulse sniper power cell
@@ -243,11 +252,14 @@
   suffix: Full
   parent: BaseMilitaryPowerCellSniper
   components:
-    - type: Sprite
-      sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_rifle_bluespace.rsi
-    - type: HitscanBatteryAmmoProvider
-      proto: SniperPulseLaser
-      fireCost: 100
+  - type: Battery
+    maxCharge: 5250 # Amour edit: missing > 5250
+    startingCharge: 5250 # Amour edit: missing > 5250
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_rifle_bluespace.rsi
+  - type: HitscanBatteryAmmoProvider
+    proto: SniperPulseLaser
+    fireCost: 250 # Amour edit: 100 > 250
 # ion sniper power cell
 - type: entity
   name: ion sniper power cell
@@ -275,8 +287,8 @@
   - type: Sprite
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_revolver.rsi
   - type: Battery
-    maxCharge: 500
-    startingCharge: 500
+    maxCharge: 750 # Amour edit: 500 > 750
+    startingCharge: 750 # Amour edit: 500 > 750
   - type: BatteryDrinkerSource
     maxAmount: 100
   - type: Tag
@@ -316,7 +328,7 @@
             shader: null
   - type: HitscanBatteryAmmoProvider
     proto: RevolverRedLaser
-    fireCost: 62.5
+    fireCost: 125 # Amour edit: 62.5 > 125
 # x-ray revolver power cell
 - type: entity
   name: x-ray revolver power cell
@@ -342,7 +354,7 @@
             shader: null
   - type: HitscanBatteryAmmoProvider
     proto: RevolverXrayLaser
-    fireCost: 62.5
+    fireCost: 125 # Amour edit: 62.5 > 125
 # overclocked revolver power cell
 - type: entity
   name: overclocked revolver power cell
@@ -351,6 +363,9 @@
   suffix: Full
   parent: BaseMilitaryPowerCellRevolver
   components:
+  - type: Battery
+    maxCharge: 600 # Amour edit: missing > 600
+    startingCharge: 600 # Amour edit: missing > 600
   - type: Sprite
     layers:
     - map: [ "base" ]
@@ -368,7 +383,7 @@
             shader: null
   - type: HitscanBatteryAmmoProvider
     proto: RevolverOverchargedLaser
-    fireCost: 125
+    fireCost: 200 # Amour edit: 125 > 200
 # bluespace revolver power cell
 - type: entity
   name: bluespace revolver power cell
@@ -383,8 +398,8 @@
       state: bluespace_charge
       shader: unshaded
   - type: Battery
-    maxCharge: 750
-    startingCharge: 750    
+    maxCharge: 1200 # Amour edit: 750 > 1200
+    startingCharge: 1200 # Amour edit: 750 > 1200
   - type: GenericVisualizer
     visuals:
       enum.AmmoVisuals.HasAmmo:
@@ -397,7 +412,7 @@
             shader: null
   - type: HitscanBatteryAmmoProvider
     proto: RevolverBluespaceLaser
-    fireCost: 62.5
+    fireCost: 200 # Amour edit: 62.5 > 200
 # ion revolver power cell
 - type: entity
   name: ion revolver power cell
@@ -423,7 +438,7 @@
             shader: null
   - type: HitscanBatteryAmmoProvider
     proto: RevolverIonLaser
-    fireCost: 62.5
+    fireCost: 125 # Amour edit: 62.5 > 125
 # endregion Revolver Power Cells
 
 # region LMG Power Cell
@@ -447,13 +462,13 @@
     shape:
     - 0,0,2,1
   - type: Battery
-    maxCharge: 3000
-    startingCharge: 3000
+    maxCharge: 10000 # Amour edit: 3000 > 10000
+    startingCharge: 10000 # Amour edit: 3000 > 10000
   - type: BatteryDrinkerSource
     maxAmount: 500
   - type: HitscanBatteryAmmoProvider
     proto: LMGLaser
-    fireCost: 15
+    fireCost: 50 # Amour edit: 15 > 50
   - type: Tag
     tags:
     - MilitaryPowerCellLMG

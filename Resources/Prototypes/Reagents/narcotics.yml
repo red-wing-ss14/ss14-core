@@ -63,6 +63,7 @@
   meltingPoint: 170.0
   metabolisms:
     Poison:
+      metabolismRate: 0.25 # Amour edit: 0.5 > 0.25
       effects:
       - !type:HealthChange
         conditions:
@@ -96,6 +97,7 @@
             Poison: 2 # this is added to the base damage of the meth.
             Asphyxiation: 2
     Narcotic:
+      metabolismRate: 0.25 # Amour edit: 0.5 > 0.25
       effects:
       - !type:MovespeedModifier
         walkSpeedModifier: 1.2 # Amour edit - 1.35 > 1.2
@@ -130,6 +132,7 @@
       - !type:ChemAddMoodlet # Orion
         moodPrototype: StrongStimulant
     Medicine:
+      metabolismRate: 0.25 # Amour edit: 0.5 > 0.25
       effects:
       - !type:ResetNarcolepsy
         conditions:
@@ -148,6 +151,7 @@
   meltingPoint: 36.0
   metabolisms:
     Narcotic:
+      metabolismRate: 0.25 # Amour edit: 0.5 > 0.25
       effects:
       - !type:HealthChange
         conditions:
@@ -210,6 +214,7 @@
       - !type:ChemAddMoodlet # Orion
         moodPrototype: StrongStimulant
     Medicine:
+      metabolismRate: 0.25 # Amour edit: 0.5 > 0.25
       effects:
       - !type:ResetNarcolepsy
         conditions:
@@ -243,8 +248,8 @@
             Cold: -0.5
             Radiation: -0.5
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.2 # Amour edit - 1.3 > 1.2
-        sprintSpeedModifier: 1.2 # Amour edit - 1.3 > 1.2
+        walkSpeedModifier: 1.25 # Amour edit: 1.3 > 1.25
+        sprintSpeedModifier: 1.25 # Amour edit: 1.3 > 1.25
       - !type:HealthChange
         conditions:
         - !type:OrganType # Goobstation - Yowie

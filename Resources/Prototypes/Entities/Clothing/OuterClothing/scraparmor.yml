@@ -77,8 +77,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.8 # Amour edit: 0.80 > 0.8
   - type: ClothingSpeedModifier #But that protection comes at a price.
-    walkModifier: 0.6
-    sprintModifier: 0.6
+    walkModifier: 0.8 # Amour edit: 0.6 > 0.8
+    sprintModifier: 0.8 # Amour edit: 0.6 > 0.8
   - type: GroupExamine
   - type: Construction
     graph: scraparmor

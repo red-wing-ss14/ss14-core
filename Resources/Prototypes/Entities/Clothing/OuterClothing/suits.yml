@@ -192,8 +192,8 @@
         Piercing: 0.9 # Amour edit: missing > 0.9
         Caustic: 0.8 # Amour edit: missing > 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.75 # Amour edit: 0.7 > 0.75
+    sprintModifier: 0.75 # Amour edit: 0.7 > 0.75
   - type: HeldSpeedModifier
   - type: GroupExamine
   - type: ProtectedFromStepTriggers

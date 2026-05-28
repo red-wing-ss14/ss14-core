@@ -366,6 +366,8 @@
   id: WeaponLaserGun
   description: A laser pistol from another time. Its design is pretty rare in the current era, but it's compatible with modern rechargers. # Goobstation
   components:
+  - type: Gun
+    fireRate: 2.5 # Amour edit: missing > 2.5
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
     layers:
@@ -382,12 +384,15 @@
     - oni-cannot-shoot-guns-2
     - oni-cannot-shoot-guns-3
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: RedLaser # Amour edit: RedMediumLaser > RedLaser
     fireCost: 62.5
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: Battery
+    maxCharge: 1000 # Amour edit: missing > 1000
+    startingCharge: 1000 # Amour edit: missing > 1000
   - type: Appearance
 
 - type: entity
@@ -418,12 +423,14 @@
   - type: Appearance
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/makeshift.rsi
+  - type: Gun
+    fireRate: 1.5 # Amour edit: missing > 1.5
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
   - type: Battery
     maxCharge: 625 # Amour edit: 500 > 625
-    startingCharge: 500
+    startingCharge: 625 # Amour edit: 500 > 625
 
 - type: entity
   name: tesla gun
@@ -510,6 +517,9 @@
     magState: mag
     steps: 5
     zeroVisible: false
+  - type: Battery
+    maxCharge: 2400 # Amour edit: missing > 2400
+    startingCharge: 2400 # Amour edit: missing > 2400
   - type: Appearance
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
@@ -520,7 +530,7 @@
     - SemiAuto
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser # Orion-Edit
-    fireCost: 25 # Goobstation # Orion-Edit: 50 > 25
+    fireCost: 100 # Amour edit: 25 > 100
   - type: Item
     size: Large
 
@@ -547,6 +557,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
   - type: Gun
+    fireRate: 2 # Amour edit: missing > 2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -557,7 +568,7 @@
     fireCost: 200
   - type: Battery
     maxCharge: 3200 # Amour edit: 2000 > 3200
-    startingCharge: 2000
+    startingCharge: 3200 # Amour edit: 2000 > 3200
   - type: BatterySelfRecharger # Goobstation - CentComm Job Revamp
     autoRecharge: true
     autoRechargeRate: 40
@@ -609,7 +620,7 @@
     key: enum.AmmoSelectorUiKey.Key # Goobstation - End
   - type: Battery
     maxCharge: 9000 # Amour edit: 5000 > 9000
-    startingCharge: 5000
+    startingCharge: 9000 # Amour edit: 5000 > 9000
   # Goobstation
   - type: Tag
     tags:
@@ -663,7 +674,7 @@
     key: enum.AmmoSelectorUiKey.Key # Goobstation - End
   - type: Battery
     maxCharge: 20000 # Amour edit: 40000 > 20000
-    startingCharge: 40000
+    startingCharge: 20000 # Amour edit: 40000 > 20000
   # Goobstation
   - type: Tag
     tags:
@@ -691,16 +702,19 @@
     magState: mag
     steps: 5
     zeroVisible: false
+  - type: Battery
+    maxCharge: 2450 # Amour edit: missing > 2450
+    startingCharge: 2450 # Amour edit: missing > 2450
   - type: Appearance
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
   - type: Gun
-    fireRate: 2 # Goobstation
+    fireRate: 1.2 # Amour edit: 2 > 1.2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 100
+    fireCost: 175 # Amour edit: 100 > 175
   - type: Tag
     tags:
     - TurretCompatibleWeapon
@@ -766,16 +780,19 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
   - type: Gun
-    fireRate: 1.7 # Orion
+    fireRate: 1.25 # Amour edit: 1.7 > 1.25
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
-    fireCost: 40 # Orion-Edit: 100 > 40
+    fireCost: 200 # Amour edit: 40 > 200
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: Battery
+    maxCharge: 3000 # Amour edit: missing > 3000
+    startingCharge: 3000 # Amour edit: missing > 3000
   - type: Appearance
   - type: RestrictGunshotsByUserTag # Goobstation
     doesntContain:
@@ -842,6 +859,9 @@
   id: WeaponDisabler
   description: A self-defense weapon that exhausts organic targets, weakening them until they collapse.
   components:
+  - type: Battery
+    maxCharge: 1200 # Amour edit: missing > 1200
+    startingCharge: 1200 # Amour edit: missing > 1200
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/disabler.rsi
     layers:
@@ -856,9 +876,11 @@
     slots:
       - suitStorage
       - Belt
+  - type: Gun
+    fireRate: 2 # Amour edit: missing > 2
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 62.5
+    fireCost: 75 # Amour edit: 62.5 > 75
   - type: GuideHelp
     guides:
     - Security
@@ -902,11 +924,14 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisablerSmg
-    fireCost: 25
+    fireCost: 40 # Amour edit: 25 > 40
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: Battery
+    maxCharge: 2000 # Amour edit: missing > 2000
+    startingCharge: 2000 # Amour edit: missing > 2000
   - type: Appearance
   - type: StaticPrice
     price: 260
@@ -987,6 +1012,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
   - type: Gun
+    fireRate: 2 # Amour edit: missing > 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
@@ -995,10 +1021,14 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
+    autoRechargePauseTime: 0 # Amour edit: missing > 0
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: Battery
+    maxCharge: 1200 # Amour edit: missing > 1200
+    startingCharge: 1200 # Amour edit: missing > 1200
   - type: Appearance
   - type: Tag
     tags:
@@ -1033,6 +1063,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
   - type: Gun
+    fireRate: 2.2 # Amour edit: missing > 2.2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
@@ -1040,7 +1071,8 @@
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 30
+    autoRechargeRate: 25 # Amour edit: 30 > 25
+    autoRechargePauseTime: 0 # Amour edit: missing > 0
   - type: RestrictGunshotsByUserTag # Goobstation
     doesntContain:
     - Oni
@@ -1052,6 +1084,9 @@
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: Battery
+    maxCharge: 1000 # Amour edit: missing > 1000
+    startingCharge: 1000 # Amour edit: missing > 1000
   - type: Appearance
   - type: StaticPrice
     price: 63
@@ -1177,7 +1212,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserSpread
+    proto: BulletLaserSpreadNarrow # Amour edit: BulletLaserSpread > BulletLaserSpreadNarrow
     fireCost: 150 # Amour edit: 180 > 150
   # Goob edit start
   #- type: BatteryWeaponFireModes
@@ -1190,8 +1225,8 @@
   #    fireCost: 120
   - type: AmmoSelector
     prototypes:
-      - BulletLaserSpread
-      - BulletLaserSpreadNarrow
+      - BulletLaserSpreadNarrow # Amour edit: BulletLaserSpread > BulletLaserSpreadNarrow
+      - BulletLaserSpread # Amour edit: BulletLaserSpreadNarrow > BulletLaserSpread
       - BulletDisablerSmgSpread
   - type: UserInterface
     interfaces:
@@ -1217,7 +1252,7 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
     maxCharge: 2400 # Amour edit: 3600 > 2400
-    startingCharge: 1050
+    startingCharge: 2400 # Amour edit: 1050 > 2400
   # Goob - remove self recharge
   # - type: BatterySelfRecharger
   #   autoRecharge: true

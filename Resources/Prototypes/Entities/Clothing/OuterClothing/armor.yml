@@ -690,8 +690,8 @@
         Heat: 0.7 # Amour edit: missing > 0.7
         Caustic: 0.7 # Amour edit: missing > 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.85 # Amour edit: 0.8 > 0.85
+    sprintModifier: 0.85 # Amour edit: 0.8 > 0.85
   - type: HeldSpeedModifier
   - type: ExplosionResistance
     damageCoefficient: 0.7 # Amour edit: 0.4 > 0.7

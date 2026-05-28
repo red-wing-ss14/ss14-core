@@ -104,10 +104,10 @@
       - Biological
     damage:
       types:
+        # Amour edit: removed Shock -5, Caustic -1.5 > -2
         Heat: -5
         Cold: -5
-        Shock: -5
-        Caustic: -1.5 # Amour edit: returned
+        Caustic: -2
     delay: 4 # Amour edit
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
@@ -162,10 +162,10 @@
       - Biological
     damage:
       types:
+        # Amour edit: removed Shock -10, Caustic -10 > -5
         Heat: -10
         Cold: -10
-        Shock: -10
-        Caustic: -10 # Amour edit: returned
+        Caustic: -5
     delay: 4 # Amour edit
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
@@ -219,8 +219,10 @@
     damageContainers:
       - Biological
     damage:
-      groups:
-        Brute: -15 # Amour edit: returned
+      types: # Amour edit: Brute -15 > split damage
+        Blunt: -5
+        Slash: -5
+        Piercing: -5
     delay: 4 # Amour edit
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -275,8 +277,10 @@
     damageContainers:
       - Biological
     damage:
-      groups:
-        Brute: -20 # Amour edit: returned
+      types: # Amour edit: Brute -20 > split damage
+        Blunt: -5
+        Slash: -7
+        Piercing: -10
     bloodlossModifier: -10 # a suture should stop ongoing bleeding
     delay: 4 # Amour edit
     healingBeginSound:
@@ -425,8 +429,8 @@
       - Biological
     damage:
       types:
-        Slash: -5 # Amour edit: returned
-        Piercing: -10 # Amour edit: returned
+        Slash: -2 # Amour edit: -5 > -2
+        Piercing: -2 # Amour edit: -10 > -2
     bloodlossModifier: -10
     delay: 1 # Amour edit
     healingBeginSound:

@@ -148,7 +148,7 @@
     state: omnilaser
   color: "#00B2FF"
   protoId: HeavyPulse
-  fireCost: 250
+  fireCost: 500 # Amour edit: 250 > 500
 
 - type: selectableAmmo
   id: Pulse
@@ -178,4 +178,4 @@
     state: omnilaser-blue
   color: blue
   protoId: StunPulse
-  fireCost: 20
+  fireCost: 200 # Amour edit: 20 > 200
