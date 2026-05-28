@@ -15,7 +15,7 @@ public sealed class AmourCCVars
     ///     OOC is enabled while online is at or below this value, and disabled above it.
     /// </summary>
     public static readonly CVarDef<int> OocAutoTogglePlayerThreshold =
-        CVarDef.Create("amour.ooc_auto_toggle_player_threshold", 15, CVar.SERVERONLY);
+        CVarDef.Create("amour.ooc_auto_toggle_player_threshold", 7, CVar.SERVERONLY);
 
     /// <summary>
     ///     URL of the Discord bot API for receiving OOC messages from Discord.
