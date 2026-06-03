@@ -12,6 +12,7 @@ public sealed class OocAutoToggleSystem : EntitySystem
 {
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
 
     private bool _enabled;
@@ -39,44 +40,64 @@ public sealed class OocAutoToggleSystem : EntitySystem
     private void OnPlayerThresholdChanged(int value)
     {
         _playerThreshold = Math.Max(0, value);
-        RefreshOocState();
+        RefreshInRoundOocState();
     }
 
     private void OnEnabledChanged(bool value)
     {
         _enabled = value;
-        RefreshOocState();
+        RefreshOocStateForRunLevel();
     }
 
     private void OnOocEnabledChanged(bool value)
     {
-        if (!_enabled || value == ShouldEnableOoc())
+        if (!_enabled ||
+            _gameTicker.RunLevel != GameRunLevel.InRound ||
+            value == ShouldEnableOocInRound())
             return;
 
-        RefreshOocState();
+        RefreshInRoundOocState();
     }
 
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
     {
-        RefreshOocState();
+        RefreshInRoundOocState();
     }
 
     private void OnGameRunLevelChanged(GameRunLevelChangedEvent args)
     {
-        RefreshOocState();
+        RefreshOocStateForRunLevel();
     }
 
-    private bool ShouldEnableOoc()
+    private bool ShouldEnableOocInRound()
     {
         return _player.PlayerCount <= _playerThreshold;
     }
 
-    private void RefreshOocState()
+    private void RefreshOocStateForRunLevel()
     {
         if (!_enabled)
             return;
 
-        var desired = ShouldEnableOoc();
+        if (_gameTicker.RunLevel != GameRunLevel.InRound)
+        {
+            SetOocEnabled(true);
+            return;
+        }
+
+        RefreshInRoundOocState();
+    }
+
+    private void RefreshInRoundOocState()
+    {
+        if (!_enabled || _gameTicker.RunLevel != GameRunLevel.InRound)
+            return;
+
+        SetOocEnabled(ShouldEnableOocInRound());
+    }
+
+    private void SetOocEnabled(bool desired)
+    {
         if (_cfg.GetCVar(CCVars.OocEnabled) == desired)
             return;
 
