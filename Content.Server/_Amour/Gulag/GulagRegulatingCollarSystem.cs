@@ -168,7 +168,7 @@ public sealed class GulagRegulatingCollarSystem : EntitySystem
             collar.Owner,
             Loc.GetString(message),
             InGameICChatType.Speak,
-            false,
+            hideChat: true,
             checkRadioPrefix: false,
             ignoreActionBlocker: true);
     }

@@ -27,7 +27,6 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Materials;
-using Content.Shared.Mind;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
@@ -193,16 +192,6 @@ public sealed class GulagSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns whether a mind belongs to a connected user with an active temporary server ban.
-    /// </summary>
-    public bool IsMindGulagged(EntityUid mindId)
-    {
-        return TryComp(mindId, out MindComponent? mind) &&
-               mind.UserId is { } userId &&
-               IsUserGulagged(userId);
-    }
-
-    /// <summary>
     /// Sends a temporarily banned player to the gulag.
     /// </summary>
     public bool TrySendToGulag(ICommonSession session, HumanoidCharacterProfile? profile = null)
@@ -216,10 +205,13 @@ public sealed class GulagSystem : EntitySystem
             return true;
         }
 
+        var primaryBan = GetPrimaryBan(bans);
+        var prisonerName = GetPrisonerName(primaryBan);
+
         if (session.AttachedEntity is { } playerEntity &&
             HasComp<HumanoidAppearanceComponent>(playerEntity))
         {
-            SendEntityToGulag(playerEntity);
+            SendEntityToGulag(playerEntity, prisonerName);
         }
         else
         {
@@ -230,10 +222,10 @@ public sealed class GulagSystem : EntitySystem
                 return false;
             }
 
-            SpawnPlayer(session, profile);
+            SpawnPlayer(session, profile, prisonerName);
         }
 
-        var expiration = GetPrimaryBan(bans).ExpirationTime!.Value;
+        var expiration = primaryBan.ExpirationTime!.Value;
         var remainingHours = Math.Max(0, Math.Ceiling((expiration - DateTimeOffset.UtcNow).TotalHours));
         _chat.DispatchServerMessage(session,
             Loc.GetString("gulag-greetings-message", ("hours", remainingHours)));
@@ -414,8 +406,17 @@ public sealed class GulagSystem : EntitySystem
         }
 
         var reduction = ConvertPointsToTime(points);
+        var reductionSeconds = (int) Math.Round(reduction.TotalSeconds);
+        if (reduction > TimeSpan.Zero)
+            reductionSeconds = Math.Max(1, reductionSeconds);
+
+        var reductionMinutes = reductionSeconds / 60;
+        var remainingSeconds = reductionSeconds % 60;
         _popup.PopupEntity(
-            Loc.GetString("gulag-ban-time-changed", ("seconds", Math.Round(reduction.TotalSeconds))),
+            Loc.GetString(
+                "gulag-ban-time-changed",
+                ("minutes", reductionMinutes),
+                ("seconds", remainingSeconds)),
             ent.Owner,
             args.User,
             PopupType.Medium);
@@ -713,7 +714,7 @@ public sealed class GulagSystem : EntitySystem
             ban.ExemptFlags);
     }
 
-    private void SendEntityToGulag(EntityUid playerEntity)
+    private void SendEntityToGulag(EntityUid playerEntity, string? prisonerName)
     {
         if (_inventory.TryGetContainerSlotEnumerator(playerEntity, out var enumerator))
         {
@@ -735,19 +736,23 @@ public sealed class GulagSystem : EntitySystem
         _transform.SetCoordinates(playerEntity, GetSpawnPosition());
         _transform.AttachToGridOrMap(playerEntity);
 
+        if (prisonerName is not null)
+            _metaData.SetEntityName(playerEntity, prisonerName);
+
         EnsureComp<GulagBoundComponent>(playerEntity);
         EnsureComp<KillTrackerComponent>(playerEntity);
         _spawning.EquipStartingGear(playerEntity, GulagPrisonerGear, raiseEvent: false);
         TryEquipRegulatingCollar(playerEntity, replaceExisting: true);
     }
 
-    private void SpawnPlayer(ICommonSession session, HumanoidCharacterProfile profile)
+    private void SpawnPlayer(ICommonSession session, HumanoidCharacterProfile profile, string prisonerName)
     {
-        var mind = _mind.CreateMind(session.UserId, profile.Name);
+        var mind = _mind.CreateMind(session.UserId, prisonerName);
         _mind.SetUserId(mind, session.UserId);
 
         var mob = _spawning.SpawnPlayerMob(GetSpawnPosition(), null, profile, null);
         _mind.TransferTo(mind, mob);
+        _metaData.SetEntityName(mob, prisonerName);
 
         EnsureComp<GulagBoundComponent>(mob);
         EnsureComp<KillTrackerComponent>(mob);
@@ -791,6 +796,11 @@ public sealed class GulagSystem : EntitySystem
             return TimeSpan.Zero;
 
         return TimeSpan.FromSeconds(points / _pointsToTimeRatio);
+    }
+
+    private string GetPrisonerName(ServerBanDef ban)
+    {
+        return Loc.GetString("gulag-prisoner-name", ("banId", ban.Id ?? 0));
     }
 
     private sealed record PendingSentenceReduction(NetUserId Worker, double Points);

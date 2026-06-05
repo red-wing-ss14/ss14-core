@@ -68,7 +68,8 @@
 
 using Content.Server.GameTicking;
 using Content.Server.Popups;
-using Content.Server._Amour.Ghost.Roles; // Amour edit
+using Content.Server._Amour.Ghost.Roles;
+using Content.Server._Amour.Gulag.Components;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
@@ -111,6 +112,15 @@ namespace Content.Server.Ghost
                     .PopupEntity(deniedMessage, frozen, frozen);
                 return;
             }
+
+            // Amour start
+            if (player.AttachedEntity is { Valid: true } gulagPrisoner &&
+                _entities.HasComponent<GulagBoundComponent>(gulagPrisoner))
+            {
+                shell.WriteLine(Loc.GetString("ghost-command-denied"));
+                return;
+            }
+            // Amour end
 
             var minds = _entities.System<SharedMindSystem>();
             if (!minds.TryGetMind(player, out var mindId, out var mind))

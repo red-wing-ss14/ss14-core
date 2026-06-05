@@ -374,7 +374,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // Amour start
-        if (TryHandleGulagChatMessage(source, player, message))
+        if (TryHandleGulagChatMessage(source, player))
             return;
         // Amour end
 
@@ -558,7 +558,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // Amour start
-        if (TryHandleGulagChatMessage(source, player, message))
+        if (TryHandleGulagChatMessage(source, player))
             return;
         // Amour end
 
@@ -1363,12 +1363,12 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     // Amour start
-    private bool TryHandleGulagChatMessage(EntityUid source, ICommonSession? player, string message)
+    private bool TryHandleGulagChatMessage(EntityUid source, ICommonSession? player)
     {
         if (player == null)
             return false;
 
-        var ev = new GulagChatMessageAttemptEvent(player, message);
+        var ev = new GulagChatMessageAttemptEvent();
         RaiseLocalEvent(source, ev);
         return ev.Cancelled;
     }
