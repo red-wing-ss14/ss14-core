@@ -1,9 +1,9 @@
-﻿<div align="center"><img alt="Amour-EE logo" src="https://github.com/user-attachments/assets/7b448c5b-3b69-46be-a4b4-37db196b9a63" width="700px" /></div>
+<img width="2172" height="724" alt="banne2r" src="https://github.com/user-attachments/assets/e3c53414-cd58-48a0-a70e-b9c812f818f0" />
 
 ---
 
 
-Amour - это русскоязычный форк [Goob Station](https://github.com/Goob-Station/Goob-Station).
+RED WING - это русскоязычный форк [Goob Station](https://github.com/Goob-Station/Goob-Station).
 
 Space Station 14 - это ремейк SS13, который работает на собственном движке  [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), собственном игровом движке, написанном на C#.
 
