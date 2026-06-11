@@ -218,6 +218,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     private bool _deadLoocEnabled;
     private bool _critLoocEnabled;
     private bool _DeadchatEnabled; // RMC14
+    private bool _nsfwContentEnabled; // RW
     private readonly bool _adminLoocEnabled = true;
 
     public override void Initialize()
@@ -228,6 +229,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         Subs.CVar(_configurationManager, CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
         Subs.CVar(_configurationManager, CCVars.CritLoocEnabled, OnCritLoocEnabledChanged, true);
         Subs.CVar(_configurationManager, RMCCVars.RMCDeadChatEnabled, OnDeadChatEnabledChanged, true); // RMC14
+        Subs.CVar(_configurationManager, CCVars.NsfwContentEnabled, value => _nsfwContentEnabled = value, true); // RW
 
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameChange);
     }
@@ -506,6 +508,9 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _telepath.SendTelepathicChat(source, message, range == ChatTransmitRange.HideChat);
                 break;
             case InGameICChatType.QuietEmote: // Amour - Quiet emote with 2 tile range
+                if (!_nsfwContentEnabled)
+                    return;
+
                 SendEntityQuietEmote(source, message, range, nameOverride, language, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker);
                 break;
         }
