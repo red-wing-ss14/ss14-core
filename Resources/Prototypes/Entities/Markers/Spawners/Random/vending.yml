@@ -47,9 +47,6 @@
     - VendingMachineSpaceUp
     - VendingMachineStarkist
     - VendingMachineSweetToof # Goobstation
-    rarePrototypes:
-    - VendingMachineKink # Amour
-    rareChance: 0.015 # Amour 1.5%
     chance: 1
 
 
