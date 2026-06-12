@@ -3,6 +3,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+# RW START - mapping editor decal hierarchy parents
+
 - type: decal
   id: SpaceStationSign
   abstract: true
@@ -62,4 +64,4 @@
   sprite:
     sprite: Decals/ss14sign.rsi
     state: ss14sign7
-
+# RW END

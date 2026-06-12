@@ -6,6 +6,8 @@
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 #
 # SPDX-License-Identifier: MIT
+
+# RW START - mapping editor decal hierarchy parents
 # If you spawn any of these, they should probably be made cleanable as well.
 
 - type: decal
@@ -83,4 +85,4 @@
   sprite:
     sprite: Decals/dirty.rsi
     state: rust
-
+# RW END

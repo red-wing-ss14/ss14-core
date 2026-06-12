@@ -84,6 +84,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Content.Shared.Decals;
 using Content.Shared.Mapping;
+using Content.Shared._RW.Mapping;
 using Content.Shared.Maps;
 using Robust.Client.UserInterface;
 using Robust.Shared.Network;
@@ -95,21 +96,25 @@ public sealed class MappingManager : IPostInjectInit
 {
     [Dependency] private readonly IFileDialogManager _file = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; //Reserve - Wizden mapping editor
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // RW edit: added favorite prototype lookups for mapping editor
 
     private Stream? _saveStream;
     private MappingMapDataMessage? _mapData;
+    // RW START - mapping editor favorite prototype cache
     private List<IPrototype>? _favoritePrototypes;
 
     public event Action<List<IPrototype>>? OnFavoritePrototypesLoaded;
+    // RW END
 
     public void PostInject()
     {
         _net.RegisterNetMessage<MappingSaveMapMessage>();
         _net.RegisterNetMessage<MappingSaveMapErrorMessage>(OnSaveError);
         _net.RegisterNetMessage<MappingMapDataMessage>(OnMapData);
-        _net.RegisterNetMessage<MappingFavoritesDataMessage>(OnFavoritesData); //Reserve - Wizden mapping editor
-        _net.RegisterNetMessage<MappingFavoritesSaveMessage>(); //Reserve - Wizden mapping editor
+        // RW START - mapping editor favorite network messages
+        _net.RegisterNetMessage<MappingFavoritesDataMessage>(OnFavoritesData);
+        _net.RegisterNetMessage<MappingFavoritesSaveMessage>();
+        // RW END
     }
 
     private void OnSaveError(MappingSaveMapErrorMessage message)
@@ -133,7 +138,7 @@ public sealed class MappingManager : IPostInjectInit
         _mapData = null;
     }
 
-    //Reserve - Wizden mapping editor begin
+    // RW START - mapping editor favorite prototype hydration
     private void OnFavoritesData(MappingFavoritesDataMessage message)
     {
         _favoritePrototypes = new List<IPrototype>();
@@ -150,7 +155,7 @@ public sealed class MappingManager : IPostInjectInit
 
         OnFavoritePrototypesLoaded?.Invoke(_favoritePrototypes);
     }
-    //Reserve - Wizden mapping editor end
+    // RW END
 
     public async Task SaveMap()
     {
@@ -175,7 +180,7 @@ public sealed class MappingManager : IPostInjectInit
 
         _saveStream = stream;
     }
-    //Reserve - Wizden mapping editor begin
+    // RW START - mapping editor favorite save/load requests
     public void SaveFavorites(List<MappingPrototype> prototypes)
     {
         var msg = new MappingFavoritesSaveMessage()
@@ -193,5 +198,5 @@ public sealed class MappingManager : IPostInjectInit
         var request = new MappingFavoritesLoadMessage();
         _net.ClientSendMessage(request);
     }
-    //Reserve - Wizden mapping editor end
+    // RW END
 }

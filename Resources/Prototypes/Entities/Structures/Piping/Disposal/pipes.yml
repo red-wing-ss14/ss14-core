@@ -160,7 +160,7 @@
       DisposalTube: !type:Container
   - type: StaticPrice
     price: 30
-  - type: Tag # Reserve edit - mapping editor
+  - type: Tag # RW edit: added mapping editor disposal tag
     tags:
     - Disposal
 

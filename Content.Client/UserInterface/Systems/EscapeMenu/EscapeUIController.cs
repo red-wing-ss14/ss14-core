@@ -79,7 +79,7 @@ using Content.Client.Players.PlayTimeTracking;
 namespace Content.Client.UserInterface.Systems.EscapeMenu;
 
 [UsedImplicitly]
-public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>, IOnStateEntered<MappingState>, IOnStateExited<MappingState> //Reserve - Wizden mapping editor
+public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>, IOnStateEntered<MappingState>, IOnStateExited<MappingState> // RW edit: added escape menu hooks for mapping state
 {
     [Dependency] private readonly IClientConsoleHost _console = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -224,7 +224,7 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         CommandBinds.Unregister<EscapeUIController>();
     }
 
-    //Reserve - Wizden mapping editor begin
+    // RW START - escape menu support for mapping state
     public void OnStateEntered(MappingState state)
     {
         _escapeWindow = UIManager.CreateWindow<Options.UI.EscapeMenu>();
@@ -291,7 +291,7 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
 
         CommandBinds.Unregister<EscapeUIController>();
     }
-    //Reserve - Wizden mapping editor end
+    // RW END
 
     private void EscapeButtonOnOnPressed(ButtonEventArgs obj)
     {

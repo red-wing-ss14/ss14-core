@@ -9,6 +9,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+# RW START - mapping editor decal hierarchy parents
+
 - type: decal
   id: BrickTileWhite
   parent: BrickTile
@@ -149,3 +151,4 @@
   sprite:
     sprite: Decals/bricktile.rsi
     state: white_line_w
+# RW END

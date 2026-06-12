@@ -3,6 +3,8 @@
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 #
 # SPDX-License-Identifier: MIT
+
+# RW START - mapping editor decal hierarchy parents
 #TODO: Remove all of these when possible, apparently decals aren't possible to just remove right now without causing mapper issues.
 #Please do not make any of these into the new entity stairs unless you want to make new sprites for them.
 
@@ -205,4 +207,4 @@
   sprite:
     sprite: deprecated.rsi
     state: deprecated
-
+# RW END

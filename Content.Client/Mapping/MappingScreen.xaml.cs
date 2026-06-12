@@ -78,12 +78,9 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-/// Reserve - File heavily edited by PR: Mapping editor.
-/// See https://github.com/space-wizards/space-station-14/pull/34302
-/// and https://github.com/Reserve-Station/Reserve-Station/pull/82 for more details.
-
 using System.Linq;
 using System.Numerics;
+using Content.Client._RW.Mapping;
 using Content.Client.Decals;
 using Content.Client.Decals.UI;
 using Content.Client.UserInterface.Screens;
@@ -103,6 +100,7 @@ namespace Content.Client.Mapping;
 [GenerateTypedNameReferences]
 public sealed partial class MappingScreen : InGameScreen
 {
+    // RW START - mapping editor screen layout, decals, visibility, and toolbar extensions
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public DecalPlacementSystem DecalSystem = default!;
@@ -149,7 +147,7 @@ public sealed partial class MappingScreen : InGameScreen
 
         DecalColorPicker.OnColorChanged += OnDecalColorPicked;
         DecalPickerOpen.OnPressed += OnDecalPickerOpenPressed;
-        DecalHexColorInput.OnTextChanged += OnDecalHexColorInput; // WD EDIT
+        DecalHexColorInput.OnTextChanged += OnDecalHexColorInput; // RW edit: added hex color input for decals
         _rotationSpinBox.OnValueChanged += args =>
         {
             _decalRotation = args.Value;
@@ -189,20 +187,20 @@ public sealed partial class MappingScreen : InGameScreen
         }
 
         Pick.Texture.TexturePath = "/Textures/Interface/eyedropper.svg.png";
-        PickDecal.Texture.TexturePath = "/Textures/_Wizden/Interface/VerbIcons/wand-magic-sparkles-solid.svg.192dpi.png";
+        PickDecal.Texture.TexturePath = "/Textures/_RW/Interface/VerbIcons/wand-magic-sparkles-solid.svg.192dpi.png";
         Flip.Texture.TexturePath = "/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png";
-        HideLeftSide.Texture.TexturePath = "/Textures/_Wizden/Interface/VerbIcons/caret-left-solid.svg.192dpi.png";
-        HideRightSide.Texture.TexturePath = "/Textures/_Wizden/Interface/VerbIcons/caret-right-solid.svg.192dpi.png";
+        HideLeftSide.Texture.TexturePath = "/Textures/_RW/Interface/VerbIcons/caret-left-solid.svg.192dpi.png";
+        HideRightSide.Texture.TexturePath = "/Textures/_RW/Interface/VerbIcons/caret-right-solid.svg.192dpi.png";
 
         Flip.OnPressed += _ => FlipSides();
-        Visibility.Texture.TexturePath = "/Textures/_Wizden/Interface/VerbIcons/layer-group-solid.svg.192dpi.png";
+        Visibility.Texture.TexturePath = "/Textures/_RW/Interface/VerbIcons/layer-group-solid.svg.192dpi.png";
         Visibility.OnPressed += _ => visibilityUIController.ToggleWindow();
-        FixGridAtmos.Texture.TexturePath = "/Textures/_Wizden/Interface/VerbIcons/oxygen.svg.192dpi.png";
+        FixGridAtmos.Texture.TexturePath = "/Textures/_RW/Interface/VerbIcons/oxygen.svg.192dpi.png";
         RemoveGrid.Texture.TexturePath = "/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png";
         MoveGrid.Texture.TexturePath = "/Textures/Interface/VerbIcons/point.svg.192dpi.png";
         GridVV.Texture.TexturePath = "/Textures/Interface/VerbIcons/vv.svg.192dpi.png";
-        PipesColor.Texture.TexturePath = "/Textures/_Wizden/Interface/VerbIcons/paint-roller-solid.svg.192dpi.png";
-        ChatButton.Texture.TexturePath = "/Textures/_Wizden/Interface/VerbIcons/comment-dots-regular.svg.192dpi.png";
+        PipesColor.Texture.TexturePath = "/Textures/_RW/Interface/VerbIcons/paint-roller-solid.svg.192dpi.png";
+        ChatButton.Texture.TexturePath = "/Textures/_RW/Interface/VerbIcons/comment-dots-regular.svg.192dpi.png";
 
         HideLeftSide.OnPressed += OnToggleLeftContainer;
         HideRightSide.OnPressed += OnToggleRightContainer;
@@ -233,7 +231,7 @@ public sealed partial class MappingScreen : InGameScreen
         }
         else
         {
-            Flip.Texture.TexturePath = "/Textures/_Wizden/Interface/VerbIcons/rotate_ccw.svg.192dpi.png";
+            Flip.Texture.TexturePath = "/Textures/Interface/VerbIcons/rotate_ccw.svg.192dpi.png";
 
             HideLeftSide.OnPressed -= OnToggleLeftContainer;
             HideLeftSide.OnPressed += OnToggleRightContainer;
@@ -267,14 +265,14 @@ public sealed partial class MappingScreen : InGameScreen
         if (container.GetPositionInParent() == 0)
         {
             button.Texture.TexturePath = container.Visible
-                ? "/Textures/_Wizden/Interface/VerbIcons/caret-left-solid.svg.192dpi.png"
-                : "/Textures/_Wizden/Interface/VerbIcons/caret-right-solid.svg.192dpi.png";
+                ? "/Textures/_RW/Interface/VerbIcons/caret-left-solid.svg.192dpi.png"
+                : "/Textures/_RW/Interface/VerbIcons/caret-right-solid.svg.192dpi.png";
         }
         else
         {
             button.Texture.TexturePath = container.Visible
-                ? "/Textures/_Wizden/Interface/VerbIcons/caret-right-solid.svg.192dpi.png"
-                : "/Textures/_Wizden/Interface/VerbIcons/caret-left-solid.svg.192dpi.png";
+                ? "/Textures/_RW/Interface/VerbIcons/caret-right-solid.svg.192dpi.png"
+                : "/Textures/_RW/Interface/VerbIcons/caret-left-solid.svg.192dpi.png";
         }
     }
 
@@ -282,15 +280,15 @@ public sealed partial class MappingScreen : InGameScreen
     {
         DecalColor = color;
         DecalColorPicker.Color = color;
-        // WD EDIT START
+        // RW START - decal hex color synchronization
         DecalHexColorInput.Text = color.ToHex();
         UpdateHexColorPreview(color);
-        // WD EDIT END
+        // RW END
         UpdateDecal();
         RefreshDecalList();
     }
 
-    // WD EDIT START
+    // RW START - decal hex color input handling
     private void OnDecalHexColorInput(LineEdit.LineEditEventArgs args)
     {
         var color = Color.TryFromHex(args.Text);
@@ -305,7 +303,7 @@ public sealed partial class MappingScreen : InGameScreen
         if (DecalHexColorPreview.PanelOverride is StyleBoxFlat styleBox)
             styleBox.BackgroundColor = color;
     }
-    // WD EDIT END
+    // RW END
 
     private void OnDecalPickerOpenPressed(ButtonEventArgs obj)
     {
@@ -447,4 +445,5 @@ public sealed partial class MappingScreen : InGameScreen
         EraseDecalButton.Pressed = EraseDecalButton == except;
         EraseTileButton.Pressed = EraseTileButton == except;
     }
+    // RW END
 }

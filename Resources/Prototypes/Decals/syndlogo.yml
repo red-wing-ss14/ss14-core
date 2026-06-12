@@ -3,6 +3,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+# RW START - mapping editor decal hierarchy parents
+
 - type: decal
   id: SyndicateLogo
   abstract: true
@@ -158,4 +160,4 @@
   sprite:
     sprite: Decals/syndlogo.rsi
     state: syndlogo19
-
+# RW END

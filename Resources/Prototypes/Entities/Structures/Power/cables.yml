@@ -96,7 +96,7 @@
     cost: 2
     delay: 0
     fx: EffectRCDConstruct0
-  - type: Tag # Reserve edit - mapping editor
+  - type: Tag # RW edit: added mapping editor cable tag
     tags:
     - Cable
 

@@ -363,9 +363,11 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(EngineKeyFunctions.EditorRotateObject);
             AddButton(ContentKeyFunctions.EditorFlipObject);
             AddButton(ContentKeyFunctions.EditorCopyObject);
-            AddButton(ContentKeyFunctions.MappingEnablePick); //Reserve - Wizden mapping editor
-            AddButton(ContentKeyFunctions.MappingEnableDecalPick); //Reserve - Wizden mapping editor
-            AddButton(ContentKeyFunctions.MappingEnableDelete); //Reserve - Wizden mapping editor
+            // RW START - mapping editor pick/delete hotkeys
+            AddButton(ContentKeyFunctions.MappingEnablePick);
+            AddButton(ContentKeyFunctions.MappingEnableDecalPick);
+            AddButton(ContentKeyFunctions.MappingEnableDelete);
+            // RW END
 
             AddHeader("ui-options-header-dev");
             AddButton(EngineKeyFunctions.ShowDebugConsole);

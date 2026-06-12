@@ -13,6 +13,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+# RW START - mapping editor decal hierarchy parents
+
 - type: decal
   id: Overlays
   abstract: true
@@ -651,3 +653,4 @@
   sprite:
     sprite: Decals/Overlays/greyscale.rsi
     state: pavement_vertical_checker_b
+# RW END

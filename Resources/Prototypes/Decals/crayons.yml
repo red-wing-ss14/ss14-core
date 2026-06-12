@@ -12,6 +12,8 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+# RW START - mapping editor decal hierarchy parents
+
 - type: decal
   id: Crayons
   abstract: true
@@ -1475,3 +1477,4 @@
   sprite:
     sprite: Effects/crayondecals.rsi
     state: z
+# RW END

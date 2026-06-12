@@ -101,11 +101,12 @@ public sealed class MappingPrototype
     /// </summary>
     public readonly string Name;
 
-    //Reserve - Wizden mapping editor
+    // RW START - mapping editor favorite state
     /// <summary>
     ///     Whether the prototype is in the “Favorites” list.
     /// </summary>
     public bool Favorite;
+    // RW END
 
     /// <summary>
     ///     Which other prototypes (buttons) this one is nested inside of.

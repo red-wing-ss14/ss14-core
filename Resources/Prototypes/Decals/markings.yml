@@ -8,6 +8,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+# RW START - mapping editor decal hierarchy parents
+
 - type: decal
   id: Markings
   abstract: true
@@ -600,3 +602,4 @@
   sprite:
     sprite: Decals/markings.rsi
     state: vent_small
+# RW END

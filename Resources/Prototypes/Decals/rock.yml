@@ -4,6 +4,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+# RW START - mapping editor decal hierarchy parents
+
 - type: decal
   id: Basalt1
   parent: Rock
@@ -93,3 +95,4 @@
   sprite:
     sprite: Decals/basalt.rsi
     state: basalt9
+# RW END

@@ -280,7 +280,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction MappingUnselect = "MappingUnselect";
         public static readonly BoundKeyFunction SaveMap = "SaveMap";
         public static readonly BoundKeyFunction MappingEnablePick = "MappingEnablePick";
-        public static readonly BoundKeyFunction MappingEnableDecalPick = "MappingEnableDecalPick"; //Reserve - Wizden mapping editor
+        public static readonly BoundKeyFunction MappingEnableDecalPick = "MappingEnableDecalPick"; // RW edit: added decal pick keybind for mapping editor
         public static readonly BoundKeyFunction MappingEnableDelete = "MappingEnableDelete";
         public static readonly BoundKeyFunction MappingPick = "MappingPick";
         public static readonly BoundKeyFunction MappingRemoveDecal = "MappingRemoveDecal";

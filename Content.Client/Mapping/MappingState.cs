@@ -80,10 +80,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-/// Reserve - File heavily edited by PR: Mapping editor.
-/// See https://github.com/space-wizards/space-station-14/pull/34302
-/// and https://github.com/Reserve-Station/Reserve-Station/pull/82 for more details.
-
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Managers;
@@ -99,6 +95,7 @@ using Content.Shared.Administration;
 using Content.Shared.Decals;
 using Content.Shared.Input;
 using Content.Shared.Mapping;
+using Content.Shared._RW.Mapping;
 using Content.Shared.Maps;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
@@ -128,6 +125,7 @@ namespace Content.Client.Mapping;
 
 public sealed class MappingState : GameplayStateBase
 {
+    // RW START - mapping editor state overhaul for templates, favorites, decals, grids, and panels
     [Dependency] private readonly IClientAdminManager _admin = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
@@ -1507,4 +1505,5 @@ public sealed class MappingState : GameplayStateBase
 
         public Color? SecondColor;
     }
+    // RW END
 }

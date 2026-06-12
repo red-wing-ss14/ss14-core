@@ -86,6 +86,7 @@ using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.Mapping;
+using Content.Shared._RW.Mapping;
 using Robust.Server.Player;
 using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization;
@@ -109,24 +110,24 @@ public sealed class MappingManager : IPostInjectInit
     [Dependency] private readonly IServerNetManager _net = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IEntitySystemManager _systems = default!;
-    [Dependency] private readonly ISerializationManager _serialization = default!; //Reserve - Wizden mapping editor
-    [Dependency] private readonly IResourceManager _resourceMan = default!; //Reserve - Wizden mapping editor
+    [Dependency] private readonly ISerializationManager _serialization = default!; // RW edit: added favorite prototype persistence serialization
+    [Dependency] private readonly IResourceManager _resourceMan = default!; // RW edit: added favorite prototype persistence storage
     [Dependency] private readonly IEntityManager _ent = default!;
 
     private ISawmill _sawmill = default!;
     private ZStdCompressionContext _zstd = default!;
 
-    private const string FavoritesPath = "/mapping_editor_favorites.yml"; //Reserve - Wizden mapping editor
+    private const string FavoritesPath = "/mapping_editor_favorites.yml"; // RW edit: added mapping editor favorites path
 
-    //Reserve - Wizden mapping editor begin
     public void PostInject()
     {
+        // RW START - mapping editor favorite network messages
         _net.RegisterNetMessage<MappingFavoritesSaveMessage>(OnMappingFavoritesSave);
         _net.RegisterNetMessage<MappingFavoritesLoadMessage>(OnMappingFavoritesLoad);
         _net.RegisterNetMessage<MappingFavoritesDataMessage>();
 
         _sawmill = _log.GetSawmill("mapping");
-        //Reserve - Wizden mapping editor end
+        // RW END
 
 #if !FULL_RELEASE
         _net.RegisterNetMessage<MappingSaveMapMessage>(OnMappingSaveMap);
@@ -174,7 +175,7 @@ public sealed class MappingManager : IPostInjectInit
 #endif
     }
 
-    //Reserve - Wizden mapping editor begin
+    // RW START - mapping editor favorite persistence handlers
     private void OnMappingFavoritesSave(MappingFavoritesSaveMessage message)
     {
         var mapping = new MappingDataNode();
@@ -215,5 +216,5 @@ public sealed class MappingManager : IPostInjectInit
             _sawmill.Error("Failed to load user favorite objects: " + e);
         }
     }
-    //Reserve - Wizden mapping editor end
+    // RW END
 }

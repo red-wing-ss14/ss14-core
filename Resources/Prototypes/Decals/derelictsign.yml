@@ -7,6 +7,8 @@
 # SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
 #
 # SPDX-License-Identifier: MIT
+
+# RW START - mapping editor decal hierarchy parents
 #This has to be split up like this because tiles remove the decal under them, and the derelict sign is bigger then 32x32 when combined.
 
 - type: decal
@@ -142,3 +144,4 @@
   sprite:
     sprite: Decals/derelictsign.rsi
     state: derelict16
+# RW END

@@ -9,7 +9,7 @@
 
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Mapping;
+namespace Content.Shared._RW.Mapping;
 
 /// <summary>
 /// This is a prototype for predefining the start content of the “templates” section in the map editor.

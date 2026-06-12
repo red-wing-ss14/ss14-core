@@ -14,7 +14,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Mapping;
+namespace Content.Shared._RW.Mapping;
 
 public sealed class MappingFavoritesSaveMessage : NetMessage
 {

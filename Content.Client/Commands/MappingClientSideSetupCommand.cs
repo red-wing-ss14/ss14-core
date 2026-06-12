@@ -109,7 +109,9 @@ internal sealed class MappingClientSideSetupCommand : LocalizedEntityCommands
         _lightManager.Enabled = false;
         _subfloorSystem.ShowAll = true;
         _actionSystem.LoadActionAssignments("/mapping_actions.yml", false);
+        // RW START - mapping editor startup camera and screen setup
         shell.ExecuteCommand("zoom 1,5");
         shell.ExecuteCommand("scene MappingState");
+        // RW END
     }
 }
