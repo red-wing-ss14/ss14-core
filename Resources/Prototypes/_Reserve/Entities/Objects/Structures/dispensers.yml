@@ -11,6 +11,14 @@
   components:
   - type: Sprite
     state: sauce
+  - type: Storage
+    openOnActivate: false
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+    whitelist:
+      tags:
+      - DrinkBottle
   - type: Machine
     board: SauceDispenserMachineCircuitboard
   - type: GuideHelp
