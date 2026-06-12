@@ -152,7 +152,7 @@
     - !type:GroupSelector
       children:
       - id: RevolverCapGun
-      - id: DoubleToySword
+      - id: ToySword
       - id: FoamWonderprod
       - id: FoamCutlass
     - !type:GroupSelector

@@ -96,10 +96,3 @@
 
 - type: Tag
   id: PokerChip
-# RW START - mapping editor cable and disposal tags
-- type: Tag
-  id: Cable
-
-- type: Tag
-  id: Disposal
-# RW END

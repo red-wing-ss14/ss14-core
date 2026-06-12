@@ -8,8 +8,6 @@
     children:
     - id: PlantBGoneSpray
       weight: 1.2
-    - id: PlantAnalyzer
-      weight: 1.2
     - id: PlantBag
       weight: 1.2
     - id: PlantBagOfHolding
@@ -188,7 +186,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: _Reserve/Objects/Specific/Hydroponics/plant_analyzer.rsi
+      - sprite: Objects/Tools/Hydroponics/spade.rsi
         state: icon
   - type: EntityTableSpawner
     table: !type:NestedSelector
