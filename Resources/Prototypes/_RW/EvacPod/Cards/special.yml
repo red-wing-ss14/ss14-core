@@ -9,8 +9,12 @@
     sprite: _RW/Objects/Misc/cards.rsi
     layers:
     - state: EvacPod_special_box
+      map: [ "closeLayer" ]
     - state: EvacPod_special_box_open
       map: [ "openLayer" ]
+      visible: false
+    - state: EvacPod_special_box
+      map: [ "fullLayer" ]
       visible: false
   - type: OpenTriggeredStorageFill
     contents:

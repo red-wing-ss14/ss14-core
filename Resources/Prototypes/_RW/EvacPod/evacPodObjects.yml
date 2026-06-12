@@ -66,6 +66,7 @@
     sprite: _RW/Objects/Fun/Tabletop/EvacPod/playsetBox.rsi
     layers:
     - state: playset_box
+      map: [ "closeLayer" ]
     - state: playset_box_open
       map: [ "openLayer" ]
       visible: false
