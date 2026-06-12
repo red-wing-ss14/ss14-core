@@ -1217,6 +1217,9 @@ DVSmartFridgeMedical: SmartFridgeMedical
 # 2026-01-10 Goobstation Change Mapped Chem to Energy Chem by default
 ChemDispenser: EnergyChemDispenser
 
+# 2026-06-11 Orion
+VendingMachineKink: null
+
 # 2026-10-11 Reserve Station edit: Orchid's Barmania - Vendichaos
 VendingMachineCoffee: RandomVendingDrinks
 VendingMachineCola: RandomVendingDrinks
