@@ -317,6 +317,8 @@ qodana.yaml
 /DiscordBot/
 
 # Local AI assistant configuration
+AGENTS.md
+CLAUDE.md
 /.agents/
 /.claude/
 /.codex/
