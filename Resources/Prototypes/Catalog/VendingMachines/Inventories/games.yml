@@ -33,6 +33,7 @@
     CardBoxBlack: 3 # GoobStation
     PokerChipsBox: 1 # Orion
 #    PokerChips100: 6 # GoobStation | Orion-Edit: Duplicate
+    BoxPlaysetEvacPod: 1 # RW edit
   contrabandInventory:
     Basketball: 1
     FoodSnackBoritos: 3
