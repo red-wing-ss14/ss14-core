@@ -514,8 +514,8 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         // RW add - Requires an active station AI player when the experiment completes.
         if (!HasActiveStationAiPlayer(ent.Comp))
         {
-            var message = Loc.GetString("experimental-law-provider-no-active-ai");
-            _radio.SendRadioMessage(ent, message, AnnouncementChannel, ent, escapeMarkup: false);
+            var noActiveAiMessage = Loc.GetString("experimental-law-provider-no-active-ai");
+            _radio.SendRadioMessage(ent, noActiveAiMessage, AnnouncementChannel, ent, escapeMarkup: false);
             return;
         }
 
