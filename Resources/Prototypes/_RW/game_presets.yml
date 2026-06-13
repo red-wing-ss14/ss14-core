@@ -1,0 +1,11 @@
+- type: gamePreset
+  id: SecretClassic
+  alias:
+    - secretclassic
+    - secret-classic
+    - classicsecret
+  name: secret-classic-title
+  showInVote: true
+  description: secret-classic-description
+  rules:
+    - SecretClassic

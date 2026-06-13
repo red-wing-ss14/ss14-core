@@ -53,4 +53,33 @@ public sealed class SecretStartsTest
 
         await pair.CleanReturnAsync();
     }
+
+    /// <summary>
+    ///     Tests that the custom Secret Classic weighted table starts one of its selected game preset rules.
+    /// </summary>
+    [Test]
+    public async Task TestSecretClassicStarts()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Dirty = true });
+
+        var server = pair.Server;
+        await server.WaitIdleAsync();
+        var gameTicker = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<GameTicker>();
+
+        await server.WaitAssertion(() =>
+        {
+            gameTicker.AddGameRule("SecretClassic");
+            gameTicker.StartGamePresetRules();
+        });
+
+        await server.WaitRunTicks(3);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(gameTicker.GetAddedGameRules().Count(), Is.GreaterThan(1), "No additional rules started by Secret Classic rule.");
+            gameTicker.ClearGameRules();
+        });
+
+        await pair.CleanReturnAsync();
+    }
 }
