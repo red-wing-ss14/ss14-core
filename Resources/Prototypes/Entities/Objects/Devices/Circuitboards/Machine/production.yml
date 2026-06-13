@@ -1621,3 +1621,15 @@
       partRequirements: # Orion
         Servo: 4
 # Shitmed Change End
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: WashingMachineCircuitboard
+  name: washing machine board
+  components:
+  - type: MachineBoard
+    prototype: WashingMachine
+    stackRequirements:
+      Steel: 1
+      Manipulator: 1
+      Cable: 1

@@ -191,6 +191,19 @@
     damageCoefficient: 0.7
   - type: StaticPrice # Orion
     price: 0
+  # Reserve start - clothing stains
+  - type: Tag
+    tags:
+      - WhitelistChameleon
+  - type: Stainable # Reserve
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Gabystation/Effects/blood.rsi
+        state: armorblood
+    iconVisuals:
+    - sprite: _Gabystation/Effects/blood.rsi
+      state: armorbloodicon
+  # Reserve end - clothing stains
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity
