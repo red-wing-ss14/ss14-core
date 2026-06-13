@@ -195,3 +195,6 @@ language-NewKinPidgin-description = A debased dialect cobbled together by lower-
     While a primitive and clumsy attempt resulting in a dull, simplified mockery of their true language,
     higher-caste Vox can still discern meaning within the crude approximations.
     It sounds like chaotic shrieking to everyone else.
+
+language-Zombie-name = Zombie
+language-Zombie-description = Guttural groans and hunger-driven moans that only the infected can understand.

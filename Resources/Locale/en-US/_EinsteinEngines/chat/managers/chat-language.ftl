@@ -58,3 +58,5 @@ chat-language-Pig-name = Pig
 chat-language-Sheep-name = Sheep
 chat-language-Xeno-name = Xeno
 chat-language-DroneTalk-name = Drone
+
+chat-language-Zombie-name = Zombie

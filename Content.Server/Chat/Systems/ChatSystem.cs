@@ -148,6 +148,7 @@ using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Station.Components;
 using Content.Shared.Whitelist;
+using Content.Shared.Zombies;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -407,6 +408,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             message = message[1..];
         }
 
+        // RW start
+        var originalMessageForZombieSpeechLimit = message;
+        // RW end
+
         var language = languageOverride ?? _language.GetLanguage(source); // Einstein Engines - Language
 
         bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
@@ -492,6 +497,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             desiredType = InGameICChatType.Whisper;
         // Orion-End
 
+        // RW start
+        if (desiredType == InGameICChatType.Speak)
+            ApplyZombieSpeechLimit(source, originalMessageForZombieSpeechLimit, ref message);
+        // RW end
+
         // Otherwise, send whatever type.
         switch (desiredType)
         {
@@ -523,6 +533,85 @@ public sealed partial class ChatSystem : SharedChatSystem
                message.StartsWith(RadioChannelPrefix) ||
                message.StartsWith(RadioChannelAltPrefix);
     }
+
+    // RW start
+    private void ApplyZombieSpeechLimit(EntityUid source, string originalMessage, ref string message)
+    {
+        if (!TryComp<ZombieComponent>(source, out var zombie)
+            || zombie.MaxSpeakCharacters < 0)
+            return;
+
+        var curTime = _gameTiming.CurTime;
+        if (CountZombieSpeakCharacters(originalMessage, zombie.SpeakLimitIgnoredWords) <= zombie.MaxSpeakCharacters
+            && zombie.NextMeaningfulSpeakTime <= curTime)
+        {
+            zombie.NextMeaningfulSpeakTime = curTime + zombie.MeaningfulSpeakCooldown;
+            return;
+        }
+
+        ReplaceZombieSpeechWithMumbling(zombie, ref message);
+    }
+
+    private void ReplaceZombieSpeechWithMumbling(ZombieComponent zombie, ref string message)
+    {
+        if (zombie.SpeakLimitReplacementMessages.Count == 0)
+            return;
+
+        message = Loc.GetString(_random.Pick(zombie.SpeakLimitReplacementMessages));
+    }
+
+    private static int CountZombieSpeakCharacters(string message, IReadOnlyList<string> ignoredWords)
+    {
+        var count = 0;
+
+        for (var i = 0; i < message.Length;)
+        {
+            if (char.IsWhiteSpace(message[i]))
+            {
+                i++;
+                continue;
+            }
+
+            if (TryReadIgnoredZombieWord(message, i, ignoredWords, out var wordLength))
+            {
+                i += wordLength;
+                continue;
+            }
+
+            count++;
+            i++;
+        }
+
+        return count;
+    }
+
+    private static bool TryReadIgnoredZombieWord(
+        string message,
+        int index,
+        IReadOnlyList<string> ignoredWords,
+        out int wordLength)
+    {
+        wordLength = 0;
+
+        foreach (var word in ignoredWords)
+        {
+            if (string.IsNullOrWhiteSpace(word)
+                || index + word.Length > message.Length
+                || !message.AsSpan(index, word.Length).Equals(word, StringComparison.OrdinalIgnoreCase)
+                || index > 0 && char.IsLetterOrDigit(message[index - 1]))
+                continue;
+
+            var end = index + word.Length;
+            if (end < message.Length && char.IsLetterOrDigit(message[end]))
+                continue;
+
+            wordLength = word.Length;
+            return true;
+        }
+
+        return false;
+    }
+    // RW end
 
     private bool CanUseRadio(EntityUid source)
     {

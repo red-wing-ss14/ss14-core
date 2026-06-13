@@ -319,6 +319,7 @@ qodana.yaml
 # Local AI assistant configuration
 AGENTS.md
 CLAUDE.md
+GEMINI.md
 /.agents/
 /.claude/
 /.codex/
