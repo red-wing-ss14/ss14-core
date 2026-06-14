@@ -36,5 +36,5 @@ zombie-role-menu-communication-1 = Speak in short, simple phrases, like "brains 
 zombie-role-menu-communication-2 = Do not use normal speech for detailed plans, negotiations, or regular conversation. Spelling mistakes are allowed.
 zombie-role-menu-conditions-title = Conditions
 zombie-role-menu-conditions-1 = In normal speech, messages longer than 14 characters turn into mumbling. Exceptions: the word "brains" and spaces.
-zombie-role-menu-conditions-2 = You can only say something relatively smart with a 5-second cooldown.
+zombie-role-menu-conditions-2 = You can only say something relatively smart with a 10-second cooldown.
 zombie-role-menu-confirm = Got it

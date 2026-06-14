@@ -148,7 +148,7 @@ public sealed partial class ZombieComponent : Component
     ///     Cooldown between meaningful zombie speech attempts.
     /// </summary>
     [DataField]
-    public TimeSpan MeaningfulSpeakCooldown = TimeSpan.FromSeconds(5);
+    public TimeSpan MeaningfulSpeakCooldown = TimeSpan.FromSeconds(10);
 
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextMeaningfulSpeakTime = TimeSpan.Zero;
