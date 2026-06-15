@@ -122,6 +122,7 @@ public sealed partial class ChangelingSystem : SharedChangelingSystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly ActionContainerSystem _actionContainer = default!; // RW
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
