@@ -115,12 +115,14 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingIdentityComponent, ActionFleshmendEvent>(OnHealUltraSwag);
         SubscribeLocalEvent<ChangelingIdentityComponent, ActionLastResortEvent>(OnLastResort);
         SubscribeLocalEvent<ChangelingIdentityComponent, ActionLesserFormEvent>(OnLesserForm);
-        SubscribeLocalEvent<ChangelingIdentityComponent, ActionHivemindAccessEvent>(OnHivemindAccess);
+        // RW start
+        // Hivemind Access was turned into a base ability
+        // SubscribeLocalEvent<ChangelingIdentityComponent, ActionHivemindAccessEvent>(OnHivemindAccess);
+        // RW end
+
         SubscribeLocalEvent<ChangelingIdentityComponent, AbsorbBiomatterEvent>(OnAbsorbBiomatter);
         SubscribeLocalEvent<ChangelingIdentityComponent, AbsorbBiomatterDoAfterEvent>(OnAbsorbBiomatterDoAfter);
     }
-
-    #region Basic Abilities
 
     private void OnOpenEvolutionMenu(EntityUid uid, ChangelingIdentityComponent comp, ref OpenEvolutionMenuEvent args)
     {
@@ -888,6 +890,10 @@ public sealed partial class ChangelingSystem
         args.Handled = true;
     }
     public ProtoId<CollectiveMindPrototype> HivemindProto = "Lingmind";
+
+    // RW start
+    // Hivemind Access was turned into a base ability
+    /*
     public void OnHivemindAccess(EntityUid uid, ChangelingIdentityComponent comp, ref ActionHivemindAccessEvent args)
     {
         if (args.Handled)
@@ -908,6 +914,8 @@ public sealed partial class ChangelingSystem
 
         args.Handled = true;
     }
+    */
+    // RW end
 
     #endregion
 }

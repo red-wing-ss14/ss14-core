@@ -47,6 +47,7 @@ using Content.Goobstation.Shared.Changeling;
 using Content.Goobstation.Shared.Changeling.Actions;
 using Content.Goobstation.Shared.Changeling.Components;
 using Content.Goobstation.Shared.Changeling.Systems;
+using Content.Shared._Starlight.CollectiveMind;
 using Content.Goobstation.Shared.Flashbang;
 using Content.Goobstation.Shared.GrabIntent;
 using Content.Goobstation.Shared.InternalResources.Data;
@@ -757,6 +758,13 @@ public sealed partial class ChangelingSystem : SharedChangelingSystem
 
         // make their blood unreal
         _blood.ChangeBloodReagent(ent.Owner, "BloodChangeling");
+
+        // RW start
+        EnsureComp<HivemindComponent>(ent);
+        var mind = EnsureComp<CollectiveMindComponent>(ent);
+        mind.Channels.Add(HivemindProto);
+        mind.CanUseInCrit = true;
+        // RW end
     }
 
     // in the future ChangelingIdentity should have its own system and be ONLY used for holding stored DNA and handling transformations.
