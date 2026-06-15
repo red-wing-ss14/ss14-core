@@ -205,7 +205,15 @@ public sealed partial class ChangelingSystem : SharedChangelingSystem
     }
 
     private void OnPolymorphed(Entity<ChangelingIdentityComponent> ent, ref PolymorphedEvent args)
-        => _polymorph.CopyPolymorphComponent<ChangelingIdentityComponent>(ent, args.NewEntity);
+    {
+        _polymorph.CopyPolymorphComponent<ChangelingIdentityComponent>(ent, args.NewEntity);
+        // RW start
+        if (HasComp<HivemindComponent>(ent))
+            _polymorph.CopyPolymorphComponent<HivemindComponent>(ent, args.NewEntity);
+        if (HasComp<CollectiveMindComponent>(ent))
+            _polymorph.CopyPolymorphComponent<CollectiveMindComponent>(ent, args.NewEntity);
+        // RW end
+    }
 
     private void OnPolymorphedTakeTwo(Entity<ChangelingComponent> ent, ref PolymorphedEvent args)
         => _polymorph.CopyPolymorphComponent<ChangelingComponent>(ent, args.NewEntity);

@@ -822,22 +822,48 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var Number = $"{sourseCollectiveMindComp.Minds[collectiveMind.ID]}";
 
+        _playerManager.TryGetSessionByEntity(source, out var senderSession);
         var admins = _adminManager.ActiveAdmins
+            .Where(p => p != senderSession)
             .Select(p => p.Channel);
 
-        string messageWrap = Loc.GetString("collective-mind-chat-wrap-message",
-            ("message", message),
-            ("channel", collectiveMind.LocalizedName),
-            ("number", Number));
-        string namedMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-named",
-            ("source", source),
-            ("message", message),
-            ("channel", collectiveMind.LocalizedName));
-        string adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
-            ("source", source),
-            ("message", message),
-            ("channel", collectiveMind.LocalizedName),
-            ("number", Number));
+        string messageWrap;
+        string namedMessageWrap;
+        string adminMessageWrap;
+
+        // RW start
+        if (collectiveMind.ID == "Lingmind")
+        {
+            var lingNumber = GetLingGreekLetter(sourseCollectiveMindComp.Minds[collectiveMind.ID]);
+            messageWrap = Loc.GetString("collective-mind-chat-wrap-message-ling",
+                ("message", message),
+                ("number", lingNumber));
+            namedMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-named-ling",
+                ("source", source),
+                ("message", message),
+                ("number", lingNumber));
+            adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin-ling",
+                ("source", source),
+                ("message", message),
+                ("number", lingNumber));
+        }
+        else
+        {
+            messageWrap = Loc.GetString("collective-mind-chat-wrap-message",
+                ("message", message),
+                ("channel", collectiveMind.LocalizedName),
+                ("number", Number));
+            namedMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-named",
+                ("source", source),
+                ("message", message),
+                ("channel", collectiveMind.LocalizedName));
+            adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
+                ("source", source),
+                ("message", message),
+                ("channel", collectiveMind.LocalizedName),
+                ("number", Number));
+        }
+        // RW end
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {message}");
 
@@ -1197,6 +1223,44 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
     }
     // Orion-End
+
+    // RW start
+    private string GetLingGreekLetter(int number)
+    {
+        if (number <= 0)
+            return "unknown";
+
+        var index = (number - 1) % 23 + 1;
+        var division = (number - 1) / 23;
+
+        var locKey = $"collective-mind-lingmind-letter-{index}";
+        var letter = Loc.GetString(locKey);
+
+        if (division > 0)
+        {
+            letter += $" {GetRomanNumeral(division + 1)}";
+        }
+
+        return letter;
+    }
+
+    private string GetRomanNumeral(int number)
+    {
+        if (number <= 0) return string.Empty;
+        var roman = new System.Text.StringBuilder();
+        int[] values = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+        string[] symbols = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+        for (int i = 0; i < values.Length; i++)
+        {
+            while (number >= values[i])
+            {
+                number -= values[i];
+                roman.Append(symbols[i]);
+            }
+        }
+        return roman.ToString();
+    }
+    // RW end
 
     private void SendEntityEmote(
         EntityUid source,
