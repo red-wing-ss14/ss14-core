@@ -55,8 +55,7 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
     protected override void Added(EntityUid uid, SecretRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
         base.Added(uid, component, gameRule, args);
-        ProtoId<WeightedRandomPrototype> weights = component.WeightPrototype
-            ?? new ProtoId<WeightedRandomPrototype>(_configurationManager.GetCVar(CCVars.SecretWeightPrototype));
+        var weights = _configurationManager.GetCVar(CCVars.SecretWeightPrototype);
 
         if (!TryPickPreset(weights, out var preset))
         {

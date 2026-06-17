@@ -5,20 +5,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Shared.Random;
-using Robust.Shared.Prototypes;
-
 namespace Content.Server.GameTicking.Rules.Components;
 
 [RegisterComponent, Access(typeof(SecretRuleSystem))]
 public sealed partial class SecretRuleComponent : Component
 {
-    /// <summary>
-    /// The weighted preset table to use. Falls back to game.secret_weight_prototype when unset.
-    /// </summary>
-    [DataField]
-    public ProtoId<WeightedRandomPrototype>? WeightPrototype;
-
     /// <summary>
     /// The gamerules that get added by secret.
     /// </summary>
