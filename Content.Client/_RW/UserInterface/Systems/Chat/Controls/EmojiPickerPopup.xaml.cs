@@ -16,7 +16,7 @@ namespace Content.Client._RW.UserInterface.Systems.Chat.Controls;
 [GenerateTypedNameReferences]
 public sealed partial class EmojiPickerPopup : Popup
 {
-    public const float PopupWidth = 560f;
+    public const float PopupWidth = 580f;
     public const float PopupHeight = 440f;
 
     private const float EmojiButtonSize = 36f;
