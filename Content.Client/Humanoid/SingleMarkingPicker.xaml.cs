@@ -52,6 +52,9 @@ public sealed partial class SingleMarkingPicker : BoxContainer
     public Action<(int slot, Marking marking)>? OnColorChanged;
 
     // RW start
+    [Robust.Shared.ViewVariables.ViewVariables(Robust.Shared.ViewVariables.VVAccess.ReadWrite)]
+    public bool ShowGradient { get; set; } = true;
+
     private bool _currentUseGradient;
     private float _currentGradientPosition;
     private float _currentGradientBlur;
@@ -274,7 +277,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             marking = new Marking(marking.MarkingId, proto.Sprites.Count);
         }
 
-        var supportsGradient = MarkingSupportsGradient(proto);
+        var supportsGradient = ShowGradient && MarkingSupportsGradient(proto); // RW
         _currentUseGradient = supportsGradient && marking.UseGradient;
         _currentGradientPosition = Marking.ClampGradientPosition(marking.GradientPosition);
         _currentGradientBlur = Marking.ClampGradientBlur(marking.GradientBlur);

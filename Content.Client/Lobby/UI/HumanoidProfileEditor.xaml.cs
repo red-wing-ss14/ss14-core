@@ -549,7 +549,7 @@ namespace Content.Client.Lobby.UI
                     return;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithHairStyleName(newStyle.id));
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
             };
 
             HairStylePicker.OnColorChanged += newColor =>
@@ -559,7 +559,7 @@ namespace Content.Client.Lobby.UI
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0]));
                 UpdateCMarkingsHair();
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
             };
 
             FacialHairPicker.OnMarkingSelect += newStyle =>
@@ -568,7 +568,7 @@ namespace Content.Client.Lobby.UI
                     return;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithFacialHairStyleName(newStyle.id));
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
             };
 
             FacialHairPicker.OnColorChanged += newColor =>
@@ -578,7 +578,7 @@ namespace Content.Client.Lobby.UI
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0]));
                 UpdateCMarkingsFacialHair();
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
             };
 
             HairStylePicker.OnSlotRemove += _ =>
@@ -590,7 +590,7 @@ namespace Content.Client.Lobby.UI
                 );
                 UpdateHairPickers();
                 UpdateCMarkingsHair();
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
             };
 
             FacialHairPicker.OnSlotRemove += _ =>
@@ -602,7 +602,7 @@ namespace Content.Client.Lobby.UI
                 );
                 UpdateHairPickers();
                 UpdateCMarkingsFacialHair();
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
             };
 
             HairStylePicker.OnSlotAdd += delegate ()
@@ -622,7 +622,7 @@ namespace Content.Client.Lobby.UI
 
                 UpdateHairPickers();
                 UpdateCMarkingsHair();
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
             };
 
             FacialHairPicker.OnSlotAdd += delegate ()
@@ -642,7 +642,7 @@ namespace Content.Client.Lobby.UI
 
                 UpdateHairPickers();
                 UpdateCMarkingsFacialHair();
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
             };
 
             // Amour edit start: hair gradient setup.
@@ -657,7 +657,7 @@ namespace Content.Client.Lobby.UI
                     return;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithHairColor2(newColor));
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
                 SetDirty();
             };
             _amourHairGradientPositionSlider = AddGradientSlider(
@@ -670,7 +670,7 @@ namespace Content.Client.Lobby.UI
                         return;
                     Profile = Profile.WithCharacterAppearance(
                         Profile.Appearance.WithHairGradientPosition(value / 100f));
-                    ReloadPreview();
+                    ReloadProfilePreview(); // RW
                     SetDirty();
                 });
             _amourHairGradientBlurSlider = AddGradientSlider(
@@ -684,7 +684,7 @@ namespace Content.Client.Lobby.UI
                     var blur = Math.Max(value / 100f, HumanoidCharacterAppearance.MinHairGradientBlur);
                     Profile = Profile.WithCharacterAppearance(
                         Profile.Appearance.WithHairGradientBlur(blur));
-                    ReloadPreview();
+                    ReloadProfilePreview(); // RW
                     SetDirty();
                 });
 
@@ -695,7 +695,7 @@ namespace Content.Client.Lobby.UI
                 HairGradientColorContainer.Visible = args.Pressed;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithHairUseGradient(args.Pressed));
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
                 SetDirty();
             };
 
@@ -710,7 +710,7 @@ namespace Content.Client.Lobby.UI
                     return;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithFacialHairColor2(newColor));
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
                 SetDirty();
             };
             _amourFacialHairGradientPositionSlider = AddGradientSlider(
@@ -723,7 +723,7 @@ namespace Content.Client.Lobby.UI
                         return;
                     Profile = Profile.WithCharacterAppearance(
                         Profile.Appearance.WithFacialHairGradientPosition(value / 100f));
-                    ReloadPreview();
+                    ReloadProfilePreview(); // RW
                     SetDirty();
                 });
             _amourFacialHairGradientBlurSlider = AddGradientSlider(
@@ -736,7 +736,7 @@ namespace Content.Client.Lobby.UI
                         return;
                     Profile = Profile.WithCharacterAppearance(
                         Profile.Appearance.WithFacialHairGradientBlur(value / 100f));
-                    ReloadPreview();
+                    ReloadProfilePreview(); // RW
                     SetDirty();
                 });
 
@@ -747,7 +747,7 @@ namespace Content.Client.Lobby.UI
                 FacialHairGradientColorContainer.Visible = args.Pressed;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithFacialHairUseGradient(args.Pressed));
-                ReloadPreview();
+                ReloadProfilePreview(); // RW
                 SetDirty();
             };
 
