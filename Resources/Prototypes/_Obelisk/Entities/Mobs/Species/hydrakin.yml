@@ -9,6 +9,14 @@
   id: BaseMobHydrakin
   abstract: true
   components:
+  - type: UserInterface # Mono
+    interfaces:
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key: # Shitmed
+        type: SurgeryBui
   - type: Icon
     sprite: _Obelisk/Mobs/Species/Hydrakin/parts.rsi
     state: full
@@ -128,8 +136,7 @@
   - type: HumanoidAppearance
     species: Hydrakin
   - type: Inventory
-    speciesId: hydrakin 
-    templateId: hydrakin
+    speciesId: hydrakin
     displacements:
       jumpsuit:
         sizeMaps:

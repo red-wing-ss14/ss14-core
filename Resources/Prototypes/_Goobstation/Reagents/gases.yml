@@ -153,17 +153,6 @@
           types:
             Asphyxiation: 10
             Poison: 2.5
-      - !type:HealthChange # Mono
-        conditions:
-        - !type:OrganType
-          type: Hydrakin
-        - !type:ReagentThreshold
-          reagent: BZ
-          min: 0.5
-        damage:
-          types:
-            Cellular: -0.5
-            Poison: -2.0
       - !type:GenericStatusEffect
         conditions:
         - !type:ReagentThreshold
@@ -460,9 +449,6 @@
         sprintSpeedModifier: 1.6
       - !type:AddReagentToBlood
         conditions:
-        - !type:OrganType
-          type: Hydrakin
-          shouldHave: false
         - !type:ReagentThreshold
           reagent: Nitrium
           min: 6
@@ -478,9 +464,6 @@
         time: 8
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Hydrakin
-          shouldHave: false
         - !type:ReagentThreshold
           reagent: Nitrium
           min: 10

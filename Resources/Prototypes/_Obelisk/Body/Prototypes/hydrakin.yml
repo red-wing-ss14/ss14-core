@@ -34,8 +34,8 @@
       - right leg
       - left leg
       organs:
-        stomach: OrganHydrakinStomach
-        liver: OrganHydrakinLiver
+        stomach: OrganHumanStomach
+        liver: OrganHumanLiver
         kidneys: OrganHumanKidneys
     right arm:
       part: RightArmHydrakin

@@ -26,7 +26,7 @@
 
 - type: entity
   id: OrganHydrakinStomach
-  parent: [ BaseHydrakinOrgan, OrganHumanStomach ]
+  parent: BaseHydrakinOrgan
   name: hydrakin stomach
   components:
   - type: Sprite
@@ -35,7 +35,10 @@
   - type: Organ
     slotId: stomach
   - type: Metabolizer
-    metabolizerTypes: [ Hydrakin, Animal ]
+    metabolizerTypes: [ Animal, Hydrakin ]
+    groups:
+    - id: Food
+    - id: Drink
   - type: SolutionContainerManager
     solutions:
       stomach:

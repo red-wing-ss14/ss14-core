@@ -37,11 +37,7 @@ public sealed class HydrakinSystem : EntitySystem
 
     private void OnCoolOff(EntityUid uid, HydrakinComponent component, HydrakinCoolOffActionEvent args)
     {
-        var doafter = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(3), new CoolOffDoAfterEvent(), uid){
-            NeedHand = false,
-            RequireCanInteract = false,
-            BreakOnHandChange = false
-        };
+        var doafter = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(3), new CoolOffDoAfterEvent(), uid);
 
         if (!_doAfter.TryStartDoAfter(doafter))
             return;
