@@ -824,7 +824,7 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(TextureRect.StylePropertyTexture, switchButtonThumbFill),
                         new StyleProperty(Control.StylePropertyModulateSelf, ButtonColorDefault),
-                        new StyleProperty(Control.StylePropertyHorizontalAlignment, Control.HAlignment.Left),
+                        new StyleProperty(nameof(Control.HorizontalAlignment), Control.HAlignment.Left),
                     }),
 
                 new StyleRule(
@@ -835,7 +835,7 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(TextureRect.StylePropertyTexture, switchButtonThumbOutline),
                         new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#7A7F9D")),
-                        new StyleProperty(Control.StylePropertyHorizontalAlignment, Control.HAlignment.Left),
+                        new StyleProperty(nameof(Control.HorizontalAlignment), Control.HAlignment.Left),
                     }),
 
                 new StyleRule(
@@ -874,7 +874,7 @@ namespace Content.Client.Stylesheets
                         new SelectorElement(typeof(TextureRect), new[] { SwitchButton.StyleClassThumbFill }, null, null)),
                     new[]
                     {
-                        new StyleProperty(Control.StylePropertyHorizontalAlignment, Control.HAlignment.Right),
+                        new StyleProperty(nameof(Control.HorizontalAlignment), Control.HAlignment.Right),
                     }),
 
                 new StyleRule(
@@ -883,7 +883,7 @@ namespace Content.Client.Stylesheets
                         new SelectorElement(typeof(TextureRect), new[] { SwitchButton.StyleClassThumbOutline }, null, null)),
                     new[]
                     {
-                        new StyleProperty(Control.StylePropertyHorizontalAlignment, Control.HAlignment.Right),
+                        new StyleProperty(nameof(Control.HorizontalAlignment), Control.HAlignment.Right),
                     }),
 
                 // Disabled styles
