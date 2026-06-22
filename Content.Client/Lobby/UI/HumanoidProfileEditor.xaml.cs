@@ -327,6 +327,7 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
+            _parsingMan = IoCManager.Resolve<DocumentParsingManager>();
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -464,24 +465,21 @@ namespace Content.Client.Lobby.UI
                     return;
 
                 _speciesWindow?.Dispose();
+                _speciesWindow = null;
 
                 if (!args.Pressed)
-                {
-                    _speciesWindow = null;
-                }
-                else
-                {
-                    _speciesWindow = new(
-                        Profile,
-                        prototypeManager,
-                        _controller,
-                        _resManager);
+                    return;
 
-                    _speciesWindow.OpenCenteredLeft();
-                    var oldProfile = Profile.Clone();
-                    _speciesWindow.ChooseAction += args =>
+                _speciesWindow = new SpeciesWindow(new SpeciesWindowContext(
+                    Profile,
+                    _prototypeManager,
+                    _resManager,
+                    _parsingMan,
+                    _controller,
+                    species =>
                     {
-                        SetSpecies(args);
+                        var oldProfile = Profile.Clone();
+                        SetSpecies(species);
                         OnSkinColorOnValueChangedKeepColor(oldProfile);
                         UpdateHairPickers();
                         _speciesWindow?.Dispose();
@@ -489,13 +487,13 @@ namespace Content.Client.Lobby.UI
                         var name1 = _prototypeManager.Index(Profile?.Species ?? "Human").Name;
                         NewSpeciesButton.Text = Loc.GetString(name1);
                         NewSpeciesButton.Pressed = false;
-                    };
-                    _speciesWindow.OnClose += () =>
+                    },
+                    () =>
                     {
                         NewSpeciesButton.Pressed = false;
                         _speciesWindow = null;
-                    };
-                }
+                    }));
+                _speciesWindow.OpenCenteredLeft();
             };
             // Orion-End
 
