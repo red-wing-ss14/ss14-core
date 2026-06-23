@@ -419,10 +419,15 @@
 
 - type: brainrotBotTrigger
   id: Brainrot84
-  trigger: "[полиция; полицейский; полицейской; полицейские; копы; коп; полицейского; полиции; полицейскими]"
-  description: brainrot-trigger-desc-generic
+  trigger: "[полиция; полицейский; полицейской; полицейские; полицейского; полиции; полицейскими]"
+  description: Ты кажется перепутал эпоху постсовка и далекое будущее всего человечества.
 
 - type: brainrotBotTrigger
   id: Brainrot85
   trigger: "[милиция; милиции; милиционер; милиционеры; милиционера; милиционером]"
+  description: Ты кажется перепутал эпоху постсовка и далекое будущее всего человечества.
+
+- type: brainrotBotTrigger
+  id: Brainrot86
+  trigger: "[нормалда; нормалды; бурмалда; бурмалды]"
   description: brainrot-trigger-desc-generic
