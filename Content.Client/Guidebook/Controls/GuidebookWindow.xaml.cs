@@ -96,6 +96,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using System.Numerics; // Reserve edit: guide-book #323
 // Reserve edit: guide-book #320
 using Content.Client.Guidebook;
 using Content.Client.Guidebook.RichText;
@@ -124,6 +125,9 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IG
     private Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry> _entries = new();
     private readonly GuidebookCrossReferenceIndex _crossReferences = new();
     private GuideEntry? _currentGuideEntry;
+    private List<ProtoId<GuideEntryPrototype>>? _treeRootEntries;
+    private ProtoId<GuideEntryPrototype>? _treeForceRoot;
+    private bool _suppressSelectionReload;
 // Reserve edit end: guide-book #320
 
     private readonly ISawmill _sawmill;
@@ -147,7 +151,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IG
         HomeButton.OnPressed += _ =>
         {
             if (_currentGuideEntry != null)
-                ShowGuide(_currentGuideEntry);
+                ShowGuide(_currentGuideEntry, resetState: true); // Reserve edit: guide-book #323
         };
         // Reserve edit end: guide-book #320
     }
@@ -180,13 +184,20 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IG
     {
         if (item != null && item.Metadata is GuideEntry entry)
         {
-            // Reserve edit start: guide-book #320
+            // Reserve edit start: guide-book #320, #323
+            if (_suppressSelectionReload
+                || (_currentGuideEntry?.Id == entry.Id && EntryContainer.ChildCount > 0))
+            {
+                ReturnContainer.Visible = entry.RuleEntry;
+                return;
+            }
+
+            SaveCurrentPageState();
             _currentGuideEntry = entry;
             ShowGuide(entry);
-            // Reserve edit end: guide-book #320
+            // Reserve edit end: guide-book #320, #323
 
-            var isRulesEntry = entry.RuleEntry;
-            ReturnContainer.Visible = isRulesEntry;
+            ReturnContainer.Visible = entry.RuleEntry; // Reserve edit: guide-book #323
         }
         else
             ClearSelectedGuide();
@@ -204,12 +215,26 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IG
         // Reserve edit end: guide-book #320
     }
 
-    private void ShowGuide(GuideEntry entry)
+    // Reserve edit start: guide-book #320, #323
+    public void SaveCurrentPageState()
     {
-        Scroll.SetScrollValue(default);
+        if (_currentGuideEntry == null)
+            return;
+
+        GuidebookPageStateStorage.States[_currentGuideEntry.Id] = new GuidebookPageState(
+            Scroll.GetScrollValue(),
+            SearchBar.Text ?? string.Empty,
+            CollectExpandedCollapsibles(EntryContainer),
+            CollectRevealedEntryAnchors(EntryContainer, SearchBar.Text ?? string.Empty)); // Reserve edit: guide-book #323
+    }
+
+    private void ShowGuide(GuideEntry entry, bool resetState = false)
+    {
+        var pageState = resetState
+            ? GuidebookPageStateStorage.Empty
+            : GuidebookPageStateStorage.States.GetValueOrDefault(entry.Id, GuidebookPageStateStorage.Empty);
         Placeholder.Visible = false;
         EntryContainer.Visible = true;
-        SearchBar.Text = "";
         EntryContainer.RemoveAllChildren();
         using var file = _resourceManager.ContentFileReadText(entry.Text);
 
@@ -224,9 +249,172 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IG
 
         LastEntry = entry.Id;
 
-        // Reserve edit: guide-book #320
+        // Reserve edit: guide-book #320, #323
         _crossReferences.BuildFromPage(EntryContainer);
+        ApplyPageState(pageState);
     }
+
+    // Reserve edit: guide-book #323
+    private void ApplyPageState(GuidebookPageState state)
+    {
+        SearchBar.SetText(state.Search, invokeEvent: false);
+
+        if (!string.IsNullOrEmpty(state.Search))
+            HandleFilter();
+
+        UserInterfaceManager.DeferAction(() =>
+        {
+            ApplyRevealedEntryAnchors(EntryContainer, state.RevealedEntryAnchors);
+            ApplyCollapsibleStates(EntryContainer, state.ExpandedCollapsibles);
+            Scroll.SetScrollValue(state.Scroll);
+        });
+    }
+
+    private static HashSet<string> CollectRevealedEntryAnchors(Control root, string search)
+    {
+        var revealed = new HashSet<string>();
+
+        if (string.IsNullOrWhiteSpace(search))
+            return revealed;
+
+        var query = search.Trim();
+        foreach (var anchor in EnumerateEntryAnchors(root))
+        {
+            if (anchor is not Control { Visible: true } control)
+                continue;
+
+            if (control is not ISearchableControl searchable)
+                continue;
+
+            if (searchable.CheckMatchesSearch(query))
+                continue;
+
+            if (anchor.AnchorPrototype is { } proto)
+                revealed.Add(proto.ID);
+        }
+
+        return revealed;
+    }
+
+    private static void ApplyRevealedEntryAnchors(Control root, HashSet<string> revealed)
+    {
+        if (revealed.Count == 0)
+            return;
+
+        foreach (var anchor in EnumerateEntryAnchors(root))
+        {
+            if (anchor.AnchorPrototype is not { } proto)
+                continue;
+
+            if (!revealed.Contains(proto.ID))
+                continue;
+
+            if (anchor is Control control)
+                control.Visible = true;
+        }
+    }
+
+    private static IEnumerable<IGuidebookEntryAnchor> EnumerateEntryAnchors(Control root)
+    {
+        foreach (var child in root.Children)
+        {
+            if (child is IGuidebookEntryAnchor anchor)
+                yield return anchor;
+
+            foreach (var nested in EnumerateEntryAnchors(child))
+                yield return nested;
+        }
+    }
+
+    private static HashSet<string> CollectExpandedCollapsibles(Control root)
+    {
+        var expanded = new HashSet<string>();
+
+        foreach (var collapsible in EnumerateCollapsibles(root))
+        {
+            if (!IsCollapsibleExpanded(collapsible))
+                continue;
+
+            if (GetCollapsibleKey(collapsible) is { } key)
+                expanded.Add(key);
+        }
+
+        return expanded;
+    }
+
+    private static void ApplyCollapsibleStates(Control root, HashSet<string> expanded)
+    {
+        foreach (var collapsible in EnumerateCollapsibles(root))
+        {
+            if (GetCollapsibleKey(collapsible) is not { } key)
+                continue;
+
+            collapsible.BodyVisible = expanded.Contains(key);
+        }
+    }
+
+    private static IEnumerable<Collapsible> EnumerateCollapsibles(Control root)
+    {
+        foreach (var child in root.Children)
+        {
+            if (child is Collapsible collapsible)
+                yield return collapsible;
+
+            foreach (var nested in EnumerateCollapsibles(child))
+                yield return nested;
+        }
+    }
+
+    private static bool IsCollapsibleExpanded(Collapsible collapsible)
+    {
+        if (collapsible.BodyVisible)
+            return true;
+
+        var heading = GetCollapsibleHeading(collapsible);
+        return heading is { Pressed: true };
+    }
+
+    private static CollapsibleHeading? GetCollapsibleHeading(Collapsible collapsible)
+    {
+        if (collapsible.Heading is CollapsibleHeading heading)
+            return heading;
+
+        foreach (var child in collapsible.Children)
+        {
+            if (child is CollapsibleHeading collapsibleHeading)
+                return collapsibleHeading;
+        }
+
+        return null;
+    }
+
+    private static string? GetCollapsibleKey(Collapsible collapsible)
+    {
+        var sectionId = GetCollapsibleSectionId(collapsible);
+        if (string.IsNullOrEmpty(sectionId))
+            return null;
+
+        if (collapsible.TryGetParentHandler<IGuidebookEntryAnchor>(out var anchor)
+            && anchor.AnchorPrototype is { } anchorPrototype)
+        {
+            return $"{anchorPrototype.ID}|{sectionId}";
+        }
+
+        return sectionId;
+    }
+
+    private static string? GetCollapsibleSectionId(Collapsible collapsible)
+    {
+        for (var control = collapsible.Parent; control is not null; control = control.Parent)
+        {
+            if (!string.IsNullOrEmpty(control.Name))
+                return control.Name;
+        }
+
+        var heading = GetCollapsibleHeading(collapsible);
+        return heading?.Title ?? heading?.Label.Text;
+    }
+    // Reserve edit end: guide-book #320
 
     public void UpdateGuides(
         Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry> entries,
@@ -234,9 +422,22 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IG
         ProtoId<GuideEntryPrototype>? forceRoot = null,
         ProtoId<GuideEntryPrototype>? selected = null)
     {
-        _entries = entries;
-        RepopulateTree(rootEntries, forceRoot);
-        ClearSelectedGuide();
+        // Reserve edit start: guide-book #323
+        var keepPage = CanKeepCurrentPage(entries, rootEntries, forceRoot, selected);
+
+        if (!keepPage)
+        {
+            _entries = entries;
+            RepopulateTree(rootEntries, forceRoot);
+            _treeRootEntries = rootEntries;
+            _treeForceRoot = forceRoot;
+            ClearSelectedGuide();
+        }
+        else
+        {
+            _entries = entries;
+        }
+        // Reserve edit end: guide-book #323
 
         Split.State = SplitContainer.SplitState.Auto;
         if (entries.Count == 1)
@@ -251,12 +452,88 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IG
             Split.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
         }
 
+        // Reserve edit start: guide-book #323
+        if (keepPage)
+        {
+            EnsurePageVisible();
+            SyncTreeSelection(selected);
+            return;
+        }
+        // Reserve edit end: guide-book #323
+
         if (selected != null)
         {
             var item = Tree.Items.FirstOrDefault(x => x.Metadata is GuideEntry entry && entry.Id == selected);
             Tree.SetSelectedIndex(item?.Index);
         }
     }
+
+    // Reserve edit start: guide-book #323
+    private bool CanKeepCurrentPage(
+        Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry> entries,
+        List<ProtoId<GuideEntryPrototype>>? rootEntries,
+        ProtoId<GuideEntryPrototype>? forceRoot,
+        ProtoId<GuideEntryPrototype>? selected)
+    {
+        if (selected == null || _currentGuideEntry?.Id != selected)
+            return false;
+
+        if (EntryContainer.ChildCount == 0)
+            return false;
+
+        if (_entries.Count != entries.Count)
+            return false;
+
+        foreach (var key in entries.Keys)
+        {
+            if (!_entries.ContainsKey(key))
+                return false;
+        }
+
+        if (_treeForceRoot != forceRoot)
+            return false;
+
+        return TreeRootsMatch(_treeRootEntries, rootEntries);
+    }
+
+    private static bool TreeRootsMatch(
+        List<ProtoId<GuideEntryPrototype>>? a,
+        List<ProtoId<GuideEntryPrototype>>? b)
+    {
+        if (a == null && b == null)
+            return true;
+
+        if (a == null || b == null)
+            return false;
+
+        return a.SequenceEqual(b);
+    }
+
+    private void EnsurePageVisible()
+    {
+        Placeholder.Visible = false;
+        EntryContainer.Visible = true;
+
+        if (_currentGuideEntry != null)
+            SearchContainer.Visible = _currentGuideEntry.FilterEnabled;
+    }
+
+    private void SyncTreeSelection(ProtoId<GuideEntryPrototype>? selected)
+    {
+        if (selected == null || _currentGuideEntry?.Id != selected)
+            return;
+
+        ReturnContainer.Visible = _currentGuideEntry.RuleEntry;
+
+        if (Tree.SelectedItem?.Metadata is GuideEntry entry && entry.Id == selected)
+            return;
+
+        var item = Tree.Items.FirstOrDefault(x => x.Metadata is GuideEntry e && e.Id == selected);
+        _suppressSelectionReload = true;
+        Tree.SetSelectedIndex(item?.Index);
+        _suppressSelectionReload = false;
+    }
+    // Reserve edit end: guide-book #323
 
     private IEnumerable<GuideEntry> GetSortedEntries(List<ProtoId<GuideEntryPrototype>>? rootEntries)
     {
@@ -341,11 +618,12 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IG
     {
         if (Tree.SelectedItem != null && Tree.SelectedItem.Metadata is GuideEntry entry && entry.FilterEnabled)
         {
+            var query = SearchBar.Text?.Trim() ?? string.Empty; // Reserve edit: guide-book #323
             var foundElements = EntryContainer.GetSearchableControls();
 
             foreach (var element in foundElements)
             {
-                element.SetHiddenState(true, SearchBar.Text.Trim());
+                element.SetHiddenState(true, query);
             }
         }
     }
