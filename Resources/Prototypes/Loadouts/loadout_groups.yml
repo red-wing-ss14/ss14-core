@@ -211,6 +211,40 @@
   - OffsetCaneMime
   - OffsetCaneNT
   - Cane
+  # Reserve edit start: Better trinket loadout
+  - PlushieMoth
+  - PlushieSlime
+  - PlushieDiona
+  - PlushieVox
+  - PlushieHuman
+  - PlushieSharkBlue
+  - PlushieSharkGrey
+  - PlushieSharkPink
+  - PlushieSharkRainbow
+  - VinylSleeve
+  - DiskCaseFilled
+  - DiskCaseGold
+  - MetalRing
+  - PlasticRing
+  - FakeDiamondRing
+  - FakeRubyRing
+  - PokerChips50
+  - AceOfSpades
+  - MysteryFigureBox
+  - TennisBall
+  - BalloonNT
+  - BalloonCorgi
+  - d6DiceGold
+  - d6DiceRainbow
+  - ReserveCan
+  - OrchitoCan
+  - ReserveRobustCan
+  - Skub
+  - MaterialCotton
+  - Vape
+  - SmokingPipe
+  - LighterGold
+  # Reserve edit end: Better trinket loadout
   # GoobStation Start
   - CardBoxBlack
   - CardBoxNanotrasen
@@ -263,6 +297,14 @@
   - Mouse
   - Mothroach
   - Goldfish
+  # Reserve edit start: Better trinket loadout
+  - Butterfly
+  - SnailMoth
+  - Bee
+  - Snail
+  - Hamster
+  - MousePink
+  # Reserve edit end: Better trinket loadout
 
 - type: loadoutGroup
   id: GroupTankHarness

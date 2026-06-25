@@ -19,6 +19,7 @@
 #    back:
 #    - SilverRing
 
+
 - type: loadout
   id: WhiteCane
   storage:
@@ -30,6 +31,7 @@
   storage:
     back:
     - TapeRecorderFilled
+  groupBy: "audio"  # Reserve edit: Better trinket loadout
 
 - type: loadout
   id: DrinkOniGourd
@@ -40,3 +42,4 @@
   storage:
     back:
     - DrinkOniGourd
+  groupBy: "species"  # Reserve edit: Better trinket loadout
