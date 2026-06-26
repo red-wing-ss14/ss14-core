@@ -8,6 +8,8 @@ using Content.Goobstation.Common.MisandryBox;
 using Content.Goobstation.Shared.MisandryBox.Smites;
 using Content.Server.Chat.Systems;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Damage.Systems;  // Reserve edit: Flip & spin antispam
+using Content.Shared.Damage.Components;  // Reserve edit: Flip & spin antispam
 using Content.Shared.Speech;
 using Robust.Shared.Random;
 
@@ -18,6 +20,7 @@ public sealed class CatEmoteSpamCountermeasureSystem : EntitySystem
 {
     [Dependency] private readonly ThunderstrikeSystem _thunderstrike = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;  // Reserve edit: Flip & spin antispam
 
     private const float ClearInterval = 20.0f;
     private const float PitchModulo = 0.08f;
@@ -126,7 +129,7 @@ public sealed class CatEmoteSpamCountermeasureSystem : EntitySystem
         // This is ground control to major tom
         var steps = count - soft;
         // By default, this is 8% per step over. 10 over soft threshold is 80%.
-        var chance = steps*_postSoftThresholdProbability;
+        var chance = steps * _postSoftThresholdProbability;
 
         if (_rand.Prob(chance))
             Smite(uid, false);
