@@ -37,9 +37,6 @@ public sealed class LifeTriggerSystem : EntitySystem
 
         SubscribeLocalEvent<HeartComponent, GetVerbsEvent<AlternativeVerb>>(OnHeartGetVerbs);
         SubscribeLocalEvent<HeartComponent, InteractUsingEvent>(OnHeartInteractUsing);
-
-        SubscribeLocalEvent<SurgeryStepAttachLifeTriggerComponent, SurgeryStepEvent>(OnAttachStep);
-        SubscribeLocalEvent<SurgeryStepAttachLifeTriggerComponent, SurgeryStepCompleteCheckEvent>(OnAttachCheck);
     }
 
     private void OnMobStateChanged(MobStateChangedEvent args)
@@ -132,61 +129,6 @@ public sealed class LifeTriggerSystem : EntitySystem
             _appearance.SetData(uid, CardiacLifeTriggerVisuals.HasTrigger, true);
             _popup.PopupEntity(Loc.GetString("life-trigger-attached"), uid, args.User);
             args.Handled = true;
-        }
-    }
-
-    private void OnAttachStep(Entity<SurgeryStepAttachLifeTriggerComponent> ent, ref SurgeryStepEvent args)
-    {
-        var organs = _body.GetPartOrgans(args.Part);
-
-        EntityUid? heartUid = null;
-        foreach (var organ in organs)
-        {
-            if (HasComp<HeartComponent>(organ.Id))
-            {
-                heartUid = organ.Id;
-                break;
-            }
-        }
-
-        if (heartUid == null)
-            return;
-
-        if (!TryComp<LifeTriggerComponent>(args.Tool, out _))
-            return;
-
-        var container = _container.EnsureContainer<ContainerSlot>(heartUid.Value, "life-trigger-slot");
-        if (container.ContainedEntity != null)
-            return;
-
-        if (_container.Insert(args.Tool, container))
-        {
-            _appearance.SetData(heartUid.Value, CardiacLifeTriggerVisuals.HasTrigger, true);
-            args.Complete = true;
-        }
-    }
-
-    private void OnAttachCheck(Entity<SurgeryStepAttachLifeTriggerComponent> ent, ref SurgeryStepCompleteCheckEvent args)
-    {
-        var organs = _body.GetPartOrgans(args.Part);
-
-        EntityUid? heartUid = null;
-        foreach (var organ in organs)
-        {
-            if (HasComp<HeartComponent>(organ.Id))
-            {
-                heartUid = organ.Id;
-                break;
-            }
-        }
-
-        if (heartUid == null)
-            return;
-
-        var container = _container.EnsureContainer<ContainerSlot>(heartUid.Value, "life-trigger-slot");
-        if (container.ContainedEntity == null)
-        {
-            args.Cancelled = true;
         }
     }
 
