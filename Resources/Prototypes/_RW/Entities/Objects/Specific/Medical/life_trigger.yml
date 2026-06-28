@@ -50,3 +50,12 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Heart
+
+- type: latheRecipe
+  id: LifeTrigger
+  result: LifeTrigger
+  completetime: 2
+  materials:
+    Steel: 50
+    Glass: 25
+    Silver: 10
