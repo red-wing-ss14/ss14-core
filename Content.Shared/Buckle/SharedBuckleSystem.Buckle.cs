@@ -661,6 +661,15 @@ public abstract partial class SharedBuckleSystem
                 _transform.SetCoordinates(buckle, buckleXform, oldBuckledXform.Coordinates.Offset(buckleOffset));
             }
             // Orion-Edit-End
+
+            // RW start
+            if (!_container.IsEntityInContainer(buckle) &&
+                !HasComp<Robust.Shared.Map.Components.MapGridComponent>(buckleXform.ParentUid) &&
+                !HasComp<Robust.Shared.Map.Components.MapComponent>(buckleXform.ParentUid))
+            {
+                _transform.AttachToGridOrMap(buckle.Owner, buckleXform);
+            }
+            // RW end
         }
 
         _rotationVisuals.ResetHorizontalAngle(buckle.Owner);
