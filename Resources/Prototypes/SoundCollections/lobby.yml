@@ -152,7 +152,7 @@
     - /Audio/_Orion/Jukebox/DavidBowie/DavidBowie_Starman.ogg
     - /Audio/_Orion/Jukebox/DavidBowie/DavidBowie_TheManWhoSoldTheWorld.ogg
     - /Audio/_Orion/Jukebox/KarenO/KarenO_Drown.ogg
-    - /Audio/_Orion/Jukebox/Plamenev/Plamenev_BigLove.ogg
+    # - /Audio/_Orion/Jukebox/Plamenev/Plamenev_BigLove.ogg # RW: disable song
     - /Audio/_Orion/Jukebox/SurfCurse/SurfCurse_Freaks.ogg
     - /Audio/_Orion/Jukebox/TheCaretaker/TheCaretaker_ItsJustBurningMemory.ogg
     - /Audio/_Orion/Jukebox/TheRareOccasions/TheRareOccasions_Notion.ogg
