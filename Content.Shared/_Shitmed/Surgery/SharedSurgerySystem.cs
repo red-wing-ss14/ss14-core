@@ -54,11 +54,15 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Body.Organ;
+using Robust.Shared.Random;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
 
 public abstract partial class SharedSurgerySystem : EntitySystem
 {
+    [Dependency] private readonly IRobustRandom _random = default!; // RW
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IComponentFactory _compFactory = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
@@ -195,6 +199,25 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
             return;
         }
+
+        // RW start
+        if (_net.IsServer && args.User == ent.Owner && !HasComp<SurgerySpeedModifierComponent>(args.User))
+        {
+            if (_random.Prob(0.5f))
+            {
+                var damageAmount = _random.Next(5, 11);
+                var damage = new DamageSpecifier(_prototypes.Index<DamageTypePrototype>("Poison"), damageAmount);
+                var evDmg = new SurgeryStepDamageEvent(args.User, ent, part, surgery, damage, 1.0f);
+                RaiseLocalEvent(ent, ref evDmg);
+
+                _popup.PopupClient(Loc.GetString("surgery-error-self-surgery-fail"), args.User, args.User);
+
+                var failEv = new SurgeryStepFailedEvent(args.User, ent, args.Surgery, args.Step);
+                RaiseLocalEvent(args.User, ref failEv);
+                return;
+            }
+        }
+        // RW end
 
         var complete = IsStepComplete(ent, part, args.Step, surgery);
         args.Repeat = HasComp<SurgeryRepeatableStepComponent>(step) && !complete;
