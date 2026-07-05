@@ -16,7 +16,6 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.ContextMenu.UI;
 using Content.Client.Examine;
-// Reserve edit: guide-book #320
 using Content.Client.Guidebook;
 using Content.Client.Guidebook.Richtext;
 using Content.Client.Verbs.UI;
@@ -29,7 +28,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
-// Reserve edit: guide-book #320
+// RW
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -40,7 +39,7 @@ namespace Content.Client.Guidebook.Controls;
 ///     examination, interactions, and captions.
 /// </summary>
 [GenerateTypedNameReferences]
-// Reserve edit start: guide-book #320
+// RW start
 public sealed partial class GuideEntityEmbed : BoxContainer, IDocumentTag, IGuidebookEntryAnchor
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
@@ -57,7 +56,7 @@ public sealed partial class GuideEntityEmbed : BoxContainer, IDocumentTag, IGuid
     public bool Interactive;
 
     private bool _registerAsGuideAnchor = true;
-// Reserve edit end: guide-book #320
+// RW end
 
     public Entity<SpriteComponent>? Sprite => View.Entity == null || View.Sprite == null
         ? null
@@ -79,7 +78,7 @@ public sealed partial class GuideEntityEmbed : BoxContainer, IDocumentTag, IGuid
         MouseFilter = MouseFilterMode.Stop;
     }
 
-    // Reserve edit start: guide-book #320
+    // RW start
     public GuideEntityEmbed(string proto, bool caption, bool interactive, bool registerAsGuideAnchor = true) : this()
     {
         Interactive = interactive;
@@ -101,7 +100,7 @@ public sealed partial class GuideEntityEmbed : BoxContainer, IDocumentTag, IGuid
         if (_prototype.TryIndex<EntityPrototype>(protoId, out var entityProto))
             AnchorPrototype = entityProto;
     }
-    // Reserve edit end: guide-book #320
+    // RW end
 
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
     {
@@ -176,7 +175,7 @@ public sealed partial class GuideEntityEmbed : BoxContainer, IDocumentTag, IGuid
             return false;
         }
 
-        // Reserve edit: guide-book #320
+        // RW
         BindEntityPrototype(proto);
 
         var ent = _entityManager.SpawnEntity(proto, MapCoordinates.Nullspace);

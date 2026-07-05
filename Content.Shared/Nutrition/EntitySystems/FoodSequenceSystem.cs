@@ -318,10 +318,10 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
 
     private void MergeFoodSolutions(EntityUid start, EntityUid element)
     {
-        if (!TryComp<EdibleComponent>(start, out var startFood))  // Reserve edit: Fix burgers, tacos and skewers
+        if (!TryComp<EdibleComponent>(start, out var startFood))  // RW
             return;
 
-        if (!TryComp<EdibleComponent>(element, out var elementFood))  // Reserve edit: Fix burgers, tacos and skewers
+        if (!TryComp<EdibleComponent>(element, out var elementFood))  // RW
             return;
 
         if (!_solutionContainer.TryGetSolution(start, startFood.Solution, out var startSolutionEntity, out var startSolution))
@@ -361,10 +361,10 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
 
     private void MergeTrash(EntityUid start, EntityUid element)
     {
-        if (!TryComp<EdibleComponent>(start, out var startFood))  // Reserve edit: Fix burgers, tacos and skewers
+        if (!TryComp<EdibleComponent>(start, out var startFood))  // RW
             return;
 
-        if (!TryComp<EdibleComponent>(element, out var elementFood))  // Reserve edit: Fix burgers, tacos and skewers
+        if (!TryComp<EdibleComponent>(element, out var elementFood))  // RW
             return;
 
         foreach (var trash in elementFood.Trash)

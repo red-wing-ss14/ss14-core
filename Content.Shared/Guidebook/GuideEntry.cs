@@ -29,6 +29,14 @@ public class GuideEntry
     /// </summary>
     [DataField(required: true)] public ResPath Text = default!;
 
+    // RW start
+    /// <summary>
+    ///     Localized versions of the guidebook text.
+    /// </summary>
+    [DataField]
+    public Dictionary<string, ResPath>? LocalizedText;
+    // RW end
+
     /// <summary>
     ///     The unique id for this guide.
     /// </summary>

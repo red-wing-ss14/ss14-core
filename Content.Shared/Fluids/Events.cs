@@ -12,7 +12,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Maths.FixedPoint; // Reserve - for FixedPoint2
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.DoAfter;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Inventory;

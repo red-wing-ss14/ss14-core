@@ -13,7 +13,7 @@
     flavors:
       - apple
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: apple
   - type: Extractable
     juiceSolution:
@@ -36,7 +36,7 @@
       - apple
       - metallic
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: golden_apple
   - type: Extractable
     juiceSolution:
@@ -64,7 +64,7 @@
     flavors:
       - banana
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: banana
   - type: Extractable
     juiceSolution:
@@ -87,7 +87,7 @@
       - banana
       - nothing
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: mimana
   - type: Extractable
     juiceSolution:
@@ -115,7 +115,7 @@
     flavors:
       - sour
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: lemon
   - type: Extractable
     juiceSolution:
@@ -137,7 +137,7 @@
     flavors:
       - lemoon
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: lemoon
   - type: Extractable
     juiceSolution:
@@ -159,7 +159,7 @@
     flavors:
       - sour
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: lime
   - type: Extractable
     juiceSolution:
@@ -181,7 +181,7 @@
     flavors:
       - orange
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: orange
   - type: Extractable
     juiceSolution:
@@ -208,7 +208,7 @@
       - sweet
       - fruity
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: mango
   - type: Extractable
     juiceSolution:
@@ -234,7 +234,7 @@
     flavors:
       - carrot
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: carrot
   - type: Extractable
     juiceSolution:
@@ -256,7 +256,7 @@
     flavors:
       - cabbage
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: cabbage
   - type: FoodSequenceElement
     entries:
@@ -273,7 +273,7 @@
     flavors:
       - corn
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: corn
   - type: FoodSequenceElement
     entries:
@@ -289,7 +289,7 @@
     flavors:
       - eggplant
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: eggplant
   - type: FoodSequenceElement
     entries:
@@ -306,7 +306,7 @@
     flavors:
       - garlic
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: garlic
   - type: FoodSequenceElement
     entries:
@@ -322,7 +322,7 @@
     flavors:
       - potatoes
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: potato
   - type: Extractable
     juiceSolution:
@@ -347,7 +347,7 @@
     flavors:
       - tomato
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: tomato
   - type: FoodSequenceElement
     entries:
@@ -361,7 +361,7 @@
   name: blood tomato slice
   components:
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: blood_tomato
   - type: FoodSequenceElement
     entries:
@@ -375,7 +375,7 @@
   name: blue tomato slice
   components:
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: blue_tomato
   - type: FoodSequenceElement
     entries:
@@ -389,7 +389,7 @@
   name: bluespace tomato slice
   components:
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: bluespace_tomato
   - type: FoodSequenceElement
     entries:
@@ -410,7 +410,7 @@
     flavors:
       - pumpkin
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: pumpkin
   - type: FoodSequenceElement
     entries:
@@ -427,7 +427,7 @@
     flavors:
       - bluepumpkin
   - type: Sprite
-    sprite: _Reserve/Objects/Consumable/Food/slices.rsi
+    sprite: _RW/Objects/Consumable/Food/slices.rsi
     state: blue_pumpkin
   - type: Extractable
     juiceSolution:

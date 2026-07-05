@@ -116,7 +116,7 @@ public sealed class FoodGuideDataSystem : EntitySystem
                     ids.Add(parent);
             }
 
-            AddSliceProducts(id, ids); // Reserve edit: guide-book #323
+            AddSliceProducts(id, ids); // RW
         }
 
         return ids
@@ -125,7 +125,7 @@ public sealed class FoodGuideDataSystem : EntitySystem
             .OrderBy(p => p.Name);
     }
 
-    // Reserve edit start: guide-book #323
+    // RW start
     private void AddSliceProducts(EntProtoId parent, HashSet<EntProtoId> ids)
     {
         foreach (var (entityId, sources) in _sources)
@@ -143,7 +143,7 @@ public sealed class FoodGuideDataSystem : EntitySystem
             }
         }
     }
-    // Reserve edit end: guide-book #323
+    // RW end
 
     private void Rebuild()
     {
@@ -176,7 +176,7 @@ public sealed class FoodGuideDataSystem : EntitySystem
         foreach (var (slice, parent) in pendingSlices)
         {
             AddSource(slice, new FoodEntitySource(FoodEntitySourceKind.SliceFrom, null, parent, null));
-            // Reserve remove: guide-book #323
+            // RW
         }
 
         IndexConstructionRollingSources();

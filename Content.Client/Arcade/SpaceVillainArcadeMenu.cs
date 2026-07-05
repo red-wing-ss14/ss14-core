@@ -26,7 +26,7 @@ namespace Content.Client.Arcade
 {
     public sealed class SpaceVillainArcadeMenu : DefaultWindow
     {
-        // Reserve edit start: space-vilian-fix
+        // RW start
         private const float MessageMaxWidth = 420f;
         private const float MinWindowWidth = 360f;
         private const float MinWindowHeight = 200f;
@@ -366,6 +366,6 @@ namespace Content.Client.Arcade
 
             ApplyWindowHeight(message.PlayerActionMessage, message.EnemyActionMessage);
         }
-        // Reserve edit end: space-vilian-fix
+        // RW end
     }
 }

@@ -123,13 +123,13 @@
         blacklist:
           tags:
           - Book
-    # Reserve edit start: Orchid's Garden - Tidy Kitchen
+    # RW start
     # Can be recycled
     - type: PhysicalComposition
       materialComposition:
         Cloth: 5
         Wood: 5
-    # Reserve edit end: Orchid's Garden - Tidy Kitchen
+    # RW end
 
 - type: entity
   parent: SeedBase

@@ -8,8 +8,8 @@ using Content.Goobstation.Common.MisandryBox;
 using Content.Goobstation.Shared.MisandryBox.Smites;
 using Content.Server.Chat.Systems;
 using Content.Shared.Chat.Prototypes;
-using Content.Shared.Damage.Systems;  // Reserve edit: Flip & spin antispam
-using Content.Shared.Damage.Components;  // Reserve edit: Flip & spin antispam
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 using Content.Shared.Speech;
 using Robust.Shared.Random;
 
@@ -20,7 +20,7 @@ public sealed class CatEmoteSpamCountermeasureSystem : EntitySystem
 {
     [Dependency] private readonly ThunderstrikeSystem _thunderstrike = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;  // Reserve edit: Flip & spin antispam
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;  // RW
 
     private const float ClearInterval = 20.0f;
     private const float PitchModulo = 0.08f;

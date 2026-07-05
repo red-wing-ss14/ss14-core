@@ -7,13 +7,13 @@
 - type: foodSequenceElement
   id: AppleSliceBurger
   name: food-sequence-burger-content-apple
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: apple } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: apple } ]
   tags: [ Fruit, Slice ]
 
 - type: foodSequenceElement
   id: AppleSlice
   name: food-sequence-content-apple
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: apple } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: apple } ]
   tags: [ Fruit, Slice ]
 
 # Golden Apple
@@ -21,13 +21,13 @@
 - type: foodSequenceElement
   id: GoldenAppleSliceBurger
   name: food-sequence-burger-content-golden-apple
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: golden_apple } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: golden_apple } ]
   tags: [ Fruit, Slice ]
 
 - type: foodSequenceElement
   id: GoldenAppleSlice
   name: food-sequence-content-golden-apple
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: golden_apple } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: golden_apple } ]
   tags: [ Fruit, Slice ]
 
 # Banana
@@ -35,13 +35,13 @@
 - type: foodSequenceElement
   id: BananaSliceBurger
   name: food-sequence-burger-content-banana
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: banana } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: banana } ]
   tags: [ Fruit, Slice ]
 
 - type: foodSequenceElement
   id: BananaSlice
   name: food-sequence-content-banana
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: banana } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: banana } ]
   tags: [ Fruit, Slice ]
 
 # Mimana
@@ -49,13 +49,13 @@
 - type: foodSequenceElement
   id: MimanaSliceBurger
   name: food-sequence-burger-content-mimana
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: mimana } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: mimana } ]
   tags: [ Fruit, Slice ]
 
 - type: foodSequenceElement
   id: MimanaSlice
   name: food-sequence-content-mimana
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: mimana } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: mimana } ]
   tags: [ Fruit, Slice ]
 
 # Lemon
@@ -63,13 +63,13 @@
 - type: foodSequenceElement
   id: LemonSliceBurger
   name: food-sequence-burger-content-lemon
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: lemon } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: lemon } ]
   tags: [ Fruit, Slice ]
 
 - type: foodSequenceElement
   id: LemonSlice
   name: food-sequence-content-lemon
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: lemon } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: lemon } ]
   tags: [ Fruit, Slice ]
 
 # Lemoon
@@ -77,13 +77,13 @@
 - type: foodSequenceElement
   id: LemoonSliceBurger
   name: food-sequence-burger-content-lemoon
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: lemoon } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: lemoon } ]
   tags: [ Fruit, Slice ]
 
 - type: foodSequenceElement
   id: LemoonSlice
   name: food-sequence-content-lemoon
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: lemoon } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: lemoon } ]
   tags: [ Fruit, Slice ]
 
 # Lime
@@ -91,13 +91,13 @@
 - type: foodSequenceElement
   id: LimeSliceBurger
   name: food-sequence-burger-content-lime
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: lime } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: lime } ]
   tags: [ Fruit, Slice ]
 
 - type: foodSequenceElement
   id: LimeSlice
   name: food-sequence-content-lime
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: lime } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: lime } ]
   tags: [ Fruit, Slice ]
 
 # Orange
@@ -105,13 +105,13 @@
 - type: foodSequenceElement
   id: OrangeSliceBurger
   name: food-sequence-burger-content-orange
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: orange } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: orange } ]
   tags: [ Fruit, Slice ]
 
 - type: foodSequenceElement
   id: OrangeSlice
   name: food-sequence-content-orange
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: orange } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: orange } ]
   tags: [ Fruit, Slice ]
 
 # Mango
@@ -119,13 +119,13 @@
 - type: foodSequenceElement
   id: MangoSliceBurger
   name: food-sequence-burger-content-mango
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: mango } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: mango } ]
   tags: [ Fruit, Slice ]
 
 - type: foodSequenceElement
   id: MangoSlice
   name: food-sequence-content-mango
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: mango } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: mango } ]
   tags: [ Fruit, Slice ]
 
 # Carrot
@@ -133,13 +133,13 @@
 - type: foodSequenceElement
   id: CarrotSliceBurger
   name: food-sequence-burger-content-carrot
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: carrot } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: carrot } ]
   tags: [ Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: CarrotSlice
   name: food-sequence-content-carrot
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: carrot } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: carrot } ]
   tags: [ Vegetable, Slice ]
 
 # Cabbage
@@ -147,13 +147,13 @@
 - type: foodSequenceElement
   id: CabbageSliceBurger
   name: food-sequence-burger-content-cabbage
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: cabbage } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: cabbage } ]
   tags: [ Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: CabbageSlice
   name: food-sequence-content-cabbage
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: cabbage } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: cabbage } ]
   tags: [ Vegetable, Slice ]
 
 # Corn
@@ -161,13 +161,13 @@
 - type: foodSequenceElement
   id: CornSliceBurger
   name: food-sequence-burger-content-corn
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: corn } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: corn } ]
   tags: [ Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: CornSlice
   name: food-sequence-content-corn
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: corn } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: corn } ]
   tags: [ Vegetable, Slice ]
 
 # Garlic
@@ -175,13 +175,13 @@
 - type: foodSequenceElement
   id: GarlicSliceBurger
   name: food-sequence-burger-content-garlic
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: garlic } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: garlic } ]
   tags: [ Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: GarlicSlice
   name: food-sequence-content-garlic
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: garlic } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: garlic } ]
   tags: [ Vegetable, Slice ]
 
 # Potato
@@ -189,13 +189,13 @@
 - type: foodSequenceElement
   id: PotatoSliceBurger
   name: food-sequence-burger-content-potato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: potato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: potato } ]
   tags: [ Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: PotatoSlice
   name: food-sequence-content-potato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: potato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: potato } ]
   tags: [ Vegetable, Slice ]
 
 # Tomato
@@ -203,13 +203,13 @@
 - type: foodSequenceElement
   id: TomatoSliceBurger
   name: food-sequence-burger-content-tomato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: tomato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: tomato } ]
   tags: [ Fruit, Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: TomatoSlice
   name: food-sequence-content-tomato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: tomato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: tomato } ]
   tags: [ Fruit, Vegetable, Slice ]
 
 # Blue Tomato
@@ -217,13 +217,13 @@
 - type: foodSequenceElement
   id: BlueTomatoSliceBurger
   name: food-sequence-burger-content-blue-tomato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: blue_tomato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: blue_tomato } ]
   tags: [ Fruit, Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: BlueTomatoSlice
   name: food-sequence-content-blue-tomato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: blue_tomato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: blue_tomato } ]
   tags: [ Fruit, Vegetable, Slice ]
 
 # Blood Tomato
@@ -231,13 +231,13 @@
 - type: foodSequenceElement
   id: BloodTomatoSliceBurger
   name: food-sequence-burger-content-blood-tomato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: blood_tomato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: blood_tomato } ]
   tags: [ Fruit, Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: BloodTomatoSlice
   name: food-sequence-content-blood-tomato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: blood_tomato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: blood_tomato } ]
   tags: [ Fruit, Vegetable, Slice ]
 
 # Bluespace Tomato
@@ -245,13 +245,13 @@
 - type: foodSequenceElement
   id: BluespaceTomatoSliceBurger
   name: food-sequence-burger-content-bluespace-tomato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: bluespace_tomato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: bluespace_tomato } ]
   tags: [ Fruit, Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: BluespaceTomatoSlice
   name: food-sequence-content-bluespace-tomato
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: bluespace_tomato } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: bluespace_tomato } ]
   tags: [ Fruit, Vegetable, Slice ]
 
 # Eggplant
@@ -259,13 +259,13 @@
 - type: foodSequenceElement
   id: EggplantSliceBurger
   name: food-sequence-burger-content-eggplant
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: eggplant } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: eggplant } ]
   tags: [ Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: EggplantSlice
   name: food-sequence-content-eggplant
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: eggplant } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: eggplant } ]
   tags: [ Vegetable, Slice ]
 
 # Pumpkin
@@ -273,13 +273,13 @@
 - type: foodSequenceElement
   id: PumpkinSliceBurger
   name: food-sequence-burger-content-pumpkin
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: pumpkin } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: pumpkin } ]
   tags: [ Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: PumpkinSlice
   name: food-sequence-content-pumpkin
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: pumpkin } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: pumpkin } ]
   tags: [ Vegetable, Slice ]
 
 # Blue Pumpkin
@@ -287,11 +287,11 @@
 - type: foodSequenceElement
   id: BluePumpkinSliceBurger
   name: food-sequence-burger-content-blue-pumpkin
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: blue_pumpkin } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: blue_pumpkin } ]
   tags: [ Vegetable, Slice ]
 
 - type: foodSequenceElement
   id: BluePumpkinSlice
   name: food-sequence-content-blue-pumpkin
-  sprites: [ { sprite: _Reserve/Objects/Consumable/Food/slices.rsi, state: blue_pumpkin } ]
+  sprites: [ { sprite: _RW/Objects/Consumable/Food/slices.rsi, state: blue_pumpkin } ]
   tags: [ Vegetable, Slice ]

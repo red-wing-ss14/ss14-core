@@ -251,18 +251,18 @@
     - BalloonCorgi
   groupBy: "games"
 
-- type: loadout
-  id: SpellCardFun
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobLibrarian
-      time: 720000 # 200hr
-  storage:
-    back:
-    - SpellCardFun
-  groupBy: "games"
+#- type: loadout
+#  id: SpellCardFun
+#  effects:
+#  - !type:JobRequirementLoadoutEffect
+#    requirement:
+#      !type:RoleTimeRequirement
+#      role: JobLibrarian
+#      time: 720000 # 200hr
+#  storage:
+#    back:
+#    - SpellCardFun
+#  groupBy: "games"
 
 - type: entity
   parent: d6Dice
@@ -339,17 +339,6 @@
     - PlushieSlime
   groupBy: "plush"
 
-- type: loadout
-  id: PlushieDiona
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:OverallPlaytimeRequirement
-      time: 54000 # 15hr
-  storage:
-    back:
-    - PlushieDiona
-  groupBy: "plush"
 
 - type: loadout
   id: PlushieVox
@@ -363,17 +352,17 @@
     - PlushieVox
   groupBy: "plush"
 
-- type: loadout
-  id: PlushieHuman
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:OverallPlaytimeRequirement
-      time: 54000 # 15hr
-  storage:
-    back:
-    - PlushieHuman
-  groupBy: "plush"
+#- type: loadout
+#  id: PlushieHuman
+#  effects:
+#  - !type:JobRequirementLoadoutEffect
+#    requirement:
+#      !type:OverallPlaytimeRequirement
+#      time: 54000 # 15hr
+#  storage:
+#    back:
+#    - PlushieHuman
+#  groupBy: "plush"
 
 - type: loadout
   id: PlushieSharkBlue

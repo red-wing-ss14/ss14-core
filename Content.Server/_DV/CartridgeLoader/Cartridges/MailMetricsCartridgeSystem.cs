@@ -10,9 +10,9 @@
 using Content.Server._DV.Cargo.Components;
 using Content.Server._DV.Cargo.Systems;
 using Content.Server.CartridgeLoader;
+using Content.Server.Mail;
 using Content.Server.Mail.Components;
 using Content.Server.Station.Systems;
-using Content.Server.Nyanotrasen.Mail;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 
@@ -22,7 +22,7 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly MailSystem _mail = default!;  // Reserve edit: mail-fix #328
+    [Dependency] private readonly MailSystem _mail = default!;  // RW
 
     public override void Initialize()
     {
@@ -45,7 +45,7 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, MailComponent mail, MapInitEvent args)
     {
-        _mail.InitializeMailOnMapInit(uid, mail);  // Reserve edit: mail-fix #328
+        _mail.InitializeMailOnMapInit(uid, mail);  // RW
 
         if (_station.GetOwningStation(uid) is { } station)
             UpdateAllCartridges(station);

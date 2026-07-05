@@ -126,21 +126,21 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 10
-      stain: # Reserve - clothing stains
+      stain: # RW
         maxVol: 5
-  # Reserve start - clothing stains
+  # RW start
   - type: ContainerContainer
     containers:
       hidden_slot: !type:ContainerSlot
-  # Reserve end - clothing stains
+  # RW end
   - type: Tag
     tags:
     - ClothMade
     - WhitelistChameleon
     - DroneUsable # Goobstation
-  # Reserve start - clothing stains
+  # RW start
   - type: Appearance
-  - type: Stainable # Reserve
+  - type: Stainable # RW
     clothingVisuals:
       head:
       - sprite: _Gabystation/Effects/blood.rsi
@@ -148,7 +148,7 @@
     iconVisuals:
     - sprite: _Gabystation/Effects/blood.rsi
       state: helmetbloodicon
-  # Reserve end - clothing stains
+  # RW end
 
 - type: entity
   abstract: true
@@ -270,10 +270,10 @@
     - Snout
     - HeadTop
     - HeadSide
-  # Reserve start - clothing stains
+  # RW start
   - type: StainBlocker
     slots: [MASK]
-  # Reserve end - clothing stains
+  # RW end
 
 - type: entity
   abstract: true
@@ -337,9 +337,9 @@
     - HeadTop
     - HeadSide
   - type: FaceHuggerBlocker # Goobstation
-  # Reserve start - clothing stains
+  # RW start
   - type: Appearance
-  - type: Stainable # Reserve
+  - type: Stainable # RW
     clothingVisuals:
       head:
       - sprite: _Gabystation/Effects/blood.rsi
@@ -349,7 +349,7 @@
       state: helmetbloodicon
   - type: StainBlocker
     slots: [MASK]
-  # Reserve end - clothing stains
+  # RW end
 
 - type: entity
   abstract: true
@@ -437,9 +437,9 @@
     - Hair
     - HeadTop
     - HeadSide
-  # Reserve start - clothing stains
+  # RW start
   - type: Appearance
-  - type: Stainable # Reserve
+  - type: Stainable # RW
     clothingVisuals:
       head:
       - sprite: _Gabystation/Effects/blood.rsi
@@ -447,4 +447,4 @@
     iconVisuals:
     - sprite: _Gabystation/Effects/blood.rsi
       state: helmetbloodicon
-  # Reserve end - clothing stains
+  # RW end

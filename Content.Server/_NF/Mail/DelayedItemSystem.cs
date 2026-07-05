@@ -25,7 +25,7 @@ namespace Content.Server.Mail
             SubscribeLocalEvent<DelayedItemComponent, EntGotRemovedFromContainerMessage>(OnRemovedFromContainer);
         }
 
-        // Reserve edit start: mail-fix #328
+        // RW start
         /// <summary>
         /// EntGotRemovedFromContainerMessage handler - spawn the intended entity after removed from a container.
         /// </summary>
@@ -36,7 +36,7 @@ namespace Content.Server.Mail
 
             Spawn(component.Item, Transform(uid).Coordinates);
         }
-        // Reserve edit end: mail-fix #328
+        // RW end
 
         /// <summary>
         /// GotEquippedHandEvent handler - destroy the placeholder.
@@ -54,7 +54,7 @@ namespace Content.Server.Mail
             EntityManager.DeleteEntity(uid);
         }
 
-        // Reserve edit start: mail-fix #328
+        // RW start
         /// <summary>
         /// OnDamageChanged handler - item has taken damage (e.g. inside the envelope), spawn the intended entity outside of any container and delete the placeholder.
         /// </summary>
@@ -66,6 +66,6 @@ namespace Content.Server.Mail
             Spawn(component.Item, Transform(uid).Coordinates);
             EntityManager.DeleteEntity(uid);
         }
-        // Reserve edit end: mail-fix #328
+        // RW end
     }
 }

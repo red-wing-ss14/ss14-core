@@ -68,7 +68,6 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
-// Reserve edit: guide-book #320
 using Content.Shared.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Cargo.Prototypes;

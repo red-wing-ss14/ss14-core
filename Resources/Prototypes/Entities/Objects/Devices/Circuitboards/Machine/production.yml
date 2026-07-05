@@ -1631,5 +1631,6 @@
     prototype: WashingMachine
     stackRequirements:
       Steel: 1
-      Manipulator: 1
       Cable: 1
+    partRequirements: # Orion-Edit: Replaced manipulator
+      Servo: 1

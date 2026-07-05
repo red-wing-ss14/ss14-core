@@ -15,3 +15,10 @@
   values:
     prefix: names-shadowkin-last-dataset-
     count: 20
+
+- type: localizedDataset
+  id: NamesShadowkin
+  values:
+    prefix: names-shadowkin-dataset-
+    count: 81
+

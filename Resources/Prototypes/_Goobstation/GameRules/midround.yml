@@ -425,7 +425,7 @@
   - type: AntagLockerSpawn
   - type: AntagLoadProfileRule
     speciesOverride: Human
-    alwaysUseSpeciesOverride: true  # Reserve edit: Slasher fix
+    alwaysUseSpeciesOverride: true  # RW
     speciesOverrideBlacklist:
     - Yowie
     - IPC

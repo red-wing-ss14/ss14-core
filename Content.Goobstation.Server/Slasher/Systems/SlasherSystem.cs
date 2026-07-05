@@ -38,7 +38,7 @@ public sealed class SlasherSystem : EntitySystem
 
         var brain = brains[0];
 
-        if (brain.Comp2.SlotId != "brain")  // Reserve edit: Slasher fix
+        if (brain.Comp2.SlotId != "brain")  // RW
             return;
 
         EntityUid? chestPart = null;
@@ -51,12 +51,12 @@ public sealed class SlasherSystem : EntitySystem
         if (chestPart == null)
             return;
 
-        var slotId = brain.Comp2.SlotId;  // Reserve edit: Slasher fix
+        var slotId = brain.Comp2.SlotId;  // RW
 
         _body.RemoveOrgan(brain.Owner, brain.Comp2);
-        _body.TryCreateOrganSlot(chestPart, slotId, out _, null);  // Reserve edit: Slasher fix
+        _body.TryCreateOrganSlot(chestPart, slotId, out _, null);  // RW
 
-        if (!_body.InsertOrgan(chestPart.Value, brain.Owner, slotId))  // Reserve edit: Slasher fix
+        if (!_body.InsertOrgan(chestPart.Value, brain.Owner, slotId))  // RW
             return;
 
         _standing.Stand(ent.Owner, force: true);

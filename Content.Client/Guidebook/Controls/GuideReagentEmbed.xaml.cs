@@ -13,7 +13,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client.Chemistry.EntitySystems;
-// Reserve edit: guide-book #320
 using Content.Client.Guidebook;
 using Content.Client.Guidebook.Richtext;
 using Content.Client.Message;
@@ -36,7 +35,7 @@ namespace Content.Client.Guidebook.Controls;
 ///     Control for embedding a reagent into a guidebook.
 /// </summary>
 [UsedImplicitly, GenerateTypedNameReferences]
-// Reserve edit start: guide-book #320
+// RW start
 public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISearchableControl, IGuidebookEntryAnchor
 {
     [Dependency] private readonly IEntitySystemManager _systemManager = default!;
@@ -45,7 +44,7 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
     private readonly ChemistryGuideDataSystem _chemistryGuideData;
 
     public IPrototype? AnchorPrototype { get; private set; }
-// Reserve edit end: guide-book #320
+// RW end
 
     public GuideReagentEmbed()
     {
@@ -98,7 +97,7 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
 
     private void GenerateControl(ReagentPrototype reagent)
     {
-        // Reserve edit: guide-book #320
+        // RW
         AnchorPrototype = reagent;
 
         NameBackground.PanelOverride = new StyleBoxFlat

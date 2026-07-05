@@ -10,7 +10,7 @@
 
 using Content.Shared.Arcade;
 using Robust.Shared.Audio;
-using Robust.Shared.Localization; // Reserve edit: space-vilian-fix
+using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Arcade.SpaceVillain;
@@ -72,7 +72,7 @@ public sealed partial class SpaceVillainArcadeComponent : SharedSpaceVillainArca
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("possibleFightVerbs")]
-    // Reserve edit start: space-vilian-fix
+    // RW start
     public List<LocId> PossibleFightVerbs = new()
     {
         "space-villain-game-fight-verb-defeat",
@@ -130,7 +130,7 @@ public sealed partial class SpaceVillainArcadeComponent : SharedSpaceVillainArca
         "space-villain-game-enemy-last-lizard-man",
         "space-villain-game-enemy-last-unicorn",
     };
-    // Reserve edit end: space-vilian-fix
+    // RW end
 
     /// <summary>
     /// The prototypes that can be dispensed as a reward for winning the game.

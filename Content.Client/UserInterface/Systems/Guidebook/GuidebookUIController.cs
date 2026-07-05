@@ -129,7 +129,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         _guideWindow.OnClose -= OnWindowClosed;
         _guideWindow.OnOpen -= OnWindowOpen;
 
-        _guideWindow.SaveCurrentPageState(); // Reserve edit: guide-book #323
+        _guideWindow.SaveCurrentPageState(); // RW
 
         // shutdown
         _guideWindow.Dispose();
@@ -192,7 +192,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         if (_guideWindow != null)
         {
             _guideWindow.ReturnContainer.Visible = false;
-            _guideWindow.SaveCurrentPageState(); // Reserve edit: guide-book #323
+            _guideWindow.SaveCurrentPageState(); // RW
             _lastEntry = _guideWindow.LastEntry;
         }
     }

@@ -12,7 +12,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Shared.Damage.Components;  // Reserve edit: Flip & spin antispam
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Emoting;
 
@@ -43,9 +43,9 @@ public sealed class EmoteSystem : EntitySystem
         if (!TryComp(args.Uid, out EmotingComponent? emote) || !emote.Enabled)
             args.Cancel();
 
-        // Reserve edit start: Flip & spin antispam - can't emote while stamina-stunned
+        // RW start
         if (TryComp(args.Uid, out StaminaComponent? stamina) && stamina.Critical)
             args.Cancel();
-        // Reserve edit end: Flip & spin antispam
+        // RW end
     }
 }

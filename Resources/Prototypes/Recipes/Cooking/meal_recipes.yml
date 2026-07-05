@@ -279,7 +279,7 @@
     FoodBreadBun: 1
     FoodMeat: 2
     FoodCheeseSlice: 1
-    FoodTomatoSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 2  # RW
     FoodOnionSlice: 2
 
 - type: microwaveMealRecipe #Added to metamorph recipes
@@ -369,7 +369,7 @@
     FoodMeat: 2
     FoodCheeseSlice: 2
     FoodChiliPepper: 1
-    FoodCabbageSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCabbageSlice: 2  # RW
     CrayonGreen: 1
     Flare: 1
 
@@ -544,7 +544,7 @@
     FoodBreadBun: 1
     FoodMeat: 2
     FoodCheeseSlice: 2
-    FoodTomatoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeTofuBurger
@@ -585,7 +585,7 @@
   group: LoafCakes
   solids:
     FoodDough: 1
-    FoodBananaSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodBananaSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeCornbread
@@ -629,7 +629,7 @@
     Nothing: 5
   solids:
     FoodDough: 1
-    FoodMimanaSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodMimanaSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeBread
@@ -761,7 +761,7 @@
   group: Breads
   solids:
     FoodBreadPlainSlice: 1
-    FoodGarlicSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodGarlicSlice: 4  # RW
     FoodButterSlice: 1
 
 - type: microwaveMealRecipe
@@ -802,7 +802,7 @@
   time: 15
   group: Savory
   solids:
-    FoodOnionSlice: 6  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodOnionSlice: 6  # RW
 
 #Pizzas TODO: contruction graph based pizza
 - type: microwaveMealRecipe
@@ -814,7 +814,7 @@
   solids:
     FoodDoughFlat: 1
     FoodCheeseSlice: 1
-    FoodTomatoSlice: 12  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 12  # RW
 
 - type: microwaveMealRecipe
   id: RecipeMushroomPizza
@@ -836,7 +836,7 @@
     FoodDoughFlat: 1
     FoodMeat: 3
     FoodCheeseSlice: 1
-    FoodTomatoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeVegetablePizza
@@ -846,12 +846,12 @@
   group: Pizza
   solids:
     FoodDoughFlat: 1
-    # Reserve edit start: Orchid's Garden - Tidy Kitchen
+    # RW start
     FoodEggplantSlice: 2
     FoodCarrotSlice: 2
     FoodCornSlice: 3
     FoodTomatoSlice: 3
-    # Reserve edit end: Orchid's Garden - Tidy Kitchen
+    # RW end
 
 - type: microwaveMealRecipe
   id: RecipeHawaiianPizza
@@ -874,7 +874,7 @@
     FoodDoughFlat: 1
     LeavesCannabis: 2
     FoodCheeseSlice: 1
-    FoodTomatoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeDonkpocketPizza
@@ -886,7 +886,7 @@
     FoodDoughFlat: 1
     FoodDonkpocketWarm: 3
     FoodCheeseSlice: 1
-    FoodTomatoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeUraniumPizza
@@ -897,7 +897,7 @@
   solids:
     FoodDoughFlat: 1
     FoodChiliPepper: 2
-    FoodTomatoSlice: 10  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 10  # RW
     SheetUranium1: 2
 
 - type: microwaveMealRecipe
@@ -939,7 +939,7 @@
   group: Pasta
   solids:
     FoodNoodlesBoiled: 1
-    FoodTomatoSlice: 8  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 8  # RW
 
 - type: microwaveMealRecipe
   id: RecipeMeatballSpaghetti
@@ -959,7 +959,7 @@
   group: Pasta
   solids:
     FoodNoodlesBoiled: 1
-    FoodButterSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodButterSlice: 2  # RW
 
 - type: microwaveMealRecipe
   id: RecipeChowMein
@@ -971,9 +971,9 @@
     Egg: 6
   solids:
     FoodNoodlesBoiled: 1
-    FoodEggplantSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodCarrotSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodCornSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodEggplantSlice: 2  # RW
+    FoodCarrotSlice: 2  # RW
+    FoodCornSlice: 3  # RW
 
 - type: microwaveMealRecipe
   id: RecipeOatmeal
@@ -1043,7 +1043,7 @@
     Egg: 6
   solids:
     FoodRiceBoiled: 1
-    FoodCarrotSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCarrotSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeCopypasta
@@ -1066,7 +1066,7 @@
     Water: 10
   solids:
     FoodBowlBig: 1
-    FoodTomatoSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 3  # RW
     FoodMushroom: 1
     FoodMeatFish: 1
 
@@ -1081,8 +1081,8 @@
   solids:
     FoodBowlBig: 1
     FoodMeatMeatball: 1
-    FoodCarrotSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodPotatoSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCarrotSlice: 3  # RW
+    FoodPotatoSlice: 4  # RW
 
 - type: microwaveMealRecipe
   id: RecipeNettleSoup
@@ -1096,7 +1096,7 @@
   solids:
     FoodBowlBig: 1
     Nettle: 1
-    FoodPotatoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodPotatoSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeEyeballSoup
@@ -1109,8 +1109,8 @@
   solids:
     FoodBowlBig: 1
     OrganHumanEyes: 1
-    FoodCarrotSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodPotatoSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCarrotSlice: 4  # RW
+    FoodPotatoSlice: 3  # RW
 
 - type: microwaveMealRecipe
   id: RecipeAmanitaJelly
@@ -1161,12 +1161,12 @@
   solids:
     FoodBowlBig: 1
     FoodMeatCutlet: 3
-    # Reserve edit start: Orchid's Garden - Tidy Kitchen
+    # RW start
     FoodTomatoSlice: 5
     FoodPotatoSlice: 3
     FoodCarrotSlice: 4
     FoodEggplantSlice: 4
-    # Reserve edit end: Orchid's Garden - Tidy Kitchen
+    # RW end
     FoodMushroom: 1
 
 - type: microwaveMealRecipe
@@ -1179,7 +1179,7 @@
     Water: 10
   solids:
     FoodBowlBig: 1
-    FoodTomatoSlice: 8  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 8  # RW
 
 - type: microwaveMealRecipe
   id: RecipeTomatoBloodSoup
@@ -1191,7 +1191,7 @@
     Blood: 10
   solids:
     FoodBowlBig: 1
-    FoodBloodTomatoSlice: 8  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodBloodTomatoSlice: 8  # RW
 
 - type: microwaveMealRecipe
   id: RecipeWingFangChuSoup
@@ -1227,12 +1227,12 @@
     Water: 5
   solids:
     FoodBowlBig: 1
-    # Reserve edit start: Orchid's Garden - Tidy Kitchen
+    # RW start
     FoodCornSlice: 4
     FoodCarrotSlice: 4
     FoodPotatoSlice: 4
     FoodEggplantSlice: 4
-    # Reserve edit end: Orchid's Garden - Tidy Kitchen
+    # RW end
 
 - type: microwaveMealRecipe
   id: RecipeClownTearsSoup
@@ -1244,7 +1244,7 @@
     Water: 10
   solids:
     FoodBowlBig: 1
-    FoodBananaSlice: 6  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodBananaSlice: 6  # RW
     ShardGlass: 1
     #idk probably replace shard with someting bananium when #14663 merged
 
@@ -1260,7 +1260,7 @@
     Blackpepper: 1
   solids:
     FoodBowlBig: 1
-    FoodBananaSlice: 6  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodBananaSlice: 6  # RW
     MonkeyCube: 1
 
 - type: microwaveMealRecipe
@@ -1298,7 +1298,7 @@
   solids:
     FoodBowlBig: 1
     FoodOnionSlice: 1
-    FoodButterSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodButterSlice: 2  # RW
     FoodMeatSnailCooked: 1
 
 #Pies
@@ -1322,7 +1322,7 @@
   group: Pie
   solids:
     FoodDoughPie: 1
-    FoodAppleSlice: 12  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodAppleSlice: 12  # RW
     FoodPlateTin: 1
 
 - type: microwaveMealRecipe
@@ -1344,7 +1344,7 @@
   group: Pie
   solids:
     FoodDoughPie: 1
-    FoodBananaSlice: 12  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodBananaSlice: 12  # RW
     FoodPlateTin: 1
 
 - type: microwaveMealRecipe
@@ -1399,7 +1399,7 @@
   group: Pie
   solids:
     FoodDoughPie: 1
-    FoodPumpkinSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodPumpkinSlice: 4  # RW
     FoodPlateTin: 1
 
 #- type: microwaveMealRecipe
@@ -1446,12 +1446,12 @@
   time: 15
   group: Pie
   reagents:
-    # Gold: 10  # Reserve edit start: Orchid's Garden - Tidy Kitchen
+    # Gold: 10  # RW start
     Sugar: 5
     Milk: 5
   solids:
     FoodDoughPie: 1
-    FoodGoldenAppleSlice: 8  # Reserve edit start: Orchid's Garden - Tidy Kitchen
+    FoodGoldenAppleSlice: 8  # RW start
     FoodPlateTin: 1
 
 - type: microwaveMealRecipe
@@ -1479,7 +1479,7 @@
     Milk: 5
   solids:
     FoodDoughPie: 1
-    FoodMimanaSlice: 12  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodMimanaSlice: 12  # RW
     FoodPlateTin: 1
 
 #Other
@@ -1537,7 +1537,7 @@
   reagents:
     TableSalt: 5
   solids:
-    FoodPotatoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodPotatoSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeCheesyFries
@@ -1548,7 +1548,7 @@
   reagents:
     TableSalt: 5
   solids:
-    FoodPotatoSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodPotatoSlice: 3  # RW
     FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
@@ -1560,7 +1560,7 @@
   reagents:
     TableSalt: 5
   solids:
-    FoodCarrotSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCarrotSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeNachos
@@ -1607,7 +1607,7 @@
   time: 20
   group: Savory
   solids:
-    FoodCornSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCornSlice: 4  # RW
 
 - type: microwaveMealRecipe
   id: RecipePancake
@@ -1727,7 +1727,7 @@
   group: Cake
   solids:
     FoodCakePlain: 1
-    FoodAppleSlice: 14  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodAppleSlice: 14  # RW
 
 - type: microwaveMealRecipe
   id: RecipeCarrotCake
@@ -1737,7 +1737,7 @@
   group: Cake
   solids:
     FoodCakePlain: 1
-    FoodCarrotSlice: 14  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCarrotSlice: 14  # RW
 
 - type: microwaveMealRecipe
   id: RecipeLemonCake
@@ -1747,7 +1747,7 @@
   group: Cake
   solids:
     FoodCakePlain: 1
-    FoodLemonSlice: 14  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodLemonSlice: 14  # RW
 
 - type: microwaveMealRecipe
   id: RecipeLemoonCake
@@ -1757,7 +1757,7 @@
   group: Cake
   solids:
     FoodCakePlain: 1
-    FoodLemoonSlice: 10  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodLemoonSlice: 10  # RW
     FoodBerries: 1 #dark colouring
 
 - type: microwaveMealRecipe
@@ -1768,7 +1768,7 @@
   group: Cake
   solids:
     FoodCakePlain: 1
-    FoodOrangeSlice: 14  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodOrangeSlice: 14  # RW
 
 - type: microwaveMealRecipe
   id: RecipeBlueberryCake
@@ -1788,7 +1788,7 @@
   group: Cake
   solids:
     FoodCakePlain: 1
-    FoodLimeSlice: 14  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodLimeSlice: 14  # RW
 
 - type: microwaveMealRecipe
   id: RecipeCheeseCake
@@ -1810,7 +1810,7 @@
   group: Cake
   solids:
     FoodCakePlain: 1
-    FoodPumpkinSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodPumpkinSlice: 4  # RW
 
 - type: microwaveMealRecipe
   id: RecipeClownCake
@@ -1935,7 +1935,7 @@
     Sugar: 30
     Egg: 18
   solids:
-    FoodButterSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodButterSlice: 5  # RW
     FoodSnackChocolateBar: 2
 
 #Donks i guess
@@ -2039,7 +2039,7 @@
     FoodChiliPepper: 1
     FoodMeatCutlet: 1
     FoodOnionSlice: 1
-    FoodTomatoSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 3  # RW
 
 - type: microwaveMealRecipe
   id: RecipeColdChili
@@ -2061,7 +2061,7 @@
   solids:
     FoodBowlBig: 1
     FoodOnionSlice: 1
-    FoodTomatoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 5  # RW
     BikeHorn: 1
 
 - type: microwaveMealRecipe
@@ -2075,7 +2075,7 @@
     FoodChiliPepper: 1
     FoodMeatCutlet: 1
     FoodOnionSlice: 1
-    FoodTomatoSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 3  # RW
     ClothingShoesClown: 1
 
 - type: microwaveMealRecipe
@@ -2085,7 +2085,7 @@
   time: 15
   group: Soup
   reagents:
-    Blackpepper: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    Blackpepper: 5  # RW
   solids:
     FoodChiliPepper: 1
     FoodCheeseSlice: 2
@@ -2111,7 +2111,7 @@
   solids:
     FoodChiliPepper: 2
     FoodMeatCutlet: 1
-    FoodCornSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCornSlice: 4  # RW
 
 # SALADS: These should be moved out of the microwave as soon as possible
 - type: microwaveMealRecipe
@@ -2123,7 +2123,7 @@
   solids:
     FoodBowlBig: 1
     FoodAmbrosiaVulgaris: 3
-    FoodAppleSlice: 6  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodAppleSlice: 6  # RW
 
 - type: microwaveMealRecipe
   id: RecipeValidSalad
@@ -2134,7 +2134,7 @@
   solids:
     FoodBowlBig: 1
     FoodAmbrosiaVulgaris: 3
-    FoodPotatoSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodPotatoSlice: 4  # RW
     FoodMeatMeatball: 1
 
 - type: microwaveMealRecipe
@@ -2148,7 +2148,7 @@
   solids:
     FoodBowlBig: 1
     FoodOnionRed: 1
-    FoodCabbageSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCabbageSlice: 4  # RW
 
 - type: microwaveMealRecipe
   id: RecipeCaesarSalad
@@ -2160,10 +2160,10 @@
     OilOlive: 5
   solids:
     FoodBowlBig: 1
-    FoodOnionRedSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodOnionRedSlice: 2  # RW
     FoodBreadPlainSlice: 1
     FoodCheeseSlice: 1
-    FoodCabbageSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCabbageSlice: 3  # RW
 
 - type: microwaveMealRecipe
   id: RecipeCitrusSalad
@@ -2173,9 +2173,9 @@
   group: Salad
   solids:
     FoodBowlBig: 1
-    FoodOrangeSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodLemonSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodLimeSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodOrangeSlice: 5  # RW
+    FoodLemonSlice: 5  # RW
+    FoodLimeSlice: 5  # RW
 
 - type: microwaveMealRecipe
   id: RecipeKimchiSalad
@@ -2187,9 +2187,9 @@
     Vinegar: 5
   solids:
     FoodBowlBig: 1
-    FoodCarrotSlice: 4  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodCabbageSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodGarlicSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodCarrotSlice: 4  # RW
+    FoodCabbageSlice: 2  # RW
+    FoodGarlicSlice: 3  # RW
 
 - type: microwaveMealRecipe
   id: RecipeFruitSalad
@@ -2199,8 +2199,8 @@
   group: Salad
   solids:
     FoodBowlBig: 1
-    FoodOrangeSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodAppleSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodOrangeSlice: 5  # RW
+    FoodAppleSlice: 5  # RW
     FoodGrape: 1
     FoodWatermelonSlice: 2
 
@@ -2212,8 +2212,8 @@
   group: Salad
   solids:
     FoodBowlBig: 1
-    FoodBananaSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodMangoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodBananaSlice: 5  # RW
+    FoodMangoSlice: 5  # RW
     FoodGrape: 1
     FoodWatermelonSlice: 2
 
@@ -2225,12 +2225,12 @@
   group: Salad
   solids:
     FoodWatermelon: 1
-    # Reserve edit start: Orchid's Garden - Tidy Kitchen
+    # RW start
     FoodAppleSlice: 3
     FoodBananaSlice: 3
     FoodLemonSlice: 3
     FoodOrangeSlice: 3
-    # Reserve edit end: Orchid's Garden - Tidy Kitchen
+    # RW end
     FoodAmbrosiaVulgaris: 1
 
 # Muffins
@@ -2282,7 +2282,7 @@
   solids:
     FoodPlateMuffinTin: 1
     FoodDoughSlice: 1
-    FoodBananaSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodBananaSlice: 3  # RW
   reagents:
     Sugar: 10
 
@@ -2409,7 +2409,7 @@
   solids:
     FoodCorn: 1
     FoodPlate: 1
-    FoodButterSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodButterSlice: 2  # RW
 
 - type: microwaveMealRecipe
   id: RecipePeaSoup
@@ -2535,9 +2535,9 @@
   solids:
     FoodTacoShell: 1
     FoodMeatFish: 1
-    FoodOnionSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodTomatoSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodCabbageSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodOnionSlice: 3  # RW
+    FoodTomatoSlice: 3  # RW
+    FoodCabbageSlice: 2  # RW
 
 - type: microwaveMealRecipe
   id: RecipeTacoRat
@@ -2558,9 +2558,9 @@
     FoodTacoShell: 1
     FoodCheeseSlice: 1
     FoodMeatCutlet: 1
-    FoodTomatoSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodCabbageSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodOnionSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 3  # RW
+    FoodCabbageSlice: 2  # RW
+    FoodOnionSlice: 3  # RW
 
 - type: microwaveMealRecipe
   id: RecipeTacoChickenSupreme
@@ -2571,9 +2571,9 @@
     FoodTacoShell: 1
     FoodCheeseSlice: 1
     FoodMeatChickenCutlet: 1
-    FoodTomatoSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodCabbageSlice: 2  # Reserve edit: Orchid's Garden - Tidy Kitchen
-    FoodOnionSlice: 3  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 3  # RW
+    FoodCabbageSlice: 2  # RW
+    FoodOnionSlice: 3  # RW
 
 - type: microwaveMealRecipe
   id: RecipeCroissant
@@ -2664,7 +2664,7 @@
     Egg: 12
   solids:
     FoodMeatBacon: 2
-    FoodPotatoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodPotatoSlice: 5  # RW
     FoodBakedPancake: 2
 
 - type: microwaveMealRecipe
@@ -2678,7 +2678,7 @@
   solids:
     FoodMeatBacon: 1
     FoodMeat: 1
-    FoodTomatoSlice: 5  # Reserve edit: Orchid's Garden - Tidy Kitchen
+    FoodTomatoSlice: 5  # RW
     FoodSoybeans: 2 # replace these with green beans once those become a thing
 
 - type: microwaveMealRecipe

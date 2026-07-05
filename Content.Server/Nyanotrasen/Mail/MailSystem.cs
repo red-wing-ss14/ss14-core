@@ -19,9 +19,9 @@ using System.Linq;
 using System.Threading;
 using Content.Server._DV.Cargo.Components;
 using Content.Server._DV.Cargo.Systems;
-using Content.Server.Kitchen.Components; // Reserve edit: mail-fix #328
+using Content.Server.Kitchen.Components;
 using Content.Server.Radio.EntitySystems; // ImpStation - for radio notifications of new mail
-using Content.Shared.DoAfter; // Reserve edit: mail-fix #328
+using Content.Shared.DoAfter;
 using Content.Shared.Radio; // ImpStation - for radio notifications of new mail
 using Content.Server.Access.Systems;
 using Content.Server.Cargo.Systems;
@@ -90,7 +90,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
         [Dependency] private readonly EmagSystem _emag = default!;
         [Dependency] private readonly TurfSystem _turf = default!;
-        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!; // Reserve edit: mail-fix #328
+        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!; // RW
 
         // DeltaV - system that keeps track of mail and cargo stats
         [Dependency] private readonly LogisticStatsSystem _logisticsStatsSystem = default!;
@@ -107,14 +107,14 @@ namespace Content.Server.Mail
 
             SubscribeLocalEvent<MailComponent, ComponentRemove>(OnRemove);
             SubscribeLocalEvent<MailComponent, UseInHandEvent>(OnUseInHand);
-            SubscribeLocalEvent<MailComponent, InteractUsingEvent>(OnInteractUsing); // Reserve edit: mail-fix #328
+            SubscribeLocalEvent<MailComponent, InteractUsingEvent>(OnInteractUsing); // RW
             SubscribeLocalEvent<MailComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
             SubscribeLocalEvent<MailComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<MailComponent, DestructionEventArgs>(OnDestruction);
             SubscribeLocalEvent<MailComponent, DamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<MailComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<MailComponent, GotEmaggedEvent>(OnMailEmagged);
-            SubscribeLocalEvent<MailComponent, MailForceOpenDoAfterEvent>(OnForceOpenDoAfter); // Reserve edit: mail-fix #328
+            SubscribeLocalEvent<MailComponent, MailForceOpenDoAfterEvent>(OnForceOpenDoAfter); // RW
         }
 
         public override void Update(float frameTime)
@@ -201,7 +201,7 @@ namespace Content.Server.Mail
             }
         }
 
-        // Reserve edit start: mail-fix #328
+        // RW start
         /// <summary>
         /// Force-open mail with a sharp item. Handled on InteractUsing so utensil eating logic on the knife does not run first.
         /// </summary>
@@ -213,7 +213,7 @@ namespace Content.Server.Mail
             if (TryStartForceOpenDoAfter(uid, component, args.User, args.Used))
                 args.Handled = true;
         }
-        // Reserve edit end: mail-fix #328
+        // RW end
 
         /// <summary>
         /// Check the ID against the mail's lock
@@ -418,7 +418,7 @@ namespace Content.Server.Mail
             args.Handled = true;
         }
 
-        // Reserve edit start: mail-fix #328
+        // RW start
         public void InitializeMailOnMapInit(EntityUid uid, MailComponent component)
         {
             if (!component.RequiresIdUnlock)
@@ -495,7 +495,7 @@ namespace Content.Server.Mail
             if (component.IsFragile)
                 _appearanceSystem.SetData(uid, MailVisuals.IsFragile, true);
         }
-        // Reserve edit end: mail-fix #328
+        // RW end
 
         /// <summary>
         /// Returns true if the given entity is considered fragile for delivery.
@@ -589,13 +589,13 @@ namespace Content.Server.Mail
         {
             var mailComp = EnsureComp<MailComponent>(uid);
 
-            // Reserve edit start: mail-fix #328
+            // RW start
             mailComp.RequiresIdUnlock = true;
             mailComp.IsLocked = true;
             UpdateAntiTamperVisuals(uid, true);
 
             PopulateMailContents(uid, mailComp, component.FragileDamageThreshold);
-            // Reserve edit end: mail-fix #328
+            // RW end
 
             if (_random.Prob(component.PriorityChance))
                 mailComp.IsPriority = true;

@@ -4,7 +4,6 @@
 // SPDX-License-Identifier: MIT
 
 using System.Diagnostics.CodeAnalysis;
-// Reserve edit: guide-book #320
 using System.Numerics;
 using Content.Client.Guidebook.Controls;
 using Robust.Client.UserInterface;
@@ -76,7 +75,7 @@ public static class ControlExtension
         return controlList;
     }
 
-    // Reserve edit start: guide-book #320
+    // RW start
     public static bool TryGetParentHandler<T>(this Control child, [NotNullWhen(true)] out T? result)
     {
         for (var control = child; control is not null; control = control.Parent)
@@ -111,7 +110,7 @@ public static class ControlExtension
 
         return position;
     }
-    // Reserve edit end: guide-book #320
+    // RW end
 
     public static bool ChildrenContainText(this Control parent, string search)
     {

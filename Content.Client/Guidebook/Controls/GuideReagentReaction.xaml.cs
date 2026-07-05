@@ -41,7 +41,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
 
     public GuideReagentReaction(ReactionPrototype prototype, IPrototypeManager protoMan, IEntitySystemManager sysMan) : this(protoMan)
     {
-        // Reserve edit start: guide-book #320
+        // RW start
         Container reactantsContainer = ReactantsContainer;
         SetReagents(prototype.Reactants, ref reactantsContainer, protoMan);
         Container productsContainer = ProductsContainer;
@@ -52,7 +52,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
                 products.Add(reagent, reactantProto.Amount);
         }
         SetReagents(products, ref productsContainer, protoMan, addLinks: false);
-        // Reserve edit end: guide-book #320
+        // RW end
 
         var mixingCategories = new List<MixingCategoryPrototype>();
         if (prototype.MixingCategories != null)
@@ -69,7 +69,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         SetMixingCategory(mixingCategories, prototype, sysMan);
     }
 
-    // Reserve edit start: guide-book #320
+    // RW start
     public GuideReagentReaction(
         ReactionPrototype prototype,
         EntProtoId outputEntity,
@@ -110,7 +110,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
 
         SetMixingCategory(mixingCategories, prototype, sysMan);
     }
-    // Reserve edit end: guide-book #320
+    // RW end
 
     public GuideReagentReaction(EntityPrototype prototype,
         Solution solution,
@@ -137,10 +137,10 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         entContainer.AddChild(nameLabel);
         ReactantsContainer.AddChild(entContainer);
 
-        // Reserve edit start: guide-book #320
+        // RW start
         Container productsContainer = ProductsContainer;
         SetReagents(solution.Contents, ref productsContainer, protoMan, addLinks: false);
-        // Reserve edit end: guide-book #320
+        // RW end
         SetMixingCategory(categories, null, sysMan);
     }
 
@@ -149,7 +149,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         IPrototypeManager protoMan,
         IEntitySystemManager sysMan) : this(protoMan)
     {
-        // Reserve edit start: guide-book #320
+        // RW start
         var label = new RichTextLabel();
         label.SetMarkup(Loc.GetString("guidebook-reagent-sources-gas-wrapper",
             ("name", Loc.GetString(prototype.Name).ToLower())));
@@ -166,11 +166,11 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
             Container productsContainer = ProductsContainer;
             SetReagents(quantity, ref productsContainer, protoMan, addLinks: false);
         }
-        // Reserve edit end: guide-book #320
+        // RW end
         SetMixingCategory(categories, null, sysMan);
     }
 
-    // Reserve edit start: guide-book #320
+    // RW start
     private void SetReagents(List<ReagentQuantity> reagents, ref Container container, IPrototypeManager protoMan, bool addLinks = true)
     {
         var amounts = new Dictionary<string, FixedPoint2>();
@@ -235,7 +235,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         }
         container.Visible = true;
     }
-    // Reserve edit end: guide-book #320
+    // RW end
 
     private void SetMixingCategory(IReadOnlyList<ProtoId<MixingCategoryPrototype>> mixingCategories, ReactionPrototype? prototype, IEntitySystemManager sysMan)
     {

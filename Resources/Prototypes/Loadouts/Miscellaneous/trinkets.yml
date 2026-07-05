@@ -106,14 +106,14 @@
   storage:
     back:
     - ClothingHeadHatFlowerWreath
-  groupBy: "flowers"  # Reserve edit: Better trinket loadout
+  groupBy: "flowers"  # RW
 
 - type: loadout
   id: Hairflower
   storage:
     back:
     - ClothingHeadHatHairflower
-  groupBy: "flowers"  # Reserve edit: Better trinket loadout
+  groupBy: "flowers"  # RW
 
 # Headphones
 - type: loadout
@@ -121,7 +121,7 @@
   storage:
     back:
     - ClothingMultipleHeadphones
-  groupBy: "audio"  # Reserve edit: Better trinket loadout
+  groupBy: "audio"  # RW
 
 # Toys
 - type: loadout
@@ -129,22 +129,22 @@
   storage:
     back:
     - PlushieLizard
-  groupBy: "plush"  # Reserve edit: Better trinket loadout
+  groupBy: "plush"  # RW
 
 - type: loadout
   id: PlushieSpaceLizard
   storage:
     back:
     - PlushieSpaceLizard
-  groupBy: "plush"  # Reserve edit: Better trinket loadout
+  groupBy: "plush"  # RW
 
-# Reserve
+# RW
 - type: loadout
   id: PlushieMoth
   storage:
     back:
     - PlushieMoth
-  groupBy: "plush"  # Reserve edit: Better trinket loadout
+  groupBy: "plush"  # RW
 
 - type: loadout
   id: ThreeCandles
@@ -154,7 +154,7 @@
     - CandleRed
     - CandleBlue
     - CandleGreenSmall
-  groupBy: "misc"  # Reserve edit: Better trinket loadout
+  groupBy: "misc"  # RW
 
 # Smokeables
 - type: loadout
@@ -419,7 +419,7 @@
   storage:
     back:
     - CardBoxBlack
-  groupBy: "games"  # Reserve edit: Better trinket loadout
+  groupBy: "games"  # RW
 
 # Nanotrasen Variant
 - type: loadout
@@ -435,13 +435,13 @@
   storage:
     back:
     - CardBoxNanotrasen
-  groupBy: "games"  # Reserve edit: Better trinket loadout
+  groupBy: "games"  # RW
 
 # Candy!
 
 - type: loadout
   id: FoodSnackLollypopWrapped
-  dummyEntity: FoodSnackLollypop  # Reserve edit: Better trinket loadout
+  dummyEntity: FoodSnackLollypop  # RW
 #  effects: # Orion-Edit: Removed
 #  - !type:JobRequirementLoadoutEffect
 #    requirement:
@@ -450,11 +450,11 @@
   storage:
     back:
     - FoodSnackLollypopWrapped
-  groupBy: "candy"  # Reserve edit: Better trinket loadout
+  groupBy: "candy"  # RW
 
 - type: loadout
   id: FoodSnackLollypopWrappedRainbow
-  dummyEntity: FoodSnackLollypopRainbow  # Reserve edit: Better trinket loadout
+  dummyEntity: FoodSnackLollypopRainbow  # RW
 #  effects: # Orion-Edit: Removed
 #  - !type:JobRequirementLoadoutEffect
 #    requirement:
@@ -463,11 +463,11 @@
   storage:
     back:
     - FoodSnackLollypopWrappedRainbow
-  groupBy: "candy"  # Reserve edit: Better trinket loadout
+  groupBy: "candy"  # RW
 
 - type: loadout
   id: FoodSnackLollypopWrappedCarp
-  dummyEntity: FoodSnackLollypopCarp  # Reserve edit: Better trinket loadout
+  dummyEntity: FoodSnackLollypopCarp  # RW
 #  effects: # Orion-Edit: Removed
 #  - !type:JobRequirementLoadoutEffect
 #    requirement:
@@ -477,7 +477,7 @@
   storage:
     back:
     - FoodSnackLollypopWrappedCarp
-  groupBy: "candy"  # Reserve edit: Better trinket loadout
+  groupBy: "candy"  # RW
 
 # End GoobStation
 

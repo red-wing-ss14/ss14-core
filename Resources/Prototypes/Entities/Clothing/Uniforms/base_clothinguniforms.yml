@@ -78,11 +78,11 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 30
-      stain: # Reserve - clothing stains
+      stain: # RW
         maxVol: 5
-  # Reserve start - clothing stains
+  # RW start
   - type: Appearance
-  - type: Stainable # Reserve
+  - type: Stainable # RW
     clothingVisuals:
       jumpsuit:
       - sprite: _Gabystation/Effects/blood.rsi
@@ -97,10 +97,10 @@
     iconVisuals:
     - sprite: _Gabystation/Effects/blood.rsi
       state: uniformbloodicon
-  # Reserve end - clothing stains
+  # RW end
   - type: Tag
     tags:
-    - ClothMade # Reserve
+    - ClothMade # RW
     - Recyclable
     - WhitelistChameleon
     - Skirt # Goobstation
@@ -118,7 +118,7 @@
     blockList: [ UNDERSHIRT ]
     hideList: [ UNDERWEAR ]
   # Orion-End
-  # Reserve start - clothing stains
+  # RW start
   - type: Stainable
     clothingVisuals:
       jumpsuit:
@@ -134,7 +134,7 @@
     iconVisuals:
     - sprite: _Gabystation/Effects/blood.rsi
       state: uniformbloodicon
-  # Reserve end - clothing stains
+  # RW end
 
 
 - type: entity
@@ -191,7 +191,7 @@
     foldVerbText: fold-verb-clothing-jacket
   - type: FoldableClothing
     foldedEquippedPrefix: folded
-  # Reserve start - clothing stains
+  # RW start
   - type: Stainable
     clothingVisuals:
       jumpsuit:
@@ -207,4 +207,4 @@
     iconVisuals:
     - sprite: _Gabystation/Effects/blood.rsi
       state: uniformbloodicon
-  # Reserve end - clothing stains
+  # RW end

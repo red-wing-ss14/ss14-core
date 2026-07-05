@@ -4,7 +4,6 @@
 // SPDX-License-Identifier: MIT
 
 using System.Diagnostics.CodeAnalysis;
-// Reserve edit: guide-book #320
 using Content.Client.UserInterface.ControlExtensions;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
@@ -18,7 +17,7 @@ namespace Content.Client.Guidebook.RichText;
 [UsedImplicitly]
 public sealed class TextLinkTag : IMarkupTagHandler
 {
-    // Reserve edit: guide-book #320
+    // RW
     public static Color LinkColor => Color.CornflowerBlue;
 
     public string Name => "textlink";
@@ -33,10 +32,10 @@ public sealed class TextLinkTag : IMarkupTagHandler
             return false;
         }
 
-        var label = new Label { Text = text }; // Reserve edit: guide-book #320
+        var label = new Label { Text = text }; // RW
 
         label.MouseFilter = Control.MouseFilterMode.Stop;
-        label.FontColorOverride = LinkColor; // Reserve edit: guide-book #320
+        label.FontColorOverride = LinkColor; // RW
         label.DefaultCursorShape = Control.CursorShape.Hand;
 
         label.OnMouseEntered += _ => label.FontColorOverride = Color.LightSkyBlue;
@@ -47,7 +46,7 @@ public sealed class TextLinkTag : IMarkupTagHandler
         return true;
     }
 
-    // Reserve edit start: guide-book #320
+    // RW start
     private static void OnKeybindDown(GUIBoundKeyEventArgs args, string link, Control? control)
     {
         if (args.Function != EngineKeyFunctions.UIClick)
@@ -59,7 +58,7 @@ public sealed class TextLinkTag : IMarkupTagHandler
         if (control.TryGetParentHandler<ILinkClickHandler>(out var handler))
             handler.HandleClick(link);
     }
-    // Reserve edit end: guide-book #320
+    // RW end
 }
 
 public interface ILinkClickHandler

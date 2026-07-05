@@ -114,7 +114,7 @@
   description: It's magic.
   components:
   - type: Microwave
-    capacity: 30  # Reserve edit: Orchid's Garden - Expand Microwave
+    capacity: 30  # RW
     canMicrowaveIdsSafely: false # Goobstation
     explosionChance: .25 # Goobstation
   - type: Appearance

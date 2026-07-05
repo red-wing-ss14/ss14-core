@@ -1,4 +1,4 @@
-﻿chat-trigger-cancel-button = Отмена
+chat-trigger-cancel-button = Отмена
 chat-trigger-send-anyway-button = Всё равно отправить
 
 chat-trigger-grammarnazi-title = Grammarnazi
@@ -36,3 +36,5 @@ grammarnazi-trigger-desc-grammar7 = питомец пишется через и
 grammarnazi-trigger-desc-grammar9 = ассистент пишется с двумя С впереди
 
 grammarnazi-trigger-desc-grammar10 = То, либо, кое, нибудь - черточку поставить не забудь!
+
+brainrot-trigger-desc-police = Ты кажется перепутал эпоху постсовка и далекое будущее всего человечества.

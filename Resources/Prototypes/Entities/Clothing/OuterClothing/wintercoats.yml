@@ -145,7 +145,7 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 30
-      stain: # Reserve - clothing stains
+      stain: # RW
         maxVol: 5
   - type: Tag
     tags:

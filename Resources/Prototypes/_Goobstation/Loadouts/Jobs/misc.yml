@@ -49,7 +49,7 @@
   storage:
     back:
     - PersonalAI
-  groupBy: "pai"  # Reserve edit: Better trinket loadout
+  groupBy: "pai"  # RW
 
 - type: loadout
   id: GoldenPersonalAI
@@ -62,7 +62,7 @@
   storage:
     back:
     - GoldenPersonalAI
-  groupBy: "pai"  # Reserve edit: Better trinket loadout
+  groupBy: "pai"  # RW
 
 # Cheap Sunglasses
 - type: loadout
@@ -75,12 +75,12 @@
   storage:
     back:
     - CrewCassette
-  groupBy: "audio"  # Reserve edit: Better trinket loadout
+  groupBy: "audio"  # RW
 
 # Animals
 - type: loadout
   id: Squackroach
-  effects:  # Reserve edit: Better trinket loadout
+  effects:  # RW
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:RoleTimeRequirement
@@ -98,7 +98,7 @@
 
 - type: loadout
   id: Mothroach
-  effects:  # Reserve edit: Better trinket loadout
+  effects:  # RW
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:RoleTimeRequirement

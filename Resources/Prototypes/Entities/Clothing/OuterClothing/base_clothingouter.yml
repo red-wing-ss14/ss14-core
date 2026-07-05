@@ -168,9 +168,9 @@
   - type: Sprite
     state: icon
   - type: AllowSuitStorage # DeltaV - allow suit storage for all outer clothing, no whitelist
-  # Reserve start - clothing stains
+  # RW start
   - type: Appearance
-  - type: Stainable # Reserve
+  - type: Stainable # RW
     clothingVisuals:
       outerClothing:
       - sprite: _Gabystation/Effects/blood.rsi
@@ -185,11 +185,11 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 30
-      stain: # Reserve - clothing stains
+      stain: # RW
         maxVol: 5
-  - type: StainBlocker # Reserve
+  - type: StainBlocker # RW
     slots: [INNERCLOTHING]
-  # Reserve end - clothing stains
+  # RW end
 
 - type: entity
   abstract: true
@@ -208,7 +208,7 @@
   - type: Tag
     tags:
       - WhitelistChameleon
-  - type: Stainable # Reserve
+  - type: Stainable # RW
     clothingVisuals:
       outerClothing:
       - sprite: _Gabystation/Effects/blood.rsi
@@ -216,7 +216,7 @@
     iconVisuals:
     - sprite: _Gabystation/Effects/blood.rsi
       state: suitbloodicon
-  - type: StainBlocker # Reserve
+  - type: StainBlocker # RW
     slots: [INNERCLOTHING, FEET, GLOVES]
 
 - type: entity
@@ -237,7 +237,7 @@
         type: StorageBoundUserInterface
   - type: StaticPrice
     price: 40 # Orion-Edit: 70 > 40
-  - type: Stainable # Reserve
+  - type: Stainable # RW
     clothingVisuals:
       outerClothing:
       - sprite: _Gabystation/Effects/blood.rsi
@@ -266,7 +266,7 @@
     - state: icon-open
       map: ["foldedLayer"]
       visible: false
-  - type: Stainable # Reserve
+  - type: Stainable # RW
     clothingVisuals:
       outerClothing:
       - sprite: _Gabystation/Effects/blood.rsi
@@ -415,7 +415,7 @@
   - type: HideClothingLayerClothing # Goobstation
     hiddenSlots:
     - jumpsuit
-  - type: StainBlocker # Reserve
+  - type: StainBlocker # RW
     slots: [INNERCLOTHING, FEET, GLOVES]
 
 - type: entity
@@ -464,7 +464,7 @@
     - PlasmamanSafe # EE Plasmeme Change
   - type: Clothing
     clothingType: hardsuit # Amour port: WD Slim body types
-  - type: StainBlocker # Reserve
+  - type: StainBlocker # RW
     slots: [INNERCLOTHING, FEET, GLOVES]
 
 - type: entity

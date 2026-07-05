@@ -31,7 +31,7 @@
   storage:
     back:
     - TapeRecorderFilled
-  groupBy: "audio"  # Reserve edit: Better trinket loadout
+  groupBy: "audio"  # RW
 
 - type: loadout
   id: DrinkOniGourd
@@ -42,4 +42,4 @@
   storage:
     back:
     - DrinkOniGourd
-  groupBy: "species"  # Reserve edit: Better trinket loadout
+  groupBy: "species"  # RW
