@@ -106,14 +106,12 @@
   storage:
     back:
     - ClothingHeadHatFlowerWreath
-  groupBy: "flowers"  # RW
 
 - type: loadout
   id: Hairflower
   storage:
     back:
     - ClothingHeadHatHairflower
-  groupBy: "flowers"  # RW
 
 # Headphones
 - type: loadout
@@ -121,7 +119,6 @@
   storage:
     back:
     - ClothingMultipleHeadphones
-  groupBy: "audio"  # RW
 
 # Toys
 - type: loadout
@@ -129,22 +126,12 @@
   storage:
     back:
     - PlushieLizard
-  groupBy: "plush"  # RW
 
 - type: loadout
   id: PlushieSpaceLizard
   storage:
     back:
     - PlushieSpaceLizard
-  groupBy: "plush"  # RW
-
-# RW
-- type: loadout
-  id: PlushieMoth
-  storage:
-    back:
-    - PlushieMoth
-  groupBy: "plush"  # RW
 
 - type: loadout
   id: ThreeCandles
@@ -154,7 +141,6 @@
     - CandleRed
     - CandleBlue
     - CandleGreenSmall
-  groupBy: "misc"  # RW
 
 # Smokeables
 - type: loadout
@@ -419,7 +405,6 @@
   storage:
     back:
     - CardBoxBlack
-  groupBy: "games"  # RW
 
 # Nanotrasen Variant
 - type: loadout
@@ -435,13 +420,11 @@
   storage:
     back:
     - CardBoxNanotrasen
-  groupBy: "games"  # RW
 
 # Candy!
 
 - type: loadout
   id: FoodSnackLollypopWrapped
-  dummyEntity: FoodSnackLollypop  # RW
 #  effects: # Orion-Edit: Removed
 #  - !type:JobRequirementLoadoutEffect
 #    requirement:
@@ -450,11 +433,9 @@
   storage:
     back:
     - FoodSnackLollypopWrapped
-  groupBy: "candy"  # RW
 
 - type: loadout
   id: FoodSnackLollypopWrappedRainbow
-  dummyEntity: FoodSnackLollypopRainbow  # RW
 #  effects: # Orion-Edit: Removed
 #  - !type:JobRequirementLoadoutEffect
 #    requirement:
@@ -463,11 +444,9 @@
   storage:
     back:
     - FoodSnackLollypopWrappedRainbow
-  groupBy: "candy"  # RW
 
 - type: loadout
   id: FoodSnackLollypopWrappedCarp
-  dummyEntity: FoodSnackLollypopCarp  # RW
 #  effects: # Orion-Edit: Removed
 #  - !type:JobRequirementLoadoutEffect
 #    requirement:
@@ -477,7 +456,6 @@
   storage:
     back:
     - FoodSnackLollypopWrappedCarp
-  groupBy: "candy"  # RW
 
 # End GoobStation
 

@@ -19,7 +19,6 @@
 #    back:
 #    - SilverRing
 
-
 - type: loadout
   id: WhiteCane
   storage:
@@ -31,7 +30,7 @@
   storage:
     back:
     - TapeRecorderFilled
-  groupBy: "audio"  # RW
+
 
 - type: loadout
   id: DrinkOniGourd
@@ -42,4 +41,4 @@
   storage:
     back:
     - DrinkOniGourd
-  groupBy: "species"  # RW
+

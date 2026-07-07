@@ -49,7 +49,7 @@
   storage:
     back:
     - PersonalAI
-  groupBy: "pai"  # RW
+
 
 - type: loadout
   id: GoldenPersonalAI
@@ -62,7 +62,7 @@
   storage:
     back:
     - GoldenPersonalAI
-  groupBy: "pai"  # RW
+
 
 # Cheap Sunglasses
 - type: loadout
@@ -75,17 +75,12 @@
   storage:
     back:
     - CrewCassette
-  groupBy: "audio"  # RW
+
 
 # Animals
 - type: loadout
   id: Squackroach
-  effects:  # RW
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobZookeeper
-      time: 18000 # 5hr
+
   storage:
     back:
     - MobSquackroach
@@ -98,12 +93,7 @@
 
 - type: loadout
   id: Mothroach
-  effects:  # RW
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobZookeeper
-      time: 3600 # 1hr
+
   storage:
     back:
     - MobMothroach

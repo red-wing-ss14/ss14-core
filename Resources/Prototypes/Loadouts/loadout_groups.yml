@@ -211,40 +211,7 @@
   - OffsetCaneMime
   - OffsetCaneNT
   - Cane
-  # RW start
-  - PlushieMoth
-  - PlushieSlime
-  - PlushieVox
-  # - PlushieHuman
-  - PlushieSharkBlue
-  - PlushieSharkGrey
-  - PlushieSharkPink
-  - PlushieSharkRainbow
-  - VinylSleeve
-  - DiskCaseFilled
-  - DiskCaseGold
-  - MetalRing
-  - PlasticRing
-  - FakeDiamondRing
-  - FakeRubyRing
-  - PokerChips50
-  - AceOfSpades
-  - MysteryFigureBox
-  - TennisBall
-  - BalloonNT
-  - BalloonCorgi
 
-  - d6DiceGold
-  - d6DiceRainbow
-  - ReserveCan
-  - OrchitoCan
-  - ReserveRobustCan
-  - Skub
-  - MaterialCotton
-  - Vape
-  - SmokingPipe
-  - LighterGold
-  # RW end
   # GoobStation Start
   - CardBoxBlack
   - CardBoxNanotrasen
@@ -297,14 +264,7 @@
   - Mouse
   - Mothroach
   - Goldfish
-  # RW start
-  - Butterfly
-  - SnailMoth
-  - Bee
-  - Snail
-  - Hamster
-  - MousePink
-  # RW end
+
 
 - type: loadoutGroup
   id: GroupTankHarness
