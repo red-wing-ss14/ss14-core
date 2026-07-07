@@ -270,7 +270,6 @@ namespace Content.Server.IoC
             IoCManager.Register<ChatProtectionSystem>();
             IoCManager.Register<EmoteProtectionSystem>();
             IoCManager.Register<AdminActionProtectionSystem>();
-            // Orion-End
             IoCManager.Register<TTSManager>(); // WD EDIT TTS
         }
     }
