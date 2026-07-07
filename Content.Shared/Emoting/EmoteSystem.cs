@@ -12,7 +12,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Emoting;
 
@@ -43,9 +42,5 @@ public sealed class EmoteSystem : EntitySystem
         if (!TryComp(args.Uid, out EmotingComponent? emote) || !emote.Enabled)
             args.Cancel();
 
-        // RW start
-        if (TryComp(args.Uid, out StaminaComponent? stamina) && stamina.Critical)
-            args.Cancel();
-        // RW end
     }
 }
