@@ -116,9 +116,3 @@
     tags:
     - Fruit
     - Vegetable
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodBluespaceTomatoSlice
-  # RW end

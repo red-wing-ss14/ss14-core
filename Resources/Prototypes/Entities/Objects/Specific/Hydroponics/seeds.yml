@@ -123,13 +123,7 @@
         blacklist:
           tags:
           - Book
-    # RW start
-    # Can be recycled
     - type: PhysicalComposition
-      materialComposition:
-        Cloth: 5
-        Wood: 5
-    # RW end
 
 - type: entity
   parent: SeedBase

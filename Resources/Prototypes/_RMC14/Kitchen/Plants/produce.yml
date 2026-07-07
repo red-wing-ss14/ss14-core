@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2026 Space Station 14 Contributors
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: entity
   name: mango
   parent: FoodProduceBase
@@ -40,10 +36,3 @@
     entries:
       Taco: FSE_Mango
       Burger: FSE_MangoBurger
-      Skewer: FSE_Mango  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodMangoSlice
-  # RW end

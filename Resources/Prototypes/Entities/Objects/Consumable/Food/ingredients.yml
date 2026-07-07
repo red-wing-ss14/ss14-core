@@ -216,12 +216,6 @@
     damage:
       types:
         Blunt: 0
-  # RW start
-  # Can be recycled
-  - type: PhysicalComposition
-    materialComposition:
-      Paper: 50
-  # RW end
 
 - type: entity
   abstract: true

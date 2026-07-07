@@ -191,12 +191,6 @@
   - type: Tag
     tags:
     - Ruminant
-  # RW start
-  # Can be recycled
-  - type: PhysicalComposition
-    materialComposition:
-      Biomass: 1
-  # RW end
 
 # For produce that can be immediately eaten
 
@@ -358,12 +352,6 @@
     tags:
     - Vegetable
     - Ruminant
-  # RW start
-  - type: FoodSequenceElement
-    entries:
-      Taco: LaughinPea
-      Burger: LaughinPeaBurger
-  # RW end
 
 - type: entity
   name: tower-cap log
@@ -557,16 +545,6 @@
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   #Goobstation End
-  # RW start
-  # Can be turned into a tiiiiny piece of bananium in Recycler
-  - type: PhysicalComposition
-    materialComposition:
-      RawBananium: 2
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodBananaSlice
-  # RW end
 
 - type: entity
   name: mimana
@@ -610,16 +588,6 @@
     entries:
       Burger: Mimana
       Taco: Mimana
-  # RW start
-  # Can be turned into a tiiiiny piece of bananium in Recycler
-  - type: PhysicalComposition
-    materialComposition:
-      RawBananium: 3
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodMimanaSlice
-  # RW end
 
 - type: entity
   name: banana peel
@@ -633,8 +601,6 @@
     sprite: Objects/Specific/Hydroponics/banana.rsi
     heldPrefix: peel
   - type: Slippery
-    slipData:
-      launchForwardsMultiplier: 1.5  # RW
   - type: StepTrigger
     intersectRatio: 0.2
     triggerGroups: # Goobstation
@@ -687,23 +653,6 @@
     slots:
     - HEAD
     quickEquip: false
-  # RW start
-  # Can be turned into a tiiiiny piece of bananium in Recycler
-  - type: PhysicalComposition
-    materialComposition:
-      RawBananium: 1
-  # Can be grilled
-  - type: AtmosExposed
-  - type: Temperature
-    currentTemperature: 290
-  - type: InternalTemperature
-    conductivity: 5.0
-    thickness: 0.5
-    area: 1.0
-  - type: Construction
-    graph: RecipeTrashBakedBananaPeelAlt
-    node: start
-  # RW end
 
 - type: entity
   name: baked banana peel
@@ -729,11 +678,6 @@
           Quantity: 1
         - ReagentId: Carbon
           Quantity: 2
-  # RW start
-  # Can't be grilled
-  - type: Construction
-    node: end
-  # RW end
 
 - type: entity
   name: mimana peel
@@ -812,13 +756,6 @@
     entries:
       Burger: CarrotBurger
       Taco: Carrot
-      Skewer: Carrot  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 3
-    slice: FoodCarrotSlice
-  # RW end
 
 - type: entity
   name: cabbage
@@ -851,13 +788,6 @@
     entries:
       Burger: CabbageBurger
       Taco: Cabbage
-      Skewer: Cabbage  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 5
-    slice: FoodCabbageSlice
-  # RW end
 
 - type: entity
   name: garlic
@@ -890,13 +820,6 @@
     entries:
       Burger: GarlicBurger
       Taco: Garlic
-      Skewer: Garlic  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 2
-    slice: FoodGarlicSlice
-  # RW end
 
 - type: entity
   name: lemon
@@ -935,13 +858,6 @@
     entries:
       Burger: Lemon
       Taco: Lemon
-      Skewer: Lemon  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodLemonSlice
-  # RW end
 
 - type: entity
   name: lemoon
@@ -979,13 +895,6 @@
     entries:
       Burger: Lemoon
       Taco: Lemoon
-      Skewer: Lemoon  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodLemoonSlice
-  # RW end
 
 - type: entity
   name: lime
@@ -1015,13 +924,6 @@
     entries:
       Burger: Lime
       Taco: Lime
-      Skewer: Lime  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodLimeSlice
-  # RW end
 
 - type: entity
   name: orange
@@ -1050,13 +952,6 @@
     entries:
       Burger: Orange
       Taco: Orange
-      Skewer: Orange  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodOrangeSlice
-  # RW end
 
 - type: entity
   name: extradimensional orange
@@ -1096,13 +991,6 @@
   - type: Tag
     tags:
     - Fruit
-  # RW start
-  - type: FoodSequenceElement
-    entries:
-      Burger: ExtradimensionalOrangeBurger
-      Taco: ExtradimensionalOrange
-      Skewer: ExtradimensionalOrange
-  # RW end
 
 - type: entity
   name: pineapple
@@ -1179,13 +1067,6 @@
     entries:
       Burger: Potato
       Taco: Potato
-      Skewer: Potato  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 3
-    slice: FoodPotatoSlice
-  # RW end
 
 
 - type: entity
@@ -1249,12 +1130,6 @@
       Skewer: TomatoSkewer
       Burger: Tomato
       Taco: Tomato
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 3
-    slice: FoodTomatoSlice
-  # RW end
 
 - type: entity
   name: blue tomato
@@ -1306,13 +1181,6 @@
     entries:
       Burger: BlueTomato
       Taco: BlueTomato
-      Skewer: BlueTomato
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 3
-    slice: FoodBlueTomatoSlice
-  # RW end
 
 - type: entity
   name: blood tomato
@@ -1363,12 +1231,6 @@
       Skewer: TomatoSkewer
       Burger: BloodTomato
       Taco: BloodTomato
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 3
-    slice: FoodBloodTomatoSlice
-  # RW end
 
 - type: entity
   name: eggplant
@@ -1398,12 +1260,6 @@
     tags:
     - Fruit
     - Vegetable
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 3
-    slice: FoodEggplantSlice
-  # RW end
 
 - type: entity
   name: apple
@@ -1441,13 +1297,6 @@
     entries:
       Burger: Apple
       Taco: Apple
-      Skewer: Apple  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodAppleSlice
-  # RW end
 
 - type: entity
   name: golden apple
@@ -1490,13 +1339,6 @@
     entries:
       Burger: GoldenApple
       Taco: GoldenApple
-      Skewer: GoldenApple  # RW
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodGoldenAppleSlice
-  # RW end
 
 - type: entity
   name: cocoa pod
@@ -1573,12 +1415,6 @@
       Burger: Corn
       Taco: Corn
       Skewer: CornSkewer
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 3
-    slice: FoodCornSlice
-  # RW end
 
 - type: entity
   name: corn cob
@@ -1601,12 +1437,6 @@
         reagents:
         - ReagentId: Cornmeal
           Quantity: 10
-  # RW start
-  # Can be recycled
-  - type: PhysicalComposition
-    materialComposition:
-      Biomass: 1
-  # RW end
 
 - type: entity
   name: onion
@@ -1743,7 +1573,6 @@
     entries:
       Burger: PineappleSliceBurger
       Taco: PineappleSlice
-      Skewer: OnionRedSlice  # RW
 
 - type: entity
   name: onion slice
@@ -1775,7 +1604,6 @@
     entries:
       Burger: OnionSliceBurger
       Taco: OnionSlice
-      Skewer: OnionRedSlice  # RW
 
 - type: entity
   name: red onion slice
@@ -1807,7 +1635,6 @@
     entries:
       Burger: OnionRedSliceBurger
       Taco: OnionRedSlice
-      Skewer: OnionRedSlice  # RW
 
 - type: entity
   name: chili pepper
@@ -1910,7 +1737,6 @@
     entries:
       Taco: Aloe
       Burger: Aloe
-      Skewer: Aloe  # RW
 
 - type: entity
   name: poppy
@@ -1950,7 +1776,6 @@
     entries:
       Taco: Poppy
       Burger: Poppy
-      Skewer: Poppy  # RW
 
 - type: entity
   name: lily
@@ -1983,7 +1808,6 @@
     entries:
       Taco: Lily
       Burger: Lily
-      Skewer: Lily  # RW
 
 - type: entity
   name: lingzhi
@@ -2016,7 +1840,6 @@
     entries:
       Taco: Lingzhi
       Burger: Lingzhi
-      Skewer: Lingzhi  # RW
 
 - type: entity
   name: ambrosia vulgaris
@@ -2062,7 +1885,6 @@
     entries:
       Taco: AmbrosiaVulgaris
       Burger: AmbrosiaVulgarisBurger
-      Skewer: AmbrosiaVulgaris  # RW
 
 - type: entity
   name: ambrosia deus
@@ -2106,7 +1928,6 @@
     entries:
       Taco: AmbrosiaDeus
       Burger: AmbrosiaDeusBurger
-      Skewer: AmbrosiaDeus  # RW
 
 - type: entity
   name: galaxythistle
@@ -2140,7 +1961,6 @@
     entries:
       Taco: Galaxythistle
       Burger: GalaxythistleBurger
-      Skewer: Galaxythistle  # RW
 
 - type: entity
   name: glasstle
@@ -2209,7 +2029,6 @@
     entries:
       Taco: Glasstle
       Burger: GlasstleBurger
-      Skewer: Glasstle  # RW
 
 - type: entity
   name: fly amanita
@@ -2242,7 +2061,6 @@
     entries:
       Taco: FlyAmanita
       Burger: FlyAmanita
-      Skewer: FlyAmanita  # RW
   - type: Tag #Goobstation
     tags:
     - Mushroom
@@ -2279,7 +2097,6 @@
     entries:
       Taco: Gatfruit
       Burger: GatfruitBurger
-      Skewer: Gatfruit  # RW
 
 - type: entity
   name: capfruit
@@ -2315,7 +2132,6 @@
     entries:
       Taco: Capfruit
       Burger: CapfruitBurger
-      Skewer: Capfruit  # RW
 
 - type: entity
   name: capfruit
@@ -2411,7 +2227,6 @@
     entries:
       Taco: SpacemansTrumpet
       Burger: SpacemansTrumpetBurger
-      Skewer: SpacemansTrumpet  # RW
 
 - type: entity
   name: koibean
@@ -2645,13 +2460,6 @@
     tags:
     - Fruit
     - Slice
-  # RW start
-  - type: FoodSequenceElement
-    entries:
-      Burger: HolymelonSliceBurger
-      Taco: HolymelonSlice
-      Skewer: HolymelonSliceSkewer
-  # RW end
 
 - type: entity
   name: grapes
@@ -2760,7 +2568,6 @@
     entries:
       Taco: Bungo
       Burger: Bungo
-      Skewer: Bungo  # RW
 
 - type: entity
   name: bungo pit
@@ -2851,12 +2658,6 @@
   - type: Tag
     tags:
     - Vegetable
-  # RW start
-  - type: FoodSequenceElement
-    entries:
-      Taco: WorldPea
-      Burger: WorldPeaBurger
-  # RW end
 
 - type: entity
   name: pumpkin
@@ -2907,12 +2708,6 @@
     tags:
     - Fruit
     - Vegetable
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodPumpkinSlice
-  # RW end
 
 - type: entity
   name: blue pumpkin
@@ -2964,12 +2759,6 @@
   - type: Tag
     tags:
     - Fruit
-  # RW start
-  # Can be sliced
-  - type: SliceableFood
-    count: 4
-    slice: FoodBluePumpkinSlice
-  # RW end
 
 - type: entity
   name: cotton boll
