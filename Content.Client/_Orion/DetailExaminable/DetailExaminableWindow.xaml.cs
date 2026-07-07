@@ -43,8 +43,6 @@ public sealed partial class DetailExaminableWindow : FancyWindow
 
         RotateLeftButton.OnPressed += _ => RotateDirection(-1);
         RotateRightButton.OnPressed += _ => RotateDirection(1);
-
-        PreviewTabs.OnTabChanged += OnTabChanged;
     }
 
     private void RotateDirection(int step)
@@ -73,44 +71,7 @@ public sealed partial class DetailExaminableWindow : FancyWindow
         TargetPreview.AddChild(_spriteView);
     }
 
-    private void UpdateNsfwPreviewVisibility(bool toggleNsfw)
-    {
-        // Return if nothing changes
-        if (PreviewTagsText.Visible == !toggleNsfw)
-            return;
 
-        var config = IoCManager.Resolve<IConfigurationManager>();
-        var showLinks = config.GetCVar(CCVars.FlavorLinksEnabled);
-        var showOOC = config.GetCVar(CCVars.FlavorOocEnabled);
-
-        if (showLinks)
-        {
-            PreviewLinksContainer.Visible = !toggleNsfw;
-            PreviewNSFWLinksContainer.Visible = toggleNsfw;
-        }
-
-        if (showOOC)
-        {
-            PreviewOOCText.Visible = !toggleNsfw;
-            PreviewNSFWOOCText.Visible = toggleNsfw;
-        }
-
-        PreviewTagsText.Visible = !toggleNsfw;
-        PreviewNSFWTagsText.Visible = toggleNsfw;
-    }
-
-    private void OnTabChanged(int tab)
-    {
-        switch (tab)
-        {
-            case 3:
-                UpdateNsfwPreviewVisibility(true);
-                break;
-            default:
-                UpdateNsfwPreviewVisibility(false);
-                break;
-        }
-    }
 
     public void UpdateState(DetailExaminableEuiState state, IEntityManager entManager)
     {
@@ -122,19 +83,16 @@ public sealed partial class DetailExaminableWindow : FancyWindow
         PreviewTabs.SetTabTitle(0, Loc.GetString("flavor-tab-flavor"));
         PreviewTabs.SetTabTitle(1, Loc.GetString("flavor-tab-character"));
         PreviewTabs.SetTabTitle(2, Loc.GetString("flavor-tab-gyr"));
-        PreviewTabs.SetTabTitle(3, Loc.GetString("flavor-tab-nsfw"));
 
         // Hide things if they are disabled in CCVars
         var showTraits = config.GetCVar(CCVars.FlavorTraitsEnabled);
         var showOoc = config.GetCVar(CCVars.FlavorOocEnabled);
         var showGyr = config.GetCVar(CCVars.FlavorGyrEnabled);
-        var showNsfw = config.GetCVar(CCVars.NsfwContentEnabled) && !isClothed; // RW
         var showLinks = config.GetCVar(CCVars.FlavorLinksEnabled);
 
         PreviewTabs.SetTabVisible(0, showOoc);
         PreviewTabs.SetTabVisible(1, showTraits);
         PreviewTabs.SetTabVisible(2, showGyr);
-        PreviewTabs.SetTabVisible(3, showNsfw);
 
         var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
         var species = prototypeManager.TryIndex(state.Species, out var speciesProto)
@@ -153,16 +111,10 @@ public sealed partial class DetailExaminableWindow : FancyWindow
         if (showOoc)
         {
             SetDescriptionMarkup(PreviewOOCText, state.OOCFlavorText, "detail-examinable-empty-ooc");
-
-            if (showNsfw)
-                SetDescriptionMarkup(PreviewNSFWOOCText, state.NsfwOOCFlavorText, "detail-examinable-empty-ooc");
         }
 
         if (showTraits)
             SetDescriptionMarkup(PreviewTraitsText, state.CharacterFlavorText, "detail-examinable-empty-character");
-
-        if (showNsfw)
-            SetDescriptionMarkup(PreviewNSFWText, state.NsfwFlavorText, "detail-examinable-empty-nsfw");
 
         if (showGyr)
         {
@@ -179,19 +131,14 @@ public sealed partial class DetailExaminableWindow : FancyWindow
         }
 
         PreviewTagsText.Text = state.TagsFlavorText;
-        PreviewNSFWTagsText.Text = state.NsfwTagsFlavorText;
 
         if (showLinks)
         {
             ProcessLinks(state.LinksFlavorText, PreviewLinksContainer);
-
-            if (showNsfw)
-                ProcessLinks(state.NsfwLinksFlavorText, PreviewNSFWLinksContainer);
         }
         else // TODO: Remove all container, now its just remove links
         {
             PreviewLinksContainer?.RemoveAllChildren();
-            PreviewNSFWLinksContainer?.RemoveAllChildren();
         }
 
         Badge.Visible = PlayerBadge();
