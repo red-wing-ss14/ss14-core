@@ -110,45 +110,78 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
+    markingsDisplacement:
+      Chest: &dwarfismDisp
         sizeMaps:
           32:
             sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
-      # Amour port: WD Slim body types START
-      jumpsuit-body-slim:
+            state: dwarfism
+      Head: *dwarfismDisp
+      LArm: *dwarfismDisp
+      RArm: *dwarfismDisp
+      LHand:
         sizeMaps:
           32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: jumpsuit
-      shoes-body-slim:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism_hand_left
+      RHand:
         sizeMaps:
           32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: shoes
-      gloves-body-slim:
-        sizeMaps:
-          32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: gloves
-      outerClothing-body-slim:
-        sizeMaps:
-          32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: outer
-      hardsuit-body-slim:
-        sizeMaps:
-          32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: hardsuit
-      suit-body-slim:
-        sizeMaps:
-          32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: suit
-      # Amour port: WD Slim body types END
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism_hand_right
+      LLeg: *dwarfismDisp
+      RLeg: *dwarfismDisp
+      LFoot: *dwarfismDisp
+      RFoot: *dwarfismDisp
+      Tail: *dwarfismDisp
+      Special: *dwarfismDisp
+      Hair: *dwarfismDisp
+      FacialHair: *dwarfismDisp
+      Snout: *dwarfismDisp
+      HeadSide: *dwarfismDisp
+      HeadTop: *dwarfismDisp
+      Eyes: *dwarfismDisp
+      Wings: *dwarfismDisp
+      Face: *dwarfismDisp
+      Groin: *dwarfismDisp
+  - type: CreamPied
+    displacement: Dwarfism
+  - type: Damageable
+    displacement: Dwarfism
+  - type: Flammable
+    displacement: Dwarfism
+  - type: InnerBodyAnomalyVisuals
+    displacement: Dwarfism
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: Mobs/Species/Human/displacement.rsi
+          state: dwarfism_hand_left
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: Mobs/Species/Human/displacement.rsi
+          state: dwarfism_hand_right
+  - type: Inventory
+    femaleDisplacements: { }
+    displacements:
+      jumpsuit: *dwarfismDisp
+      outerClothing: *dwarfismDisp
+      suitstorage: *dwarfismDisp
+      id: *dwarfismDisp
+      mask: *dwarfismDisp
+      belt: *dwarfismDisp
+      eyes: *dwarfismDisp
+      gloves: *dwarfismDisp
+      head: *dwarfismDisp
+      neck: *dwarfismDisp
+      back: *dwarfismDisp
+      ears: *dwarfismDisp
+      shoes: *dwarfismDisp
+      underwear: *dwarfismDisp
+      undershirt: *dwarfismDisp
+      socks: *dwarfismDisp
   - type: InnateMiningScannerViewer # Frontier
     pingSound: null
     viewRange: 3 # Goob value
@@ -161,43 +194,73 @@
   - type: Sprite #goob edit
 #  - type: ScaleVisuals #goob sliders
 #    scale: 1, 0.8
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
+  - type: HumanoidAppearance
+    species: Dwarf
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+    markingsDisplacement:
+      Chest: &dwarfismDispDummy
         sizeMaps:
           32:
             sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
-      # Amour port: WD Slim body types START
-      jumpsuit-body-slim:
+            state: dwarfism
+      Head: *dwarfismDispDummy
+      LArm: *dwarfismDispDummy
+      RArm: *dwarfismDispDummy
+      LHand:
         sizeMaps:
           32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: jumpsuit
-      shoes-body-slim:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism_hand_left
+      RHand:
         sizeMaps:
           32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: shoes
-      gloves-body-slim:
-        sizeMaps:
-          32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: gloves
-      outerClothing-body-slim:
-        sizeMaps:
-          32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: outer
-      hardsuit-body-slim:
-        sizeMaps:
-          32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: hardsuit
-      suit-body-slim:
-        sizeMaps:
-          32:
-            sprite: _Amour/Mobs/Species/Human/displacement.rsi
-            state: suit
-      # Amour port: WD Slim body types END
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism_hand_right
+      LLeg: *dwarfismDispDummy
+      RLeg: *dwarfismDispDummy
+      LFoot: *dwarfismDispDummy
+      RFoot: *dwarfismDispDummy
+      Tail: *dwarfismDispDummy
+      Special: *dwarfismDispDummy
+      Hair: *dwarfismDispDummy
+      FacialHair: *dwarfismDispDummy
+      Snout: *dwarfismDispDummy
+      HeadSide: *dwarfismDispDummy
+      HeadTop: *dwarfismDispDummy
+      Eyes: *dwarfismDispDummy
+      Wings: *dwarfismDispDummy
+      Face: *dwarfismDispDummy
+      Groin: *dwarfismDispDummy
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: Mobs/Species/Human/displacement.rsi
+          state: dwarfism_hand_left
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: Mobs/Species/Human/displacement.rsi
+          state: dwarfism_hand_right
+  - type: Inventory
+    femaleDisplacements: { }
+    displacements:
+      jumpsuit: *dwarfismDispDummy
+      outerClothing: *dwarfismDispDummy
+      suitstorage: *dwarfismDispDummy
+      id: *dwarfismDispDummy
+      mask: *dwarfismDispDummy
+      belt: *dwarfismDispDummy
+      eyes: *dwarfismDispDummy
+      gloves: *dwarfismDispDummy
+      head: *dwarfismDispDummy
+      neck: *dwarfismDispDummy
+      back: *dwarfismDispDummy
+      ears: *dwarfismDispDummy
+      shoes: *dwarfismDispDummy
+      underwear: *dwarfismDispDummy
+      undershirt: *dwarfismDispDummy
+      socks: *dwarfismDispDummy
 

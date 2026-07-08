@@ -258,10 +258,22 @@ namespace Content.Shared.Damage
             component.LastModifiedTime = _timing.CurTime; // Shitmed Change
             Dirty(uid, component);
 
-            if (_appearanceQuery.TryGetComponent(uid, out var appearance) && damageDelta != null)
+            if (_appearanceQuery.TryGetComponent(uid, out var appearance))
             {
-                var data = new DamageVisualizerGroupData(component.DamagePerGroup.Keys.ToList());
-                _appearance.SetData(uid, DamageVisualizerKeys.DamageUpdateGroups, data, appearance);
+                if (damageDelta != null)
+                {
+                    var data = new DamageVisualizerGroupData(component.DamagePerGroup.Keys.ToList());
+                    _appearance.SetData(uid, DamageVisualizerKeys.DamageUpdateGroups, data, appearance);
+                }
+
+                if (component.Displacement != null)
+                {
+                    _appearance.SetData(uid, DamageVisualizerKeys.Displacement, component.Displacement.Value.Id, appearance);
+                }
+                else
+                {
+                    _appearance.RemoveData(uid, DamageVisualizerKeys.Displacement);
+                }
             }
             RaiseLocalEvent(uid, new DamageChangedEvent(component, damageDelta, interruptsDoAfters, origin, ignoreBlockers, uncappedDamage)); // Goob edit
         }
@@ -987,12 +999,12 @@ namespace Content.Shared.Damage
         {
             if (_netMan.IsServer)
             {
-                args.State = new DamageableComponentState(component.Damage.DamageDict, component.DamageContainerID, component.DamageModifierSetId, component.HealthBarThreshold);
+                args.State = new DamageableComponentState(component.Damage.DamageDict, component.DamageContainerID, component.DamageModifierSetId, component.HealthBarThreshold, component.Displacement);
             }
             else
             {
                 // avoid mispredicting damage on newly spawned entities.
-                args.State = new DamageableComponentState(component.Damage.DamageDict.ShallowClone(), component.DamageContainerID, component.DamageModifierSetId, component.HealthBarThreshold);
+                args.State = new DamageableComponentState(component.Damage.DamageDict.ShallowClone(), component.DamageContainerID, component.DamageModifierSetId, component.HealthBarThreshold, component.Displacement);
             }
         }
 
@@ -1028,6 +1040,7 @@ namespace Content.Shared.Damage
             component.DamageContainerID = state.DamageContainerId;
             component.DamageModifierSetId = state.ModifierSetId;
             component.HealthBarThreshold = state.HealthBarThreshold;
+            component.Displacement = state.Displacement;
 
             // Has the damage actually changed?
             DamageSpecifier newDamage = new() { DamageDict = new(state.DamageDict) };

@@ -183,6 +183,12 @@ namespace Content.Shared.Damage
 
         [ViewVariables]
         public TimeSpan LastModifiedTime = TimeSpan.Zero;
+
+        /// <summary>
+        /// If set, applies a displacement map to the damage overlay.
+        /// </summary>
+        [DataField]
+        public ProtoId<Content.Shared.DisplacementMap.DisplacementDataPrototype>? Displacement;
     }
 
     [Serializable, NetSerializable]
@@ -192,17 +198,20 @@ namespace Content.Shared.Damage
         public readonly string? DamageContainerId;
         public readonly string? ModifierSetId;
         public readonly FixedPoint2? HealthBarThreshold;
+        public readonly ProtoId<Content.Shared.DisplacementMap.DisplacementDataPrototype>? Displacement;
 
         public DamageableComponentState(
             Dictionary<string, FixedPoint2> damageDict,
             string? damageContainerId,
             string? modifierSetId,
-            FixedPoint2? healthBarThreshold)
+            FixedPoint2? healthBarThreshold,
+            ProtoId<Content.Shared.DisplacementMap.DisplacementDataPrototype>? displacement)
         {
             DamageDict = damageDict;
             DamageContainerId = damageContainerId;
             ModifierSetId = modifierSetId;
             HealthBarThreshold = healthBarThreshold;
+            Displacement = displacement;
         }
     }
 }

@@ -131,6 +131,7 @@ public sealed partial class DamageVisualsComponent : Component
     public readonly Dictionary<object, string> LayerMapKeyStates = new();
     public readonly Dictionary<string, FixedPoint2> LastThresholdPerGroup = new();
     public string TopMostLayerKey = default!;
+    public Content.Shared.DisplacementMap.DisplacementData? Displacement;
 }
 
 // deals with the edge case of human damage visuals not

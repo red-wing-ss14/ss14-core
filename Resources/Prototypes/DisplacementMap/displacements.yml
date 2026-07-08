@@ -1,0 +1,7 @@
+- type: displacementData
+  id: Dwarfism
+  displacement:
+    sizeMaps:
+      32:
+        sprite: Mobs/Species/Human/displacement.rsi
+        state: dwarfism

@@ -46,4 +46,10 @@ public sealed partial class FireVisualsComponent : Component
     ///     the burning entity as entities don't support having multiple point-lights.
     /// </summary>
     public EntityUid? LightEntity;
+
+    /// <summary>
+    /// Tracks the currently applied displacement, so that only new changes update the layer.
+    /// </summary>
+    [DataField]
+    public Robust.Shared.Prototypes.ProtoId<Content.Shared.DisplacementMap.DisplacementDataPrototype>? CurrentDisplacement;
 }

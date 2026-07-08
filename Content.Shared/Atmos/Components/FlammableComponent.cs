@@ -148,5 +148,11 @@ namespace Content.Shared.Atmos.Components
 
         [DataField]
         public ProtoId<AlertPrototype> FireAlert = "Fire";
+
+        /// <summary>
+        /// If set, applies the displacement map associated with the <see cref="Content.Shared.DisplacementMap.DisplacementDataPrototype"/>.
+        /// </summary>
+        [DataField]
+        public ProtoId<Content.Shared.DisplacementMap.DisplacementDataPrototype>? Displacement;
     }
 }

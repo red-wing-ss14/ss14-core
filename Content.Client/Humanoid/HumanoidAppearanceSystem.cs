@@ -202,7 +202,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             sprite.LayerSetShader(layerIndex, null, null);
 
         if (protoId == null)
+        {
+            _displacement.EnsureDisplacementIsNotOnSprite((entity.Owner, sprite), key);
             return;
+        }
 
         if (sexMorph)
             protoId = HumanoidVisualLayersExtension.GetSexMorph(key, component.Sex, protoId);
@@ -219,6 +222,19 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
         if (proto.BaseSprite != null)
             _sprite.LayerSetSprite((entity.Owner, sprite), layerIndex, proto.BaseSprite);
+
+        if (component.MarkingsDisplacement.TryGetValue(key, out var displacementData))
+        {
+            _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), layerIndex, key, out var displacementKey);
+            if (displacementKey != null && _sprite.LayerMapTryGet((entity.Owner, sprite), displacementKey, out var dispIndex, false))
+            {
+                sprite[dispIndex].Visible = layer.Visible;
+            }
+        }
+        else
+        {
+            _displacement.EnsureDisplacementIsNotOnSprite((entity.Owner, sprite), key);
+        }
     }
 
     /// <summary>
@@ -406,13 +422,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             }
 
             var layerId = $"{marking.MarkingId}-{rsi.RsiState}";
-            if (!_sprite.LayerMapTryGet(spriteEnt.AsNullable(), layerId, out var index, false))
-            {
-                continue;
-            }
-
-            _sprite.LayerMapRemove(spriteEnt.AsNullable(), layerId);
-            _sprite.RemoveLayer(spriteEnt.AsNullable(), index);
+            _displacement.EnsureDisplacementIsNotOnSprite(spriteEnt, layerId);
+            _sprite.RemoveLayer(spriteEnt.AsNullable(), layerId, false);
         }
     }
     // Amour edit start
@@ -642,6 +653,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             return;
 
         spriteLayer.Visible = visible;
+
+        if (_sprite.LayerMapTryGet((ent.Owner, sprite), $"{layer}-displacement", out var dispIndex, false))
+        {
+            sprite[dispIndex].Visible = visible;
+        }
 
         // I fucking hate this. I'll get around to refactoring sprite layers eventually I swear
         // Just a week away...
