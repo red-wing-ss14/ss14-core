@@ -20,8 +20,8 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://cdn.goobstation.com/"
-FORK_ID = "GoobLRP"
+ROBUST_CDN_URL = "https://main-cdn.reserve-station.space/" # reserve
+FORK_ID = "reserve" # reserve
 
 def main():
     session = requests.Session()
@@ -82,7 +82,6 @@ def get_engine_version() -> str:
     # tag = proc.stdout.strip()
     # assert tag.startswith("v")
     # return tag[1:] # Cut off v prefix.
-
 
 if __name__ == '__main__':
     main()
