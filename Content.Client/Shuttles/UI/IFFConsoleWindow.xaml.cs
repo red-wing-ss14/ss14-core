@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using Content.Client.Computer;
@@ -18,12 +14,16 @@ namespace Content.Client.Shuttles.UI;
 public sealed partial class IFFConsoleWindow : FancyWindow,
     IComputerWindow<IFFConsoleBoundUserInterfaceState>
 {
+    private readonly ButtonGroup _showIFFButtonGroup = new();
     public event Action<bool>? ShowIFF;
 
     public IFFConsoleWindow()
     {
         RobustXamlLoader.Load(this);
-        ShowIFFSwitch.OnToggled += args => ShowIFFPressed(args.Pressed);
+        ShowIFFOffButton.Group = _showIFFButtonGroup;
+        ShowIFFOnButton.Group = _showIFFButtonGroup;
+        ShowIFFOnButton.OnPressed += args => ShowIFFPressed(true);
+        ShowIFFOffButton.OnPressed += args => ShowIFFPressed(false);
     }
 
     private void ShowIFFPressed(bool pressed)
@@ -35,20 +35,22 @@ public sealed partial class IFFConsoleWindow : FancyWindow,
     {
         if ((state.AllowedFlags & IFFFlags.HideLabel) != 0x0 || (state.AllowedFlags & IFFFlags.Hide) != 0x0)
         {
-            ShowIFFSwitch.Disabled = false;
+            ShowIFFOffButton.Disabled = false;
+            ShowIFFOnButton.Disabled = false;
 
             if ((state.Flags & IFFFlags.HideLabel) != 0x0 || (state.Flags & IFFFlags.Hide) != 0x0)
             {
-                ShowIFFSwitch.Pressed = false;
+                ShowIFFOffButton.Pressed = true;
             }
             else
             {
-                ShowIFFSwitch.Pressed = true;
+                ShowIFFOnButton.Pressed = true;
             }
         }
         else
         {
-            ShowIFFSwitch.Disabled = true;
+            ShowIFFOffButton.Disabled = true;
+            ShowIFFOnButton.Disabled = true;
         }
     }
 }

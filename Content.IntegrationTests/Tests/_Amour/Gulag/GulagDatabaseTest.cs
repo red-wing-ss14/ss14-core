@@ -1,4 +1,6 @@
+using System.Collections.Immutable;
 using System.Linq;
+using System.Net;
 using Content.Server.Database;
 using Content.Shared.Database;
 using Robust.Server.Player;
@@ -19,21 +21,22 @@ public sealed class GulagDatabaseTest
         var originalExpiration = DateTimeOffset.UtcNow.AddHours(1);
         var updatedExpiration = originalExpiration.AddHours(1);
 
-        await db.AddServerBanAsync(new ServerBanDef(
-            null,
-            session.UserId,
-            null,
-            null,
-            DateTimeOffset.UtcNow,
-            originalExpiration,
-            null,
-            TimeSpan.Zero,
-            "original reason",
-            NoteSeverity.Medium,
-            null,
-            null));
+        await db.AddBanAsync(new BanDef(
+            id: null,
+            type: BanType.Server,
+            userIds: ImmutableArray.Create(session.UserId),
+            addresses: ImmutableArray<(IPAddress address, int cidrMask)>.Empty,
+            hwIds: ImmutableArray<ImmutableTypedHwid>.Empty,
+            banTime: DateTimeOffset.UtcNow,
+            expirationTime: originalExpiration,
+            roundIds: ImmutableArray<int>.Empty,
+            playtimeAtNote: TimeSpan.Zero,
+            reason: "original reason",
+            severity: NoteSeverity.Medium,
+            banningAdmin: null,
+            unban: null));
 
-        var ban = await db.GetServerBanAsync(null, session.UserId, null, null);
+        var ban = await db.GetBanAsync(null, session.UserId, null);
         Assert.That(ban, Is.Not.Null);
         Assert.That(ban.Id, Is.Not.Null);
         var banId = ban.Id.Value;
@@ -52,7 +55,7 @@ public sealed class GulagDatabaseTest
             session.UserId.UserId,
             DateTimeOffset.UtcNow), Is.False);
 
-        var updatedBan = await db.GetServerBanAsync(banId);
+        var updatedBan = await db.GetBanAsync(banId);
         Assert.That(updatedBan, Is.Not.Null);
         Assert.Multiple(() =>
         {
@@ -61,7 +64,7 @@ public sealed class GulagDatabaseTest
             Assert.That(updatedBan.Severity, Is.EqualTo(NoteSeverity.Medium));
         });
 
-        await db.AddServerUnbanAsync(new ServerUnbanDef(banId, null, DateTimeOffset.UtcNow));
+        await db.AddUnbanAsync(new UnbanDef(banId, null, DateTimeOffset.UtcNow));
         await pair.CleanReturnAsync();
     }
 }

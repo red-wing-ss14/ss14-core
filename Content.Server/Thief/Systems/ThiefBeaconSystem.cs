@@ -78,12 +78,13 @@
 
 using Content.Server.Mind;
 using Content.Server.Objectives.Components;
-using Content.Server.Roles;
-using Content.Server.Thief.Components;
+using Content.Shared.Objectives.Components;
+using Content.Shared.Thief.Components;
 using Content.Shared.Examine;
 using Content.Shared.Foldable;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 

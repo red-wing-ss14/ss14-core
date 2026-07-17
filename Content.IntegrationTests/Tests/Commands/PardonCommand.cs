@@ -1,16 +1,3 @@
-// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2021 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -48,9 +35,9 @@ namespace Content.IntegrationTests.Tests.Commands
             // No bans on record
             Assert.Multiple(async () =>
             {
-                Assert.That(await sDatabase.GetServerBanAsync(null, clientId, null, null), Is.Null);
-                Assert.That(await sDatabase.GetServerBanAsync(missingBanId), Is.Null); // Amour edit
-                Assert.That(await sDatabase.GetServerBansAsync(null, clientId, null, null), Is.Empty);
+                Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Null);
+                Assert.That(await sDatabase.GetBanAsync(missingBanId), Is.Null); // Amour edit
+                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Is.Empty);
             });
 
             // Try to pardon a ban that does not exist
@@ -59,9 +46,9 @@ namespace Content.IntegrationTests.Tests.Commands
             // Still no bans on record
             Assert.Multiple(async () =>
             {
-                Assert.That(await sDatabase.GetServerBanAsync(null, clientId, null, null), Is.Null);
-                Assert.That(await sDatabase.GetServerBanAsync(missingBanId), Is.Null); // Amour edit
-                Assert.That(await sDatabase.GetServerBansAsync(null, clientId, null, null), Is.Empty);
+                Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Null);
+                Assert.That(await sDatabase.GetBanAsync(missingBanId), Is.Null); // Amour edit
+                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Is.Empty);
             });
 
             var banReason = "test";
@@ -70,7 +57,7 @@ namespace Content.IntegrationTests.Tests.Commands
             // Amour edit start: use a permanent ban and do not assume it is the first row in a pooled database.
             // Ban the client permanently
             await server.WaitPost(() => sConsole.ExecuteCommand($"ban {clientSession.Name} {banReason} 0"));
-            var ban = await sDatabase.GetServerBanAsync(null, clientId, null, null);
+            var ban = await sDatabase.GetBanAsync(null, clientId, null, null);
             Assert.That(ban?.Id, Is.Not.Null);
             var banId = ban!.Id!.Value;
             // Amour edit end
@@ -78,9 +65,9 @@ namespace Content.IntegrationTests.Tests.Commands
             // Should have one ban on record now
             Assert.Multiple(async () =>
             {
-                Assert.That(await sDatabase.GetServerBanAsync(null, clientId, null, null), Is.Not.Null);
-                Assert.That(await sDatabase.GetServerBanAsync(banId), Is.Not.Null); // Amour edit
-                Assert.That(await sDatabase.GetServerBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
+                Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Not.Null);
+                Assert.That(await sDatabase.GetBanAsync(banId), Is.Not.Null); // Amour edit
+                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
             });
 
             await pair.RunTicksSync(5);
@@ -91,17 +78,17 @@ namespace Content.IntegrationTests.Tests.Commands
             await server.WaitPost(() => sConsole.ExecuteCommand($"pardon {missingBanId}")); // Amour edit
 
             // The existing ban is unaffected
-            Assert.That(await sDatabase.GetServerBanAsync(null, clientId, null, null), Is.Not.Null);
+            Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Not.Null);
 
-            ban = await sDatabase.GetServerBanAsync(banId); // Amour edit
+            ban = await sDatabase.GetBanAsync(banId); // Amour edit
             Assert.Multiple(async () =>
             {
                 Assert.That(ban, Is.Not.Null);
-                Assert.That(await sDatabase.GetServerBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
+                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
 
                 // Check that it matches
                 Assert.That(ban.Id, Is.EqualTo(banId)); // Amour edit
-                Assert.That(ban.UserId, Is.EqualTo(clientId));
+                Assert.That(ban.UserIds, Is.EquivalentTo([clientId]));
                 Assert.That(ban.BanTime.UtcDateTime - DateTime.UtcNow, Is.LessThanOrEqualTo(MarginOfError));
                 Assert.That(ban.ExpirationTime, Is.Null); // Amour edit
                 Assert.That(ban.Reason, Is.EqualTo(banReason));
@@ -115,20 +102,20 @@ namespace Content.IntegrationTests.Tests.Commands
             await server.WaitPost(() => sConsole.ExecuteCommand($"pardon {banId}")); // Amour edit
 
             // No bans should be returned
-            Assert.That(await sDatabase.GetServerBanAsync(null, clientId, null, null), Is.Null);
+            Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Null);
 
             // Direct id lookup returns a pardoned ban
-            var pardonedBan = await sDatabase.GetServerBanAsync(banId); // Amour edit
+            var pardonedBan = await sDatabase.GetBanAsync(banId); // Amour edit
             Assert.Multiple(async () =>
             {
                 // Check that it matches
                 Assert.That(pardonedBan, Is.Not.Null);
 
                 // The list is still returned since that ignores pardons
-                Assert.That(await sDatabase.GetServerBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
+                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
 
                 Assert.That(pardonedBan.Id, Is.EqualTo(banId)); // Amour edit
-                Assert.That(pardonedBan.UserId, Is.EqualTo(clientId));
+                Assert.That(pardonedBan.UserIds, Is.EquivalentTo([clientId]));
                 Assert.That(pardonedBan.BanTime.UtcDateTime - DateTime.UtcNow, Is.LessThanOrEqualTo(MarginOfError));
                 Assert.That(pardonedBan.ExpirationTime, Is.Null); // Amour edit
                 Assert.That(pardonedBan.Reason, Is.EqualTo(banReason));
@@ -152,13 +139,13 @@ namespace Content.IntegrationTests.Tests.Commands
             Assert.Multiple(async () =>
             {
                 // No bans should be returned
-                Assert.That(await sDatabase.GetServerBanAsync(null, clientId, null, null), Is.Null);
+                Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Null);
 
                 // Direct id lookup returns a pardoned ban
-                Assert.That(await sDatabase.GetServerBanAsync(banId), Is.Not.Null); // Amour edit
+                Assert.That(await sDatabase.GetBanAsync(banId), Is.Not.Null); // Amour edit
 
                 // The list is still returned since that ignores pardons
-                Assert.That(await sDatabase.GetServerBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
+                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
             });
 
             // Reconnect client. Slightly faster than dirtying the pair.

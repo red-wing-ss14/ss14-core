@@ -1,10 +1,8 @@
-// SPDX-FileCopyrightText: 2023 Skye <57879983+Rainbeon@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using Content.Server.Chat.Systems;
 using Content.Server.Speech.Components;
+using Content.Shared.Chat;
 
 namespace Content.Server.Speech.EntitySystems
 {
@@ -12,10 +10,10 @@ namespace Content.Server.Speech.EntitySystems
     {
         public override void Initialize()
         {
-            SubscribeLocalEvent<UnblockableSpeechComponent, CheckIgnoreSpeechBlockerEvent>(OnCheck);
+            SubscribeLocalEvent<UnblockableSpeechComponent, Content.Server.Chat.Systems.CheckIgnoreSpeechBlockerEvent>(OnCheck);
         }
 
-        private void OnCheck(EntityUid uid, UnblockableSpeechComponent component, CheckIgnoreSpeechBlockerEvent args)
+        private void OnCheck(EntityUid uid, UnblockableSpeechComponent component, Content.Server.Chat.Systems.CheckIgnoreSpeechBlockerEvent args)
         {
             args.IgnoreBlocker = true;
         }

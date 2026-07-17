@@ -108,15 +108,17 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Diagnostics.CodeAnalysis;
 using Content.Server.Emp;
 using Content.Server.Power.Components;
-using Content.Server.PowerCell;
-using Content.Shared._Orion.Construction.Events;
+using Content.Shared.PowerCell;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
+using Content.Shared._Orion.Construction.Events;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Power;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
@@ -127,7 +129,7 @@ using Robust.Shared.Containers;
 namespace Content.Server.Power.EntitySystems;
 
 [UsedImplicitly]
-internal sealed class ChargerSystem : EntitySystem
+public sealed class ChargerSystem : Content.Shared.Power.EntitySystems.ChargerSystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
@@ -138,6 +140,8 @@ internal sealed class ChargerSystem : EntitySystem
 
     public override void Initialize()
     {
+        base.Initialize();
+
         SubscribeLocalEvent<ChargerComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ChargerComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<ChargerComponent, EntInsertedIntoContainerMessage>(OnInserted);
@@ -149,8 +153,6 @@ internal sealed class ChargerSystem : EntitySystem
         SubscribeLocalEvent<ChargerComponent, RefreshPartsEvent>(OnPartsRefresh);
         SubscribeLocalEvent<ChargerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         // Orion-End
-
-        SubscribeLocalEvent<ChargerComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
     private void OnStartup(EntityUid uid, ChargerComponent component, ComponentStartup args)
@@ -191,8 +193,8 @@ internal sealed class ChargerSystem : EntitySystem
                     if (!TryComp<BatteryComponent>(contained, out var battery))
                         continue;
 
-                    var chargePercentage = (battery.CurrentCharge / battery.MaxCharge) * 100;
-                    args.PushMarkup(Loc.GetString("charger-content", ("chargePercentage", (int) chargePercentage)));
+                    var chargePercentage = (_battery.GetCharge((contained, battery)) / battery.MaxCharge) * 100;
+                    args.PushMarkup(Loc.GetString("charger-content", ("chargePercentage", (int)chargePercentage)));
                 }
             }
         }
@@ -200,9 +202,12 @@ internal sealed class ChargerSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
-        var query = EntityQueryEnumerator<ActiveChargerComponent, ChargerComponent, ContainerManagerComponent>();
-        while (query.MoveNext(out var uid, out _, out var charger, out var containerComp))
+        var query = EntityQueryEnumerator<ChargerComponent, ContainerManagerComponent>();
+        while (query.MoveNext(out var uid, out var charger, out var containerComp))
         {
+            if (charger.Status != CellChargerStatus.Charging)
+                continue;
+
             if (!_container.TryGetContainer(uid, charger.SlotId, out var container, containerComp))
                 continue;
 
@@ -289,14 +294,7 @@ internal sealed class ChargerSystem : EntitySystem
 
         component.Status = status;
 
-        if (component.Status == CellChargerStatus.Charging)
-        {
-            AddComp<ActiveChargerComponent>(uid);
-        }
-        else
-        {
-            RemComp<ActiveChargerComponent>(uid);
-        }
+
 
         switch (component.Status)
         {
@@ -319,12 +317,6 @@ internal sealed class ChargerSystem : EntitySystem
             default:
                 throw new ArgumentOutOfRangeException();
         }
-    }
-
-    private void OnEmpPulse(EntityUid uid, ChargerComponent component, ref EmpPulseEvent args)
-    {
-        args.Affected = true;
-        args.Disabled = true;
     }
 
     private CellChargerStatus GetStatus(EntityUid uid, ChargerComponent component)
@@ -353,7 +345,7 @@ internal sealed class ChargerSystem : EntitySystem
         if (!SearchForBattery(container.ContainedEntities[0], out var heldEnt, out var heldBattery))
             return CellChargerStatus.Off;
 
-        if (_battery.IsFull(heldEnt.Value, heldBattery))
+        if (_battery.IsFull((heldEnt.Value, heldBattery)))
             return CellChargerStatus.Charged;
 
         return CellChargerStatus.Charging;
@@ -373,7 +365,7 @@ internal sealed class ChargerSystem : EntitySystem
         if (!SearchForBattery(targetEntity, out var batteryUid, out var heldBattery))
             return;
 
-        _battery.SetCharge(batteryUid.Value, heldBattery.CurrentCharge + component.FinalChargeRate * frameTime, heldBattery); // Orion-Edit
+        _battery.SetCharge((batteryUid.Value, heldBattery), _battery.GetCharge((batteryUid.Value, heldBattery)) + component.FinalChargeRate * frameTime);
         UpdateStatus(uid, component);
     }
 
@@ -415,8 +407,12 @@ internal sealed class ChargerSystem : EntitySystem
 
         // <Goobstation> completely rewritten
         // try get battery by checking for a power cell slot on the inserted entity
-        if (_powerCell.TryGetBatteryFromSlot(uid, out batteryUid, out component))
+        if (_powerCell.TryGetBatteryFromSlot(uid, out var slotBattery) && slotBattery != null)
+        {
+            batteryUid = slotBattery.Value.Owner;
+            component = slotBattery.Value.Comp;
             return true;
+        }
 
         var findEv = new FindBatteryEvent();
         RaiseLocalEvent(uid, ref findEv);
@@ -424,10 +420,10 @@ internal sealed class ChargerSystem : EntitySystem
         if (findEv.FoundBattery == null && TryComp<InventoryComponent>(uid, out var inventory))
             _inventory.RelayEvent((uid, inventory), ref findEv);
 
-        if (findEv.FoundBattery is {} battery)
+        if (findEv.FoundBattery is {} foundBattery)
         {
-            batteryUid = battery.Owner;
-            component = battery.Comp;
+            batteryUid = foundBattery.Owner;
+            component = foundBattery.Comp;
             return true;
         }
         // </Goobstation>

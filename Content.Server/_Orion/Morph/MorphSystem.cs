@@ -73,6 +73,7 @@ public sealed class MorphSystem : SharedMorphSystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     public ProtoId<DamageGroupPrototype> BruteDamageGroup = "Brute";
     public ProtoId<DamageGroupPrototype> BurnDamageGroup = "Burn";
@@ -521,7 +522,7 @@ public sealed class MorphSystem : SharedMorphSystem
 
     private void EnsureMorphObjectives(EntityUid mindId, MindComponent mindComp, List<EntProtoId> objectives)
     {
-        if (!mindComp.MindRoles.Any(HasComp<MorphRoleComponent>))
+        if (!_roles.MindHasRole<MorphRoleComponent>(mindId))
             return;
 
         foreach (var objective in objectives)

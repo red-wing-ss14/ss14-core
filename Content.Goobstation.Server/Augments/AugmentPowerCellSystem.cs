@@ -1,10 +1,9 @@
 using Content.Goobstation.Shared.Augments;
-using Content.Server.Power.Components; // ough BatteryComponent why are you in server
 using Content.Server.Power.EntitySystems;
-using Content.Server.PowerCell;
 using Content.Shared.Alert;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Power.Components;
 using Content.Shared.PowerCell;
 using Robust.Shared.Timing;
 
@@ -26,15 +25,15 @@ public sealed class AugmentPowerCellSystem : SharedAugmentPowerCellSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, FindBatteryEvent>(OnFindBattery);
+        // SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, FindBatteryEvent>(OnFindBattery);
         SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, AugmentBatteryAlertEvent>(OnBatteryAlert);
     }
-
+    /* todo goobstream
     private void OnFindBattery(Entity<HasAugmentPowerCellSlotComponent> ent, ref FindBatteryEvent args)
     {
         if (GetBodyCell(ent) is {} battery)
             args.FoundBattery = battery;
-    }
+    }*/
 
     private void OnBatteryAlert(Entity<HasAugmentPowerCellSlotComponent> ent, ref AugmentBatteryAlertEvent args)
     {
@@ -45,7 +44,7 @@ public sealed class AugmentPowerCellSystem : SharedAugmentPowerCellSystem
             return;
         }
 
-        var percent = 100f * battery.Comp.CurrentCharge / battery.Comp.MaxCharge;
+        var percent = 100f * battery.Comp.LastCharge / battery.Comp.MaxCharge;
         var draw = CompOrNull<PowerCellDrawComponent>(augment)?.DrawRate ?? 0f;
         _popup.PopupEntity(Loc.GetString("augments-power-cell-info", ("percent", $"{percent:F0}"), ("draw", draw)), user, user);
     }
@@ -56,8 +55,8 @@ public sealed class AugmentPowerCellSystem : SharedAugmentPowerCellSystem
     /// </summary>
     public Entity<BatteryComponent>? GetAugmentCell(EntityUid augment)
     {
-        if (_powerCell.TryGetBatteryFromSlot(augment, out var battery, out var comp))
-            return (battery.Value, comp);
+        if (_powerCell.TryGetBatteryFromSlot(augment, out var battery))
+            return (battery.Value, battery.Value.Comp);
 
         return null;
     }
@@ -94,7 +93,7 @@ public sealed class AugmentPowerCellSystem : SharedAugmentPowerCellSystem
             return false;
         }
 
-        if (!_battery.TryUseCharge(battery.Owner, amount, battery.Comp))
+        if (!_battery.TryUseCharge(battery.Owner, amount))
         {
             _popup.PopupEntity(Loc.GetString("power-cell-insufficient"), body, body, PopupType.MediumCaution);
             return false;
@@ -132,7 +131,7 @@ public sealed class AugmentPowerCellSystem : SharedAugmentPowerCellSystem
 
             _alerts.ClearAlert(uid, augment.Comp.NoBatteryAlert);
 
-            var chargePercent = (short) MathF.Round(battery.Comp.CurrentCharge / battery.Comp.MaxCharge * 10f);
+            var chargePercent = (short) MathF.Round(battery.Comp.LastCharge / battery.Comp.MaxCharge * 10f);
             _alerts.ShowAlert(uid, augment.Comp.BatteryAlert, chargePercent);
         }
     }

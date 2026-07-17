@@ -225,7 +225,7 @@ public sealed partial class DetailExaminableWindow : FancyWindow
             ToolTip = Loc.GetString("humanoid-profile-editor-link-tooltip", ("url", url)),
             HorizontalExpand = true,
             HorizontalAlignment = HAlignment.Center,
-            StyleClasses = { StyleBase.ButtonOpenBoth },
+            StyleClasses = { StyleClass.ButtonOpenBoth },
         };
 
         button.OnPressed += _ => OpenLink(url);

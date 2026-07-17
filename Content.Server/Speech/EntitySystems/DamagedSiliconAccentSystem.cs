@@ -1,8 +1,13 @@
 using System.Text;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Server.Destructible;
-using Content.Server.PowerCell;
+using Content.Shared.PowerCell;
+using Content.Shared.Speech.Components;
 using Content.Shared.Damage;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.PowerCell;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Robust.Shared.Random;
@@ -12,6 +17,7 @@ namespace Content.Server.Speech.EntitySystems;
 public sealed class DamagedSiliconAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedBatterySystem _battery = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
 
@@ -32,10 +38,20 @@ public sealed class DamagedSiliconAccentSystem : EntitySystem
             {
                 currentChargeLevel = ent.Comp.OverrideChargeLevel.Value;
             }
-            else if (_powerCell.TryGetBatteryFromSlot(uid, out var battery) ||
-                     TryComp(uid, out battery)) // Goobstation - Energycrit: Make this work with BatteryComponent too
+            else
             {
-                currentChargeLevel = battery.CurrentCharge / battery.MaxCharge;
+                Entity<BatteryComponent?>? batteryEnt;
+                BatteryComponent? batteryComp = null;
+
+                if (_powerCell.TryGetBatteryFromSlot(uid, out var battery))
+                    //|| TryComp(uid, out batteryComp)) // Goobstation - Energycrit: Make this work with BatteryComponent too todo fix ee shit
+                {
+                    batteryEnt = battery != null
+                        ? (battery.Value.Owner, battery.Value.Comp)
+                        : (uid, batteryComp);
+
+                    currentChargeLevel = _battery.GetChargeLevel(batteryEnt.Value);
+                }
             }
             currentChargeLevel = Math.Clamp(currentChargeLevel, 0.0f, 1.0f);
             // Corrupt due to low power (drops characters on longer messages)

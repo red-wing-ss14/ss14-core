@@ -1,4 +1,4 @@
-using Content.Server.Emp;
+using Content.Shared.Emp;
 using Content.Shared._Orion.Economy.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;

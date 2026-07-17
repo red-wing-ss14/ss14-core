@@ -9,9 +9,9 @@ namespace Content.Shared._Orion.EntityEffects.Effects;
 ///     Removes a moodlet from an entity if present.
 /// </summary>
 [UsedImplicitly]
-public sealed partial class ChemRemoveMoodlet : EntityEffect
+public sealed partial class ChemRemoveMoodlet : EntityEffectBase<ChemRemoveMoodlet>
 {
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
         var moodPrototype = prototype.Index<MoodEffectPrototype>(MoodPrototype.Id);
         return Loc.GetString("reagent-effect-guidebook-remove-moodlet",
@@ -23,14 +23,4 @@ public sealed partial class ChemRemoveMoodlet : EntityEffect
     /// </summary>
     [DataField(required: true)]
     public ProtoId<MoodEffectPrototype> MoodPrototype;
-
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        if (args is not EntityEffectReagentArgs _)
-            return;
-
-        var entityManager = IoCManager.Resolve<EntityManager>();
-        var ev = new MoodRemoveEffectEvent(MoodPrototype);
-        entityManager.EventBus.RaiseLocalEvent(args.TargetEntity, ev);
-    }
 }

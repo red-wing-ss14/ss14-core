@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using Content.Goobstation.Maths.FixedPoint;
@@ -10,9 +6,10 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Electrocution;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Cargo;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -59,7 +56,6 @@ public sealed class AnomalyCoreSystem : EntitySystem
 
         args.Price = MathHelper.Lerp(core.Comp.EndPrice, core.Comp.StartPrice, lerp);
     }
-
     // Orion-Start
     #region Reactivation
     private void OnAfterInteractUsing(Entity<AnomalyCoreComponent> ent, ref AfterInteractUsingEvent args)

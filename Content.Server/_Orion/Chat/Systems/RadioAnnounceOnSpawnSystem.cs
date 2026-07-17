@@ -1,5 +1,5 @@
 using Content.Server._Orion.Chat.Components;
-using Content.Server.Radio.Components;
+using Content.Shared.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Robust.Shared.Map;
 

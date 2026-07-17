@@ -162,25 +162,22 @@ public sealed partial class EmojiPickerPopup : Popup
         return Loc.GetString(locId);
     }
 
-    public override void Open(UIBox2? box = null, Vector2? altPos = null)
+    public new void Open(UIBox2 box, Vector2? altPos = null)
     {
         var targetBox = box;
-        if (targetBox != null)
+        var size = new Vector2(_customWidth, targetBox.Height);
+        var position = _customPosition ?? targetBox.TopLeft;
+
+        if (UserInterfaceManager != null)
         {
-            var size = new Vector2(_customWidth, targetBox.Value.Height);
-            var position = _customPosition ?? targetBox.Value.TopLeft;
-
-            if (UserInterfaceManager != null)
-            {
-                var rootSize = UserInterfaceManager.RootControl.Size;
-                var maxX = Math.Max(0f, rootSize.X - _customWidth);
-                var maxY = Math.Max(0f, rootSize.Y - targetBox.Value.Height);
-                position.X = Math.Clamp(position.X, 0f, maxX);
-                position.Y = Math.Clamp(position.Y, 0f, maxY);
-            }
-
-            targetBox = UIBox2.FromDimensions(position, size);
+            var rootSize = UserInterfaceManager.RootControl.Size;
+            var maxX = Math.Max(0f, rootSize.X - _customWidth);
+            var maxY = Math.Max(0f, rootSize.Y - targetBox.Height);
+            position.X = Math.Clamp(position.X, 0f, maxX);
+            position.Y = Math.Clamp(position.Y, 0f, maxY);
         }
+
+        targetBox = UIBox2.FromDimensions(position, size);
         base.Open(targetBox, altPos);
     }
 

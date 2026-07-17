@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using System.Diagnostics.CodeAnalysis;
@@ -11,13 +8,15 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Input;
 using Robust.Shared.Utility;
+using Content.Client.UserInterface.ControlExtensions;
+using Robust.Shared.IoC;
+using Robust.Shared.Log;
 
 namespace Content.Client.Guidebook.RichText;
 
 [UsedImplicitly]
 public sealed class TextLinkTag : IMarkupTagHandler
 {
-    // RW
     public static Color LinkColor => Color.CornflowerBlue;
 
     public string Name => "textlink";
@@ -57,6 +56,8 @@ public sealed class TextLinkTag : IMarkupTagHandler
 
         if (control.TryGetParentHandler<ILinkClickHandler>(out var handler))
             handler.HandleClick(link);
+        else
+            Logger.Warning("Warning! No valid ILinkClickHandler found.");
     }
     // RW end
 }

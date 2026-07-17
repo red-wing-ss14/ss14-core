@@ -1,11 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Milon <milonpl.git@proton.me>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Skubman <ba.fallaria@gmail.com>
-// SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -16,6 +8,7 @@ using Content.Server.NameIdentifier;
 using Content.Shared._DV.CartridgeLoader.Cartridges;
 using Content.Shared._DV.NanoChat;
 using Content.Shared.Database;
+using Content.Shared.Kitchen;
 using Content.Shared.NameIdentifier;
 using Content.Shared.PDA;
 using Robust.Shared.Containers;
@@ -43,7 +36,7 @@ public sealed class NanoChatSystem : SharedNanoChatSystem
         SubscribeLocalEvent<NanoChatCardComponent, EntGotRemovedFromContainerMessage>(OnRemoved);
 
         SubscribeLocalEvent<NanoChatCardComponent, MapInitEvent>(OnCardInit);
-        SubscribeLocalEvent<NanoChatCardComponent, BeingMicrowavedEvent>(OnMicrowaved, after: [typeof(IdCardSystem)]);
+        SubscribeLocalEvent<NanoChatCardComponent, Content.Server.Kitchen.Components.BeingMicrowavedEvent>(OnMicrowaved, after: [typeof(IdCardSystem)]);
     }
 
     private void OnInserted(Entity<NanoChatCardComponent> ent, ref EntGotInsertedIntoContainerMessage args)
@@ -64,7 +57,7 @@ public sealed class NanoChatSystem : SharedNanoChatSystem
         Dirty(ent);
     }
 
-    private void OnMicrowaved(Entity<NanoChatCardComponent> ent, ref BeingMicrowavedEvent args)
+    private void OnMicrowaved(Entity<NanoChatCardComponent> ent, ref Content.Server.Kitchen.Components.BeingMicrowavedEvent args)
     {
         // Skip if the entity was deleted (e.g., by ID card system burning it)
         if (Deleted(ent))

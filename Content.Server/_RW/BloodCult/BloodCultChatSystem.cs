@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
@@ -23,10 +23,10 @@ public sealed class BloodCultChatSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BloodCultistComponent, EntitySpokeEvent>(OnSpeak);
+        SubscribeLocalEvent<BloodCultistComponent, Content.Server.Chat.Systems.EntitySpokeEvent>(OnSpeak);
     }
 
-    private void OnSpeak(EntityUid uid, BloodCultistComponent component, EntitySpokeEvent args)
+    private void OnSpeak(EntityUid uid, BloodCultistComponent component, Content.Server.Chat.Systems.EntitySpokeEvent args)
     {
         if (args.Source != uid || args.Language.ID != component.CultLanguageId || args.IsWhisper)
             return;

@@ -479,6 +479,8 @@
           Quantity: 30
 
 - type: entity
+=======
+>>>>>>> 1b754f50c70698dbc92e6b142a02e435a04f2169
   id: ChemistryBottleHeartbreakerToxin
   suffix: heartbreakertoxin
   parent: BaseChemistryBottleFilled
@@ -491,6 +493,21 @@
         maxVol: 30
         reagents:
         - ReagentId: HeartbreakerToxin
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleMindbreakerToxin
+  suffix: mindbreakertoxin
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-mindbreakertoxin
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: MindbreakerToxin
           Quantity: 30
 
 - type: entity
@@ -523,35 +540,7 @@
         - ReagentId: Lexorin
           Quantity: 30
 
-- type: entity
-  id: ChemistryBottleMannitol
-  suffix: mannitol
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-mannitol
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Mannitol
-          Quantity: 30
 
-- type: entity
-  id: ChemistryBottleMindbreakerToxin
-  suffix: mindbreakertoxin
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-mindbreaker-toxin  # Reserve edit: fixed wrong label string
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: MindbreakerToxin
-          Quantity: 30
 
 - type: entity
   id: ChemistryBottleSpaceDrugs
@@ -569,246 +558,6 @@
           Quantity: 30
 
 - type: entity
-  id: ChemistryBottleUltravasculine
-  suffix: ultravasculine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-ultravasculine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Ultravasculine
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleOculine
-  suffix: oculine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-oculine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Oculine
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleSiderlac
-  suffix: siderlac
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-siderlac
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Siderlac
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleSigynate
-  suffix: sigynate
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-sigynate
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Sigynate
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleSaline
-  suffix: saline
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-saline
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Saline
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleLacerinol
-  suffix: lacerinol
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-lacerinol
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Lacerinol
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottlePuncturase
-  suffix: puncturase
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-puncturase
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Puncturase
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleBruizine
-  suffix: bruizine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-bruizine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Bruizine
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleRazorium
-  suffix: razorium
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-razorium
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Razorium
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleDiphenhydramine
-  suffix: diphenhydramine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-diphenhydramine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Diphenhydramine
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottlePyrazine
-  suffix: pyrazine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-pyrazine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Pyrazine
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleInsuzine
-  suffix: insuzine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-insuzine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Insuzine
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleOpporozidone
-  suffix: opporozidone
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-opporozidone
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Opporozidone
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleNecrosol
-  suffix: necrosol
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-necrosol
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Necrosol
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleAloxadone
-  suffix: aloxadone
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-aloxadone
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Aloxadone
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottlePsicodine
-  suffix: psicodine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-psicodine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Psicodine
-          Quantity: 30
-
-- type: entity
   id: ChemistryBottleLipolicide
   suffix: lipolicide
   parent: BaseChemistryBottleFilled
@@ -823,47 +572,3 @@
         - ReagentId: Lipolicide
           Quantity: 30
 
-- type: entity
-  id: ChemistryBottleHappiness
-  suffix: happiness
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-happiness
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Happiness
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottlePotassiumIodide
-  suffix: potassiumiodide
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-potassium-iodide  # Reserve edit: fixed wrong label string
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: PotassiumIodide
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleHaloperidol
-  suffix: haloperidol
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-haloperidol
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Haloperidol
-          Quantity: 30

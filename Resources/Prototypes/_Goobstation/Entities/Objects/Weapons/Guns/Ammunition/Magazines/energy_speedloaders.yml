@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -35,7 +30,7 @@
   name: energy speedloader (lethal)
   description: A rather volatile powercell utilizing phoron to charge lethal bolts over time. Phoron will make us all rich.
   components:
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletEnergyGunMagnum
     fireCost: 150 # Amour edit: 100 > 150
   - type: Tag
@@ -51,7 +46,7 @@
   components:
   - type: Sprite
     state: icon-disabling
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletEnergyGunDisabler
     fireCost: 150 # Amour edit: 50 > 150
   - type: Tag

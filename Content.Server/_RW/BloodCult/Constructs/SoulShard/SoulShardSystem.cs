@@ -1,4 +1,4 @@
-﻿using Content.Goobstation.Shared.Bible;
+using Content.Goobstation.Shared.Bible;
 using Content.Server._EinsteinEngines.Language;
 using Content.Server.Mind;
 using Content.Server.Popups;
@@ -6,6 +6,7 @@ using Content.Server.Roles;
 using Content.Shared.Interaction;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared._RW.BloodCult;
 using Content.Shared._RW.BloodCult.BloodCultist;
 using Robust.Server.Audio;
