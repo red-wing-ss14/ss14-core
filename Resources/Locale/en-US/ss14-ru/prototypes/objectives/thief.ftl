@@ -90,3 +90,5 @@ ent-TropicoStealObjective = { ent-BaseThiefStealAnimalObjective }
     .desc = { ent-BaseThiefStealAnimalObjective.desc }
 ent-EscapeThiefShuttleObjective = Escape to centcomm alive and unrestrained.
     .desc = You don't want your illegal activities to be discovered by anyone, do you? Get out on the evacuation shuttle.
+
+ent-ExpeditionsCircuitboardStealObjective = { ent-BaseThiefStealObjective }

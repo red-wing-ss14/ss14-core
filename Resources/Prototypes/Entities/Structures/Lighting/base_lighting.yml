@@ -669,7 +669,6 @@
   id: PoweredlightBlack
   suffix: Black
   parent: Poweredlight
-  description:
   components:
   - type: PoweredLight
     hasLampOnSpawn: LightTubeCrystalBlack

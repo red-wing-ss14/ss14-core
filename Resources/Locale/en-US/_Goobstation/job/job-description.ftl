@@ -36,3 +36,8 @@ job-description-radiohost = Host the stations local radio station, play vinyls, 
 
 # Viro
 job-description-virologist = Study spreading viruses, produce cures for ailing crewmembers, experiment in creating beneficial viruses. Make sure pandemics don't spread.
+
+# Dignitary
+job-description-bs = Protect and guard the command staff on the station.
+job-description-ntr = Represent Nanotrasen interests on the station, monitor compliance with corporate standards.
+

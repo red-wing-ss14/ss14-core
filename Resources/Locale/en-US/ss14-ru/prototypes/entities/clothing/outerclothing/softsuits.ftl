@@ -10,3 +10,5 @@ ent-ClothingOuterHardsuitAncientEVA = NTSRA voidsuit
     .desc = An ancient space suit, designed by the NTSRA branch of CentComm. It is very finely crafted, allowing for greater mobility than most modern space suits.
 ent-ClothingOuterHardsuitVoidParamed = paramedic hardsuit
     .desc = A hardsuit made for paramedics.
+
+ent-ClothingOuterHardsuitSyndicate = кроваво-красный скафандр ЕВА

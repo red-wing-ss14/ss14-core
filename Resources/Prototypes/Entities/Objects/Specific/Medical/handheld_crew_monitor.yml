@@ -23,7 +23,7 @@
   # Orion-Start
   - type: GenericVisualizer # Orion
     visuals:
-      enum.PowerCellSlotVisuals.Enabled:
+      enum.ToggleableVisuals.Enabled:
         light:
           True: { visible: true }
           False: { visible: false }

@@ -76,17 +76,17 @@
     price: 100
   - type: Destructible
     thresholds:
-    - trigger: &DamageTrigger100
+    - trigger:
         !type:DamageTrigger
         damage: 100
-      behaviors: &OverkillBehavior
+      behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
         damage: 15 # stronger than base
       behaviors:
-      - &SoundGlassBreak !type:PlaySoundBehavior
+      - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
       - !type:SpillBehavior { }
@@ -125,13 +125,19 @@
       Glass: 10
   - type: Destructible
     thresholds:
-    - trigger: *DamageTrigger100
-      behaviors: *OverkillBehavior
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
         damage: 5 # smaller so weaker
       behaviors: # remove glass shard spawn
-      - *SoundGlassBreak
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
       - !type:SpillBehavior { }
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -153,7 +159,7 @@
         - ReagentId: Vestine
           Quantity: 30
   - type: Tag
-    tags: &TagVial # Remove trash tag when we have a filled solution
+    tags: # Remove trash tag when we have a filled solution
     - CentrifugeCompatible
 
 - type: entity
@@ -171,7 +177,8 @@
           - ReagentId: Radium
             Quantity: 5
   - type: Tag
-    tags: *TagVial
+    tags:
+      - CentrifugeCompatible
 
 - type: entity
   parent: ChemistryEmptyVialSmall
@@ -188,7 +195,8 @@
           - ReagentId: Chlorine
             Quantity: 5
   - type: Tag
-    tags: *TagVial
+    tags:
+      - CentrifugeCompatible
 
 - type: entity
   parent: ChemistryEmptyVialSmall
@@ -205,4 +213,5 @@
           - ReagentId: Plasma
             Quantity: 30 # Goobstation
   - type: Tag
-    tags: *TagVial
+    tags:
+      - CentrifugeCompatible

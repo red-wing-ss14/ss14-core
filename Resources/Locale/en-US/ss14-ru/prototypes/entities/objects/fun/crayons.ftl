@@ -22,3 +22,5 @@ ent-CrayonPurple = purple crayon
     .desc = { ent-Crayon.desc }
 ent-CrayonBox = crayon box
     .desc = It's a box of crayons.
+
+ent-CrayonRainbowLarge = плазменный радужный мелок

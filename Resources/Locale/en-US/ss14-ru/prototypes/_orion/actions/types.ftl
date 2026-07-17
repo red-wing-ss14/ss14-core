@@ -15,3 +15,5 @@ ent-ActionEndControlHost = End Control
     .desc = Return control of the body back to the wearer.
 ent-ActionLayEggHost = Lay Egg
     .desc = Make the host throw up the egg. Costs 200 chemicals.
+
+ent-ActionToggleHUDs = Переключить отображение статусов

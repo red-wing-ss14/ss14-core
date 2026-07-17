@@ -24,3 +24,5 @@ ent-SawElectric = circular saw
     .desc = For heavy duty cutting.
 ent-SawAdvanced = advanced circular saw
     .desc = You think you can cut anything with it.
+
+ent-BoneSetter = установщик костей

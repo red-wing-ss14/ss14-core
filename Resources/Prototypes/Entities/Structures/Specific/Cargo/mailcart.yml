@@ -58,30 +58,44 @@
       mapLayers:
         package_1:
           minCount: 1
-          whitelist: &PackageWhitelist
+          whitelist:
             tags:
               - PackageDelivery
         package_2:
           minCount: 2
-          whitelist: *PackageWhitelist
+          whitelist:
+            tags:
+              - PackageDelivery
         package_3:
           minCount: 3
-          whitelist: *PackageWhitelist
+          whitelist:
+            tags:
+              - PackageDelivery
         package_4:
           minCount: 4
-          whitelist: *PackageWhitelist
+          whitelist:
+            tags:
+              - PackageDelivery
         package_5:
           minCount: 5
-          whitelist: *PackageWhitelist
+          whitelist:
+            tags:
+              - PackageDelivery
         package_6:
           minCount: 6
-          whitelist: *PackageWhitelist
+          whitelist:
+            tags:
+              - PackageDelivery
         package_7:
           minCount: 7
-          whitelist: *PackageWhitelist
+          whitelist:
+            tags:
+              - PackageDelivery
         package_8:
           minCount: 8
-          whitelist: *PackageWhitelist
+          whitelist:
+            tags:
+              - PackageDelivery
       sprite: Objects/Specific/Cargo/mailcart.rsi
     - type: Appearance
     - type: UserInterface

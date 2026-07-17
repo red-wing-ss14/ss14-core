@@ -133,7 +133,7 @@
   - type: Machine
     board: AutolatheMachineCircuitboard
   - type: MaterialStorage
-    whitelist: &StandardMaterialWhitelist
+    whitelist:
       tags:
         - Sheet
         - RawMaterial
@@ -228,7 +228,17 @@
   - type: Machine
     board: ProtolatheMachineCircuitboard
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        # <Goobstation>
+        - Metal
+        - Wooden
+        - SheetPlasma
+        - Plastic
+        # </Goobstation
   - type: OreSiloClient
   - type: Lathe
     idleState: icon
@@ -340,7 +350,17 @@
     - SharedBoards
     - ShuttleBoardsGoob
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        # <Goobstation>
+        - Metal
+        - Wooden
+        - SheetPlasma
+        - Plastic
+        # </Goobstation
   - type: OreSiloClient
   - type: RequireProjectileTarget
 
@@ -414,7 +434,17 @@
     - MechWeaponsSalvage
     - MechWeaponsSecurityLight
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        # <Goobstation>
+        - Metal
+        - Wooden
+        - SheetPlasma
+        - Plastic
+        # </Goobstation
   - type: OreSiloClient
   - type: GuideHelp
     guides:
@@ -529,7 +559,17 @@
     - SyndicateAmmoLightStatic # Goobstation
     - SyndicateAmmoHeavyStatic # Goobstation
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        # <Goobstation>
+        - Metal
+        - Wooden
+        - SheetPlasma
+        - Plastic
+        # </Goobstation
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Security]
@@ -567,7 +607,17 @@
       - SyndicateAmmoLightStatic # Goobstation Packs
       - SyndicateAmmoHeavyStatic # Goobstation Packs
     - type: MaterialStorage
-      whitelist: *StandardMaterialWhitelist
+      whitelist:
+        tags:
+          - Sheet
+          - RawMaterial
+          - Ingot
+          # <Goobstation>
+          - Metal
+          - Wooden
+          - SheetPlasma
+          - Plastic
+          # </Goobstation
     - type: OreSiloClient
 
 - type: entity
@@ -642,7 +692,17 @@
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        # <Goobstation>
+        - Metal
+        - Wooden
+        - SheetPlasma
+        - Plastic
+        # </Goobstation
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Medical]
@@ -694,7 +754,17 @@
     - ClothingDurathreadArmoured
     - ClothingCasualContrabandJumpsuits
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        # <Goobstation>
+        - Metal
+        - Wooden
+        - SheetPlasma
+        - Plastic
+        # </Goobstation
   - type: OreSiloClient
 
 - type: entity
@@ -880,5 +950,15 @@
     dynamicPacks:
     - FauxTiles
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+        # <Goobstation>
+        - Metal
+        - Wooden
+        - SheetPlasma
+        - Plastic
+        # </Goobstation
   - type: OreSiloClient

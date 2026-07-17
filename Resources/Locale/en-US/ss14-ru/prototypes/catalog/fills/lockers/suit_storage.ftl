@@ -58,3 +58,5 @@ ent-SuitStoragePirateCap = { ent-SuitStorageBase }
 ent-SuitStorageWizard = { ent-SuitStorageBase }
     .suffix = Wizard
     .desc = { ent-SuitStorageBase.desc }
+
+ent-SuitStorageBasic = { ent-SuitStorageBase }

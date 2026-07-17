@@ -77,92 +77,200 @@
 // SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Skubman <ba.fallaria@gmail.com>
 // SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server.Actions;
+using Content.Server.Body.Systems;
 using Content.Server.Power.Components;
 using Content.Shared._EinsteinEngines.Silicon.Components;
 using Content.Shared._Orion.Construction;
 using Content.Shared._Orion.Construction.Events;
 using Content.Shared._Shitmed.Damage;
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Actions;
 using Content.Shared.Bed;
 using Content.Shared.Bed.Components;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Body.Events;
+using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Emag.Systems;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Power;
+using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
-namespace Content.Server.Bed
+namespace Content.Server.Bed;
+
+public sealed class BedSystem : Content.Shared.Bed.BedSystem
 {
-    public sealed class BedSystem : Content.Shared.Bed.BedSystem
+    [Dependency] private readonly ActionContainerSystem _actConts = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly SharedMetabolizerSystem _metabolizer = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
+    [Dependency] private readonly SleepingSystem _sleepingSystem = default!;
+
+    private EntityQuery<SleepingComponent> _sleepingQuery;
+
+    public override void Initialize()
     {
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
+        base.Initialize();
 
-        private EntityQuery<SleepingComponent> _sleepingQuery;
+        SubscribeLocalEvent<HealOnBuckleComponent, MapInitEvent>(OnHealMapInit);
+        SubscribeLocalEvent<HealOnBuckleComponent, StrappedEvent>(OnStrapped);
+        SubscribeLocalEvent<HealOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
 
-        public override void Initialize()
-        {
-            base.Initialize();
+        SubscribeLocalEvent<StasisBedComponent, StrappedEvent>(OnStasisStrapped);
+        SubscribeLocalEvent<StasisBedComponent, UnstrappedEvent>(OnStasisUnstrapped);
+        SubscribeLocalEvent<StasisBedComponent, GotEmaggedEvent>(OnStasisEmagged);
+        SubscribeLocalEvent<StasisBedComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<StasisBedBuckledComponent, GetMetabolicMultiplierEvent>(OnStasisGetMetabolicMultiplier);
 
-            _sleepingQuery = GetEntityQuery<SleepingComponent>();
-
-            // Orion-Start
-            SubscribeLocalEvent<StasisBedComponent, RefreshPartsEvent>(OnStasisRefreshParts);
-            SubscribeLocalEvent<StasisBedComponent, UpgradeExamineEvent>(OnStasisUpgradeExamine);
-            // Orion-End
-        }
-
-        public override void Update(float frameTime)
-        {
-            base.Update(frameTime);
-
-            var query = EntityQueryEnumerator<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent>();
-            while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent))
-            {
-                if (_timing.CurTime < bedComponent.NextHealTime)
-                    continue;
-
-                bedComponent.NextHealTime += TimeSpan.FromSeconds(bedComponent.HealTime);
-
-                if (strapComponent.BuckledEntities.Count == 0)
-                    continue;
-
-                foreach (var healedEntity in strapComponent.BuckledEntities)
-                {
-                    if (_mobStateSystem.IsDead(healedEntity)
-                        || HasComp<SiliconComponent>(healedEntity)) // Goobstation
-                        continue;
-
-                    var damage = bedComponent.Damage;
-
-                    if (_sleepingQuery.HasComp(healedEntity))
-                        damage *= bedComponent.SleepMultiplier;
-
-                    _damageableSystem.TryChangeDamage(healedEntity, damage, true, origin: uid, targetPart: TargetBodyPart.All, splitDamage: SplitDamageBehavior.SplitEnsureAll); // Shitmed Change
-                }
-            }
-        }
+        _sleepingQuery = GetEntityQuery<SleepingComponent>();
 
         // Orion-Start
-        private void OnStasisRefreshParts(EntityUid uid, StasisBedComponent component, RefreshPartsEvent args)
-        {
-            var capacitorTier = args.GetPartRating(MachinePartIds.Capacitor);
-            component.PowerLoad = component.BasePowerLoad * RefreshPartsEvent.GetLinearMultiplier(capacitorTier, 0.1f, 0.5f, 1.2f);
-
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
-                receiver.Load = component.PowerLoad;
-        }
-
-        private static void OnStasisUpgradeExamine(EntityUid uid, StasisBedComponent component, UpgradeExamineEvent args)
-        {
-            args.AddPercentageUpgrade("machine-upgrade-stasis-bed-power", component.PowerLoad / component.BasePowerLoad);
-        }
+        SubscribeLocalEvent<StasisBedComponent, RefreshPartsEvent>(OnStasisRefreshParts);
+        SubscribeLocalEvent<StasisBedComponent, UpgradeExamineEvent>(OnStasisUpgradeExamine);
         // Orion-End
     }
+
+    private void OnHealMapInit(Entity<HealOnBuckleComponent> ent, ref MapInitEvent args)
+    {
+        _actConts.EnsureAction(ent.Owner, ref ent.Comp.SleepAction, SleepingSystem.SleepActionId);
+        Dirty(ent);
+    }
+
+    private void OnStrapped(Entity<HealOnBuckleComponent> bed, ref StrappedEvent args)
+    {
+        EnsureComp<HealOnBuckleHealingComponent>(bed);
+        bed.Comp.NextHealTime = _timing.CurTime + TimeSpan.FromSeconds(bed.Comp.HealTime);
+        _actionsSystem.AddAction(args.Buckle, ref bed.Comp.SleepAction, SleepingSystem.SleepActionId, bed);
+        Dirty(bed);
+    }
+
+    private void OnUnstrapped(Entity<HealOnBuckleComponent> bed, ref UnstrappedEvent args)
+    {
+        if (!Terminating(args.Buckle.Owner))
+        {
+            _actionsSystem.RemoveAction(args.Buckle.Owner, bed.Comp.SleepAction);
+            _sleepingSystem.TryWaking(args.Buckle.Owner);
+        }
+
+        if (args.Strap.Comp.BuckledEntities.Count == 0)
+            RemComp<HealOnBuckleHealingComponent>(bed);
+    }
+
+    private void OnStasisStrapped(Entity<StasisBedComponent> ent, ref StrappedEvent args)
+    {
+        EnsureComp<StasisBedBuckledComponent>(args.Buckle);
+        _metabolizer.UpdateMetabolicMultiplier(args.Buckle);
+    }
+
+    private void OnStasisUnstrapped(Entity<StasisBedComponent> ent, ref UnstrappedEvent args)
+    {
+        RemComp<StasisBedBuckledComponent>(args.Buckle);
+        _metabolizer.UpdateMetabolicMultiplier(args.Buckle);
+    }
+
+    private void OnStasisEmagged(Entity<StasisBedComponent> ent, ref GotEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (_emag.CheckFlag(ent, EmagType.Interaction))
+            return;
+
+        ent.Comp.Multiplier = 1f / ent.Comp.Multiplier;
+        UpdateMetabolisms(ent.Owner);
+        Dirty(ent);
+
+        args.Repeatable = true;
+        args.Handled = true;
+    }
+
+    private void OnPowerChanged(Entity<StasisBedComponent> ent, ref PowerChangedEvent args)
+    {
+        UpdateMetabolisms(ent.Owner);
+    }
+
+    private void OnStasisGetMetabolicMultiplier(Entity<StasisBedBuckledComponent> ent, ref GetMetabolicMultiplierEvent args)
+    {
+        if (!TryComp<BuckleComponent>(ent, out var buckle) || buckle.BuckledTo is not { } buckledTo)
+            return;
+
+        if (!TryComp<StasisBedComponent>(buckledTo, out var stasis))
+            return;
+
+        if (!_powerReceiver.IsPowered(buckledTo))
+            return;
+
+        args.Multiplier *= stasis.Multiplier;
+    }
+
+    private void UpdateMetabolisms(Entity<StrapComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        foreach (var buckledEntity in ent.Comp.BuckledEntities)
+        {
+            _metabolizer.UpdateMetabolicMultiplier(buckledEntity);
+        }
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent>();
+        while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent))
+        {
+            if (_timing.CurTime < bedComponent.NextHealTime)
+                continue;
+
+            bedComponent.NextHealTime += TimeSpan.FromSeconds(bedComponent.HealTime);
+
+            Dirty(uid, bedComponent);
+
+            if (strapComponent.BuckledEntities.Count == 0)
+                continue;
+
+            foreach (var healedEntity in strapComponent.BuckledEntities)
+            {
+                if (_mobStateSystem.IsDead(healedEntity)
+                    || HasComp<SiliconComponent>(healedEntity)) // Goobstation
+                    continue;
+
+                var damage = bedComponent.Damage;
+
+                if (_sleepingQuery.HasComp(healedEntity))
+                    damage *= bedComponent.SleepMultiplier;
+
+                _damageableSystem.TryChangeDamage(healedEntity, damage, true, origin: uid, targetPart: TargetBodyPart.All, splitDamage: SplitDamageBehavior.SplitEnsureAll); // Shitmed Change
+            }
+        }
+    }
+
+    // Orion-Start
+    private void OnStasisRefreshParts(EntityUid uid, StasisBedComponent component, RefreshPartsEvent args)
+    {
+        var capacitorTier = args.GetPartRating(MachinePartIds.Capacitor);
+        component.PowerLoad = component.BasePowerLoad * RefreshPartsEvent.GetLinearMultiplier(capacitorTier, 0.1f, 0.5f, 1.2f);
+
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
+            receiver.Load = component.PowerLoad;
+    }
+
+    private static void OnStasisUpgradeExamine(EntityUid uid, StasisBedComponent component, UpgradeExamineEvent args)
+    {
+        args.AddPercentageUpgrade("machine-upgrade-stasis-bed-power", component.PowerLoad / component.BasePowerLoad);
+    }
+    // Orion-End
 }

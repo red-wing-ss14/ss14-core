@@ -30,7 +30,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
     defaultDirection: 1, 0
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedMediumLaser # Amour edit: RedMediumSplitLaser > RedMediumLaser
     fireCost: 100 # Amour edit: 80 > 100
   - type: StaticPrice

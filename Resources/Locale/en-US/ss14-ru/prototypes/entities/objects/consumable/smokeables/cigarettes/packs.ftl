@@ -15,3 +15,6 @@ ent-CigPackSyndicate = Interdyne herbals packet
 ent-CigPackMixed = Dan's soaked smokes
     .desc = Dan worked with NT chemistry to dispose of excess chemicals, ENJOY.
     .suffix = Mixed
+
+ent-CigPackMixedMedical = пачка пропитанных сигарет Дэна
+ent-CigPackMixedNasty = пачка пропитанных сигарет Дэна

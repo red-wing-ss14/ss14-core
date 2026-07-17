@@ -357,7 +357,7 @@
 - type: entity
   name: character sheet
   parent: Paper
-  id: PaperCNCSheet # legally gray zone of using "D&D" and "DND"
+  id: PaperCNCSheet # legally gray zone of using "D " and "DND"
   description: 'A sheet for your Carps and Crypts characters.'
   components:
   - type: Paper

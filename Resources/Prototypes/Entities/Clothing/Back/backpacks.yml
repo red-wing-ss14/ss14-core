@@ -314,7 +314,6 @@
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackSyndicate
   name: syndicate backpack
-  description:
   components:
   - type: Sprite
     sprite: Clothing/Back/Backpacks/syndicate.rsi

@@ -68,6 +68,7 @@
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumNeurotoxin
   - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

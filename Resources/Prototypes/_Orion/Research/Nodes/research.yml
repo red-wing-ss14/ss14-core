@@ -60,8 +60,8 @@
   name: research-technology-applied-bluespace-name
   description: research-technology-applied-bluespace-desc
   icon:
-    sprite: _Goobstation/Structures/Machines/silo.rsi
-    state: ore_silo
+    sprite: Structures/Machines/silo.rsi
+    state: silo
   discipline: Scientific
   tier: 2
   announceChannels:

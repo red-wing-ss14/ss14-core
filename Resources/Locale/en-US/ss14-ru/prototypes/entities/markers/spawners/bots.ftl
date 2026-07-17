@@ -8,3 +8,16 @@ ent-SpawnMobSupplyBot = supplybot spawner
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobHonkBot = honkbot spawner
     .desc = { ent-MarkerBase.desc }
+
+ent-SpawnMobJonkBot = спавнер кринжбота
+ent-SpawnMobMimeBot = спавнер мимбота
+ent-SpawnMobFunBot = спавнер случайного веселого минибота-помощника
+ent-SpawnMobAnyBot = спавнер случайного минибота-помощника
+ent-SpawnMobMedibotChance10 = { ent-SpawnMobMedibot }
+ent-SpawnMobCleanBotChance10 = { ent-SpawnMobCleanBot }
+ent-SpawnMobFireBotChance10 = { ent-SpawnMobFireBot }
+ent-SpawnMobSupplyBotChance10 = { ent-SpawnMobSupplyBot }
+ent-SpawnMobHonkBotChance10 = { ent-SpawnMobHonkBot }
+ent-SpawnMobJonkBotChance10 = { ent-SpawnMobJonkBot }
+ent-SpawnMobMimeBotChance10 = { ent-SpawnMobMimeBot }
+ent-SpawnMobFunBotChance10 = { ent-SpawnMobFunBot }

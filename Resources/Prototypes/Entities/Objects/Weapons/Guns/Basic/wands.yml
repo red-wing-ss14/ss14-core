@@ -105,7 +105,7 @@
   name: magical wand of instant death
   parent: WeaponWandBase
   id: WeaponWandDeath
-  description: Only the best and brightest of the Space Wizards R&D team worked together to create this beauty.
+  description: Only the best and brightest of the Space Wizards R team worked together to create this beauty.
   components:
   - type: Sprite
     layers:

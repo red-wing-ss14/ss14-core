@@ -57,7 +57,7 @@
 - type: entity
   parent: WindoorServiceLocked
   id: WindoorBarKitchenLocked
-  suffix: Bar&Kitchen, Locked
+  suffix: Bar , Locked
   components:
   - type: ContainerFill
     containers:
@@ -124,7 +124,7 @@
 - type: entity
   parent: WindoorServiceLocked
   id: WindoorKitchenHydroponicsLocked
-  suffix: Kitchen&Hydroponics, Locked
+  suffix: Kitchen , Locked
   components:
   - type: ContainerFill
     containers:

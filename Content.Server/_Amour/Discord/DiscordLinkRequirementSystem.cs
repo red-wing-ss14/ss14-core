@@ -19,6 +19,23 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
 
     private void OnIsRoleAllowed(ref IsRoleAllowedEvent ev)
     {
+        if (ev.Requirements != null)
+        {
+            foreach (var requirement in ev.Requirements)
+            {
+                if (requirement is not Content.Shared._Amour.Discord.DiscordLinkRequirement { Inverted: false })
+                    continue;
+
+                if (!_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
+                {
+                    ev.Cancelled = true;
+                    _ = EntityManager.System<DiscordLinkSystem>().SendLinkStatus(ev.Player);
+                }
+
+                return;
+            }
+        }
+
         if (ev.Jobs == null)
             return;
 

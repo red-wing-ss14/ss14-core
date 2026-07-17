@@ -128,9 +128,9 @@ ClothingUnderSocksBee: ClothingSocksBee
 ConstructionBarricade: Barricade
 FishingRodGoon: FishingRod
 FishingRodGolden: FishingRod
-PlushieHuman: ToySpawner
-PlushieArachind: ToySpawner
-PlushieDiona: ToySpawner
+PlushieHuman: PlushieSpawner50
+PlushieArachind: PlushieSpawner50
+PlushieDiona: PlushieSpawner50
 DrinkGinAndSonic: RandomDrinkGlass
 DrinkGoldenCat: RandomDrinkGlass
 DrinkPineappleBlast: RandomDrinkGlass

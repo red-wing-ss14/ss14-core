@@ -5,8 +5,6 @@
   parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazineRifle
   name: "magazine (5.56mm rifle)"  # Orion-Edit: .20 > 5.56mm
-  parent: [ BaseItem, BaseSecurityContraband ]
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -34,12 +32,10 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
-
 - type: entity
   parent: BaseMagazineRifle
   id: MagazineRifle
   name: "magazine (5.56mm rifle)" # Orion-Edit: .20 > 5.56mm
-  parent: BaseMagazineRifle
   description: 25-round double stack magazine for combat rifles. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -56,7 +52,6 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-
 - type: entity
   parent: MagazineRifle
   id: MagazineRifleEmpty
@@ -78,12 +73,10 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-
 - type: entity
   parent: MagazineRifle
   id: MagazineRifleIncendiary
   name: "magazine (5.56mm incendiary)" # Orion-Edit: .20 rifle > 5.56mm
-  parent: MagazineRifle
   description: 25-round double stack magazine for combat rifles. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -106,12 +99,10 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#ff6e52"
-
 - type: entity
   parent: BaseMagazineRifle
   id: MagazineRiflePractice
   name: "magazine (5.56mm practice)" # Orion-Edit: .20 rifle > 5.56mm
-  parent: BaseMagazineRifle
   description: 25-round double stack magazine for combat rifles. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -134,12 +125,10 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#dbdbdb"
-
 - type: entity
   parent: BaseMagazineRifle
   id: MagazineRifleUranium
   name: "magazine (5.56mm uranium)" # Orion-Edit: .20 rifle > 5.56mm
-  parent: BaseMagazineRifle
   description: 25-round double stack magazine for combat rifles. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider

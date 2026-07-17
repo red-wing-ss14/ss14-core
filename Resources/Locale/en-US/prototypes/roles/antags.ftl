@@ -20,6 +20,8 @@
 
 ## goob edited
 roles-antag-syndicate-agent-name = Traitor
+roles-antag-pirate-name = Pirate
+
 
 roles-antag-generic-solo-antagonist-name = Solo Antagonist
 

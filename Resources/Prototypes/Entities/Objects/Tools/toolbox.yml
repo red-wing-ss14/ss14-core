@@ -180,21 +180,31 @@
     damage:
       types:
         Blunt: 2
-    soundHit: &SoundRubberHammer
+    soundHit:
       collection: RubberHammer
       params:
         variation: 0.03
         volume: 3
   - type: EmitSoundOnLand
-    sound: *SoundRubberHammer
+    sound:
+      collection: RubberHammer
+      params:
+        variation: 0.03
+        volume: 3
   - type: Storage
-    storageOpenSound: &SoundHorn
+    storageOpenSound:
       collection: BikeHorn
       params:
         variation: 0.125
-    storageCloseSound: *SoundHorn
-    storageInsertSound: &SoundSqueak
+    storageCloseSound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
+    storageInsertSound:
       collection: FootstepClown
       params:
         variation: 0.125
-    storageRemoveSound: *SoundSqueak
+    storageRemoveSound:
+      collection: FootstepClown
+      params:
+        variation: 0.125

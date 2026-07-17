@@ -4,9 +4,7 @@
   id: BulletLightRifle
   name: bullet (5.45mm rifle) # Orion-Edit: 0.30 > 5.45mm
   parent: BaseBullet
-  id: BulletLightRifle
   categories: [ HideSpawnMenu ]
-  name: bullet (.30 rifle)
   components:
   - type: Projectile
     damage:
@@ -18,9 +16,7 @@
   id: BulletLightRiflePractice
   name: bullet (5.45mm practice) # Orion-Edit: 0.30 rifle > 5.45mm
   parent: BaseBulletPractice
-  id: BulletLightRiflePractice
   categories: [ HideSpawnMenu ]
-  name: bullet (.30 rifle practice)
   components:
   - type: Projectile
     damage:
@@ -30,9 +26,9 @@
 
 - type: entity
   parent: BaseBulletIncendiary
+  id: BulletLightRifleIncendiary
   name: bullet (5.45mm incendiary) # Orion-Edit: 0.30 rifle > 5.45mm
   categories: [ HideSpawnMenu ]
-  name: bullet (.30 rifle incendiary)
   components:
   - type: Projectile
     damage:
@@ -44,9 +40,9 @@
 
 - type: entity
   parent: BaseBulletUranium
+  id: BulletLightRifleUranium
   name: bullet (5.45mm uranium) # Orion-Edit: 0.30 rifle > 5.45mm
   categories: [ HideSpawnMenu ]
-  name: bullet (.30 rifle uranium)
   components:
   - type: Projectile
     damage:

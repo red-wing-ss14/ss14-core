@@ -109,7 +109,7 @@
 - type: entity
   parent: ResearchAndDevelopmentServer
   id: ResearchAndDevelopmentServerInteQ
-  name: InteQ R&D server
+  name: InteQ R server
   description: Contains the collective knowledge of the InteQ scientists. Destroying it would send them back to the stone age. You don't want that do you?
   components:
   - type: ResearchServer

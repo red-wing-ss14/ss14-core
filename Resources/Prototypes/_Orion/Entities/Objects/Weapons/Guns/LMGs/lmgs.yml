@@ -115,7 +115,8 @@
     minAngle: 12
     maxAngle: 20
     fireRate: 3.5
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
+    proto: BulletLightRifle
     fireCost: 10
   - type: DivineIntervention
 

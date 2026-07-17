@@ -86,3 +86,5 @@ ent-StationAiUploadComputer = AI upload console
     .desc = Used to update the laws of the station AI.
 ent-ComputerSupermatter = supermatter monitoring console
     .desc = Used to monitor the status of supermatter crystals.
+
+ent-ComputerCargoShuttle = консоль вызова грузового шаттла

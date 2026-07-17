@@ -46,7 +46,7 @@
     - FoodPacketBoritosTrash
 
 - type: entity
-  name: C&Ds
+  name: C
   parent: FoodSnackBase
   id: FoodSnackCnDs
   description: Legally, we cannot say that these won't melt in your hands.
@@ -627,7 +627,7 @@
   categories: [ HideSpawnMenu ]
   parent: FoodPacketTrash
   id: FoodPacketCnDsTrash
-  name: C&Ds bag
+  name: C bag
   components:
   - type: Sprite
     state: cnds-trash

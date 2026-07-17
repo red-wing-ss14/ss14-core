@@ -11,10 +11,12 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Preferences;
 using Robust.Shared.Player;
+using Robust.UnitTesting;
+using Robust.UnitTesting.Pool;
+using NUnit.Framework;
 
 namespace Content.IntegrationTests.Pair;
 
-// This partial class contains logic related to recycling & disposing test pairs.
 public sealed partial class TestPair
 {
     protected override async Task Cleanup()
@@ -22,51 +24,6 @@ public sealed partial class TestPair
         await base.Cleanup();
         await ResetModifiedPreferences();
         await Server.RemoveAllDummySessions();
-
-        if (TestMap != null)
-        {
-            await Server.WaitPost(() => Server.EntMan.DeleteEntity(TestMap.MapUid));
-            TestMap = null;
-        }
-
-        await RevertModifiedCvars();
-
-        var usageTime = Watch.Elapsed;
-        Watch.Restart();
-        await _testOut.WriteLineAsync($"{nameof(CleanReturnAsync)}: Test borrowed pair {Id} for {usageTime.TotalMilliseconds} ms");
-        // Let any last minute failures the test cause happen.
-        await ReallyBeIdle();
-        if (!Settings.Destructive)
-        {
-            if (!Client.IsAlive)
-            {
-                throw new Exception($"{nameof(CleanReturnAsync)}: Test killed the client in pair {Id}:", Client.UnhandledException);
-            }
-
-            if (!Server.IsAlive)
-            {
-                throw new Exception($"{nameof(CleanReturnAsync)}: Test killed the server in pair {Id}:", Server.UnhandledException);
-            }
-        }
-
-        if (Settings.MustNotBeReused)
-        {
-            Kill();
-            await ReallyBeIdle();
-            await _testOut.WriteLineAsync($"{nameof(CleanReturnAsync)}: Clean disposed in {Watch.Elapsed.TotalMilliseconds} ms");
-            return;
-        }
-
-        var sRuntimeLog = Server.ResolveDependency<IRuntimeLog>();
-        if (sRuntimeLog.ExceptionCount > 0)
-            throw new Exception($"{nameof(CleanReturnAsync)}: Server logged exceptions");
-        var cRuntimeLog = Client.ResolveDependency<IRuntimeLog>();
-        if (cRuntimeLog.ExceptionCount > 0)
-            throw new Exception($"{nameof(CleanReturnAsync)}: Client logged exceptions");
-
-        var returnTime = Watch.Elapsed;
-        await _testOut.WriteLineAsync($"{nameof(CleanReturnAsync)}: PoolManager took {returnTime.TotalMilliseconds} ms to put pair {Id} back into the pool");
-        State = PairState.Ready;
     }
 
     private async Task ResetModifiedPreferences()

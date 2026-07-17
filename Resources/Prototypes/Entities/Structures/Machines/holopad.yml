@@ -393,7 +393,7 @@
 - type: entity
   parent: Holopad
   id: HolopadScienceRnd
-  suffix: R&D
+  suffix: R
   components:
   - type: Label
     currentLabel: holopad-science-rnd

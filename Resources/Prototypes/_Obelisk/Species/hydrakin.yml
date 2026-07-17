@@ -5,7 +5,8 @@
   name: species-name-hydrakin
   roundStart: true
   prototype: MobHydrakin
-  sprites: MobHydrakinSprites
+  bodyTypes:
+    - HydrakinNormal
   defaultSkinTone: "#ffffff"
   markingLimits: MobHydrakinMarkingLimits
   dollPrototype: MobHydrakinDummy
@@ -18,8 +19,9 @@
   - Male
   - Female
 
-- type: speciesBaseSprites
-  id: MobHydrakinSprites
+- type: bodyType
+  id: HydrakinNormal
+  name: body-normal
   sprites:
     Head: MobHydrakinHead
     Hair: MobHumanoidAnyMarking

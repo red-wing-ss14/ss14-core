@@ -22,32 +22,50 @@
   - type: UseDelay
     delay: 0.5
   - type: EmitSoundOnUse
-    sound: &SoundBikeHorn
+    sound:
       collection: BikeHorn
       params:
         variation: 0.125
   - type: EmitSoundOnLand
-    sound: *SoundBikeHorn
+    sound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
   - type: EmitSoundOnTrigger
-    sound: *SoundBikeHorn
+    sound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
   - type: EmitSoundOnActivate
-    sound: *SoundBikeHorn
+    sound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
   - type: EmitSoundOnCollide
-    sound: *SoundBikeHorn
+    sound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
   - type: Tag
     tags:
     - Payload # yes, you can make re-usable prank grenades
     - BikeHorn
   - type: MeleeWeapon
     wideAnimationRotation: 135
-    soundHit: *SoundBikeHorn
+    soundHit:
+      collection: BikeHorn
+      params:
+        variation: 0.125
     damage:
       types:
         Blunt: 0
   - type: Tool
     qualities:
     - Honking
-    useSound: *SoundBikeHorn
+    useSound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
 
 - type: entity
   parent: BaseItem
@@ -71,21 +89,36 @@
     - Payload # yes, you can make re-usable prank grenades
     - CluwneHorn
   - type: EmitSoundOnTrigger
-    sound: &SoundCluwneHorn
+    sound:
       collection: CluwneHorn
       params:
         variation: 0.125
   - type: EmitSoundOnUse
-    sound: *SoundCluwneHorn
+    sound:
+      collection: CluwneHorn
+      params:
+        variation: 0.125
   - type: EmitSoundOnActivate
-    sound: *SoundCluwneHorn
+    sound:
+      collection: CluwneHorn
+      params:
+        variation: 0.125
   - type: EmitSoundOnCollide
-    sound: *SoundCluwneHorn
+    sound:
+      collection: CluwneHorn
+      params:
+        variation: 0.125
   - type: EmitSoundOnLand
-    sound: *SoundCluwneHorn
+    sound:
+      collection: CluwneHorn
+      params:
+        variation: 0.125
   - type: MeleeWeapon
     wideAnimationRotation: 135
-    soundHit: *SoundCluwneHorn
+    soundHit:
+      collection: CluwneHorn
+      params:
+        variation: 0.125
     damage:
       types:
         Blunt: 5
@@ -134,21 +167,36 @@
   - type: UseDelay
     delay: 3
   - type: EmitSoundOnUse
-    sound: &SoundBananiumHorn
+    sound:
       collection: BananiumHorn
       params:
         variation: 0.246
   - type: EmitSoundOnLand
-    sound: *SoundBananiumHorn
+    sound:
+      collection: BananiumHorn
+      params:
+        variation: 0.246
   - type: EmitSoundOnTrigger
-    sound: *SoundBananiumHorn
+    sound:
+      collection: BananiumHorn
+      params:
+        variation: 0.246
   - type: EmitSoundOnActivate
-    sound: *SoundBananiumHorn
+    sound:
+      collection: BananiumHorn
+      params:
+        variation: 0.246
   - type: EmitSoundOnCollide
-    sound: *SoundBananiumHorn
+    sound:
+      collection: BananiumHorn
+      params:
+        variation: 0.246
   - type: MeleeWeapon
     wideAnimationRotation: 135
-    soundHit: *SoundBananiumHorn
+    soundHit:
+      collection: BananiumHorn
+      params:
+        variation: 0.246
     damage:
       types:
         Blunt: 0
@@ -157,7 +205,10 @@
     graph: BananiumHorn
     node: bananiumHorn
   - type: Tool
-    useSound: *SoundBananiumHorn
+    useSound:
+      collection: BananiumHorn
+      params:
+        variation: 0.246
 
 - type: entity
   parent: BaseItem
@@ -297,18 +348,23 @@
   - type: Item
     size: Tiny
   - type: EmitSoundOnUse
-    sound: &SoundQuack
+    sound:
       path: /Audio/Items/Toys/quack.ogg
   - type: EmitSoundOnLand
-    sound: *SoundQuack
+    sound:
+      path: /Audio/Items/Toys/quack.ogg
   - type: EmitSoundOnActivate
-    sound: *SoundQuack
+    sound:
+      path: /Audio/Items/Toys/quack.ogg
   - type: EmitSoundOnTrigger
-    sound: *SoundQuack
+    sound:
+      path: /Audio/Items/Toys/quack.ogg
   - type: EmitSoundOnCollide
-    sound: *SoundQuack
+    sound:
+      path: /Audio/Items/Toys/quack.ogg
   - type: MeleeWeapon
-    soundHit: *SoundQuack
+    soundHit:
+      path: /Audio/Items/Toys/quack.ogg
   - type: Tag
     tags:
     - ToyRubberDuck
@@ -323,21 +379,36 @@
     sprite: Objects/Fun/rubber_chicken.rsi
     state: icon
   - type: EmitSoundOnUse
-    sound: &SoundRubberChicken
+    sound:
       collection: RubberChicken
       params:
         variation: 0.125
   - type: EmitSoundOnLand
-    sound: *SoundRubberChicken
+    sound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
   - type: EmitSoundOnActivate
-    sound: *SoundRubberChicken
+    sound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
   - type: EmitSoundOnCollide
-    sound: *SoundRubberChicken
+    sound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
   - type: EmitSoundOnTrigger
-    sound: *SoundRubberChicken
+    sound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
   - type: MeleeWeapon
     wideAnimationRotation: 110
-    soundHit: *SoundRubberChicken
+    soundHit:
+      collection: RubberChicken
+      params:
+        variation: 0.125
 
 - type: entity
   parent: BaseItem
@@ -378,16 +449,20 @@
     sprite: Objects/Fun/clownrecorder.rsi
     state: icon
   - type: EmitSoundOnUse
-    sound: &SoundClownRecorder
+    sound:
       collection: ClownRecorder
   - type: EmitSoundOnLand
-    sound: *SoundClownRecorder
+    sound:
+      collection: ClownRecorder
   - type: EmitSoundOnActivate
-    sound: *SoundClownRecorder
+    sound:
+      collection: ClownRecorder
   - type: EmitSoundOnTrigger
-    sound: *SoundClownRecorder
+    sound:
+      collection: ClownRecorder
   - type: EmitSoundOnCollide
-    sound: *SoundClownRecorder
+    sound:
+      collection: ClownRecorder
   - type: UseDelay
     delay: 30.0
   - type: Tag
@@ -408,16 +483,25 @@
     tags:
     - Payload
   - type: EmitSoundOnUse
-    sound: &SoundParp
+    sound:
       collection: Parp
       params:
         variation: 0.125
   - type: EmitSoundOnLand
-    sound: *SoundParp
+    sound:
+      collection: Parp
+      params:
+        variation: 0.125
   - type: EmitSoundOnActivate
-    sound: *SoundParp
+    sound:
+      collection: Parp
+      params:
+        variation: 0.125
   - type: EmitSoundOnCollide
-    sound: *SoundParp
+    sound:
+      collection: Parp
+      params:
+        variation: 0.125
   - type: UseDelay
     delay: 0.8
   - type: Slippery
@@ -427,9 +511,15 @@
       stunTime: 0
       knockdownTime: 0
       launchForwardsMultiplier: 0
-    slipSound: *SoundParp
+    slipSound:
+      collection: Parp
+      params:
+        variation: 0.125
   - type: MeleeWeapon
-    soundHit: *SoundParp
+    soundHit:
+      collection: Parp
+      params:
+        variation: 0.125
     damage:
       types:
         Blunt: 0
@@ -473,18 +563,23 @@
   - type: Item
     sprite: Objects/Misc/skub.rsi
   - type: EmitSoundOnUse
-    sound: &SoundSkub
+    sound:
       collection: Skub
   - type: EmitSoundOnLand
-    sound: *SoundSkub
+    sound:
+      collection: Skub
   - type: EmitSoundOnTrigger
-    sound: *SoundSkub
+    sound:
+      collection: Skub
   - type: EmitSoundOnActivate
-    sound: *SoundSkub
+    sound:
+      collection: Skub
   - type: EmitSoundOnCollide
-    sound: *SoundSkub
+    sound:
+      collection: Skub
   - type: MeleeWeapon
-    soundHit: *SoundSkub
+    soundHit:
+      collection: Skub
     damage:
       types:
         Blunt: 0

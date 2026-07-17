@@ -213,7 +213,7 @@
     layers:
       - state: green
       - sprite: Objects/Consumable/Drinks/mug_rainbow.rsi
-        state: icon-0
+        state: icon
   - type: RandomSpawner
     prototypes:
       - DrinkMug

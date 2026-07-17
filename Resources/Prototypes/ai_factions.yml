@@ -58,6 +58,9 @@
   id: PetsNT
   friendly:
   - NanoTrasen
+  # RW start
+  - RWSecurityTurret
+  # RW end
   hostile:
   # Orion-Start
   - InteQHostile
@@ -71,10 +74,6 @@
   - Dragon
   - Blob # Goobstation - Blob
   - Lavafauna # Goob - Lavaland
-  # RW start
-  friendly:
-  - RWSecurityTurret
-  # RW end
 
 - type: npcFaction
   id: SimpleHostile

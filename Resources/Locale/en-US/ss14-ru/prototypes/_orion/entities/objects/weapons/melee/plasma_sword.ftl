@@ -7,3 +7,5 @@ ent-PlasmaSwordAlt = { ent-PlasmaSword }
 ent-PlasmaScythe = plasma scythe
     .desc = This can be stored in pockets.
     .suffix = double energy sword
+
+ent-BaseMeleeWeaponPlasma = { ent-BaseMajorContraband }

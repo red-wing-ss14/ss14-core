@@ -177,7 +177,7 @@
         mask:
         - Impassable
         - BulletImpassable
-      fly-by: &flybyfixture
+      fly-by:
         shape: !type:PhysShapeCircle
           radius: 0.6
         layer:

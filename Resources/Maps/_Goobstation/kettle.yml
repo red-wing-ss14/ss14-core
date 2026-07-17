@@ -18132,7 +18132,7 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18354
 - proto: AutolatheMachineCircuitboard
   entities:
@@ -62497,7 +62497,7 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18354
 - proto: CircuitImprinterMachineCircuitboard
   entities:
@@ -129846,7 +129846,7 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18354
 - proto: ProtolatheMachineCircuitboard
   entities:

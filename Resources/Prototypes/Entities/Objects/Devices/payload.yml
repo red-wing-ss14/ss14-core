@@ -77,12 +77,16 @@
     - state: payload-empty
       map: ["base"]
   - type: ChemicalPayload
-    beakerSlotA: &slotDef
+    beakerSlotA:
       whitelist:
         components:
         - FitsInDispenser
       swap: false
-    beakerSlotB: *slotDef
+    beakerSlotB:
+      whitelist:
+        components:
+        - FitsInDispenser
+      swap: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:

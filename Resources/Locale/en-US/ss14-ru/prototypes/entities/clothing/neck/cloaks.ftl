@@ -52,3 +52,7 @@ ent-ClothingNeckCloakEnby = treasure hunter cloak
     .desc = This cloak belonged to a greedy treasure hunter.
 ent-ClothingNeckCloakPan = chef's cloak
     .desc = Meant to be worn alongside a frying pan.
+
+ent-ClothingNeckCloakWhiteCe = белый плащ старшего инженера
+ent-ClothingNeckCloakGreenCe = зелёный плащ старшего инженера
+ent-ClothingNeckCloakMiner = плащ шахтёра

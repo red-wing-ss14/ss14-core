@@ -192,7 +192,7 @@
         mask:
         - Impassable
         - BulletImpassable
-      fly-by: &flybyfixture
+      fly-by:
         shape: !type:PhysShapeCircle
           radius: 1.5
         layer:
@@ -236,7 +236,15 @@
         mask:
         - Impassable
         - BulletImpassable
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
 
 - type: entity
   id: BaseBulletPractice
@@ -351,7 +359,15 @@
         - Opaque
         - Impassable
         - BulletImpassable
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Ammo
   - type: Projectile
     damage:
@@ -435,7 +451,15 @@
         - Opaque
         - Impassable
         - BulletImpassable
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Ammo
   - type: StaminaDamageOnCollide
     damage: 33 # Goob edit # Orion-Edit: 20 > 33
@@ -477,7 +501,15 @@
         - Opaque
         - Impassable
         - BulletImpassable
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Ammo
   - type: StaminaDamageOnCollide
     damage: 1
@@ -514,7 +546,15 @@
         hard: false
         mask:
         - Opaque
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Reflective # Goobstation - Make emitter bolts reflect as energy
     reflective:
     - Energy
@@ -562,7 +602,15 @@
         - Opaque
         - Impassable
         - BulletImpassable
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Projectile
     #   soundHit:  Waiting on serv3
     impactEffect: BulletImpactEffectDisabler
@@ -663,7 +711,15 @@
         hard: false
         mask:
         - Opaque
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
     damage:
@@ -829,7 +885,15 @@
         hard: false
         mask:
         - Opaque
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Projectile
     damage:
       types:
@@ -1353,7 +1417,15 @@
         - Opaque
         - Impassable
         - BulletImpassable
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Ammo
   - type: StaminaDamageOnCollide
     damage: 15 # Goob edit # Orion-Edit: 12 > 15
@@ -1396,7 +1468,15 @@
         hard: false
         mask:
         - Opaque
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Ammo
 
 - type: entity
@@ -1509,7 +1589,15 @@
         - Opaque
         - Impassable
         - BulletImpassable
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Ammo
   - type: Projectile
     impactEffect: BulletImpactEffectOrangeDisabler

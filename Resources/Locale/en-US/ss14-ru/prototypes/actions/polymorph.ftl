@@ -12,3 +12,5 @@ ent-ActionPolymorphJauntII = Ethereal Jaunt II
     .desc = Melt into the Ethereal Plane for an even quicker getaway!
 ent-ActionPolymorphJauntIII = Ethereal Jaunt III
     .desc = Are you even tangible anymore?
+
+ent-ActionPolymorph = { "" }

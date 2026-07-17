@@ -24,11 +24,12 @@
           Quantity: 30 # Orion-Edit: 35 > 30
         - ReagentId: Ephedrine # Orion-Edit: TranexamicAcid > Ephedrine
           Quantity: 10 # Orion-Edit: 5 > 10
-  - type: Hypospray
+  - type: Injector
     solutionName: pen
-    transferAmount: 40
-    onlyAffectsMobs: false
-    injectOnly: true
+    currentTransferAmount: 40
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: StaticPrice
     price: 500
   - type: Tag

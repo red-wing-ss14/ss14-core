@@ -6,7 +6,8 @@
   components:
   - type: Sprite
     sprite: _Goobstation/Objects/Medical/Stypticspray.rsi
-    state: icon
+    layers:
+    - state: icon
   - type: Item
     sprite: _Goobstation/Objects/Medical/Stypticspray.rsi
 
@@ -18,7 +19,8 @@
   components:
   - type: Sprite
     sprite: _Goobstation/Objects/Medical/Silverspray.rsi
-    state: icon
+    layers:
+    - state: icon
   - type: Item
     sprite: _Goobstation/Objects/Medical/Silverspray.rsi
 
@@ -30,6 +32,7 @@
   components:
   - type: Sprite
     sprite: _Orion/Objects/Medical/Bluespray.rsi
-    state: icon
+    layers:
+    - state: icon
   - type: Item
     sprite: _Orion/Objects/Medical/Bluespray.rsi

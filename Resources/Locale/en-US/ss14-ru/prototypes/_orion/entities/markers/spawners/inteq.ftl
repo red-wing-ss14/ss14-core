@@ -37,3 +37,5 @@ ent-SpawnPointInteQVanguardSoldierSizo37 = { ent-SpawnPointInteQVanguardSoldier 
 ent-SpawnPointInteQVanguardMedicSizo37 = { ent-SpawnPointInteQVanguardMedic }
     .desc = { ent-MarkerBase.desc }
     .suffix = Спавнер, Сизо-73 Гост Роль, Персонаж игрока
+
+ent-SpawnPointInteQ = криокапсула Интек

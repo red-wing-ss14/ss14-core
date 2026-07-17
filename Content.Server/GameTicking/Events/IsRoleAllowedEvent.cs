@@ -1,4 +1,5 @@
-﻿using Content.Shared.Roles;
+using System.Collections.Generic;
+using Content.Shared.Roles;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -15,10 +16,12 @@ public struct IsRoleAllowedEvent(
     ICommonSession player,
     List<ProtoId<JobPrototype>>? jobs,
     List<ProtoId<AntagPrototype>>? antags,
-    bool cancelled = false)
+    bool cancelled = false,
+    HashSet<JobRequirement>? requirements = null)
 {
     public readonly ICommonSession Player = player;
     public readonly List<ProtoId<JobPrototype>>? Jobs = jobs;
     public readonly List<ProtoId<AntagPrototype>>? Antags = antags;
     public bool Cancelled = cancelled;
+    public readonly HashSet<JobRequirement>? Requirements = requirements;
 }

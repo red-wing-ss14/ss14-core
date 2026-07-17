@@ -29,8 +29,6 @@
     radius: 1.2
     energy: 3.0
     color: "#9dc5c9"
-  - type: Machine
-    board: SmartFridgeCircuitboard
   - type: ContainerContainer
     containers:
       smart_fridge_inventory: !type:Container

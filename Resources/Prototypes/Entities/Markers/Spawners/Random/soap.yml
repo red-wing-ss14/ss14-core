@@ -44,12 +44,10 @@
   - type: EntityTableSpawner
     table: !type:NestedSelector
       tableId: SlipTable
-
 - type: entity
   parent: MarkerBase
   id: RandomSoap
   name: random soap spawner
-  parent: MarkerBase
   placement:
     mode: PlaceFree  # Reserve: Better spawners
   components:

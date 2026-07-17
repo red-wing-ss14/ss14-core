@@ -4,9 +4,7 @@
   id: BulletPistol
   name: bullet (9mm auto) # Orion-Edit: .35 > 9mm
   parent: BaseBullet
-  id: BulletPistol
   categories: [ HideSpawnMenu ]
-  name: bullet (.35 auto)
   components:
   - type: Projectile
     damage:
@@ -17,9 +15,7 @@
   id: BulletPistolPractice
   name: bullet (9mm practice) # Orion-Edit: .35 auto > 9mm
   parent: BaseBulletPractice
-  id: BulletPistolPractice
   categories: [ HideSpawnMenu ]
-  name: bullet (.35 auto practice)
   components:
   - type: Projectile
     damage:
@@ -28,9 +24,9 @@
 
 - type: entity
   parent: BaseBulletIncendiary
+  id: BulletPistolIncendiary
   name: bullet (9mm incendiary) # Orion-Edit: .35 auto > 9mm
   categories: [ HideSpawnMenu ]
-  name: bullet (.35 auto incendiary)
   components:
   - type: Projectile
     damage:
@@ -40,9 +36,9 @@
         Piercing: 2 # Amour edit: missing > 2
 - type: entity
   parent: BaseBulletUranium
+  id: BulletPistolUranium
   name: bullet (9mm uranium) # Orion-Edit: .35 auto > 9mm
   categories: [ HideSpawnMenu ]
-  name: bullet (.35 auto uranium)
   components:
   - type: Projectile
     damage:

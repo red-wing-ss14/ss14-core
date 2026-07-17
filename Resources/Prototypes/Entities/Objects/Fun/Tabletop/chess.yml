@@ -14,11 +14,11 @@
     size: 338, 274
     setup:
       !type:TabletopChessSetup
-      boardPrototype: &ChessBoard ChessBoardTabletop
+      boardPrototype: ChessBoardTabletop
 
 - type: entity
   parent: BaseBoardTabletop
-  id: *ChessBoard
+  id: ChessBoardTabletop
   name: chessboard
   categories: [ HideSpawnMenu ]
   components:

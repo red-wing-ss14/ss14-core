@@ -201,8 +201,8 @@
 - type: entity
   id: ResearchAndDevelopmentServerMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: R&D server machine board
-  description: A machine printed circuit board for the R&D server.
+  name: R server machine board
+  description: A machine printed circuit board for the R server.
   components:
   - type: Sprite
     state: science

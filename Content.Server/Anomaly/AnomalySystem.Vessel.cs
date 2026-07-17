@@ -26,7 +26,6 @@ public sealed partial class AnomalySystem
         SubscribeLocalEvent<AnomalyVesselComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<AnomalyVesselComponent, ResearchServerGetPointsPerSecondByTypeEvent>(OnVesselGetPointsPerSecond); // Orion-Edit
         SubscribeLocalEvent<AnomalyShutdownEvent>(OnVesselAnomalyShutdown);
-        SubscribeLocalEvent<AnomalyStabilityChangedEvent>(OnVesselAnomalyStabilityChanged);
     }
 
     private void OnExamined(EntityUid uid, AnomalyVesselComponent component, ExaminedEvent args)

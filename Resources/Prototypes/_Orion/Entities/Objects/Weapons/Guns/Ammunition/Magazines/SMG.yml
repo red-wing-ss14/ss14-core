@@ -67,6 +67,7 @@
   - type: BallisticAmmoProvider
     capacity: 30
   - type: Sprite
+    sprite: _Orion/Objects/Weapons/Guns/Ammunition/Magazines/Pistol/SMG_vector.rsi
     layers:
     - state: base_extended
       map: ["enum.GunVisualLayers.Base"]

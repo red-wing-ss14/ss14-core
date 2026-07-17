@@ -140,7 +140,7 @@
   position: 7,-5
 
 - type: technology
-  id: Hydroponics
+  id: OrionHydroponics
   name: research-technology-hydroponics-name
   description: research-technology-hydroponics-desc
   icon:
@@ -176,7 +176,7 @@
   - type: General
     amount: 7500
   technologyPrerequisites:
-  - Hydroponics
+  - OrionHydroponics
   requiredExperiments:
   - ScanningRandomPlantsWild
   discountExperiments:

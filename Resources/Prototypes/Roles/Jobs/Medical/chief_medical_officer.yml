@@ -34,7 +34,6 @@
   salary: 120
   payrollDepartmentAccount: Command
   # Orion-End
-  weight: 10 #Goob Edit
   access:
   - Medical
   - Command

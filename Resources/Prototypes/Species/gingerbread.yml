@@ -2,7 +2,7 @@
 
 - type: species
   id: Gingerbread
-  name: Gingerbread
+  name: species-name-gingerbread
   roundStart: false
   prototype: MobGingerbread
   # Amour port: WD Slim body types START

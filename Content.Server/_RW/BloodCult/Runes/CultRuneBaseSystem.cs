@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Goobstation.Common.Religion;
 using Content.Goobstation.Shared.Bible;
@@ -6,7 +6,7 @@ using Content.Shared.Maps;
 using Content.Server.Chat.Systems;
 using Content.Server.Chemistry.Components;
 using Content.Server.DoAfter;
-using Content.Server.Fluids.Components;
+using Content.Shared.Fluids.Components;
 using Content.Server.Popups;
 using Content.Server._RW.BloodCult.Empower;
 using Content.Server._RW.BloodCult.Gamerule;

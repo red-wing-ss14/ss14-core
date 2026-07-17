@@ -24,3 +24,5 @@ ent-HoloprojectorSecurity = holobarrier projector
 ent-HoloprojectorSecurityEmpty = { ent-HoloprojectorSecurity }
     .suffix = Empty
     .desc = { ent-HoloprojectorSecurity.desc }
+
+ent-HolofanProjectorBorg = встроенный атмос голопроектор

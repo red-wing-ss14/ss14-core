@@ -41,3 +41,5 @@ ent-ClothingHandsKnuckleBoneCrushers = bone crushers
     .desc = Blessed by the Gods to break all those who don't obey.
 ent-ClothingHandsGlovesGuerrilla = guerrilla gloves
     .desc = Top of the line quality syndicate combative gloves, good for grabs as well as absorbing electrical shocks. Seems to be powered by telecrystals.
+
+ent-ClothingHandsKnucklesQuartermaster = гравированный кастет квартирмейстера

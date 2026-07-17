@@ -144,8 +144,8 @@ ui-options-hud-theme-clockwork = Clockwork
 ui-options-hud-theme-retro = Retro
 ui-options-hud-theme-minimalist = Minimalist
 ui-options-hud-theme-ashen = Ashen
-ui-options-hud-layout-default = Alternative
-ui-options-hud-layout-separated = Default
+ui-options-hud-layout-default = Default
+ui-options-hud-layout-separated = Separated
 ui-options-vp-stretch = Stretch viewport to fit game window
 ui-options-vp-scale = Fixed viewport scale:
 ui-options-vp-scale-value = x{ $scale }
@@ -163,7 +163,6 @@ ui-options-vp-vertical-fit-tooltip = When enabled, the main viewport will ignore
                                      will cause the viewport to be cut off on the horizontal axis.
 ui-options-vp-low-res = Low-resolution viewport
 ui-options-parallax-low-quality = Low-quality Parallax (background)
-ui-options-lights-glowing = Lights Glowing Effect
 ui-options-ambient-occlusion = Show Ambient Occlusion
 ui-options-fps-counter = Show FPS counter
 ui-options-vp-width = Viewport width:
@@ -283,7 +282,6 @@ ui-options-function-editor-line-place = Place line
 ui-options-function-editor-rotate-object = Rotate
 ui-options-function-editor-flip-object = Flip
 ui-options-function-editor-copy-object = Copy
-ui-options-function-mapping-enable-pick = Pick object/tile
 
 ui-options-function-show-debug-console = Open Console
 ui-options-function-show-debug-monitors = Show Debug Monitors

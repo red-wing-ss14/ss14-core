@@ -313,7 +313,7 @@
   - type: Battery
     maxCharge: 4800 # Amour edit: missing > 4800
     startingCharge: 4800 # Amour edit: missing > 4800
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: Pulse # Amour edit: missing > Pulse
     fireCost: 300 # Amour edit: missing > 300
   - type: Tag

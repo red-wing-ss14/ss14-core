@@ -5,7 +5,11 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+roles-antag-mindcontrolled-name = Mindcontrolled
+roles-antag-mindcontrolled-objective = Help your Master
+
 mindcontrol-popup-start = You are mindcontrolled
+
 mindcontrol-popup-stop = You feel a fog lift from your mind
 mindcontrol-briefing-start = You are mindcontrolled. Obey {$master}
 mindcontrol-briefing-get = YOU ARE MINDCONTROLLED

@@ -839,40 +839,40 @@
       storagebase: !type:GroupSelector
         children:
         - id: PillDexalin
-          amount: &Range1to6 !type:RangeNumberSelector
+          amount: !type:RangeNumberSelector
             range: 1, 6
         - id: PillDylovene
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillHyronalin
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillPotassiumIodide
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillIron
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillCopper
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillKelotane
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillDermaline
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillTricordrazine
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillBicaridine
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillCharcoal
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillAmbuzol
           weight: 0.75
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillAmbuzolPlus
           weight: 0.75
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: PillSpaceDrugs
           weight: 0.75
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
         - id: StrangePill
           weight: 0.75
-          amount: *Range1to6
+          amount: !type:RangeNumberSelector
 
 # Syringes
 - type: entity

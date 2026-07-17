@@ -4,3 +4,5 @@ ent-RoofMarker = Roof
 ent-NoRoofMarker = Roof
     .suffix = Disabled
     .desc = { ent-MarkerBase.desc }
+
+ent-BaseRoofMarker = { "" }

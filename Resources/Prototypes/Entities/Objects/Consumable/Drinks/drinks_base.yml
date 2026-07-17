@@ -19,23 +19,23 @@
     edible: Drink # Namesake. This entity is a sort of cup you can drink directly from.
     destroyOnEmpty: false
     utensil: None # Spoons don't fit in cups, also conflicts with bar spoon stirring
-    solution: &sol drink # solution name alias
+    solution: drink # solution name alias
   - type: Spillable
-    solution: *sol
+    solution: drink
   - type: MixableSolution
-    solution: *sol
+    solution: drink
   - type: DrawableSolution
-    solution: *sol
+    solution: drink
   - type: RefillableSolution
-    solution: *sol
+    solution: drink
   - type: DrainableSolution
-    solution: *sol
+    solution: drink
   - type: InjectableSolution # Injectors (syringe) will fall back to RefillableSolution. This adds support for hyposprays and liquid anomalies.
-    solution: *sol
+    solution: drink
   - type: ExaminableSolution
-    solution: *sol
+    solution: drink
   - type: SolutionItemStatus
-    solution: *sol
+    solution: drink
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -57,7 +57,7 @@
   components:
   - type: SpaceGarbage
   - type: TrashOnSolutionEmpty
-    solution: *sol
+    solution: drink
   - type: Tag
     tags:
     - Trash
@@ -71,7 +71,7 @@
   components:
   - type: Openable
   - type: PressurizedSolution
-    solution: *sol
+    solution: drink
   - type: Shakeable
   - type: Sealable
 
@@ -110,7 +110,7 @@
     - state: icon
       map: ["enum.OpenableVisuals.Layer"]
   - type: ExaminableSolution
-    solution: *sol
+    solution: drink
     examinableWhileClosed: false # If you can't see the fill levels on the sprite, we can assume it's opaque
     heldOnly: true # If it's opaque, you probably can't see through the open lid from a distance
 
@@ -127,7 +127,7 @@
       map: ["enum.SolutionContainerLayers.Fill"]
       visible: false
   - type: SolutionContainerVisuals
-    solutionName: *sol
+    solutionName: drink
     maxFillLevels: 5
     fillBaseName: fill-
     inHandsMaxFillLevels: 3

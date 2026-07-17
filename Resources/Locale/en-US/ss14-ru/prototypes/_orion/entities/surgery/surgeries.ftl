@@ -6,3 +6,6 @@ ent-SurgeryPacify = Pacify patient
 ent-SurgeryRemovePacification = Remove pacification
     .desc = Surgical procedure that removes pacification from the patient.
 
+
+ent-SurgeryRemoveKidneys = Удалить почки
+ent-SurgeryInsertKidneys = Установить почки

@@ -49,3 +49,6 @@ ent-RandomHumanoidSpawnerNukeOp = Nuclear Operative
 ent-RandomHumanoidSpawnerCluwne = Cluwne
     .suffix = spawns a cluwne
     .desc = { "" }
+
+ent-RandomHumanoidSpawnerERTLeaderEVALecter = { ent-RandomHumanoidSpawnerERTLeaderEVA }
+ent-RandomHumanoidSpawnerERTSecurityEVALecter = { ent-RandomHumanoidSpawnerERTSecurityEVA }

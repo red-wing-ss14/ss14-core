@@ -317,11 +317,13 @@
     - trigger:
         !type:DamageTrigger
         damage: 400
-      behaviors: *OverkillBehavior
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
         damage: 250 # A pickaxe can destroy this in two hits, since the door is rock.
-      behaviors: &IronstoneDestructionBehavior
+      behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
@@ -348,8 +350,22 @@
     - trigger:
         !type:DamageTrigger
         damage: 500
-      behaviors: *OverkillBehavior
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
         damage: 375
-      behaviors: *IronstoneDestructionBehavior
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            path: /Audio/Effects/break_stone.ogg
+            params:
+              volume: -6
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SteelOre1:
+              min: 0
+              max: 1

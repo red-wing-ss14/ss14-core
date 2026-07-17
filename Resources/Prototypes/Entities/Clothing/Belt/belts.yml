@@ -342,7 +342,6 @@
         - AutoinjectorCartridge # Goobstation
         - HandheldCrewMonitor # Goobstation
       components:
-        - Hypospray
         - Injector
         - Pill
         - HandLabeler
@@ -359,7 +358,7 @@
       hypo:
         whitelist:
           components:
-          - Hypospray
+          - Injector
       pill:
         whitelist:
           components:
@@ -433,7 +432,6 @@
         - Nailgun
         - MagazineNailgun
       components:
-        - Hypospray
         - Injector
         - Pill
         - HandLabeler
@@ -461,7 +459,7 @@
       hypo:
         whitelist:
           components:
-          - Hypospray
+          - Injector
       pill:
         whitelist:
           components:

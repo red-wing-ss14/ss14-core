@@ -9,12 +9,14 @@
   components:
   - type: Catchable
     catchChance: 0.8
-    catchSuccessSound: &SoundSportsBounce
+    catchSuccessSound:
       path: /Audio/Effects/Footsteps/bounce.ogg
   - type: EmitSoundOnCollide
-    sound: *SoundSportsBounce
+    sound:
+      path: /Audio/Effects/Footsteps/bounce.ogg
   - type: EmitSoundOnLand
-    sound: *SoundSportsBounce
+    sound:
+      path: /Audio/Effects/Footsteps/bounce.ogg
 
 - type: entity
   parent: [ BaseItem, BaseSportsBall ]

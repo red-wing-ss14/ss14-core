@@ -452,7 +452,7 @@
 - type: entity
   parent: DefaultStationBeaconScience
   id: DefaultStationBeaconCybersunRD
-  suffix: Cybersun R&D
+  suffix: Cybersun R
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-cybersun-rd

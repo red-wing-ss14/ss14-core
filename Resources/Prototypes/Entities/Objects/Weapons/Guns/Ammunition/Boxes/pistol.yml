@@ -87,6 +87,7 @@
 
 - type: entity
   parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistolUranium
   name: ammunition box (9mm uranium) # Orion-Edit: .35 auto > 9mm
   description: A cardboard box of 9mm auto rounds. Intended to hold exotic uranium-core ammunition. # Orion-Edit: .35 > 9mm
   components:

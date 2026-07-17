@@ -176,7 +176,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Advertise
-    dataset: CargoDrobeAds
+    pack: CargoDrobeAds
   - type: Sprite
     sprite: _Goobstation/Structures/Machines/VendingMachines/maildrobe.rsi
     layers:

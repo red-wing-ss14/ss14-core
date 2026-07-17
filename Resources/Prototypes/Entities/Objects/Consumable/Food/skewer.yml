@@ -54,7 +54,6 @@
     tags:
     - Trash
     - Skewer
-  - type: Food
   - type: Edible  # RW
     trash:
     - FoodKebabSkewer

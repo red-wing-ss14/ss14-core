@@ -4,3 +4,6 @@ ent-ClothingHeadHelmetHardsuitInteQ = шлем скафандра Интек
     .desc = { ent-ClothingHeadHelmetHardsuitInteQElite.desc }
 ent-ClothingHeadHelmetHardsuitSyndicateInteQ = { ent-ClothingHeadHelmetHardsuitInteQ }
     .desc = { ent-ClothingHeadHelmetHardsuitInteQElite.desc }
+
+ent-ClothingHeadHelmetCBURNLeader = шлем скафандра лидера РХБЗЗ
+ent-ClothingHeadHelmetHardsuitOTAAlliance = шлем скафандра ОТА альянса

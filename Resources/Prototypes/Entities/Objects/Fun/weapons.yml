@@ -31,7 +31,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/energycrossbow_shoot.ogg
   - type: BallisticAmmoProvider
-    whitelist: &WhitelistFoam
+    whitelist:
       tags:
       - BulletFoam
     capacity: 1
@@ -58,7 +58,9 @@
     shape:
     - 0,0,3,0
   - type: BallisticAmmoProvider
-    whitelist: *WhitelistFoam
+    whitelist:
+      tags:
+      - BulletFoam
     capacity: 10
     proto: BulletFoam
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
@@ -336,9 +338,13 @@
     sprite: Objects/Fun/rubber_hammer.rsi
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    soundHit: &SoundRubberHammer
+    soundHit:
       collection: RubberHammer
       params:
         variation: 0.03
         volume: 3
-    soundNoDamage: *SoundRubberHammer
+    soundNoDamage:
+      collection: RubberHammer
+      params:
+        variation: 0.03
+        volume: 3

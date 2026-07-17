@@ -5,8 +5,6 @@
   parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazinePistol
   name: pistol magazine (9mm auto) # Orion-Edit: .35 > 9mm
-  parent: [ BaseItem, BaseSecurityContraband ]
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -34,14 +32,11 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
-
 - type: entity
   abstract: true
   parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazinePistolHighCapacity
   name: machine pistol magazine (9mm auto) # Orion-Edit: .35 > 9mm
-  parent: BaseItem
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -69,14 +64,11 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
-
 - type: entity
   abstract: true
   parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazinePistolSubMachineGun  # Yeah it's weird but it's pistol caliber
   name: SMG magazine (9mm auto) # Orion-Edit: .35 > 9mm
-  parent: [ BaseItem, BaseSecurityContraband ]
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -104,12 +96,10 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
-
 - type: entity
   parent: [ BaseItem, BaseSecurityContraband ]
   id: MagazinePistolSubMachineGunTopMounted
   name: WT550 magazine (9mm auto top-mounted) # Orion-Edit: .35 > 9mm
-  parent: [ BaseItem, BaseSecurityContraband ]
   description: Unconventional 30-round top feeding magazine for the WT550 SMG. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: Item
@@ -139,22 +129,18 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-
 - type: entity
   parent: MagazinePistolSubMachineGunTopMounted
   id: MagazinePistolSubMachineGunTopMountedEmpty
   name: WT550 magazine (9mm auto top-mounted any) # Orion-Edit: .35 > 9mm
-  parent: MagazinePistolSubMachineGunTopMounted
   description: Unconventional 30-round top feeding magazine for the WT550 SMG.
   components:
   - type: BallisticAmmoProvider
     proto: null
-
 - type: entity
   parent: BaseMagazinePistol
   id: MagazinePistol
   name: pistol magazine (9mm auto) # Orion-Edit: .35 > 9mm
-  parent: BaseMagazinePistol
   description: 12-round single-stack magazine for pistols. Intended to hold general-purpose kinetic ammunition. #goobstation
   components:
   - type: BallisticAmmoProvider
@@ -171,7 +157,6 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-
 - type: entity
   parent: MagazinePistol
   id: MagazinePistolEmpty
@@ -193,12 +178,10 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-
 - type: entity
   parent: MagazinePistol
   id: MagazinePistolIncendiary
   name: pistol magazine (9mm incendiary) # Orion-Edit: .35 auto > 9mm
-  parent: MagazinePistol
   description: 12-round single-stack magazine for pistols. Intended to hold self-igniting incendiary ammunition. #goobstation
   components:
   - type: BallisticAmmoProvider
@@ -221,12 +204,10 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#ff6e52"
-
 - type: entity
   parent: BaseMagazinePistol
   id: MagazinePistolPractice
   name: pistol magazine (9mm practice) # Orion-Edit: .35 auto > 9mm
-  parent: BaseMagazinePistol
   description: 12-round single-stack magazine for pistols. Intended to hold non-harmful chalk ammunition. #goobstation
   components:
   - type: BallisticAmmoProvider
@@ -249,12 +230,10 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#dbdbdb"
-
 - type: entity
   parent: BaseMagazinePistol
   id: MagazinePistolUranium
   name: pistol magazine (9mm uranium) # Orion-Edit: .35 auto > 9mm
-  parent: BaseMagazinePistol
   description: 12-round single-stack magazine for pistols. Intended to hold exotic uranium-core ammunition. #goobstation
   components:
   - type: BallisticAmmoProvider
@@ -277,8 +256,8 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#00cd42"
-
 - type: entity
+  parent: BaseMagazinePistolHighCapacity
   id: MagazinePistolHighCapacityEmpty
   name: machine pistol magazine (9mm any) # Orion-Edit: .35 auto > 9mm
   suffix: empty
@@ -298,7 +277,6 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-
 - type: entity
   id: MagazinePistolHighCapacity
   name: machine pistol magazine (9mm auto) # Orion-Edit: .35 > 9mm
@@ -318,7 +296,6 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-
 - type: entity
   id: MagazinePistolHighCapacityPractice
   name: machine pistol magazine (9mm practice) # Orion-Edit: .35 auto > 9mm
@@ -344,7 +321,6 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#dbdbdb"
-
 - type: entity
   id: MagazinePistolHighCapacityRubber
   name: machine pistol magazine (9mm rubber) # Orion-Edit: .35 auto > 9mm
@@ -358,7 +334,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-
 - type: entity
   id: MagazinePistolSubMachineGun
   name: SMG magazine (9mm auto) # Orion-Edit: .35 > 9mm
@@ -381,7 +356,6 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-
 - type: entity
   id: MagazinePistolSubMachineGunEmpty
   name: SMG magazine (9mm any) # Orion-Edit: .35 auto > 9mm
@@ -403,7 +377,6 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-
 - type: entity
   id: MagazinePistolSubMachineGunPractice
   name: SMG magazine (9mm practice) # Orion-Edit: .35 auto > 9mm
@@ -430,7 +403,6 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#dbdbdb"
-
 - type: entity
   id: MagazinePistolSubMachineGunUranium
   name: SMG magazine (9mm uranium) # Orion-Edit: .35 auto > 9mm
@@ -457,7 +429,6 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#00cd42"
-
 - type: entity
   parent: BaseMagazinePistolSubMachineGun
   id: MagazinePistolSubMachineGunIncendiary
@@ -484,73 +455,3 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#ff6e52"
-
-- type: entity
-  parent: BaseMagazinePistolHighCapacity
-  id: MagazinePistolHighCapacityEmpty
-  name: machine pistol magazine (.35 auto any)
-  suffix: empty
-  description: Custom 15-round double-stack magazine for the Viper pistol.
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
-
-- type: entity
-  parent: BaseMagazinePistolHighCapacity
-  id: MagazinePistolHighCapacity
-  name: machine pistol magazine (.35 auto)
-  description: Custom 15-round double-stack magazine for the Viper pistol. Intended to hold general-purpose kinetic ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistol
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
-
-- type: entity
-  parent: BaseMagazinePistolHighCapacity
-  id: MagazinePistolHighCapacityPractice
-  name: machine pistol magazine (.35 auto practice)
-  description: Custom 15-round double-stack magazine for the Viper pistol. Intended to hold harmless practice ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolPractice
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#dbdbdb"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#dbdbdb"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#dbdbdb"

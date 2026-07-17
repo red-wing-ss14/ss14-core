@@ -30,3 +30,7 @@ ent-SantaClausSpawn = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-ContractorSpawnMidround = { ent-ContractorSpawn }
     .desc = { ent-ContractorSpawn.desc }
+
+ent-ChangelingMidround = { ent-Changeling }
+ent-HereticMidround = { ent-Heretic }
+ent-RevolutionaryMidround = { ent-Revolutionary }

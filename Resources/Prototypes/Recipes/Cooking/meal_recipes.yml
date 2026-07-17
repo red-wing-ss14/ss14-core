@@ -1012,7 +1012,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeWingFangChuSoup
-  name: wing fang chu recipe
+  name: recipe-wing-fang-chu
   result: FoodSoupWingFangChu
   time: 10
   group: Soup
@@ -1024,8 +1024,9 @@
 
 - type: microwaveMealRecipe
   id: RecipeWingFangChuSoupSpider
-  name: wing fang chu recipe
+  name: recipe-wing-fang-chu
   result: FoodSoupWingFangChu
+
   time: 10
   group: Soup
   reagents:
@@ -1051,7 +1052,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeClownTearsSoup
-  name: clown tears soup recipe
+  name: recipe-clown-tears-soup
   result: FoodSoupClown
   time: 10
   group: Soup
@@ -1869,7 +1870,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeClownTears
-  name: clown's tears recipe
+  name: recipe-clowns-tears
   result: FoodSoupClown
   time: 15
   group: Soup
@@ -2434,7 +2435,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeInertAnomalyMeat
-  name: inert meat anomaly recipe
+  name: recipe-inert-meat-anomaly
   result: FoodMeatAnomaly
   time: 5
   group: Savory
@@ -2443,7 +2444,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeAnomalyMeat
-  name: meat anomaly recipe
+  name: recipe-meat-anomaly
   result: FoodMeatAnomaly
   time: 5
   group: Savory
@@ -2452,7 +2453,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeAnomalyMeatCooked
-  name: cooked meat anomaly recipe
+  name: recipe-cooked-meat-anomaly
   result: FoodMeatAnomalyCooked
   time: 5
   group: Savory

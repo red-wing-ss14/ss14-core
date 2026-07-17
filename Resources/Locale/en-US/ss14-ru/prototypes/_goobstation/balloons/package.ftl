@@ -10,3 +10,5 @@ ent-CrateBalloonPackage = balloon popper's package
     .desc = A crate containing 2 full balloon boxes and some additional popping equipment.
 ent-PremiumCrateBalloonPackage = premium balloon warrior's package
     .desc = Contains the most elite balloons and some additional popping equipment. WARNING! SEVERAL MOAB CLASS BALLOONS INCOMING!
+
+ent-BalloonPackage = пакет шариков

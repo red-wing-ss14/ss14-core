@@ -126,7 +126,6 @@
   parent: BaseMindRoleAntag
   id: MindRoleSubvertedSilicon
   name: Subverted Silicon Role
-  description:
   components:
   - type: MindRole
     antagPrototype: SubvertedSilicon

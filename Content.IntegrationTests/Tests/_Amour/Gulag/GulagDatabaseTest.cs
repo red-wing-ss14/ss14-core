@@ -36,7 +36,7 @@ public sealed class GulagDatabaseTest
             banningAdmin: null,
             unban: null));
 
-        var ban = await db.GetBanAsync(null, session.UserId, null);
+        var ban = await db.GetBanAsync(null, session.UserId, null, null);
         Assert.That(ban, Is.Not.Null);
         Assert.That(ban.Id, Is.Not.Null);
         var banId = ban.Id.Value;

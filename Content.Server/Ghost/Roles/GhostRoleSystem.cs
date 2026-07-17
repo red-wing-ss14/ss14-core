@@ -499,7 +499,7 @@ public sealed class GhostRoleSystem : EntitySystem
         }
 
         // Check role requirements
-        if (!IsRoleAllowed(player, jobs, antags))
+        if (!IsRoleAllowed(player, jobs, antags, roleEnt.Comp.Requirements))
         {
             Log.Warning($"Server rejected ghost role request '{roleEnt.Comp.RoleName}' for '{player.Name}' - client missed requirement check?");
             return;
@@ -578,9 +578,10 @@ public sealed class GhostRoleSystem : EntitySystem
     private bool IsRoleAllowed(
         ICommonSession player,
         List<ProtoId<JobPrototype>>? jobIds,
-        List<ProtoId<AntagPrototype>>? antagIds)
+        List<ProtoId<AntagPrototype>>? antagIds,
+        HashSet<JobRequirement>? requirements)
     {
-        var ev = new IsRoleAllowedEvent(player, jobIds, antagIds);
+        var ev = new IsRoleAllowedEvent(player, jobIds, antagIds, requirements: requirements);
         RaiseLocalEvent(ref ev);
 
         return !ev.Cancelled;

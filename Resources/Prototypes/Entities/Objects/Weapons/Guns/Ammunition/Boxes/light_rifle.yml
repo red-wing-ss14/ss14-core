@@ -91,6 +91,7 @@
 
 - type: entity
   parent: BaseMagazineBoxLightRifle
+  id: MagazineBoxLightRifleIncendiary
   name: ammunition box (5.45mm incendiary) # Orion-Edit: .30 rifle > 5.45mm
   description: A cardboard box of 5.45mm rifle rounds. Intended to hold self-igniting incendiary ammunition. # Orion-Edit: .30 > 5.45mm
   components:

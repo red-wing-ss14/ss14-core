@@ -14,3 +14,5 @@ ent-PenHop = hop's fountain pen
     .desc = A luxurious fountain pen for the hop of the station.
 ent-PenWiz = wizard's magical pen
     .desc = A luxurious fountain pen. Seems to have a magical crystal eraser.
+
+ent-PenEmbeddable = { ent-Pen }

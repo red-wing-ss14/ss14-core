@@ -185,6 +185,32 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
     private void OnIsRoleAllowed(ref IsRoleAllowedEvent ev)
     {
+        if (ev.Requirements != null)
+        {
+            if (_cfg.GetCVar(CCVars.GameRoleTimers))
+            {
+                if (!_tracking.TryGetTrackerTimes(ev.Player, out var playTimes))
+                {
+                    Log.Error($"Unable to check playtimes {Environment.StackTrace}");
+                    playTimes = new Dictionary<string, TimeSpan>();
+                }
+
+                var allowed = JobRequirements.TryRequirementsMet(
+                    ev.Requirements,
+                    playTimes,
+                    out _,
+                    EntityManager,
+                    _prototypes,
+                    (HumanoidCharacterProfile?)_preferencesManager.GetPreferences(ev.Player.UserId).SelectedCharacter);
+
+                if (!allowed)
+                {
+                    ev.Cancelled = true;
+                    return;
+                }
+            }
+        }
+
         if (!IsAllowed(ev.Player, ev.Jobs) || !IsAllowed(ev.Player, ev.Antags))
             ev.Cancelled = true;
     }

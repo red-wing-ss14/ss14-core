@@ -47,3 +47,6 @@ ent-DrinkBeerCan = beer can
     .desc = Small joy, big taste, no worries!
 ent-DrinkWineCan = wine can
     .desc = Your way to forgetting all worries and having fun!
+
+ent-DrinkBrepsiCan = банка брепси
+ent-DrinkBrepsiCanEmpty = { ent-DrinkBrepsiCan }

@@ -14,4 +14,9 @@ namespace Content.Shared.Weapons.Ranged.Components;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedGunSystem))]
 public sealed partial class ClothingSlotAmmoProviderComponent : AmmoProviderComponent
 {
+    [DataField]
+    public string TargetSlot = "back";
+
+    [DataField]
+    public EntityWhitelist? ProviderWhitelist;
 }

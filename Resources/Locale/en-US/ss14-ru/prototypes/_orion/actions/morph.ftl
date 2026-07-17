@@ -10,3 +10,6 @@ ent-ActionMorphAmbush = [color=red]Ambush[/color]
     .desc = Get ready to catch the victim. Resets when moving. When touched, the morph stuns for 6 seconds and does a lot of damage.
 ent-ActionMorphVentOpen = [color=red]Acid[/color]
     .desc = Spit acid on the ventilation to boil it. [color=yellow]Cost: 10 satiety[/color].
+
+alerts-morph-essence-name = Биомасса
+alerts-morph-essence-desc = Показывает текущий уровень биомассы морфа. Используется для способностей и размножения.

@@ -209,16 +209,16 @@
   id: TegCirculatorArrow
   categories: [ HideSpawnMenu ]
   components:
-    - type: Sprite
-      sprite: Markers/teg_arrow.rsi
-      color: "#FFFFFFBB"
-      layers:
-        - state: arrow
-          offset: 0, 0.75
-        - state: arrow
-          offset: 0, -0.75
-    - type: TimedDespawn
-      lifetime: 2
-    - type: Tag
-      tags:
-        - HideContextMenu
+  - type: Sprite
+    sprite: Markers/teg_arrow.rsi
+    color: "#FFFFFFBB"
+    layers:
+    - state: arrow
+      offset: 0, 0.75
+    - state: arrow
+      offset: 0, -0.75
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Tag
+    tags:
+    - HideContextMenu

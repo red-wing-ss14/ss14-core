@@ -18,3 +18,4 @@ ent-ClothingBackpackDuffelContractorHardsuitBundle = Contractor Hardsuit bundle
     .desc = Contains the Guild approved Hardsuit suit.
 ent-ClothingBackpackDuffelTennisGame = tennis game bundle
     .desc = Contains all you need to start a tennis match!
+ent-ClothingBackpackDuffelHosFilledUtility = комплект утилитарных предметов Начальника службы безопасности

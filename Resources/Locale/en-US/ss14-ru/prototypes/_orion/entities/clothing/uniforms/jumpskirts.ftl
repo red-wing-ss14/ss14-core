@@ -18,3 +18,6 @@ ent-ClothingUniformJumpskirtUEGNavyOfficer = UEG navy officer skirt
     .desc = Navy officer skirt, row.
 ent-ClothingUniformJumpskirtUEGGrey = UEG grey skirt
     .desc = Unremarkable gray skirt.
+
+ent-ClothingUniformJumpskirtElegantMaid = элегантная форма горничной
+ent-ClothingUniformJumpskirtRoll = красная юбка

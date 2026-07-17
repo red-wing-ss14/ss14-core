@@ -4,3 +4,7 @@ ent-GlassBoxLaserFilledAlertLocked = { ent-GlassBoxLaserFilled }
 ent-GlassBoxLaserFilledAlertUnlocked = { ent-GlassBoxLaserFilled }
     .suffix = AntiqueLaser, Filled
     .desc = { ent-GlassBoxLaserFilled.desc }
+
+ent-AlertLevelLockRed = { "" }
+ent-AlertLevelLockBlue = { "" }
+ent-AlertLevelLockCC = { "" }

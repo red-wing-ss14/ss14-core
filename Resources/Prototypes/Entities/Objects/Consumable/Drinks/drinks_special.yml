@@ -202,7 +202,6 @@
   abstract: true
   parent: [DrinkBaseMaterialGlass, DrinkBase]
   id: DrinkShakeBase
-  description: ''
   components:
   - type: ExaminableSolution
     solution: drink

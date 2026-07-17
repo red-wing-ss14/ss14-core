@@ -233,8 +233,6 @@ namespace Content.IntegrationTests.Tests
             var sEntMan = server.ResolveDependency<IEntityManager>();
             var mapSys = server.System<SharedMapSystem>();
 
-            cfg.SetCVar(GoobCVars.DisablePathfinding, true); // i cba porting omu shit
-            Assert.That(cfg.GetCVar(GoobCVars.DisablePathfinding), Is.True); // goob
             Assert.That(cfg.GetCVar(CVars.NetPVS), Is.False);
 
             var protoIds = prototypeMan

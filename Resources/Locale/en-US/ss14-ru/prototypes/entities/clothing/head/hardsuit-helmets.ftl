@@ -70,3 +70,5 @@ ent-ClothingHeadHelmetHardsuitMime = mime hardsuit helmet
     .desc = A mime hardsuit helmet.
 ent-ClothingHeadHelmetHardsuitSanta = Santa's hardsuit helmet
     .desc = A festive-looking hardsuit helmet that provides the jolly gift-giver protection from low-pressure environments.
+
+ent-ClothingHeadHelmetHardsuitBasic = базовый шлем скафандра

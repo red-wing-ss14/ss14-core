@@ -38,3 +38,6 @@ ent-SpawnMobReindeerDoe = Reindeer Doe Spawner
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobSlug = Slug Spawner
     .desc = { ent-MarkerBase.desc }
+
+ent-SpawnMobCatAny = спавнер кот случайный любой
+ent-SpawnMobScurret = спавнер слизнекот случайный

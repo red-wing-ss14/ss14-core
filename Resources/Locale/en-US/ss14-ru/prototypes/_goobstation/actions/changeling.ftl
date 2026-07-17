@@ -66,3 +66,6 @@ ent-ActionHivemindAccess = Hivemind Access
     .desc = Tune your chemical receptors for hivemind communication.
 ent-ActionAbsorbBiomatter = Absorb Biomatter
     .desc = Absorb a food item to regain some chemicals.
+
+ent-ActionRegenerativeStasis = Регенеративный стазис
+ent-ActionRegenerate = Регенерация

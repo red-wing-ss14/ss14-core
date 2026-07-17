@@ -11,10 +11,10 @@ public sealed class LastWordsSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     public override void Initialize()
     {
-        SubscribeLocalEvent<MobStateComponent, EntitySpokeEvent>(OnEntitySpoke);
+        SubscribeLocalEvent<MobStateComponent, Content.Server.Chat.Systems.EntitySpokeEvent>(OnEntitySpoke);
     }
 
-    private void OnEntitySpoke(EntityUid uid, MobStateComponent _, EntitySpokeEvent args)
+    private void OnEntitySpoke(EntityUid uid, MobStateComponent _, Content.Server.Chat.Systems.EntitySpokeEvent args)
     {
         _mindSystem.TryGetMind(uid, out var mindId, out var _);
 

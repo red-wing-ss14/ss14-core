@@ -15,18 +15,18 @@
   - type: DoorRemote
     options:
     - mode: OpenClose
-      tooltip: &TextOpenClose door-remote-open-close-text
-      icon: &IconOpenClose
+      tooltip: door-remote-open-close-text
+      icon:
         sprite: /Textures/Structures/Doors/Airlocks/Standard/basic.rsi
         state: assembly
     - mode: ToggleBolts
-      tooltip: &TextToggleBolt door-remote-toggle-bolt-text
-      icon: &IconToggleBolt
+      tooltip: door-remote-toggle-bolt-text
+      icon:
         sprite: /Textures/Interface/Actions/actions_ai.rsi
         state: bolt_door
     - mode: ToggleEmergencyAccess
-      tooltip: &TextEmergencyAccess door-remote-emergency-access-text
-      icon: &IconEmergencyAccess
+      tooltip: door-remote-emergency-access-text
+      icon:
         sprite: /Textures/Interface/Actions/actions_ai.rsi
         state: emergency_on
   - type: StealTarget
@@ -52,14 +52,20 @@
         sprite: /Textures/Interface/Actions/actions_ai.rsi
         state: door_overcharge_on
     - mode: OpenClose
-      tooltip: *TextOpenClose
-      icon: *IconOpenClose
+      tooltip: door-remote-open-close-text
+      icon:
+        sprite: /Textures/Structures/Doors/Airlocks/Standard/basic.rsi
+        state: assembly
     - mode: ToggleBolts
-      tooltip: *TextToggleBolt
-      icon: *IconToggleBolt
+      tooltip: door-remote-toggle-bolt-text
+      icon:
+        sprite: /Textures/Interface/Actions/actions_ai.rsi
+        state: bolt_door
     - mode: ToggleEmergencyAccess
-      tooltip: *TextEmergencyAccess
-      icon: *IconEmergencyAccess
+      tooltip: door-remote-emergency-access-text
+      icon:
+        sprite: /Textures/Interface/Actions/actions_ai.rsi
+        state: emergency_on
 
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]

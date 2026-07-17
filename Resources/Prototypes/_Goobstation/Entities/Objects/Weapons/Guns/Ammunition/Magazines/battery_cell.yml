@@ -132,7 +132,7 @@
     startingCharge: 4500 # Amour edit: missing > 4500
   - type: Sprite
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_bluespace.rsi
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: SMGLaserPulse
     fireCost: 150 # Amour edit: 50 > 150
 # ion smg power cell
@@ -252,7 +252,7 @@
     startingCharge: 5250 # Amour edit: missing > 5250
   - type: Sprite
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_rifle_bluespace.rsi
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: SniperPulseLaser
     fireCost: 250 # Amour edit: 100 > 250
 # ion sniper power cell

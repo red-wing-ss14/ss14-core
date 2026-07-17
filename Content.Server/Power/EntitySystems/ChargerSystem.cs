@@ -108,265 +108,42 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Server.Emp;
 using Content.Server.Power.Components;
 using Content.Shared.PowerCell;
-using Content.Shared.Emp;
-using Content.Shared.Examine;
-using Content.Shared.Inventory;
 using Content.Shared._Orion.Construction.Events;
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell.Components;
-using Content.Shared.Storage.Components;
-using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
-using Robust.Shared.Containers;
 
 namespace Content.Server.Power.EntitySystems;
 
 [UsedImplicitly]
-public sealed class ChargerSystem : Content.Shared.Power.EntitySystems.ChargerSystem
+public sealed class ChargerSystem : EntitySystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!; // Goobstation
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ChargerComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<ChargerComponent, PowerChangedEvent>(OnPowerChanged);
-        SubscribeLocalEvent<ChargerComponent, EntInsertedIntoContainerMessage>(OnInserted);
-        SubscribeLocalEvent<ChargerComponent, EntRemovedFromContainerMessage>(OnRemoved);
-        SubscribeLocalEvent<ChargerComponent, ContainerIsInsertingAttemptEvent>(OnInsertAttempt);
-        SubscribeLocalEvent<ChargerComponent, InsertIntoEntityStorageAttemptEvent>(OnEntityStorageInsertAttempt);
-        SubscribeLocalEvent<ChargerComponent, ExaminedEvent>(OnChargerExamine);
+        SubscribeLocalEvent<ChargerComponent, MapInitEvent>(OnMapInit);
         // Orion-Start
         SubscribeLocalEvent<ChargerComponent, RefreshPartsEvent>(OnPartsRefresh);
         SubscribeLocalEvent<ChargerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         // Orion-End
     }
 
-    private void OnStartup(EntityUid uid, ChargerComponent component, ComponentStartup args)
+    private void OnMapInit(EntityUid uid, ChargerComponent component, MapInitEvent args)
     {
         // Orion-Start
         component.BaseChargeRate = component.ChargeRate;
         component.FinalChargeRate = component.ChargeRate;
         // Orion-End
-
-        UpdateStatus(uid, component);
-    }
-
-    private void OnChargerExamine(EntityUid uid, ChargerComponent component, ExaminedEvent args)
-    {
-        using (args.PushGroup(nameof(ChargerComponent)))
-        {
-            // rate at which the charger charges
-            args.PushMarkup(Loc.GetString("charger-examine", ("color", "yellow"), ("chargeRate", (int) component.FinalChargeRate))); // Orion-Edit
-
-            // try to get contents of the charger
-            if (!_container.TryGetContainer(uid, component.SlotId, out var container))
-                return;
-
-            if (HasComp<PowerCellSlotComponent>(uid))
-                return;
-
-            // if charger is empty and not a power cell type charger, add empty message
-            // power cells have their own empty message by default, for things like flash lights
-            if (container.ContainedEntities.Count == 0)
-            {
-                args.PushMarkup(Loc.GetString("charger-empty"));
-            }
-            else
-            {
-                // add how much each item is charged it
-                foreach (var contained in container.ContainedEntities)
-                {
-                    if (!TryComp<BatteryComponent>(contained, out var battery))
-                        continue;
-
-                    var chargePercentage = (_battery.GetCharge((contained, battery)) / battery.MaxCharge) * 100;
-                    args.PushMarkup(Loc.GetString("charger-content", ("chargePercentage", (int)chargePercentage)));
-                }
-            }
-        }
-    }
-
-    public override void Update(float frameTime)
-    {
-        var query = EntityQueryEnumerator<ChargerComponent, ContainerManagerComponent>();
-        while (query.MoveNext(out var uid, out var charger, out var containerComp))
-        {
-            if (charger.Status != CellChargerStatus.Charging)
-                continue;
-
-            if (!_container.TryGetContainer(uid, charger.SlotId, out var container, containerComp))
-                continue;
-
-            // Goobstation start
-            if (container.ContainedEntities.Count == 0)
-                continue;
-            UpdateStatus(uid, charger);
-            // Goobstation end
-            if (charger.Status == CellChargerStatus.Empty || charger.Status == CellChargerStatus.Charged) // Goobstation edit
-                continue;
-
-            foreach (var contained in container.ContainedEntities)
-            {
-                TransferPower(uid, contained, charger, frameTime);
-            }
-        }
-    }
-
-    private void OnPowerChanged(EntityUid uid, ChargerComponent component, ref PowerChangedEvent args)
-    {
-        UpdateStatus(uid, component);
-    }
-
-    private void OnInserted(EntityUid uid, ChargerComponent component, EntInsertedIntoContainerMessage args)
-    {
-        if (!component.Initialized)
-            return;
-
-        if (args.Container.ID != component.SlotId)
-            return;
-
-        UpdateStatus(uid, component);
-    }
-
-    private void OnRemoved(EntityUid uid, ChargerComponent component, EntRemovedFromContainerMessage args)
-    {
-        if (args.Container.ID != component.SlotId)
-            return;
-
-        UpdateStatus(uid, component);
-    }
-
-    /// <summary>
-    ///     Verify that the entity being inserted is actually rechargeable.
-    /// </summary>
-    private void OnInsertAttempt(EntityUid uid, ChargerComponent component, ContainerIsInsertingAttemptEvent args)
-    {
-        if (!component.Initialized)
-            return;
-
-        if (args.Container.ID != component.SlotId)
-            return;
-
-        if (!TryComp<PowerCellSlotComponent>(args.EntityUid, out var cellSlot))
-            return;
-
-        if (!cellSlot.FitsInCharger)
-            args.Cancel();
-    }
-
-    private void OnEntityStorageInsertAttempt(EntityUid uid, ChargerComponent component, ref InsertIntoEntityStorageAttemptEvent args)
-    {
-        if (!component.Initialized || args.Cancelled)
-            return;
-
-        if (!TryComp<PowerCellSlotComponent>(uid, out var cellSlot))
-            return;
-
-        if (!cellSlot.FitsInCharger)
-            args.Cancelled = true;
-    }
-
-    private void UpdateStatus(EntityUid uid, ChargerComponent component)
-    {
-        var status = GetStatus(uid, component);
-        TryComp(uid, out AppearanceComponent? appearance);
-
-        if (!_container.TryGetContainer(uid, component.SlotId, out var container))
-            return;
-
-        _appearance.SetData(uid, CellVisual.Occupied, container.ContainedEntities.Count != 0, appearance);
-        if (component.Status == status || !TryComp(uid, out ApcPowerReceiverComponent? receiver))
-            return;
-
-        component.Status = status;
-
-
-
-        switch (component.Status)
-        {
-            case CellChargerStatus.Off:
-                receiver.Load = 0;
-                _appearance.SetData(uid, CellVisual.Light, CellChargerStatus.Off, appearance);
-                break;
-            case CellChargerStatus.Empty:
-                receiver.Load = 0;
-                _appearance.SetData(uid, CellVisual.Light, CellChargerStatus.Empty, appearance);
-                break;
-            case CellChargerStatus.Charging:
-                receiver.Load = component.FinalChargeRate; // Orion-Edit
-                _appearance.SetData(uid, CellVisual.Light, CellChargerStatus.Charging, appearance);
-                break;
-            case CellChargerStatus.Charged:
-                receiver.Load = 0;
-                _appearance.SetData(uid, CellVisual.Light, CellChargerStatus.Charged, appearance);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-    }
-
-    private CellChargerStatus GetStatus(EntityUid uid, ChargerComponent component)
-    {
-        if (!component.Portable)
-        {
-            if (!TryComp(uid, out TransformComponent? transformComponent) || !transformComponent.Anchored)
-                return CellChargerStatus.Off;
-        }
-
-        if (!TryComp(uid, out ApcPowerReceiverComponent? apcPowerReceiverComponent))
-            return CellChargerStatus.Off;
-
-        if (!component.Portable && !apcPowerReceiverComponent.Powered)
-            return CellChargerStatus.Off;
-
-        if (HasComp<EmpDisabledComponent>(uid))
-            return CellChargerStatus.Off;
-
-        if (!_container.TryGetContainer(uid, component.SlotId, out var container))
-            return CellChargerStatus.Off;
-
-        if (container.ContainedEntities.Count == 0)
-            return CellChargerStatus.Empty;
-
-        if (!SearchForBattery(container.ContainedEntities[0], out var heldEnt, out var heldBattery))
-            return CellChargerStatus.Off;
-
-        if (_battery.IsFull((heldEnt.Value, heldBattery)))
-            return CellChargerStatus.Charged;
-
-        return CellChargerStatus.Charging;
-    }
-
-    private void TransferPower(EntityUid uid, EntityUid targetEntity, ChargerComponent component, float frameTime)
-    {
-        if (!TryComp(uid, out ApcPowerReceiverComponent? receiverComponent))
-            return;
-
-        if (!receiverComponent.Powered)
-            return;
-
-        if (_whitelistSystem.IsWhitelistFail(component.Whitelist, targetEntity))
-            return;
-
-        if (!SearchForBattery(targetEntity, out var batteryUid, out var heldBattery))
-            return;
-
-        _battery.SetCharge((batteryUid.Value, heldBattery), _battery.GetCharge((batteryUid.Value, heldBattery)) + component.FinalChargeRate * frameTime);
-        UpdateStatus(uid, component);
     }
 
     // Orion-Start
@@ -379,7 +156,15 @@ public sealed class ChargerSystem : Content.Shared.Power.EntitySystems.ChargerSy
         if (TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
             receiver.Load = component.Status == CellChargerStatus.Charging ? component.ChargeRate : 0f;
 
-        UpdateStatus(uid, component);
+        // Refresh the charge rate of any item currently inside the charger to update its rate using the new upgraded rate
+        if (_container.TryGetContainer(uid, component.SlotId, out var container))
+        {
+            foreach (var item in container.ContainedEntities)
+            {
+                if (_powerCell.TryGetBatteryFromEntityOrSlot(item, out var battery))
+                    _battery.RefreshChargeRate(battery.Value.AsNullable());
+            }
+        }
     }
 
     private static void OnUpgradeExamine(EntityUid uid, ChargerComponent component, UpgradeExamineEvent args)
@@ -391,57 +176,4 @@ public sealed class ChargerSystem : Content.Shared.Power.EntitySystems.ChargerSy
         args.AddPercentageUpgrade("machine-upgrade-charging-efficiency", efficiency);
     }
     // Orion-End
-
-    // Goobstation - made public
-    public bool SearchForBattery(EntityUid uid, [NotNullWhen(true)] out EntityUid? batteryUid, [NotNullWhen(true)] out BatteryComponent? component)
-    {
-        batteryUid = null;
-        component = null;
-
-        // try get a battery directly on the inserted entity
-        if (TryComp(uid, out component))
-        {
-            batteryUid = uid;
-            return true;
-        }
-
-        // <Goobstation> completely rewritten
-        // try get battery by checking for a power cell slot on the inserted entity
-        if (_powerCell.TryGetBatteryFromSlot(uid, out var slotBattery) && slotBattery != null)
-        {
-            batteryUid = slotBattery.Value.Owner;
-            component = slotBattery.Value.Comp;
-            return true;
-        }
-
-        var findEv = new FindBatteryEvent();
-        RaiseLocalEvent(uid, ref findEv);
-        // only relay to equipment if no battery was found in the entity itself.
-        if (findEv.FoundBattery == null && TryComp<InventoryComponent>(uid, out var inventory))
-            _inventory.RelayEvent((uid, inventory), ref findEv);
-
-        if (findEv.FoundBattery is {} foundBattery)
-        {
-            batteryUid = foundBattery.Owner;
-            component = foundBattery.Comp;
-            return true;
-        }
-        // </Goobstation>
-        return false;
-    }
-}
-
-/// <summary>
-/// Goobstation: Raised on an entity in a charger to find a battery to charge.
-/// It gets raised on the entity itself then, if no battery was found, relayed to equipped items.
-/// </summary>
-/// <remarks>
-/// This can't be in goob modules since it needs Content.Shared.Inventory and Content.Server.Power.Components
-/// </remarks>
-[ByRefEvent]
-public record struct FindBatteryEvent() : IInventoryRelayEvent
-{
-    public SlotFlags TargetSlots { get; } = SlotFlags.WITHOUT_POCKET;
-
-    public Entity<BatteryComponent>? FoundBattery;
 }

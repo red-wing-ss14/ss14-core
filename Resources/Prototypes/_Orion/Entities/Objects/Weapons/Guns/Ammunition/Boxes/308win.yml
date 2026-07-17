@@ -41,6 +41,7 @@
   description: A cardboard box of .308 winchester rounds. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: Sprite
+    sprite: _Orion/Objects/Weapons/Guns/Ammunition/Boxes/308win.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -56,6 +57,7 @@
   - type: BallisticAmmoProvider
     proto: Cartridge308winPractice
   - type: Sprite
+    sprite: _Orion/Objects/Weapons/Guns/Ammunition/Boxes/308win.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -72,6 +74,7 @@
   - type: BallisticAmmoProvider
     proto: Cartridge308winAP
   - type: Sprite
+    sprite: _Orion/Objects/Weapons/Guns/Ammunition/Boxes/308win.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -88,6 +91,7 @@
   - type: BallisticAmmoProvider
     proto: Cartridge308winUranium
   - type: Sprite
+    sprite: _Orion/Objects/Weapons/Guns/Ammunition/Boxes/308win.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

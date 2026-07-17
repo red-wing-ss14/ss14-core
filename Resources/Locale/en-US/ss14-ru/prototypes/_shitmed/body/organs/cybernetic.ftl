@@ -18,3 +18,5 @@ ent-BasicCyberneticLungs = cybernetic lungs
     .desc = Advanced synthetic lungs that breathe oxygen and nitrogen, ignore CO2, and resist most other atmospheric hazards.
 ent-UpgradedCyberneticLungs = upgraded cybernetic lungs
     .desc = A self-contained respiratory system that eliminates the need to breathe entirely and grants increased stamina recovery.
+
+ent-BaseCyberneticEyes = { ent-OrganHumanEyes }

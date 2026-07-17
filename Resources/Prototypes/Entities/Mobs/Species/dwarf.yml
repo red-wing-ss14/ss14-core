@@ -69,14 +69,26 @@
     - Hair
     - Snout
     markingsDisplacement:
-      Chest: &dwarfismDisp
+      Chest:
         sizeMaps:
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: dwarfism
-      Head: *dwarfismDisp
-      LArm: *dwarfismDisp
-      RArm: *dwarfismDisp
+      Head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      LArm:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      RArm:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
       LHand:
         sizeMaps:
           32:
@@ -87,21 +99,81 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: dwarfism_hand_right
-      LLeg: *dwarfismDisp
-      RLeg: *dwarfismDisp
-      LFoot: *dwarfismDisp
-      RFoot: *dwarfismDisp
-      Tail: *dwarfismDisp
-      Special: *dwarfismDisp
-      Hair: *dwarfismDisp
-      FacialHair: *dwarfismDisp
-      Snout: *dwarfismDisp
-      HeadSide: *dwarfismDisp
-      HeadTop: *dwarfismDisp
-      Eyes: *dwarfismDisp
-      Wings: *dwarfismDisp
-      Face: *dwarfismDisp
-      Groin: *dwarfismDisp
+      LLeg:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      RLeg:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      LFoot:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      RFoot:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Tail:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Special:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Hair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      FacialHair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Snout:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      HeadSide:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      HeadTop:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Eyes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Wings:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Face:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Groin:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
   - type: CreamPied
     displacement: Dwarfism
   - type: Damageable
@@ -124,22 +196,86 @@
   - type: Inventory
     femaleDisplacements: { }
     displacements:
-      jumpsuit: *dwarfismDisp
-      outerClothing: *dwarfismDisp
-      suitstorage: *dwarfismDisp
-      id: *dwarfismDisp
-      mask: *dwarfismDisp
-      belt: *dwarfismDisp
-      eyes: *dwarfismDisp
-      gloves: *dwarfismDisp
-      head: *dwarfismDisp
-      neck: *dwarfismDisp
-      back: *dwarfismDisp
-      ears: *dwarfismDisp
-      shoes: *dwarfismDisp
-      underwear: *dwarfismDisp
-      undershirt: *dwarfismDisp
-      socks: *dwarfismDisp
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      id:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      belt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      eyes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      gloves:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      neck:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      back:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      shoes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      underwear:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      undershirt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
   - type: InnateMiningScannerViewer # Frontier
     pingSound: null
     viewRange: 3 # Goob value
@@ -158,14 +294,26 @@
     - Hair
     - Snout
     markingsDisplacement:
-      Chest: &dwarfismDispDummy
+      Chest:
         sizeMaps:
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: dwarfism
-      Head: *dwarfismDispDummy
-      LArm: *dwarfismDispDummy
-      RArm: *dwarfismDispDummy
+      Head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      LArm:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      RArm:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
       LHand:
         sizeMaps:
           32:
@@ -176,21 +324,81 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: dwarfism_hand_right
-      LLeg: *dwarfismDispDummy
-      RLeg: *dwarfismDispDummy
-      LFoot: *dwarfismDispDummy
-      RFoot: *dwarfismDispDummy
-      Tail: *dwarfismDispDummy
-      Special: *dwarfismDispDummy
-      Hair: *dwarfismDispDummy
-      FacialHair: *dwarfismDispDummy
-      Snout: *dwarfismDispDummy
-      HeadSide: *dwarfismDispDummy
-      HeadTop: *dwarfismDispDummy
-      Eyes: *dwarfismDispDummy
-      Wings: *dwarfismDispDummy
-      Face: *dwarfismDispDummy
-      Groin: *dwarfismDispDummy
+      LLeg:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      RLeg:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      LFoot:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      RFoot:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Tail:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Special:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Hair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      FacialHair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Snout:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      HeadSide:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      HeadTop:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Eyes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Wings:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Face:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      Groin:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
   - type: Hands
     leftHandDisplacement:
       sizeMaps:
@@ -205,20 +413,83 @@
   - type: Inventory
     femaleDisplacements: { }
     displacements:
-      jumpsuit: *dwarfismDispDummy
-      outerClothing: *dwarfismDispDummy
-      suitstorage: *dwarfismDispDummy
-      id: *dwarfismDispDummy
-      mask: *dwarfismDispDummy
-      belt: *dwarfismDispDummy
-      eyes: *dwarfismDispDummy
-      gloves: *dwarfismDispDummy
-      head: *dwarfismDispDummy
-      neck: *dwarfismDispDummy
-      back: *dwarfismDispDummy
-      ears: *dwarfismDispDummy
-      shoes: *dwarfismDispDummy
-      underwear: *dwarfismDispDummy
-      undershirt: *dwarfismDispDummy
-      socks: *dwarfismDispDummy
-
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      id:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      belt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      eyes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      gloves:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      neck:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      back:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      shoes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      underwear:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      undershirt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism

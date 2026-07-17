@@ -499,8 +499,8 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerResearchAndDevelopment
-  name: R&D computer
-  description: A computer used to interface with R&D tools.
+  name: R computer
+  description: A computer used to interface with R tools.
   components:
   - type: Sprite
     layers:
@@ -525,7 +525,7 @@
   - type: UserInterface
     interfaces:
       enum.ResearchConsoleUiKey.Key:
-        type: FancyResearchConsoleBoundUserInterface # R&D Console rework
+        type: FancyResearchConsoleBoundUserInterface # R Console rework
       enum.ResearchClientUiKey.Key:
         type: ResearchClientBoundUserInterface
       enum.WiresUiKey.Key:

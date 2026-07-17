@@ -137,7 +137,7 @@
     solutions:
       drink:
         maxVol: 30
-      grindable: &grindable
+      grindable:
         reagents: # 5u -> 1/2 steel sheet (10u)
         - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
           Quantity: 4
@@ -179,7 +179,12 @@
         reagents:
         - ReagentId: Cola
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Tag
     tags:
     - Cola
@@ -199,7 +204,12 @@
     solutions:
       drink:
         maxVol: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Tag
     tags:
     - Cola
@@ -219,7 +229,12 @@
         reagents:
         - ReagentId: IcedTea
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/ice_tea_can.rsi
   - type: Item
@@ -238,7 +253,12 @@
         reagents:
         - ReagentId: LemonLime
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/lemon-lime.rsi
   - type: Item
@@ -257,7 +277,12 @@
         reagents:
         - ReagentId: LemonLimeCranberry
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/lemon-lime-cranberry.rsi
   - type: Item
@@ -309,7 +334,12 @@
         reagents:
         - ReagentId: GrapeSoda
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/purple_can.rsi
   - type: Item
@@ -328,7 +358,12 @@
         reagents:
         - ReagentId: RootBeer
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/rootbeer.rsi
   - type: Item
@@ -351,7 +386,12 @@
         reagents:
         - ReagentId: SodaWater
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/sodawater.rsi
   - type: Item
@@ -370,7 +410,12 @@
         reagents:
         - ReagentId: SpaceMountainWind
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/space_mountain_wind.rsi
   - type: Item
@@ -389,7 +434,12 @@
         reagents:
         - ReagentId: SpaceUp
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/space-up.rsi
   - type: Item
@@ -408,7 +458,12 @@
         reagents:
         - ReagentId: SolDry
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/sol_dry.rsi
   - type: Item
@@ -427,7 +482,12 @@
         reagents:
         - ReagentId: Starkist
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/starkist.rsi
   - type: Item
@@ -446,7 +506,12 @@
         reagents:
         - ReagentId: TonicWater
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/tonic.rsi
   - type: Item
@@ -465,7 +530,12 @@
         reagents:
         - ReagentId: FourteenLoko
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/fourteen_loko.rsi
   - type: Item
@@ -484,7 +554,12 @@
         reagents:
         - ReagentId: ChangelingSting
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/changelingsting.rsi
   - type: Item
@@ -503,7 +578,12 @@
         reagents:
         - ReagentId: DrGibb
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/dr_gibb.rsi
   - type: Item
@@ -526,7 +606,12 @@
           Quantity: 20
         - ReagentId: Ice
           Quantity: 5
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/robustnukie.rsi
   - type: Item
@@ -545,7 +630,12 @@
         reagents:
         - ReagentId: EnergyDrink
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/energy_drink.rsi
   - type: Item
@@ -564,7 +654,12 @@
         reagents:
         - ReagentId: ShamblersJuice
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/shamblersjuice.rsi
   - type: Item
@@ -583,7 +678,12 @@
         reagents:
         - ReagentId: PwrGame
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/pwrgame.rsi
   - type: Item
@@ -602,7 +702,12 @@
         reagents:
         - ReagentId: Beer
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/beer_can.rsi
   - type: Item
@@ -625,7 +730,12 @@
         reagents:
         - ReagentId: Wine
           Quantity: 30
-      grindable: *grindable
+      grindable:
+        reagents: # 5u -> 1/2 steel sheet (10u)
+        - ReagentId: Aluminium # Fun fact: soda can makeup is approx. 75% aluminium and 25% tin/iron.
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     sprite: Objects/Consumable/Drinks/wine_can.rsi
   - type: Item

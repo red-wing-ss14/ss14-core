@@ -309,8 +309,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ResearchComputerCircuitboard
-  name: R&D computer board
-  description: A computer printed circuit board for a R&D console.
+  name: R computer board
+  description: A computer printed circuit board for a R console.
   components:
     - type: Sprite
       state: cpu_science

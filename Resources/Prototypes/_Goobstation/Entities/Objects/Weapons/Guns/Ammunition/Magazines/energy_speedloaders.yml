@@ -14,9 +14,7 @@
   - type: BatteryDrinkerSource
     maxAmount: 100
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 60 # Amour edit: 40 > 60
-    autoRechargePause: true
     autoRechargePauseTime: 12
   - type: AmmoCounter
   - type: Appearance
@@ -66,7 +64,7 @@
   - type: BatterySelfRecharger
     autoRechargePauseTime: 12 # Amour edit: missing > 12
     autoRechargeRate: 100 # Amour edit: missing > 100
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: LightPulse
     fireCost: 200 # Amour edit: 50 > 200
   - type: Tag

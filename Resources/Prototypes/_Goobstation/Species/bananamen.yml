@@ -11,7 +11,7 @@
 # Amour port: WD Slim body types START
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobBananaMenDummy
-  skinColoration: NoColor
+  skinColoration: TintedHues
   # Orion-Start
   category: Special
   # Orion-End

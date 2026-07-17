@@ -60,7 +60,7 @@
   name: animal eyes
   description: "I see you!"
   components:
-  - type: Food # Orion
+  - type: Edible # Orion
   # start-backmen: surgery
   - type: Organ
     slotId: eyes

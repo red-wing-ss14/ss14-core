@@ -240,8 +240,8 @@
 #        ejectOnInteract: true
 #        whitelist:
 #          components:
-#          - HitscanBatteryAmmoProvider
-#          - ProjectileBatteryAmmoProvider
+#          - BatteryAmmoProvider
+#          - BatteryAmmoProvider
 #          - Stunbaton
 #          - PowerCell
 #          tags:

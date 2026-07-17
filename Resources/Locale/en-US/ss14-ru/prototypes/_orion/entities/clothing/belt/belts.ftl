@@ -8,3 +8,7 @@ ent-ClothingBeltWhiteSheath = white sneath
     .desc = Style, brilliance, everything for the best sabers in the universe.
 ent-ClothingBeltSheriffSneath = sheriff sneath
     .desc = Practicality, durability, the saber will definitely not end up in your foot.
+
+ent-ClothingBeltSheriffSheath = сабельные ножны шерифа
+ent-ClothingBeltCentCommSheath = сабельные ножны ЦентКома
+ent-ClothingBeltKatanaSheath = ножны для катаны

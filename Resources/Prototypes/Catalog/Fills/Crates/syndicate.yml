@@ -15,7 +15,6 @@
   suffix: Filled
   parent: CrateCybersunNightSecure # Orion-Edit
   name: Cybersun juggernaut bundle
-  suffix: Filled
   description: Contains everything except a big gun to go postal.
   components:
   - type: EntityTableContainerFill
