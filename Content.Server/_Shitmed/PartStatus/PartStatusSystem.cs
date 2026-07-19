@@ -196,7 +196,16 @@ public sealed class PartStatusSystem : EntitySystem
             titlestring += "-styleless";
         }
 
-        message.AddText(Loc.GetString(titlestring, ("entity", Identity.Name(entity, EntityManager))));
+        // RW start
+        if (styling)
+        {
+            message.AddMarkupPermissive(Loc.GetString(titlestring, ("entity", Identity.Name(entity, EntityManager))));
+        }
+        else
+        {
+            message.AddText(Loc.GetString(titlestring, ("entity", Identity.Name(entity, EntityManager))));
+        }
+        // RW end
         message.PushNewline();
         AddLine(message);
         CreateBodyPartMessage(partStatusSet, entity == examiner, ref message, !styling);
@@ -235,12 +244,22 @@ public sealed class PartStatusSystem : EntitySystem
                 locString += "-styleless";
             }
 
-            var name = Loc.GetString("body-part-" + partStatus.PartName.Replace(" ", "-")); // Orion-Edit
-
-            message.AddText("    " + Loc.GetString(locString,
-                ("possessive", possessive),
-                ("part", name), // Orion-Edit: partStatus.PartName -> name
-                ("status", statusDescription)));
+            // RW start
+            if (styleless)
+            {
+                message.AddText("    " + Loc.GetString(locString,
+                    ("possessive", possessive),
+                    ("part", name), // Orion-Edit: partStatus.PartName -> name
+                    ("status", statusDescription)));
+            }
+            else
+            {
+                message.AddMarkupPermissive("    " + Loc.GetString(locString,
+                    ("possessive", possessive),
+                    ("part", name), // Orion-Edit: partStatus.PartName -> name
+                    ("status", statusDescription)));
+            }
+            // RW end
 
             message.PushNewline();
         }
