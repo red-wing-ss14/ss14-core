@@ -1627,11 +1627,7 @@
     sprite: Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
-      state: pda_base
-      color: "#891417"
-    - state: pda_buttons
-    - map: [ "enum.PdaVisualLayers.Screen" ]
-      state: pda_screen_borders
+      state: pda-syndi
     - state: light_overlay
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: unshaded
@@ -2212,10 +2208,7 @@
     sprite: Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda_base"
-    - state: pda_buttons
-    - map: [ "enum.PdaVisualLayers.Screen" ]
-      state: pda_screen_borders
+      state: "pda-seniorcourier"
     - state: "light_overlay"
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
@@ -2280,11 +2273,7 @@
     sprite: Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
-      state: pda_base
-      color: "#891417"
-    - state: pda_buttons
-    - map: [ "enum.PdaVisualLayers.Screen" ]
-      state: pda_screen_borders
+      state: pda-syndi-corpsman
     - state: light_overlay
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: unshaded

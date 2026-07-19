@@ -75,6 +75,30 @@
   - type: SlaughterDevour
     feastSound: /Audio/_Goobstation/Misc/scary_horn2.ogg
     doAfterDelay: 2
+    toHeal:
+      groups:
+        Brute: -100
+        Burn: -100
+        Airloss: -100
+        Toxin: -100
+        Genetic: -100
+        Metaphysical: -100
+    toHealNonCrew:
+      groups:
+        Brute: -50
+        Burn: -50
+        Airloss: -50
+        Toxin: -50
+        Genetic: -50
+        Metaphysical: -50
+    toHealAnythingElse:
+      groups:
+        Brute: -25
+        Burn: -25
+        Airloss: -25
+        Toxin: -25
+        Genetic: -25
+        Metaphysical: -25
   - type: SlaughterDemon
     isLaughter: true
   - type: Speech
