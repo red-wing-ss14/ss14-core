@@ -8,7 +8,6 @@
   parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
   id: DrinkCarton
   name: carton
-  suffix: ""
   description: A basic cardboard carton made for drinks. Save the environment!
   components:
   - type: SolutionContainerManager

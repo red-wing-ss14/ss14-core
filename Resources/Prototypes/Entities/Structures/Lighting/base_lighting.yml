@@ -145,7 +145,6 @@
 - type: entity
   id: Poweredlight
   description: "A light fixture. Draws power and produces light when equipped with a light tube."
-  suffix: ""
   parent: PoweredlightEmpty
   components:
   - type: Sprite
@@ -425,7 +424,6 @@
 
 - type: entity
   id: PoweredSmallLight
-  suffix: ""
   parent: PoweredSmallLightEmpty
   components:
   - type: Sprite
@@ -446,7 +444,6 @@
   name: emergency light
   description: A small light with an internal battery that alerts the crew about the station's conditions. Has an integrated speaker for sound alerts.
   parent: AlwaysPoweredWallLight
-  suffix: ""
   components:
   - type: PointLight
     enabled: false

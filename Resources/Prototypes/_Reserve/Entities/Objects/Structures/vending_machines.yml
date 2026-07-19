@@ -7,7 +7,6 @@
   id: VendingMachineSauces
   name: Sauce-O-Mat
   description: An automated dispenser for sauces and seasonings.
-  suffix: ""
   components:
   - type: VendingMachine
     pack: FoodCondimentBottleInventory
@@ -31,7 +30,6 @@
   id: VendingMachineEnergyDrinks
   name: Reserve Energy
   description: Fuel for true Reserve professionals.
-  suffix: ""
   components:
   - type: VendingMachine
     pack: FoodEnergyDrinkInventory
@@ -43,7 +41,6 @@
   id: VendingMachineIceCream
   name: The Cold Star
   description: A vending machine that dispenses ice cream.
-  suffix: ""
   components:
   - type: VendingMachine
     pack: FoodIceCreamInventory
@@ -55,7 +52,6 @@
   id: VendingMachineJellyDonuts
   name: Blob's Jelly Secret
   description: An automated dispenser for jelly donuts.
-  suffix: ""
   components:
   - type: VendingMachine
     pack: FoodJellyDonutInventory
@@ -67,7 +63,6 @@
   id: VendingMachineBottles
   name: Barmania's Big Drinks
   description: A softdrink vendor provided by Orchid's Barmania.
-  suffix: ""
   components:
   - type: VendingMachine
     pack: FoodBottleInventory
@@ -79,7 +74,6 @@
   id: VendingMachineIcedDrinks
   name: Ice-In-A-Can
   description: A vending machine full of icy goodness.
-  suffix: ""
   components:
   - type: VendingMachine
     pack: FoodIcedDrinkInventory
@@ -91,7 +85,6 @@
   id: VendingMachineCartons
   name: Juicy Paradize
   description: Healthy drinks from Orchid's Barmania!
-  suffix: ""
   components:
   - type: VendingMachine
     pack: FoodCartonInventory
@@ -103,7 +96,6 @@
   id: VendingMachineBoom
   name: Juicy Boom
   description: A vending machine that dispenses drinks with explosive flavors.
-  suffix: ""
   components:
   - type: VendingMachine
     pack: FoodBoomInventory
@@ -116,7 +108,6 @@
   id: VendingMachineBadDrinks
   name: Bad Drinks co.
   description: A vending machine that dispenses questionable beverages, provided to you by Reserve Station.
-  suffix: ""
   components:
   - type: VendingMachine
     pack: FoodBadDrinksInventory

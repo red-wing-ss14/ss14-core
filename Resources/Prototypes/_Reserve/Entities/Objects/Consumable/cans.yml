@@ -8,7 +8,6 @@
   parent: DrinkCanBaseFull
   id: DrinkCan
   name: aluminium can
-  suffix: ""
   description: Buy this if you hate the environment.
   components:
   - type: SolutionContainerManager

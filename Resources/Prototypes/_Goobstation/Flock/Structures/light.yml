@@ -73,7 +73,6 @@
   id: FlockLight
   name: shining cabochon
   description: "It pulses and flares to a strange rhythm."
-  suffix: ""
   placement:
     mode: SnapgridCenter
     snap:

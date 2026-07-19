@@ -4,7 +4,6 @@
     - MobPolymorphable
   id: BaseMobSlaughterDemon
   name: slaughter demon
-  suffix: ""
   description: A large, menacing creature covered in armored black scales. You should run.
   components:
   - type: Sprite

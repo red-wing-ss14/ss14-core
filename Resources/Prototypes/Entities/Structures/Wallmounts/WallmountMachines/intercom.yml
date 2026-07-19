@@ -173,7 +173,6 @@
 - type: entity
   id: Intercom
   parent: IntercomConstructed
-  suffix: ""
   components:
   - type: Sprite
     layers:

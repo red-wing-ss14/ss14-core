@@ -2,7 +2,6 @@
   parent: [SimpleSpaceMobBase,FlyingMobBase]
   id: BaseMobShadowlingAscendant
   name: shadowling ascendant
-  suffix: ""
   categories: [HideSpawnMenu]
   description: A shadowling ascendant. If you're seeing this, you're probably dead.
   components:
@@ -100,7 +99,6 @@
   parent: [BaseMobShadowlingAscendant]
   id: BaseMobShadowlingAscendantAdminSpawn
   name: shadowling ascendant
-  suffix: ""
   description: A shadowling ascendant. If you're seeing this, you're probably dead.
   components:
   - type: ShadowlingVeil
