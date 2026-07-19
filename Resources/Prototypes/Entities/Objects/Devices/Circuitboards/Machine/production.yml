@@ -1507,6 +1507,7 @@
     prototype: SmartFridge
     stackRequirements:
       Glass: 5
+    partRequirements:
       Servo: 2
     tagRequirements:
         GlassBeaker:

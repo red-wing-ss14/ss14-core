@@ -83,7 +83,7 @@
       icon-food:
         whitelist:
           components:
-          - Food
+          - Edible
       icon-cash:
         whitelist:
           components:
@@ -95,7 +95,6 @@
           - Document
           - Mail
           components:
-          - Mail
           - Paper
           #- HyperlinkBook # Goobstation
     sprite: _NF/Objects/Misc/mail_capsule.rsi

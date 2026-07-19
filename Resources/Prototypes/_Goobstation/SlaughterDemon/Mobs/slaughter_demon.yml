@@ -76,7 +76,6 @@
     feastSound: /Audio/_Goobstation/Misc/scary_horn2.ogg
   - type: SlaughterDemon
     isLaughter: true
-    deathSound: /Audio/Effects/sadtrombone.ogg
   - type: Speech
     speechVerb: Cluwne
   - type: MeleeWeapon

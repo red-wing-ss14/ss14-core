@@ -11,6 +11,7 @@
     stackRequirements:
       Glass: 10
       Steel: 10
+    partRequirements:
       Servo: 4
 
 - type: entity
@@ -26,6 +27,7 @@
     stackRequirements:
       Glass: 10
       Steel: 10
+    partRequirements:
       Servo: 4
 
 - type: entity
@@ -41,6 +43,7 @@
     stackRequirements:
       Glass: 10
       Steel: 10
+    partRequirements:
       Servo: 4
 
 - type: entity
@@ -56,4 +59,5 @@
     stackRequirements:
       Glass: 10
       Steel: 10
+    partRequirements:
       Servo: 4

@@ -11,7 +11,7 @@
     outerClothing: ClothingOuterArmorBasic
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
-    belt: ClothingBeltAssaultFilled # Goobstation
+    belt: ClothingBeltMilitaryWebbingFilled # Goobstation
     pocket1: WeaponPulsePistol
     pocket2: FlashlightSeclite
   storage:
@@ -83,7 +83,7 @@
     outerClothing: ClothingOuterArmorBasic
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
-    belt: ClothingBeltAssaultFilled # Goobstation
+    belt: ClothingBeltMilitaryWebbingFilled # Goobstation
     pocket1: WeaponPistolMk58
     pocket2: FlashlightSeclite
   storage:

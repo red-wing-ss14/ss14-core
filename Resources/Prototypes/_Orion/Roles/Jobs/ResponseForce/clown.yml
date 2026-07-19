@@ -43,7 +43,7 @@
     outerClothing: ClothingOuterArmorBasic
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
-    belt: ClothingBeltAssaultFilled # Goobstation
+    belt: ClothingBeltMilitaryWebbingFilled # Goobstation
     pocket1: PushHorn
     pocket2: FlashlightSeclite
   storage:
