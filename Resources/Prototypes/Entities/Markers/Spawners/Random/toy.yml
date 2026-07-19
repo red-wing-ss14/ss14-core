@@ -32,11 +32,11 @@
     - id: PlushieVox
     - id: PlushieRouny
     - id: PlushieAtmosian
-    - id: PlushieDiona
+#    - id: PlushieDiona
     - id: PlushieXeno
     - id: PlushieHampter
     - id: PlushieMoth
-    - id: PlushieArachind
+#    - id: PlushieArachind
     - id: PlushiePenguin
     # - id: PlushieVulp # Goob fuck off
     - !type:GroupSelector
@@ -70,7 +70,7 @@
     - !type:GroupSelector # Rare plushies
       weight: 0.1 # 1 in >210
       children:
-      - id: PlushieHuman
+#      - id: PlushieHuman
       - id: PlushieGhost
       - id: PlushieLamp
     - !type:GroupSelector # Legendary plushies

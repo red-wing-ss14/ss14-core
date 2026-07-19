@@ -922,30 +922,6 @@
 
 # Wildcards
 - type: roleLoadout
-  id: JobZookeeper
-  groups:
-  - ZookeeperHead
-  - ZookeeperJumpsuit
-  - GroupTankHarness
-  - CommonBackpack
-  - Glasses
-  - Survival
-  - Trinkets
-  - ZookeeperJobTrinkets
-  - Animals # Goobstation
-  - GroupSpeciesBreathTool
-  # Goobstation - EE Plasmeme Change.
-  - ZookeeperEnvirohelm
-  - ZookeeperEnvirosuit
-  - ZookeeperEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-
-- type: roleLoadout
   id: JobReporter
   groups:
   - GroupTankHarness
@@ -992,28 +968,6 @@
   - Wrists
   # Orion-End
 
-- type: roleLoadout
-  id: JobBoxer
-  groups:
-  - GroupTankHarness
-  - BoxerJumpsuit
-  - BoxerGloves
-  - CommonBackpack
-  - Glasses
-  - Survival
-  - Trinkets
-  - BoxerJobTrinkets
-  - Animals # Goobstation
-  - GroupSpeciesBreathTool
-  # Goobstation - EE Plasmeme Change.
-  - BoxerEnvirohelm
-  - BoxerEnvirosuit
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
 

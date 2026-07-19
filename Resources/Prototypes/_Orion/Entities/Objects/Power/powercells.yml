@@ -76,9 +76,7 @@
     maxCharge: 1400
     startingCharge: 1400
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 15
-    autoRechargePause: true
     autoRechargePauseTime: 1
   - type: BatteryAmmoProvider
     proto: HeavyRedLaser
@@ -111,7 +109,6 @@
     maxCharge: 3500
     startingCharge: 3500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 30
   - type: BatteryAmmoProvider
     proto: LightPulse
@@ -144,7 +141,6 @@
     maxCharge: 1200
     startingCharge: 1200
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 40
   - type: BatteryAmmoProvider
     proto: RedHeavyLaser

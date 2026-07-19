@@ -2970,8 +2970,10 @@
     - type: Speech
       speechVerb: Cluwne
     - type: Bloodstream
-      bloodMaxVolume: 150
-      bloodReagent: Laughter
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Laughter
+          Quantity: 150
     - type: GlobalAntagonist # Orion
       antagonistPrototype: globalAntagonistSpiderClown
 

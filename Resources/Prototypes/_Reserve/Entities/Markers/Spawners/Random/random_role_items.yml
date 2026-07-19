@@ -84,8 +84,8 @@
     - id: SprayBottleSpaceCleaner
     - id: CrewCassette
     - id: SoapNT
-    - id: BoxSoapsAssorted
-    - id: BoxSoapsAssortedOmega
+#    - id: BoxSoapsAssorted
+#    - id: BoxSoapsAssortedOmega
     - id: GrenadeCleanade
       amount: 2
     - id: LubeGrenade

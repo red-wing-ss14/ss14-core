@@ -217,3 +217,38 @@
       - state: green
       - sprite: Structures/Wallmounts/signs.rsi
         state: radiation
+
+- type: entity
+  name: abductor agent spawner
+  id: SpawnPointAbductorAgent
+  parent: MarkerBase
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Structures/Wallmounts/signs.rsi
+        state: radiation
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: AbductorAgentSpawner
+  components:
+  - type: GhostRole
+    name: abductor-agent-ghost-role-name
+    description: abductor-agent-ghost-role-desc
+    rules: abductors-ghost-role-rules
+    mindRoles:
+    - MindRoleAbductorAgent
+    raffle:
+      settings: default
+    requirements:
+      - !type:DiscordLinkRequirement # Amour edit
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Structures/Wallmounts/signs.rsi
+        state: radiation

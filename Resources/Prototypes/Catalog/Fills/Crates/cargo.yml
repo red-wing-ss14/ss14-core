@@ -197,7 +197,6 @@
     - id: PlushieGhostRevenant
     - id: PlushiePenguin
       prob: 0.01
-      orGroup: Plushies
 #    - id: PlushieHuman # Orion-Edit: NC license sprites
 #      prob: 0.01
 #      orGroup: Plushies
@@ -207,7 +206,6 @@
     - id: PlushieSharkBlue
     - id: PlushieMoth
       prob: 0.01
-      orGroup: Plushies
 #    - id: PlushieArachind # Orion-Edit: NC license sprites
 #      prob: 0.01
 #      orGroup: Plushies

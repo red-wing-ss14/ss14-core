@@ -11,6 +11,6 @@
     checkCanInteract: false
     useDelay: 5
     itemIconStyle: BigAction
-    icon: { sprite: _Obelisk/Actions/hydrakin_cooldown.rsi, state: hydra_cooldown }
+    icon: { sprite: Interface/Actions/actions_mecha.rsi, state: mech_ivanov_cooldown }
   - type: InstantAction
     event: !type:HydrakinCoolOffActionEvent

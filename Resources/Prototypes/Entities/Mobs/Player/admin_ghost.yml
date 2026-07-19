@@ -148,7 +148,7 @@
   # Orion-Start
   - type: Action
     icon: { sprite: _Orion/Interface/Actions/consoles.rsi, state: solar }
-    iconOn: _Orion/Interface/Actions/consoles.rsi/solar.png
+    iconOn: { sprite: _Orion/Interface/Actions/consoles.rsi, state: solar }
   # Orion-End
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.SolarControlConsoleUiKey.Key }
@@ -161,7 +161,7 @@
   components:
   - type: Action
     icon: { sprite: _Orion/Interface/Actions/consoles.rsi, state: communication } # Orion-Edit
-    iconOn: _Orion/Interface/Actions/consoles.rsi/communication.png # Orion-Edit
+    iconOn: { sprite: _Orion/Interface/Actions/consoles.rsi, state: communication } # Orion-Edit
     keywords: [ "AI", "console", "interface" ]
     priority: -4
   - type: InstantAction
@@ -175,7 +175,7 @@
   components:
   - type: Action
     icon: { sprite: _Orion/Interface/Actions/consoles.rsi, state: radar } # Orion-Edit
-    iconOn: _Orion/Interface/Actions/consoles.rsi/radar.png # Orion-Edit
+    iconOn: { sprite: _Orion/Interface/Actions/consoles.rsi, state: radar } # Orion-Edit
     keywords: [ "AI", "console", "interface" ]
     priority: -6
   - type: InstantAction
@@ -190,7 +190,7 @@
   # Orion-Start
   - type: Action
     icon: { sprite: _Orion/Interface/Actions/consoles.rsi, state: cargo }
-    iconOn: _Orion/Interface/Actions/consoles.rsi/cargo.png
+    iconOn: { sprite: _Orion/Interface/Actions/consoles.rsi, state: cargo }
   # Orion-End
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }
@@ -203,7 +203,7 @@
   components:
   - type: Action
     icon: { sprite: _Orion/Interface/Actions/consoles.rsi, state: crew } # Orion-Edit
-    iconOn: _Orion/Interface/Actions/consoles.rsi/crew.png # Orion-Edit
+    iconOn: { sprite: _Orion/Interface/Actions/consoles.rsi, state: crew } # Orion-Edit
     keywords: [ "AI", "console", "interface" ]
     priority: -8
   - type: InstantAction
@@ -217,7 +217,7 @@
   components:
   - type: Action
     icon: { sprite: _Orion/Interface/Actions/consoles.rsi, state: records } # Orion-Edit
-    iconOn: _Orion/Interface/Actions/consoles.rsi/records.png # Orion-Edit
+    iconOn: { sprite: _Orion/Interface/Actions/consoles.rsi, state: records } # Orion-Edit
     keywords: [ "AI", "console", "interface" ]
     priority: -7
   - type: InstantAction

@@ -131,6 +131,9 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/katana.rsi
+  - type: Tag
+    tags:
+    - Katana
   - type: MeleeWeapon
     damage:
       types:

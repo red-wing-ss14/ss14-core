@@ -320,7 +320,6 @@
     tags:
     - Rifle
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 100 # Amour edit: 80 > 100
     autoRechargePauseTime: 5 # Amour edit: missing > 5
 

@@ -462,7 +462,6 @@
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
-        refresh: false
       - !type:ChemAddMoodlet # Orion
         moodPrototype: SpaceDrugsBenefit
 

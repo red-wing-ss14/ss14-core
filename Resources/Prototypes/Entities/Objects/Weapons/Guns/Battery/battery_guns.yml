@@ -967,7 +967,6 @@
     proto: RedMediumLaser
     fireCost: 100
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 25 # Amour edit: 30 > 25
     autoRechargePauseTime: 0 # Amour edit: missing > 0
   - type: RestrictGunshotsByUserTag # Goobstation
