@@ -162,6 +162,7 @@ namespace Content.Server.Chemistry.EntitySystems
                             var actualAmount = FixedPoint2.Min(amount, FixedPoint2.Min(srcLink.Value.Comp.Solution.Volume, dstSolution.AvailableVolume));
                             if (actualAmount > 0)
                             {
+                                dstSolution.CanReact = false; // RW
                                 _openable.SetOpen(storedContainer);
                                 var split = _solutionContainerSystem.SplitSolution(srcLink.Value, actualAmount);
                                 _solutionContainerSystem.AddSolution(dstSoln.Value, split);

@@ -1,5 +1,7 @@
 using Content.Server.Chemistry.Components;
 using Content.Server.Tools;
+using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Systems;
@@ -17,6 +19,7 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly ToolSystem _toolSystem = default!;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
         [Dependency] private readonly IComponentFactory _componentFactory = default!;
+        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
         public override void Initialize()
         {
@@ -24,6 +27,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             SubscribeLocalEvent<ReagentDispenserComponent, InteractUsingEvent>(OnInteractUsingDispenser);
             SubscribeLocalEvent<ChemMasterComponent, InteractUsingEvent>(OnInteractUsingMaster);
+            SubscribeLocalEvent<ChemicalLinkComponent, ComponentStartup>(OnStartup);
             SubscribeLocalEvent<ChemicalLinkComponent, ComponentShutdown>(OnShutdown);
         }
 
@@ -139,11 +143,31 @@ namespace Content.Server.Chemistry.EntitySystems
             return false;
         }
 
+        private void OnStartup(EntityUid uid, ChemicalLinkComponent component, ComponentStartup args)
+        {
+            if (HasComp<ChemMasterComponent>(uid))
+            {
+                if (_solutionContainerSystem.TryGetSolution(uid, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
+                {
+                    bufferSolution.CanReact = false;
+                }
+            }
+        }
+
         private void OnShutdown(EntityUid uid, ChemicalLinkComponent component, ComponentShutdown args)
         {
             if (component.LinkedDevice is { } linked && Exists(linked) && HasComp<ChemicalLinkComponent>(linked))
             {
                 RemCompDeferred<ChemicalLinkComponent>(linked);
+            }
+
+            if (HasComp<ChemMasterComponent>(uid))
+            {
+                if (_solutionContainerSystem.TryGetSolution(uid, SharedChemMaster.BufferSolutionName, out var bufferSoln, out var bufferSolution))
+                {
+                    bufferSolution.CanReact = true;
+                    _solutionContainerSystem.UpdateChemicals(bufferSoln.Value);
+                }
             }
         }
     }

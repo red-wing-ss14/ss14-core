@@ -191,6 +191,7 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
                             var powerForActual = GetPowerCostForReagent(message.ReagentId, actualAmount.Float(), reagentDispenser.Comp);
                             if (currentCharge >= powerForActual)
                             {
+                                dstSolution.CanReact = false; // RW
                                 var linkedSol = new Solution(message.ReagentId, actualAmount);
                                 _solutionContainerSystem.AddSolution(dstSoln.Value, linkedSol);
                                 _battery.SetCharge((reagentDispenser.Owner, battery), currentCharge - powerForActual);
