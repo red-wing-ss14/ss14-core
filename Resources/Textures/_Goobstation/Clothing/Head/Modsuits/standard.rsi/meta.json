@@ -48,6 +48,14 @@
     {
       "name": "equipped-HEAD-feroxi",
       "directions": 4
+    },
+    {
+      "name": "equipped-HEAD-hydrakin",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HEAD-sealed-hydrakin",
+      "directions": 4
     }
   ]
 }
