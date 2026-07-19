@@ -440,6 +440,26 @@ entity-effect-guidebook-paralyze =
         *[other] paralyze
     } the metabolizer for at least {NATURALFIXED($time, 3)} {MANY("second", $time)}
 
+entity-effect-guidebook-knockdown =
+    { $type ->
+        [update]{ $chance ->
+            [1] Knocks
+            *[other] knock
+        } down for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
+        [add]{ $chance ->
+            [1] Knocks
+            *[other] knock
+        } down for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
+        [set]{ $chance ->
+            [1] Knocks
+            *[other] knock
+        } down for {NATURALFIXED($time, 3)} {MANY("second", $time)}
+        *[remove]{ $chance ->
+            [1] Removes
+            *[other] remove
+        } {NATURALFIXED($time, 3)} {MANY("second", $time)} of knockdown
+    }
+
 entity-effect-guidebook-movespeed-modifier =
     { $chance ->
         [1] Modifies
