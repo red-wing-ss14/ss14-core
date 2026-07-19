@@ -110,6 +110,8 @@
   id: MobLuminousPerson
   parent: MobLivingLight
   components:
+  - type: Physics
+    bodyType: KinematicController
   - type: MeleeWeapon
     damage:
       types:
@@ -124,6 +126,8 @@
   name: luminous object
   description: A small glowing object that causes burns on the skin with its glow.
   components:
+  - type: Physics
+    bodyType: KinematicController
   - type: Sprite
     sprite: Mobs/Elemental/living_light/luminous_object.rsi
     layers:
@@ -151,6 +155,8 @@
   name: luminous entity
   description: A blinding translucent entity, the bright eye seems dangerous and scalding.
   components:
+  - type: Physics
+    bodyType: KinematicController
   - type: Sprite
     sprite: Mobs/Elemental/living_light/luminous_entity.rsi
     layers:
