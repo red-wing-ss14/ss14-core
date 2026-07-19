@@ -22,6 +22,9 @@ public abstract partial class SharedBorgSystem
 
     private void OnMMIInit(Entity<MMIComponent> ent, ref ComponentInit args)
     {
+        if (_itemSlots.TryGetSlot(ent.Owner, ent.Comp.BrainSlotId, out _))
+            return;
+
         _itemSlots.AddItemSlot(ent.Owner, ent.Comp.BrainSlotId, ent.Comp.BrainSlot);
     }
 

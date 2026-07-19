@@ -581,7 +581,6 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
         }
 
-        // Amour start
         public async Task<bool> TryEditServerBanExpiration(
             int id,
             DateTimeOffset expectedExpiration,
@@ -591,14 +590,18 @@ namespace Content.Server.Database
         {
             await using var db = await GetDb();
 
+            var expectedExpirationUtc = expectedExpiration.UtcDateTime;
+            var expirationUtc = expiration.UtcDateTime;
+            var editedAtUtc = editedAt.UtcDateTime;
+
             var updated = await db.DbContext.Ban
                 .Where(b => b.Id == id &&
-                            b.Unban == null &&
-                            b.ExpirationTime == expectedExpiration.UtcDateTime)
+                            !db.DbContext.Unban.Any(u => u.BanId == id) &&
+                            b.ExpirationTime == expectedExpirationUtc)
                 .ExecuteUpdateAsync(setters => setters
-                    .SetProperty(b => b.ExpirationTime, expiration.UtcDateTime)
+                    .SetProperty(b => b.ExpirationTime, expirationUtc)
                     .SetProperty(b => b.LastEditedById, editedBy)
-                    .SetProperty(b => b.LastEditedAt, editedAt.UtcDateTime));
+                    .SetProperty(b => b.LastEditedAt, editedAtUtc));
 
             return updated != 0;
         }

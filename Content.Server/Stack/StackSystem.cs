@@ -283,6 +283,11 @@ namespace Content.Server.Stack
         #endregion
         #region Event Handlers
 
+        public override EntityUid? Split(EntityUid uid, int amount, EntityCoordinates spawnPosition, StackComponent? stack = null)
+        {
+            return Split(new Entity<StackComponent?>(uid, stack), amount, spawnPosition);
+        }
+
         /// <inheritdoc />
         public override void UserSplit(Entity<StackComponent> stack, Entity<TransformComponent?> user, int amount) // Gooob Public
         {

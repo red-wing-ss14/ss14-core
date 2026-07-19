@@ -79,6 +79,8 @@
   parent: BaseGameRule
   id: DuoAbductorSpawn
   components:
+  - type: GameRule
+    chaosScore: 150
   - type: StationEvent
     earliestStart: 15
     weight: 7.5

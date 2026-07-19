@@ -136,6 +136,7 @@
   - type: Battery
     maxCharge: 30000 # max supply
     startingCharge: 10000
+    netsync: false
   - type: PowerNetworkBattery
     maxSupply: 30000
     maxChargeRate: 1000 # passive charging frow power net
