@@ -3,7 +3,7 @@
 - type: species
   id: Hydrakin
   name: species-name-hydrakin
-  roundStart: true
+  roundStart: false # RW: disable selection
   prototype: MobHydrakin
   bodyTypes:
     - HydrakinNormal
