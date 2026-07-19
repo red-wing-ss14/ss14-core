@@ -8,7 +8,6 @@ namespace Content.Shared.PDA
     public enum PdaVisuals
     {
         IdCardInserted,
-        ScreenState, // Orion
         PenInserted,//goob addition for pen visual
         PdaType,
     }

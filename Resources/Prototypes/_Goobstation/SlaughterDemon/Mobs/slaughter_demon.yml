@@ -101,6 +101,10 @@
         Metaphysical: -25
   - type: SlaughterDemon
     isLaughter: true
+    bloodCrawlSounds:
+      collection: bloodCrawl
+      params:
+        volume: 2
   - type: Speech
     speechVerb: Cluwne
   - type: MeleeWeapon
