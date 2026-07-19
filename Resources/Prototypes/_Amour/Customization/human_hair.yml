@@ -311,14 +311,6 @@
       state: shorthair4
 
 - type: marking
-  id: HumanHairShy
-  bodyPart: Hair
-  markingCategory: Hair
-  sprites:
-    - sprite: _Amour/Mobs/Customization/human_hair.rsi
-      state: shy
-
-- type: marking
   id: HumanHairSimplePonytail
   bodyPart: Hair
   markingCategory: Hair

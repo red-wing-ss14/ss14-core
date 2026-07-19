@@ -38,7 +38,6 @@ marking-HumanHairPonytailF = Хвостик (Женственный)
 marking-HumanHairPoofy2 = Пышная 2
 marking-HumanHairQuadcurls = Завитки (Квадро)
 marking-HumanHairShorthair4 = Короткая 4
-marking-HumanHairShy = Скромная
 marking-HumanHairSimplePonytail = Хвостик (Простой)
 marking-HumanHairSleaze = Дешёвая
 marking-HumanHairSlightlyMessy = Слегка растрёпанная

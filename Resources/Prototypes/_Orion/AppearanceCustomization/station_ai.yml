@@ -421,15 +421,6 @@
 
 # Holograms
 - type: stationAiCustomization
-  id: StationAiHologramHorror
-  name: station-ai-hologram-horror
-  previewKey: Hologram
-  layerData:
-    Hologram:
-      sprite: _Orion/Mobs/Silicon/holograms.rsi
-      state: horror
-
-- type: stationAiCustomization
   id: StationAiHologramXenomorphQueen
   name: station-ai-hologram-xenomorph-queen
   previewKey: Hologram
