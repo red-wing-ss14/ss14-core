@@ -330,12 +330,26 @@ namespace Content.Server.Database
         Task<List<RMCPatron>> GetAllPatrons();
 
         Task SetGhostColor(Guid player, System.Drawing.Color? color);
-
         // Amour Boosters
         Task<int?> GetBoosterColor(Guid player, CancellationToken cancel);
         Task SetBoosterColor(Guid player, int? color);
 
         Task<BoostyTierInfo?> GetBoostyTierAsync(Guid player, CancellationToken cancel = default);
+        // Goob start
+        Task SetGhostCosmetics(Guid player, string? particles, string? hat, string? mask);
+
+        Task<List<RMCPatronTier>> GetPatronTiers();
+
+        Task<int> AddPatronTier(RMCPatronTier tier);
+
+        Task<bool> UpdatePatronTier(RMCPatronTier tier);
+
+        Task<int> CountPatronsInTier(int tierId);
+
+        Task<bool> DeletePatronTier(int tierId);
+
+        Task<bool> SetPatron(Guid player, int? tierId);
+        // Goob end
 
         Task SetLobbyMessage(Guid player, string message);
 
@@ -1137,6 +1151,49 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetBoostyTierAsync(player, cancel));
         }
 
+        // Goob start - ghost cosmetics + patron database commands
+        public Task SetGhostCosmetics(Guid player, string? particles, string? hat, string? mask)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetGhostCosmetics(player, particles, hat, mask));
+        }
+
+        public Task<List<RMCPatronTier>> GetPatronTiers()
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPatronTiers());
+        }
+
+        public Task<int> AddPatronTier(RMCPatronTier tier)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddPatronTier(tier));
+        }
+
+        public Task<bool> UpdatePatronTier(RMCPatronTier tier)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.UpdatePatronTier(tier));
+        }
+
+        public Task<int> CountPatronsInTier(int tierId)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.CountPatronsInTier(tierId));
+        }
+
+        public Task<bool> DeletePatronTier(int tierId)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeletePatronTier(tierId));
+        }
+
+        public Task<bool> SetPatron(Guid player, int? tierId)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetPatron(player, tierId));
+        }
+        // Goob end
         public Task SetLobbyMessage(Guid player, string message)
         {
             DbWriteOpsMetric.Inc();

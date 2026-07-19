@@ -44,6 +44,8 @@
         Piercing: 10
         Structural: 10 # Amour edit: 15 > 10
       armorPenetration: -0.1 # Orion
+      woundSeverityMultipliers:
+        Piercing: 1.5 # Minced Meat
 
 - type: entity
   parent: PelletShotgun
@@ -237,6 +239,8 @@
       types:
         Piercing: 25
         Structural: 5
+      woundSeverityMultipliers:
+        Piercing: 3 # holy peak
 
 - type: entity
   parent: PelletGrapeshot
@@ -266,6 +270,8 @@
     damage:
       types:
         Slash: 25
+      woundSeverityMultipliers:
+        Slash: 3 # Holy Peak
 
 - type: entity
   parent: PelletGlass
