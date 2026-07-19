@@ -74,6 +74,7 @@
       215: Dead
   - type: SlaughterDevour
     feastSound: /Audio/_Goobstation/Misc/scary_horn2.ogg
+    doAfterDelay: 2
   - type: SlaughterDemon
     isLaughter: true
   - type: Speech

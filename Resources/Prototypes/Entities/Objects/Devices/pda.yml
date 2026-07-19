@@ -1624,6 +1624,7 @@
   components:
   # Orion-Start
   - type: Sprite
+    sprite: Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: pda_base
@@ -2207,6 +2208,24 @@
   name: senior courier PDA
   description: Smells like postage stamps and shuttle fuel.
   components:
+  - type: Sprite
+    sprite: Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda_base"
+    - state: pda_buttons
+    - map: [ "enum.PdaVisualLayers.Screen" ]
+      state: pda_screen_borders
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "insert_overlay" # Goob
+      map: [ "enum.PdaVisualLayers.Pen" ]
   - type: Pda
     id: CargoIDCard
   - type: Appearance
@@ -2258,6 +2277,7 @@
   components:
   # Orion-Start
   - type: Sprite
+    sprite: Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: pda_base
