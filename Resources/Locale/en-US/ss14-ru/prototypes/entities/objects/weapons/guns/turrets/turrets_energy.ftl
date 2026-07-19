@@ -9,3 +9,5 @@ ent-WeaponEnergyTurretSecurity = { ent-WeaponEnergyTurretStationBase }
 ent-WeaponEnergyTurretCommand = { ent-WeaponEnergyTurretStationBase }
     .suffix = Command
     .desc = { ent-WeaponEnergyTurretStationBase.desc }
+
+ent-WeaponEnergyTurretStation = { ent-WeaponEnergyTurretStationBase }

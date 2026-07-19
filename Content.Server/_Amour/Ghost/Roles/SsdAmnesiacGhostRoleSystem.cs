@@ -14,6 +14,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NukeOps;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.SSDIndicator;
 using Robust.Server.Player;

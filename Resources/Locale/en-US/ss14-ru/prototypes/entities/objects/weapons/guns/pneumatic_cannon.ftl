@@ -10,3 +10,5 @@ ent-WeaponImprovisedPneumaticCannonGun = { ent-WeaponImprovisedPneumaticCannon }
 ent-WeaponImprovisedPneumaticCannonAdmeme = { ent-WeaponImprovisedPneumaticCannonGun }
     .suffix = Admeme
     .desc = { ent-WeaponImprovisedPneumaticCannonGun.desc }
+
+ent-LauncherSyringe = шприцемёт

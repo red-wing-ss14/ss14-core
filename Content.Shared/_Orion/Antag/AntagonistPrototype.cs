@@ -1,11 +1,11 @@
-﻿using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Orion.Antag;
 
 [Prototype("antagonist")]
 public sealed partial class AntagonistPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
 
     /// <summary>
     ///     Name string to display in ghost teleport menu .

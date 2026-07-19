@@ -134,6 +134,7 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
+using Content.Shared._White.Xenomorphs.Infection;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -228,6 +229,9 @@ namespace Content.Server.Ghost
             if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
             {
                 args.VisibilityMask |= (int)VisibilityFlags.Ghost;
+                // Begin DeltaV additions
+                args.VisibilityMask |= (int)VisibilityFlags.CosmicCultMonument;
+                // End DeltaV additions
             }
         }
 
@@ -482,7 +486,8 @@ namespace Content.Server.Ghost
             if (_followerSystem.GetMostGhostFollowed() is not { } target)
                 return;
 
-            WarpTo(uid, target);
+            // If there is a ghostnado happening you almost definitely wanna join it, so we automatically follow instead of just warping.
+            _followerSystem.StartFollowingEntity(uid, target);
         }
 
         private void WarpTo(EntityUid uid, EntityUid target) // Orion-Edit

@@ -10,3 +10,6 @@ ent-APCSuperCapacityUnlocked = { ent-BaseAPC }
 ent-APCHyperCapacityUnlocked = { ent-BaseAPC }
     .suffix = Unlocked, Hyper Capacity, 200kJ
     .desc = { ent-BaseAPC.desc }
+
+ent-OmniControlUnit = омни-контрольный модуль
+ent-OmniControlUnitUnlocked = омни-контрольный модуль

@@ -8,14 +8,13 @@
   parent: DrinkCanBaseFull
   id: DrinkCan
   name: aluminium can
-  suffix: ""
   description: Buy this if you hate the environment.
   components:
   - type: SolutionContainerManager
     solutions:
       drink:
         maxVol: 30
-      grindable: &grindableAluminium
+      grindable:
         reagents:
         - ReagentId: Aluminium
           Quantity: 4
@@ -42,7 +41,12 @@
         reagents:
         - ReagentId: Egg
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -61,7 +65,12 @@
         reagents:
         - ReagentId: Nothing
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -82,7 +91,12 @@
         reagents:
         - ReagentId: EggCooked
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -101,7 +115,12 @@
         reagents:
         - ReagentId: HotRamen
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -126,7 +145,12 @@
           Quantity: 25
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -149,7 +173,12 @@
           Quantity: 15
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -171,7 +200,12 @@
           Quantity: 25
         - ReagentId: SpaceUp
           Quantity: 25
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -194,7 +228,12 @@
           Quantity: 7
         - ReagentId: Ice
           Quantity: 3
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -213,7 +252,12 @@
         reagents:
         - ReagentId: NuclearCola
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -272,7 +316,12 @@
         reagents:
         - ReagentId: Cola
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -297,7 +346,12 @@
           Quantity: 25
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -318,7 +372,12 @@
           Quantity: 25
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -339,7 +398,12 @@
           Quantity: 25
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -360,7 +424,12 @@
           Quantity: 25
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -381,7 +450,12 @@
           Quantity: 25
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -402,7 +476,12 @@
           Quantity: 25
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -423,7 +502,12 @@
           Quantity: 25
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -444,7 +528,12 @@
           Quantity: 25
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -491,7 +580,12 @@
           Quantity: 10
         - ReagentId: JuicePotato
           Quantity: 10
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -514,7 +608,12 @@
           Quantity: 12
         - ReagentId: Sugar
           Quantity: 6
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -533,7 +632,12 @@
         reagents:
         - ReagentId: Lemonade
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -556,7 +660,12 @@
         reagents:
         - ReagentId: Vitamin
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -575,7 +684,12 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -594,7 +708,12 @@
         reagents:
         - ReagentId: Protein
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -617,7 +736,12 @@
         reagents:
         - ReagentId: Blood
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -636,7 +760,12 @@
         reagents:
         - ReagentId: Pilk
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -660,7 +789,12 @@
           Quantity: 2
         - ReagentId: Sugar
           Quantity: 6
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -683,7 +817,12 @@
           Quantity: 2
         - ReagentId: Acetone
           Quantity: 3
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -704,7 +843,12 @@
           Quantity: 27
         - ReagentId: UnstableMutagen
           Quantity: 3
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -727,7 +871,12 @@
         reagents:
         - ReagentId: Mojito
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -752,7 +901,12 @@
           Quantity: 25
         - ReagentId: JuiceBluePumpkin
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -775,7 +929,12 @@
           Quantity: 5
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -798,7 +957,12 @@
           Quantity: 25
         - ReagentId: Allicin
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -823,7 +987,12 @@
           Quantity: 25
         - ReagentId: Ice
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -842,7 +1011,12 @@
         reagents:
         - ReagentId: IcedGreenTea
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -861,7 +1035,12 @@
         reagents:
         - ReagentId: IcedCoffee
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -880,7 +1059,12 @@
         reagents:
         - ReagentId: Orchito
           Quantity: 30
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -907,7 +1091,12 @@
           Quantity: 5
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -930,7 +1119,12 @@
           Quantity: 15
         - ReagentId: Sugar
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -953,7 +1147,12 @@
           Quantity: 15
         - ReagentId: Ice
           Quantity: 5
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon
@@ -978,7 +1177,12 @@
           Quantity: 8
         - ReagentId: Sugar
           Quantity: 2
-      grindable: *grindableAluminium
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
   - type: Sprite
     layers:
       - state: icon

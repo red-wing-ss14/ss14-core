@@ -35,6 +35,8 @@ hud-chatbox-select-channel-Damage = Damage
 hud-chatbox-select-channel-CollectiveMind = Collective Mind
 hud-chatbox-select-channel-Visual = Actions
 hud-chatbox-select-channel-Radio = Radio
+hud-chatbox-select-channel-None = None
+
 
 hud-chatbox-channel-Admin = Admin Misc
 hud-chatbox-channel-AdminAlert = Admin Alert
@@ -53,12 +55,14 @@ hud-chatbox-channel-CollectiveMind = Collective Mind
 hud-chatbox-channel-Visual = Actions
 hud-chatbox-channel-Damage = Damage
 hud-chatbox-channel-Unspecified = Unspecified
+hud-chatbox-channel-None = None
+
 
 hud-chatbox-highlights = Highlights:
 hud-chatbox-highlights-button = Submit
 hud-chatbox-highlights-tooltip = The words need to be separated by a newline,
                                  if wrapped around " they will be highlighted
                                  only if separated by spaces or punctuation.
-hud-chatbox-highlights-placeholder = McHands
+hud-chatbox-highlights-placeholder = @McHands
                                      "Judge"
                                      Medical

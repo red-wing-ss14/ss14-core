@@ -61,3 +61,5 @@ ent-MilitaryPowerCellLMG = LMG battery
     .desc = A car battery compatible with laser LMG, attachable to charge provider backpack.
 ent-MilitaryPowerCellBluespaceLMG = bluespace LMG battery
     .desc = Highly advanced bluespace battery firing energized bluespace photonic particles calibrated to easily bypass few inches of armor.
+
+ent-PowerCellPulseRevolver = импульсная револьверная батарея

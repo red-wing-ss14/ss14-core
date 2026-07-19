@@ -101,3 +101,5 @@ ent-WallAndesiteCobblebrick = andesite brick wall
     .desc = { ent-WallCobblebrick.desc }
 ent-Cardwall = cardboard wall
     .desc = Budget cuts are hitting hard.
+
+ent-WallShuttleInterior = стена шаттла

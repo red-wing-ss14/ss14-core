@@ -92,3 +92,5 @@ ent-ClothingOuterWinterColorWhite = white winter coat
     .desc = { ent-ClothingOuterWinterCoatToggleable.desc }
 ent-ClothingOuterWinterColorYellow = yellow winter coat
     .desc = { ent-ClothingOuterWinterCoatToggleable.desc }
+
+ent-ClothingOuterWinterSeniourSecArmored = бронированная зимняя куртка службы безопасности

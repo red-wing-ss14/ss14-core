@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseComputer
   id: ComputerResearchServerControl
-  name: R&D server control console
+  name: R server control console
   description: Supervises network point generation and operational server telemetry.
   components:
   - type: ResearchServerControlConsole

@@ -1,4 +1,4 @@
-﻿using Content.Shared.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
@@ -148,8 +148,9 @@ public sealed class BloodRitesSystem : EntitySystem
             bloodstream.BloodSolution is not { } solution)
             return false;
 
+        var bloodReagent = bloodstream.BloodReferenceSolution.Contents.Count > 0 ? bloodstream.BloodReferenceSolution.Contents[0].Reagent.Prototype : "Blood";
         var extracted = solution.Comp.Solution.RemoveReagent(
-            bloodstream.BloodReagent,
+            bloodReagent,
             rites.Comp.BloodExtractionAmount,
             ignoreReagentData: true);
 
@@ -269,7 +270,7 @@ public sealed class BloodRitesSystem : EntitySystem
         if (target.Comp.BloodSolution is null)
             return false;
 
-        _bloodstream.FlushChemicals(target.AsNullable(), "", 10);
+        _bloodstream.FlushChemicals(target.AsNullable(), 10);
         var missingBlood = target.Comp.BloodSolution.Value.Comp.Solution.AvailableVolume;
         if (missingBlood == 0)
             return false;

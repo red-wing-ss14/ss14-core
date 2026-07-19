@@ -4,3 +4,5 @@ ent-MiniChemDispenser = mini chemical dispenser
 ent-MiniChemDispenserEmpty = { ent-MiniChemDispenser }
     .suffix = Empty
     .desc = { ent-ChemDispenser.desc }
+
+ent-EnergyMiniChemDispenser = { ent-MiniChemDispenser }

@@ -36,7 +36,7 @@ public sealed class XenomorphSystem : SharedXenomorphSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<XenomorphComponent, EntitySpokeEvent>(OnEntitySpoke);
+        SubscribeLocalEvent<XenomorphComponent, Content.Server.Chat.Systems.EntitySpokeEvent>(OnEntitySpoke);
     }
 
 public override void Update(float frameTime)
@@ -109,7 +109,7 @@ private void ProcessBloodLoss(EntityUid uid, BloodstreamComponent bloodstream)
             bloodstream.BloodSolutionName,
             ref bloodstream.BloodSolution,
             out var bloodSolution)
-            || bloodSolution.Volume >= bloodstream.BloodMaxVolume)
+            || bloodSolution.Volume >= bloodstream.BloodReferenceSolution.Volume)
     {
         return;
     }
@@ -120,7 +120,7 @@ private void ProcessBloodLoss(EntityUid uid, BloodstreamComponent bloodstream)
 }
 // Goobstation end
 
-    private void OnEntitySpoke(EntityUid uid, XenomorphComponent component, EntitySpokeEvent args)
+    private void OnEntitySpoke(EntityUid uid, XenomorphComponent component, Content.Server.Chat.Systems.EntitySpokeEvent args)
     {
         if (args.Source != uid || args.Language.ID != component.XenoLanguageId || args.IsWhisper)
             return;

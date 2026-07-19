@@ -5,7 +5,11 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+roles-antag-mindcontrolled-name = Подчиненный разумом
+roles-antag-mindcontrolled-objective = Помогите своему Хозяину
+
 mindcontrol-popup-start = Вы под контролем разума
+
 mindcontrol-popup-stop = Вы чувствуете, как туман в вашем разуме рассеивается
 mindcontrol-briefing-start = Вы под контролем разума. Повинуйтесь { $master }
 mindcontrol-briefing-get = ВЫ ПОД КОНТРОЛЕМ РАЗУМА

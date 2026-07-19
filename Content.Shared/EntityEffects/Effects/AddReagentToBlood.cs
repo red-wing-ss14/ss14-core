@@ -1,8 +1,4 @@
-// SPDX-FileCopyrightText: 2024 Steve <marlumpy@gmail.com>
-// SPDX-FileCopyrightText: 2024 marc-pelletier <113944176+marc-pelletier@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: AGPL-3.0-or-later+
 
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Body.Systems;
@@ -10,38 +6,38 @@ using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.EntityEffects.Effects;
+using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.EntityEffects.Effects;
 
-public sealed partial class AddReagentToBlood : EntityEffect // TODO Goobstation move this to goobmod
+public sealed partial class AddReagentToBloodSystem : EntityEffectSystem<BloodstreamComponent, AddReagentToBlood> // TODO Goobstation move this to goobmod
 {
-    private readonly SharedSolutionContainerSystem _solutionContainers;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
 
+    protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<AddReagentToBlood> args)
+    {
+        if (args.Effect.Reagent is null)
+            return;
+
+        var amt = args.Effect.Amount;
+        var solution = new Chemistry.Components.Solution();
+        solution.AddReagent(args.Effect.Reagent, amt);
+        _bloodstream.TryAddToBloodstream((entity.Owner, entity.Comp), solution);
+    }
+}
+
+public sealed partial class AddReagentToBlood : EntityEffectBase<AddReagentToBlood> // TODO Goobstation move this to goobmod
+{
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
     public string? Reagent;
 
     [DataField]
     public FixedPoint2 Amount;
 
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        if (args.EntityManager.TryGetComponent<BloodstreamComponent>(args.TargetEntity, out var blood))
-        {
-            var sys = args.EntityManager.System<SharedBloodstreamSystem>();
-            if (args is EntityEffectReagentArgs reagentArgs)
-            {
-                if (Reagent is null) return;
-                var amt = Amount;
-                var solution = new Solution();
-                solution.AddReagent(Reagent, amt);
-                sys.TryAddToChemicals((args.TargetEntity, blood), solution);
-            }
-        }
-    }
-
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
         if (Reagent is not null && prototype.TryIndex(Reagent, out ReagentPrototype? reagentProto))
         {

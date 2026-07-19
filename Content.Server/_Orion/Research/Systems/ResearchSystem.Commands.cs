@@ -51,7 +51,7 @@ public sealed partial class ResearchSystem
         UpdateTechnologyCards(uid, database);
         Dirty(uid, database);
 
-        var newlyUnlockedRecipes = database.UnlockedRecipes.Except(previouslyUnlockedRecipes).ToList();
+        var newlyUnlockedRecipes = database.UnlockedRecipes.Except(previouslyUnlockedRecipes).Select(r => r.Id).ToList();
         var ev = new TechnologyDatabaseModifiedEvent(newlyUnlockedRecipes);
         RaiseLocalEvent(uid, ref ev);
 

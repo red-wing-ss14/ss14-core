@@ -1,0 +1,11 @@
+- type: entity
+  id: DrinkBottleVisualsOpenable
+  abstract: true
+
+- type: entity
+  id: DrinkCartonVisualsOpenable
+  abstract: true
+
+- type: entity
+  id: DrinkGlassBase
+  abstract: true

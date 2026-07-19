@@ -5,7 +5,7 @@ using Content.Shared.Ensnaring;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Flash;
 using Content.Shared.Humanoid;
-using Content.Server.Light.Components;
+using Content.Shared.Light.Components;
 using Content.Shared.StepTrigger.Systems;
 using Content.Server.Light.EntitySystems;
 using Robust.Shared.Audio;

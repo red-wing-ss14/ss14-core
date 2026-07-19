@@ -38,3 +38,5 @@ ent-FishTropical = clown fish
     .desc = This fish is always searching for something... Or maybe someone?
 ent-FishIan = ian fish
     .desc = Water-born ian from the sea.
+
+ent-FishBoyFisher = бойфишер

@@ -61,6 +61,7 @@
     rules: ghostrole-ghoul-rules
     mindRoles:
     - MindRoleGhostRoleFamiliar
+    - MindRoleGhostRoleSoloAntagonistGoob # Bad idc
     raffle:
       settings: short
     requirements:

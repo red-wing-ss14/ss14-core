@@ -1,5 +1,5 @@
-# Goob start
-# Central Command
+#Goob start
+#Central Command
 highlights-nanotrasen-representative = Nanotrasen Representative, "Central Command", "NTR", "NT", "CC", Bridge, "Command"
 highlights-blueshield-officer = Blueshield Officer, "Central Command", "BSO", "CC", Bridge, "Command"
 
@@ -12,7 +12,7 @@ highlights-chief-medical-officer = Chief Medical Officer, "CMO", MedBay, "Med", 
 highlights-head-of-security = Head of Security, "HoS", Security, "Sec", Bridge, "Command"
 highlights-quartermaster = Quartermaster, "QM", Cargo, Bridge, "Command"
 highlights-research-director = Research Director, "RD", Science, "Sci", Bridge, "Command"
-# Goob end
+#Goob end
 
 # Security
 highlights-detective = Detective, "Det", Security, "Sec"
@@ -53,9 +53,7 @@ highlights-passenger = Passenger, Greytider, "Tider"
 highlights-service-worker = Service Worker
 
 # Station-specific
-highlights-boxer = Boxer
 highlights-reporter = Reporter, Journalist
-highlights-zookeeper = Zookeeper
 highlights-psychologist = Psychologist, Psychology
 
 # Silicon

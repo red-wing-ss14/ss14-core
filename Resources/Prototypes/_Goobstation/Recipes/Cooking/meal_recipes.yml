@@ -1,14 +1,8 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Krispy_Lime <151007654+Krispy-Lime@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: microwaveMealRecipe
   id: RecipeLollypop
-  name: lollypop recipe
+  name: recipe-lollypop
   result: FoodSnackLollypop
   time: 5
   solids:
@@ -18,7 +12,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeFreedomCheeseBlock
-  name: freedom cheese recipe
+  name: recipe-freedom-cheese
   result: FoodFreedomCheeseBlock
   time: 5
   solids:
@@ -27,7 +21,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeFriedVoxL
-  name: 'fried "chicken" recipe'
+  name: recipe-fried-chicken
   result: FoodMeatVoxFried
   time: 10
   solids:
@@ -35,7 +29,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeFriedVoxR
-  name: 'fried "chicken" recipe'
+  name: recipe-fried-chicken
   result: FoodMeatVoxFried
   time: 10
   solids:
@@ -43,7 +37,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeChudBurger
-  name: nothing burger recipe
+  name: recipe-nothing-burger
   result: FoodBurgerChud
   time: 10
   group: Savory
@@ -55,7 +49,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeMothdog
-  name: mothdog recipe
+  name: recipe-mothdog
   result: FoodSnackMothdog
   time: 5
   group: Savory

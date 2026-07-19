@@ -23426,7 +23426,7 @@ entities:
     - type: Transform
       pos: 13.5,-20.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 8687
 - proto: Carpet
   entities:
@@ -34130,7 +34130,7 @@ entities:
       parent: 5208
     - type: Physics
       canCollide: False
-- proto: EnergyChemDispenser
+- proto: ChemDispenser
   entities:
   - uid: 5210
     components:
@@ -58562,7 +58562,7 @@ entities:
     - type: Transform
       pos: 0.4215492,21.564632
       parent: 2
-- proto: MaterialSilo
+- proto: MachineMaterialSilo
   entities:
   - uid: 8687
     components:
@@ -59135,7 +59135,7 @@ entities:
     - type: Transform
       pos: 17.5,-23.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 8687
 - proto: OreProcessorMachineCircuitboard
   entities:

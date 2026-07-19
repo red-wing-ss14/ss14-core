@@ -9,20 +9,11 @@ namespace Content.Shared._Orion.EntityEffects.Effects;
 ///     Removes all non-categorized moodlets from an entity(anything not "Static" like hunger & thirst).
 /// </summary>
 [UsedImplicitly]
-public sealed partial class ChemPurgeMoodlets : EntityEffect
+public sealed partial class ChemPurgeMoodlets : EntityEffectBase<ChemPurgeMoodlets>
 {
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
         Loc.GetString("reagent-effect-guidebook-purge-moodlets");
 
     [DataField]
     public bool RemovePermanentMoodlets;
-
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        if (args is not EntityEffectReagentArgs _)
-            return;
-
-        var entityManager = IoCManager.Resolve<EntityManager>();
-        entityManager.EventBus.RaiseLocalEvent(args.TargetEntity, new MoodPurgeEffectsEvent(RemovePermanentMoodlets));
-    }
 }

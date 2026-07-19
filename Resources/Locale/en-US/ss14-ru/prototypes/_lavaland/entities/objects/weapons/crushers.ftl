@@ -23,3 +23,6 @@ ent-WeaponCrusherHammerFilledRandom = { ent-WeaponCrusherHammer }
 ent-WeaponCrusherHalberdFilledRandom = { ent-WeaponCrusherHalberd }
     .suffix = Random Upgrades
     .desc = { ent-WeaponCrusherHalberd.desc }
+ent-LavalandWeaponKineticBase = { ent-BaseItem }
+ent-LavalandWeaponKineticSpear = кинетическое копьё
+ent-LavalandWeaponKineticHammer = кинетический молот

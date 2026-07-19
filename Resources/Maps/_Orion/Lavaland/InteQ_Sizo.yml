@@ -2219,7 +2219,7 @@ entities:
     - type: Transform
       pos: -2.5,-16.5
       parent: 1
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: BalloonInteQ
   entities:
@@ -6244,7 +6244,7 @@ entities:
     - type: Transform
       pos: -2.5,10.5
       parent: 1
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: Carpet
   entities:
@@ -7596,7 +7596,7 @@ entities:
     - type: Transform
       pos: -4.5,-17.5
       parent: 1
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: ClosetSteelBase
   entities:
@@ -9015,7 +9015,7 @@ entities:
     - type: Transform
       pos: 16.5,-3.5
       parent: 1
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: ExosuitFabricator
   entities:
@@ -9030,7 +9030,7 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: ExperiScanner
   entities:
@@ -19669,7 +19669,7 @@ entities:
     - type: Transform
       pos: -17.5,-2.5
       parent: 1
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: MedkitBruteFilled
   entities:
@@ -19824,7 +19824,7 @@ entities:
     - type: Transform
       pos: -0.5,9.5
       parent: 1
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: OxygenCanister
   entities:
@@ -20854,7 +20854,7 @@ entities:
     - type: Transform
       pos: -2.5,-17.5
       parent: 1
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: Rack
   entities:
@@ -22801,7 +22801,7 @@ entities:
       - RipleyCentralElectronics
       - RipleyPeripheralsElectronics
       - MechEquipmentGrabberSmall
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: SciFlash
   entities:
@@ -23534,7 +23534,7 @@ entities:
       - RipleyCentralElectronics
       - RipleyPeripheralsElectronics
       - MechEquipmentGrabberSmall
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: ServiceTechFab
   entities:
@@ -24255,7 +24255,7 @@ entities:
       - RipleyCentralElectronics
       - RipleyPeripheralsElectronics
       - MechEquipmentGrabberSmall
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 3279
 - proto: SheetGlass
   entities:

@@ -26,3 +26,5 @@ ent-AutosurgeonBerserker = syndicate autosurgeon (berserker heart)
     .desc = { ent-BaseAutosurgeonSyndicateSingle.desc }
 ent-AutosurgeonJumpstarter = syndicate autosurgeon (jumpstarter heart)
     .desc = { ent-BaseAutosurgeonSyndicateSingle.desc }
+
+ent-BaseAutosurgeonSyndicate = { ent-BaseAutosurgeon }

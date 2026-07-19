@@ -82,3 +82,6 @@ ent-SurgeryStepLobotomize = Lobotomize patient
     .desc = { ent-SurgeryStepBase.desc }
 ent-SurgeryStepMendBrainTissue = Mend brain tissue
     .desc = { ent-SurgeryStepBase.desc }
+
+ent-SurgeryStepMendRibcage = Восстановить грудную клетку
+ent-SurgeryStepInsertStomach = Установить желудок

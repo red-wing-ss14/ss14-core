@@ -55,3 +55,5 @@ ent-FoodDonutJellyScurret = scurret jelly-donut
 ent-FoodDonutPoison = { ent-FoodDonutPink }
     .suffix = Poison
     .desc = { ent-FoodDonutPink.desc }
+
+ent-FoodDonutJellySlugcat = желейный слизнекотовый пончик

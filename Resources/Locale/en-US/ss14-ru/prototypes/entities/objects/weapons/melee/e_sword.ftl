@@ -22,3 +22,5 @@ ent-CyborgEnergySwordDouble = { ent-EnergySwordDoubleBase }
 ent-EnergyDaggerLoudBlue = { ent-EnergyDaggerLoud }
     .suffix = blue
     .desc = { ent-EnergyDaggerLoud.desc }
+
+ent-HyperEutacticBlade = гиперэвтектический клинок

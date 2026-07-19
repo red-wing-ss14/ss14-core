@@ -28,3 +28,8 @@ ent-DexLeftHand = D.E.X left hand
     .desc = A cybernetic left hand that allows its wearer to interact faster.
 ent-DexRightHand = D.E.X right hand
     .desc = A cybernetic right hand that allows its wearer to interact faster.
+
+ent-LeftArmCyberneticBase = { ent-CyberneticPartBase }
+ent-RightArmCyberneticBase = { ent-CyberneticPartBase }
+ent-LeftLegCyberneticBase = { ent-CyberneticPartBase }
+ent-RightLegCyberneticBase = { ent-CyberneticPartBase }

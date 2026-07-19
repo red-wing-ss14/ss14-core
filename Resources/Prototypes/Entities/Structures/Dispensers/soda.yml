@@ -191,6 +191,7 @@
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
   - type: Battery
+    netsync: false
     maxCharge: 500
     startingCharge: 500
   - type: ApcPowerReceiverBattery

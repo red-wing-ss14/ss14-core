@@ -34,3 +34,6 @@ ent-ActionForklift = Activate Lift
     .desc = Lift up crates in front of you.
 ent-ActionUnforklift = Drop Lift
     .desc = Put down crates in front of you.
+
+ent-ActionCreateHellPortal = Создать портал в Ад
+ent-ActionHellGooseTeleport = Телепортироваться на станцию

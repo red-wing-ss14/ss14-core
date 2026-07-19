@@ -108,7 +108,7 @@ public sealed partial class SpeciesWindow : FancyWindow
         var label = new Label()
         {
             Text = text,
-            StyleClasses = { StyleBase.ClassLowDivider },
+            StyleClasses = { StyleClass.LowDivider },
             Margin = new(2f, 2f),
             HorizontalAlignment = HAlignment.Center,
         };
@@ -149,49 +149,28 @@ public sealed partial class SpeciesWindow : FancyWindow
         previewProfile = previewProfile.WithBodyType(GetPreviewBodyType(proto, previewProfile.BodyType));
 
         var skin = proto.SkinColoration;
-        switch (skin)
+        var strategy = _proto.Index<SkinColorationPrototype>(skin).Strategy;
+        var color = _profile.Appearance.SkinColor;
+        switch (strategy.InputType)
         {
-            case HumanoidSkinColor.HumanToned:
+            case SkinColorationStrategyInput.Unary:
+                try
                 {
-                    var tone = SkinColor.HumanSkinToneFromColor(_profile.Appearance.SkinColor);
-                    var color = SkinColor.HumanSkinTone((int)tone);
+                    var tone = strategy.ToUnary(color);
+                    color = strategy.FromUnary(tone);
+                }
+                catch (InvalidOperationException)
+                {
+                    color = Color.White;
+                }
+                break;
 
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
-            case HumanoidSkinColor.Hues:
-                {
-                    break;
-                }
-            case HumanoidSkinColor.TintedHues:
-                {
-                    var color = SkinColor.TintedHues(_profile.Appearance.SkinColor);
-
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
-            case HumanoidSkinColor.VoxFeathers:
-                {
-                    var color = SkinColor.ClosestVoxColor(_profile.Appearance.SkinColor);
-
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
-            case HumanoidSkinColor.NoColor:
-                {
-                    var color = Color.White;
-
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
-            case HumanoidSkinColor.AnimalFur:
-                {
-                    var color = SkinColor.ClosestAnimalFurColor(_profile.Appearance.SkinColor);
-
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
+            case SkinColorationStrategyInput.Color:
+                color = strategy.ClosestSkinColor(color);
+                break;
         }
+
+        previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
 
         var mob = _uIController.LoadProfileEntity(previewProfile, jobProto, ClothingDisplayMode.HideAll);
         Mob.SetEntity(mob);
@@ -211,7 +190,7 @@ public sealed partial class SpeciesWindow : FancyWindow
         var prosConsLabel = new RichTextLabel()
         {
             Text = Loc.GetString("ui-species-pros-cons"),
-            StyleClasses = { StyleBase.ClassLowDivider },
+            StyleClasses = { StyleClass.LowDivider },
             Margin = new(2f, 2f),
         };
 
@@ -242,7 +221,7 @@ public sealed partial class SpeciesWindow : FancyWindow
                     var label = new RichTextLabel()
                     {
                         Text = "[color=#13f244]- " + Loc.GetString(item) + "[/color]",
-                        StyleClasses = { StyleBase.ClassLowDivider },
+                        StyleClasses = { StyleClass.LowDivider },
                         Margin = new(4f, 2f),
                     };
                     prosConsContainer.AddChild(label);
@@ -257,7 +236,7 @@ public sealed partial class SpeciesWindow : FancyWindow
                     var label = new RichTextLabel()
                     {
                         Text = "- " + Loc.GetString(item),
-                        StyleClasses = { StyleBase.ClassLowDivider },
+                        StyleClasses = { StyleClass.LowDivider },
                         Margin = new(4f, 2f),
                     };
                     prosConsContainer.AddChild(label);
@@ -272,7 +251,7 @@ public sealed partial class SpeciesWindow : FancyWindow
                     var label = new RichTextLabel()
                     {
                         Text = "[color=#d63636]- " + Loc.GetString(item) + "[/color]",
-                        StyleClasses = { StyleBase.ClassLowDivider },
+                        StyleClasses = { StyleClass.LowDivider },
                         Margin = new(4f, 2f),
                     };
                     prosConsContainer.AddChild(label);

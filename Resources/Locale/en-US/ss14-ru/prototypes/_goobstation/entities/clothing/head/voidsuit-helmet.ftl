@@ -21,3 +21,5 @@ ent-ClothingHeadHelmetHardsuitDetective = detective hardsuit helmet
     .desc = A helmet with a built-in fedora for the detective's hardsuit.
 ent-ClothingHeadHelmetHardsuitContractor = contractor hardsuit helmet
     .desc = A well-built faceplate attached to the contractor hardsuit.
+
+ent-ClothingHeadHelmetHardsuitNanorep = шлем скафандра ПНТ

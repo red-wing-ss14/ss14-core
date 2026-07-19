@@ -1,13 +1,9 @@
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Objectives.Systems;
 using Content.Shared.Roles;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 /// <summary>
@@ -16,19 +12,20 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 [RegisterComponent, Access(typeof(NotJobRequirementSystem))]
 public sealed partial class NotJobRequirementComponent : Component
 {
+
     /// <summary>
-    /// ID of the job to ban from having this objective.
+    /// List of job prototype IDs to ban from having this objective.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<JobPrototype>))]
-    public string? Job;
+    [DataField]
+    public ProtoId<JobPrototype>? Job;
 
     /// <summary>
     /// IDs of jobs to ban from having this objective.
     /// Used by some downstream forks.
     /// </summary>
     // Amour edit: support list-based job blacklist syntax in YAML prototypes.
-    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<JobPrototype>))]
-    public List<string> Jobs = new();
+    [DataField]
+    public List<ProtoId<JobPrototype>> Jobs = new();
 
     // MisandryBox/JobObjectives - Double negative to not break compatibility
     [DataField]

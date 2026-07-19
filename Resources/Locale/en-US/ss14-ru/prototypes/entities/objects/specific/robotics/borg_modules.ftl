@@ -126,3 +126,11 @@ ent-XenoborgModuleCloakDevice = cloaking device xenoborg module
     .desc = Module with a device that allows xenoborgs to become invisible for some time.
 ent-XenoborgModuleSuperCloakDevice = cloaking device xenoborg module
     .desc = Module with a device that allows xenoborgs to become truly invisible for less time.
+
+ent-BorgModuleGPS = GPS модуль борга
+ent-BorgModuleRadiationDetection = Гейгер-модуль борга
+ent-BorgModuleGrapplingGun = крюк-пушечный модуль борга
+ent-BorgModuleLightReplacer = лампозаменительный модуль борга
+ent-BorgModuleTreatment = лечащий модуль борга
+ent-BorgModuleDefibrillator = дефибрилляторный модуль борга
+ent-BorgModuleAdvancedTreatment = продвинутый лечащий модуль борга

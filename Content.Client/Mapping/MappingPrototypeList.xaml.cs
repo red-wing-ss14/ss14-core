@@ -137,7 +137,7 @@ public sealed partial class MappingPrototypeList : Control
     public void UpdateVisible(List<MappingPrototype> prototypes, List<MappingPrototype> allPrototypes)
     {
         _allPrototypes.Clear();
-        PrototypeList.DisposeAllChildren();
+        PrototypeList.RemoveAllChildren();
         _allPrototypes.AddRange(allPrototypes);
 
         Selected = null;
@@ -211,7 +211,7 @@ public sealed partial class MappingPrototypeList : Control
     private void Search(List<MappingPrototype> prototypes)
     {
         _search.Clear();
-        SearchList.DisposeAllChildren();
+        SearchList.RemoveAllChildren();
         _lastIndices = (0, -1);
 
         _search.AddRange(prototypes);
@@ -279,7 +279,6 @@ public sealed partial class MappingPrototypeList : Control
             Insert(SearchList, _search[i], false, false);
         }
     }
-
     private void OnCollapseAll(ButtonEventArgs args)
     {
         foreach (var child in PrototypeList.Children)

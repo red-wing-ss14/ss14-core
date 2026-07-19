@@ -14,6 +14,7 @@ using Content.Shared.Nutrition.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Value;
+using Content.Shared.EntityEffects.Effects.EntitySpawning;
 using System.Linq;
 
 namespace Content.Client.Guidebook;
@@ -185,10 +186,10 @@ public sealed class FoodGuideDataSystem : EntitySystem
         {
             foreach (var effect in reaction.Effects)
             {
-                if (effect is not CreateEntityReactionEffect createEffect)
+                if (effect is not SpawnEntity spawnEffect)
                     continue;
 
-                AddSource(createEffect.Entity, new FoodEntitySource(FoodEntitySourceKind.MixingReaction, reaction, null, null));
+                AddSource(spawnEffect.Entity, new FoodEntitySource(FoodEntitySourceKind.MixingReaction, reaction, null, null));
             }
         }
 

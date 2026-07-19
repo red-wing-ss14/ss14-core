@@ -4,3 +4,5 @@ ent-AccessBreakerUnlimited = authentication disruptor
 ent-AccessBreaker = { ent-AccessBreakerUnlimited }
     .suffix = Limited
     .desc = { ent-AccessBreakerUnlimited.desc }
+
+ent-DoorJack = { ent-AccessBreakerUnlimited }

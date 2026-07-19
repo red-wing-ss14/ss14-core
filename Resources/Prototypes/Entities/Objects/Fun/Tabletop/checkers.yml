@@ -1,14 +1,3 @@
-# SPDX-FileCopyrightText: 2022 Demetre Beroshvili <69920861+Capnsockless@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto <gradientvera@outlook.com>
-# SPDX-FileCopyrightText: 2023 /ʊniɹɑː/ <onoira@psiko.zone>
-# SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-# SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 eclips_e <67359748+Just-a-Unity-Dev@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 lzk <124214523+lzk228@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Uses the chessboard and generic pieces
 - type: entity
@@ -25,15 +14,15 @@
     size: 338, 274
     setup:
       !type:TabletopCheckerSetup
-      boardPrototype: &checkerboard CheckerBoardTabletop
-      prototypePieceWhite: &pieceWhite CheckerPieceWhite
-      prototypeCrownWhite: &crownWhite CheckerCrownWhite
-      prototypePieceBlack: &pieceBlack CheckerPieceBlack
-      prototypeCrownBlack: &crownBlack CheckerCrownBlack
+      boardPrototype: CheckerBoardTabletop
+      prototypePieceWhite: CheckerPieceWhite
+      prototypeCrownWhite: CheckerCrownWhite
+      prototypePieceBlack: CheckerPieceBlack
+      prototypeCrownBlack: CheckerCrownBlack
 
 # Checkerboard tabletop item (item only visible in tabletop game)
 - type: entity
-  id: *checkerboard
+  id: CheckerBoardTabletop
   name: checkerboard
   parent: BaseBoardTabletop
   categories: [ HideSpawnMenu ]
@@ -44,37 +33,37 @@
 
 # The pieces
 - type: entity
-  id: *pieceWhite
+  id: CheckerPieceWhite
   name: white checker piece
   parent: BaseTabletopPiece
   components:
-    - type: Sprite
-      sprite: Objects/Fun/Tabletop/checker_pieces.rsi
-      state: w_checker_piece
+  - type: Sprite
+    sprite: Objects/Fun/Tabletop/checker_pieces.rsi
+    state: w_checker_piece
 
 - type: entity
-  id: *crownWhite
+  id: CheckerCrownWhite
   name: white checker crown
   parent: BaseTabletopPiece
   components:
-    - type: Sprite
-      sprite: Objects/Fun/Tabletop/checker_pieces.rsi
-      state: w_checker_crown
+  - type: Sprite
+    sprite: Objects/Fun/Tabletop/checker_pieces.rsi
+    state: w_checker_crown
 
 - type: entity
-  id: *pieceBlack
+  id: CheckerPieceBlack
   name: black checker piece
   parent: BaseTabletopPiece
   components:
-    - type: Sprite
-      sprite: Objects/Fun/Tabletop/checker_pieces.rsi
-      state: b_checker_piece
+  - type: Sprite
+    sprite: Objects/Fun/Tabletop/checker_pieces.rsi
+    state: b_checker_piece
 
 - type: entity
-  id: *crownBlack
+  id: CheckerCrownBlack
   name: black checker crown
   parent: BaseTabletopPiece
   components:
-    - type: Sprite
-      sprite: Objects/Fun/Tabletop/checker_pieces.rsi
-      state: b_checker_crown
+  - type: Sprite
+    sprite: Objects/Fun/Tabletop/checker_pieces.rsi
+    state: b_checker_crown

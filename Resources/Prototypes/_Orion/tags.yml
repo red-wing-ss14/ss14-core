@@ -2,6 +2,9 @@
   id: AnomalyCore
 
 - type: Tag
+  id: Katana
+
+- type: Tag
   id: Cartridge50BMG
 
 - type: Tag

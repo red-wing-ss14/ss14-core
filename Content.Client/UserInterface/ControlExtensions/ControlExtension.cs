@@ -1,11 +1,9 @@
-// SPDX-FileCopyrightText: 2023 Hebi <spiritbreakz@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Client.Guidebook.Controls;
+using Content.Client.Guidebook.RichText;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
@@ -76,6 +74,10 @@ public static class ControlExtension
     }
 
     // RW start
+    /// <summary>
+    /// Search the control’s tree for a parent node of type T
+    /// E.g. to find the control implementing some event handling interface.
+    /// </summary>
     public static bool TryGetParentHandler<T>(this Control child, [NotNullWhen(true)] out T? result)
     {
         for (var control = child; control is not null; control = control.Parent)
@@ -91,6 +93,10 @@ public static class ControlExtension
         return false;
     }
 
+    /// <summary>
+    /// Find the control’s offset relative to its closest ScrollContainer
+    /// Returns null if the control is not in the tree or not visible.
+    /// </summary>
     public static Vector2? GetControlScrollPosition(this Control child)
     {
         if (!child.VisibleInTree)
@@ -101,6 +107,8 @@ public static class ControlExtension
 
         while (control is not null)
         {
+            // The scroll container's direct child is re-positioned while scrolling,
+            // so we need to ignore its position.
             if (control.Parent is ScrollContainer)
                 break;
 

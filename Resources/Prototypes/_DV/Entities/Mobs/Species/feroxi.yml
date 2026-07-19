@@ -9,6 +9,7 @@
     species: Feroxi
     hideLayersOnEquip:
     - Snout
+    undergarmentBottom: UndergarmentBottomBoxersReptilian # todo marty doesn't fit needs adjusting
   - type: Hunger
   # - type: Carriable # ShibaStation - disabled because broken, for now.
   - type: Thirst
@@ -48,16 +49,12 @@
         # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
         # sprite refactor when
         state: l_leg
-#      - map: [ "enum.HumanoidVisualLayers.Underwear" ] # Goob 120 | Orion-Edit: Replaced with clothes
-#      - map: [ "enum.HumanoidVisualLayers.Undershirt" ] # Goob 120 | Orion-Edit: Replaced with clothes
-      # Orion-Start
-      - map: [ "underwear" ]
-      - map: [ "undershirt" ]
-      # Orion-End
-      # Orion-Edit-Start: Moved under jumpsuit
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+      - map: [ "underwear" ] # Orion
+      - map: [ "undershirt" ] # Orion
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
-      # Orion-Edit-End
       - map: [ "socks" ] # Orion
       - map: ["jumpsuit"]
       - map: [ "enum.HumanoidVisualLayers.LHand" ]
@@ -175,16 +172,12 @@
       # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
       # sprite refactor when
       state: l_leg
-#    - map: [ "enum.HumanoidVisualLayers.Underwear" ] # Goob 120 | Orion-Edit: Replaced with clothes
-#    - map: [ "enum.HumanoidVisualLayers.Undershirt" ] # Goob 120 | Orion-Edit: Replaced with clothes
-    # Orion-Start
-    - map: [ "underwear" ]
-    - map: [ "undershirt" ]
-    # Orion-End
-    # Orion-Edit-Start: Moved under jumpsuit
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "underwear" ] # Orion
+    - map: [ "undershirt" ] # Orion
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
-    # Orion-Edit-End
     - map: [ "socks" ] # Orion
     - map: ["jumpsuit"]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]

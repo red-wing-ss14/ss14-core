@@ -48,6 +48,10 @@
   - StationAiIconLizard
   - StationAiIconVox
   # Orion-End
+  # </Trauma>
+  - StationAiIconBingle #Goobstation
+  - StationAiIconBlank #Goobstation
+  - StationAiIconPerformer #Goobstation
 
 - type: stationAiCustomizationGroup
   id: StationAiHolograms
@@ -80,7 +84,9 @@
   # Orion-End
 #  - StationAiHologramKobold # Orion-Edit: Already have it
 #  - StationAiHologramMonkey # Orion-Edit: Already have it
-  - StationAiHologramScurret # goob
+  - StationAiHologramScurret #Goobstation
+  - StationAiHologramQueen #Goobstation
+  - StationAiHologramPerformer  #Goobstation
 
 # Iconography
 - type: stationAiCustomization

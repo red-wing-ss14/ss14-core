@@ -4,3 +4,6 @@ ent-SpawnPointGhostCorticalBorer = спавнер роли призрак
 ent-SpawnPointGhostMorph = спавнер роли призрак
     .suffix = Морф
     .desc = { ent-MarkerBase.desc }
+
+ent-SpawnPointSkeletonBartender = криокапсула скелета-бармена
+ent-SpawnPointSkeletonPirate = криокапсула скелета-пирата

@@ -16,6 +16,8 @@ hud-chatbox-select-channel-Visual = Действия
 # Goobstation - Starlight collective mind port
 hud-chatbox-select-channel-CollectiveMind = Collective Mind
 hud-chatbox-select-channel-Radio = Рация
+hud-chatbox-select-channel-None = Нет
+
 hud-chatbox-channel-Admin = Админ Разное
 hud-chatbox-channel-AdminAlert = Админ Уведомления
 hud-chatbox-channel-AdminChat = Админ Чат
@@ -33,6 +35,8 @@ hud-chatbox-channel-Visual = Визуальный
 hud-chatbox-channel-CollectiveMind = Collective Mind
 hud-chatbox-channel-Damage = Повреждения
 hud-chatbox-channel-Unspecified = Неопределённый
+hud-chatbox-channel-None = Нет
+
 hud-chatbox-highlights = Выделения:
 hud-chatbox-highlights-button = Отправить
 hud-chatbox-highlights-tooltip =

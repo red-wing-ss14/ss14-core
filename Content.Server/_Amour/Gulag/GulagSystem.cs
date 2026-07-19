@@ -91,7 +91,7 @@ public sealed class GulagSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly UserDbDataManager _userDb = default!;
 
-    private readonly Dictionary<ICommonSession, List<ServerBanDef>> _cachedTemporaryBans = [];
+    private readonly Dictionary<ICommonSession, List<BanDef>> _cachedTemporaryBans = [];
     private readonly Dictionary<int, HashSet<ICommonSession>> _cachedBanSessions = [];
     private readonly Dictionary<int, PendingSentenceReduction> _pendingSentenceReductions = [];
     // private readonly Dictionary<ProtoId<MaterialPrototype>, int> _gulagMaterialStorage = [];
@@ -185,11 +185,11 @@ public sealed class GulagSystem : EntitySystem
     /// <summary>
     /// Returns whether a connected user currently has an active temporary server ban.
     /// </summary>
-    public bool IsUserGulagged(NetUserId userId, out IReadOnlyList<ServerBanDef> bans)
+    public bool IsUserGulagged(NetUserId userId, out IReadOnlyList<BanDef> bans)
     {
         if (!_playerManager.TryGetSessionById(userId, out var session))
         {
-            bans = Array.Empty<ServerBanDef>();
+            bans = Array.Empty<BanDef>();
             return false;
         }
 
@@ -245,7 +245,7 @@ public sealed class GulagSystem : EntitySystem
         if (hwId.Value.Length == 0 || !_cfg.GetCVar(Content.Shared.CCVar.CCVars.BanHardwareIds))
             hwId = null;
 
-        var bans = await _db.GetServerBansAsync(
+        var bans = await _db.GetBansAsync(
             channel.RemoteEndPoint.Address,
             player.UserId,
             hwId,
@@ -493,7 +493,7 @@ public sealed class GulagSystem : EntitySystem
         {
             try
             {
-                var ban = await _db.GetServerBanAsync(banId);
+                var ban = await _db.GetBanAsync(banId);
                 if (ban is null ||
                     !IsActiveTemporaryBan(ban) ||
                     ban.ExpirationTime is not { } expiration)
@@ -588,11 +588,11 @@ public sealed class GulagSystem : EntitySystem
         return null;
     }
 
-    private bool IsSessionGulagged(ICommonSession session, out IReadOnlyList<ServerBanDef> bans)
+    private bool IsSessionGulagged(ICommonSession session, out IReadOnlyList<BanDef> bans)
     {
         if (!_cachedTemporaryBans.TryGetValue(session, out var cachedBans))
         {
-            bans = Array.Empty<ServerBanDef>();
+            bans = Array.Empty<BanDef>();
             return false;
         }
 
@@ -611,14 +611,14 @@ public sealed class GulagSystem : EntitySystem
         return cachedBans.Count > 0;
     }
 
-    private static bool IsActiveTemporaryBan(ServerBanDef ban)
+    private static bool IsActiveTemporaryBan(BanDef ban)
     {
         return ban.Unban is null &&
                ban.ExpirationTime is { } expiration &&
                expiration > DateTimeOffset.UtcNow;
     }
 
-    private static ServerBanDef GetPrimaryBan(IReadOnlyList<ServerBanDef> bans)
+    private static BanDef GetPrimaryBan(IReadOnlyList<BanDef> bans)
     {
         var primary = bans[0];
         for (var i = 1; i < bans.Count; i++)
@@ -630,7 +630,7 @@ public sealed class GulagSystem : EntitySystem
         return primary;
     }
 
-    private void UpdateCachedTemporaryBan(ServerBanDef ban)
+    private void UpdateCachedTemporaryBan(BanDef ban)
     {
         if (ban.Id is not { } banId ||
             !_cachedBanSessions.TryGetValue(banId, out var cachedSessions))
@@ -663,7 +663,7 @@ public sealed class GulagSystem : EntitySystem
             _cachedBanSessions.Remove(banId);
     }
 
-    private void ReplaceCachedTemporaryBans(ICommonSession session, List<ServerBanDef> bans)
+    private void ReplaceCachedTemporaryBans(ICommonSession session, List<BanDef> bans)
     {
         RemoveSessionFromBanIndex(session);
         _cachedTemporaryBans[session] = bans;
@@ -705,22 +705,24 @@ public sealed class GulagSystem : EntitySystem
             _cachedBanSessions.Remove(banId);
     }
 
-    private static ServerBanDef WithExpiration(ServerBanDef ban, DateTimeOffset expiration)
+    private static BanDef WithExpiration(BanDef ban, DateTimeOffset expiration)
     {
-        return new ServerBanDef(
+        return new BanDef(
             ban.Id,
-            ban.UserId,
-            ban.Address,
-            ban.HWId,
+            ban.Type,
+            ban.UserIds,
+            ban.Addresses,
+            ban.HWIds,
             ban.BanTime,
             expiration,
-            ban.RoundId,
+            ban.RoundIds,
             ban.PlaytimeAtNote,
             ban.Reason,
             ban.Severity,
             ban.BanningAdmin,
             ban.Unban,
-            ban.ExemptFlags);
+            ban.ExemptFlags,
+            ban.Roles);
     }
 
     private void SendEntityToGulag(EntityUid playerEntity, string? prisonerName)
@@ -807,7 +809,7 @@ public sealed class GulagSystem : EntitySystem
         return TimeSpan.FromSeconds(points / _pointsToTimeRatio);
     }
 
-    private string GetPrisonerName(ServerBanDef ban)
+    private string GetPrisonerName(BanDef ban)
     {
         return Loc.GetString("gulag-prisoner-name", ("banId", ban.Id ?? 0));
     }

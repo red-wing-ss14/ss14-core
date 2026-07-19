@@ -10,6 +10,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 
+using Content.Shared.Roles.Jobs;
+
 namespace Content.Server._Orion.Economy.Systems;
 
 public sealed class PayrollSystem : EntitySystem
@@ -21,6 +23,7 @@ public sealed class PayrollSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedIdCardSystem _idCard = default!;
+    [Dependency] private readonly SharedJobSystem _jobs = default!;
     private readonly ISawmill _sawmill = Logger.GetSawmill("economy-payroll");
 
     private static readonly SoundSpecifier PayrollSound = new SoundPathSpecifier("/Audio/_Orion/Machines/twobeep_high.ogg");
@@ -100,22 +103,16 @@ public sealed class PayrollSystem : EntitySystem
 
     private (JobPrototype Job, int Salary, ProtoId<CargoAccountPrototype>? DepartmentAccount, bool PayrollFromStationBudget)? GetPayrollData(Entity<MindComponent> mind)
     {
-        foreach (var role in mind.Comp.MindRoles)
-        {
-            if (!TryComp<MindRoleComponent>(role, out var mindRole) || mindRole.JobPrototype == null)
-                continue;
+        if (!_jobs.MindTryGetJob(mind.Owner, out var job))
+            return null;
 
-            var job = _proto.Index(mindRole.JobPrototype.Value);
-            if (job.Salary is null or <= 0)
-                continue;
+        if (job.Salary is null or <= 0)
+            return null;
 
-            if (job is { PayrollFromStationBudget: true, PayrollDepartmentAccount: null })
-                continue;
+        if (job.PayrollFromStationBudget && job.PayrollDepartmentAccount == null)
+            return null;
 
-            return (job, job.Salary.Value, job.PayrollDepartmentAccount, job.PayrollFromStationBudget);
-        }
-
-        return null;
+        return (job, job.Salary.Value, job.PayrollDepartmentAccount, job.PayrollFromStationBudget);
     }
 
     private void NotifyPayroll(EntityUid recipient, string accountId, int amount)

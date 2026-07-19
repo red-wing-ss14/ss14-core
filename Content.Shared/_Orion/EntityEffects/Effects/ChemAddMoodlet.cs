@@ -9,9 +9,9 @@ namespace Content.Shared._Orion.EntityEffects.Effects;
 ///     Adds a moodlet to an entity.
 /// </summary>
 [UsedImplicitly]
-public sealed partial class ChemAddMoodlet : EntityEffect
+public sealed partial class ChemAddMoodlet : EntityEffectBase<ChemAddMoodlet>
 {
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
         var moodPrototype = prototype.Index<MoodEffectPrototype>(MoodPrototype.Id);
         return Loc.GetString("reagent-effect-guidebook-add-moodlet",
@@ -24,14 +24,4 @@ public sealed partial class ChemAddMoodlet : EntityEffect
     /// </summary>
     [DataField(required: true)]
     public ProtoId<MoodEffectPrototype> MoodPrototype;
-
-    public override void Effect(EntityEffectBaseArgs args)
-    {
-        if (args is not EntityEffectReagentArgs _)
-            return;
-
-        var entityManager = IoCManager.Resolve<EntityManager>();
-        var ev = new MoodEffectEvent(MoodPrototype);
-        entityManager.EventBus.RaiseLocalEvent(args.TargetEntity, ev);
-    }
 }

@@ -16,7 +16,7 @@
     description: ghost-role-information-slasher-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleSoloAntagonistGoob
     raffle:
       settings: default
     requirements:

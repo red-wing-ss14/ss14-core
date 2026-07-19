@@ -1,17 +1,3 @@
-// SPDX-FileCopyrightText: 2022 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@googlemail.com>
-// SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 forkeyboards <91704530+forkeyboards@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 DrSmugleaf <drsmugleaf@gmail.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server._EinsteinEngines.Language;
@@ -43,7 +29,7 @@ public sealed class TraitSystem : EntitySystem
     {
         // Check if player's job allows to apply traits
         if (args.JobId == null ||
-            !_prototypeManager.TryIndex<JobPrototype>(args.JobId ?? string.Empty, out var protoJob) ||
+            !_prototypeManager.Resolve<JobPrototype>(args.JobId, out var protoJob) ||
             !protoJob.ApplyTraits)
         {
             return;
@@ -64,7 +50,7 @@ public sealed class TraitSystem : EntitySystem
             }
 
             if (_whitelistSystem.IsWhitelistFail(traitPrototype.Whitelist, mob) ||
-                _whitelistSystem.IsBlacklistPass(traitPrototype.Blacklist, mob))
+                (traitPrototype.Blacklist != null && _whitelistSystem.IsValid(traitPrototype.Blacklist, mob)))
                 continue;
 
             // Begin Goobstation: Species trait support
@@ -74,7 +60,14 @@ public sealed class TraitSystem : EntitySystem
             // End Goobstation: Species trait support
 
             // Add all components required by the prototype
-            EntityManager.AddComponents(mob, traitPrototype.Components, false);
+            if (traitPrototype.Components.Count > 0)
+                EntityManager.AddComponents(mob, traitPrototype.Components, false);
+
+            // Add all JobSpecials required by the prototype
+            foreach (var special in traitPrototype.Specials)
+            {
+                special.AfterEquip(mob);
+            }
 
             // Einstein Engines - Language begin (remove this if trait system refactor)
             // Remove/Add Languages required by the prototype

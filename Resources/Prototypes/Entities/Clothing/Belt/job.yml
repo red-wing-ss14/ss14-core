@@ -1,0 +1,81 @@
+# Belts meant to be used by a specific job to hold their tools
+
+- type: entity
+  abstract: true
+  parent: ClothingBeltStorageBase
+  id: BaseClothingBeltEngineering
+  components:
+  - type: Storage
+    # Don't add more than absolutely needed to this whitelist!
+    # Utility belts shouldn't just be free extra storage.
+    # This is only intended for basic engineering equipment.
+    whitelist:
+      tags:
+      - Powerdrill
+      - Wirecutter
+      - Crowbar
+      - Screwdriver
+      - Flashlight
+      - Wrench
+      - GeigerCounter
+      - Flare
+      - CableCoil
+      - CigPack
+      - Radio
+      - HolofanProjector
+      - Multitool
+      - AppraisalTool
+      - JawsOfLife
+      - GPS
+      - WeldingMask
+      - RemoteSignaller
+      - UtilityKnife
+      components:
+      - StationMap
+      - SprayPainter
+      - SprayPainterAmmo
+      - NetworkConfigurator
+      - RCD
+      - RCDAmmo
+      - Welder
+      - PowerCell
+      - Geiger
+      - TrayScanner
+      - GasAnalyzer
+      - HandLabeler
+  - type: ItemMapper
+    sprite: Clothing/Belt/belt_overlay.rsi
+    mapLayers:
+      drill:
+        whitelist:
+          tags:
+          - Powerdrill
+      cutters_red:
+        whitelist:
+          tags:
+          - Wirecutter
+      crowbar:
+        whitelist:
+          tags:
+          - Crowbar
+      crowbar_red:
+        whitelist:
+          tags:
+          - CrowbarRed
+      jaws:
+        whitelist:
+          tags:
+          - JawsOfLife
+      screwdriver_nuke:
+        whitelist:
+          tags:
+          - Screwdriver
+      wrench:
+        whitelist:
+          tags:
+          - Wrench
+      multitool:
+        whitelist:
+          tags:
+          - Multitool
+  - type: Appearance

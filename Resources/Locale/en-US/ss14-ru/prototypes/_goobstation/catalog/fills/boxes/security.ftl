@@ -8,3 +8,5 @@ ent-BoxGrenadesFlash = 40mm flash grenade box
     .desc = A box containing eight 40mm flashbang grenades for mass target stunning.
 ent-BoxGrenadesTeargas = 40mm tear gas grenade box
     .desc = A box containing eight 40mm tear gas grenades for efficient riot dispersion.
+
+ent-BoxGrenadesMixedShot = коробка с различными 40-мм снарядами

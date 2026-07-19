@@ -10,7 +10,7 @@
     prototype: MachineFTLDrive
     stackRequirements:
       Steel: 5
-    partRequirements: # Orion
+    partRequirements:
       Servo: 5
 
 - type: entity
@@ -25,5 +25,5 @@
     prototype: MachineFTLDriveHigh
     stackRequirements:
       Steel: 15
-    partRequirements: # Orion
+    partRequirements:
       Servo: 5

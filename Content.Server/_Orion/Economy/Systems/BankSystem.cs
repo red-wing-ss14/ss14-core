@@ -6,6 +6,7 @@ using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
+using Content.Shared.Roles.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
 
@@ -119,7 +120,7 @@ public sealed class BankSystem : EntitySystem
         if (!TryComp<MindComponent>(account.Owner, out var mind))
             return false;
 
-        foreach (var role in mind.MindRoles)
+        foreach (var role in mind.MindRoleContainer.ContainedEntities)
         {
             if (!TryComp<MindRoleComponent>(role, out var mindRole) || mindRole.JobPrototype == null)
                 continue;

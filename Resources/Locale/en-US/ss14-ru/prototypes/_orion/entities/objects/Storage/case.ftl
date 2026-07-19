@@ -18,3 +18,8 @@ ent-CaseInteQBulldog = brown case with Bulldog
 ent-CaseInteQSMG = brown case with SMG
     .desc = { ent-CaseInteQ.desc }
     .suffix = InteQ, Filled
+
+ent-BaseCaseMini = мини-кейс
+ent-CaseSecurity = охранный кейс
+ent-CaseSecurityMini = охранный мини-кейс
+ent-CaseBrigmedic = кейс Бригмедика

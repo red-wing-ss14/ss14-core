@@ -4,7 +4,5 @@
 # SPDX-License-Identifier: MIT
 
 loadout-window = Loadout
-loadout-window-base = Base loadouts
-loadout-window-revert-to-base = Revert to base loadouts
 loadout-none = None
 loadout-window-title-loadout = { $job } loadout

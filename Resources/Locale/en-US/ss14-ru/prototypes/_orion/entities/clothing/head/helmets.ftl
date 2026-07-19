@@ -17,3 +17,5 @@ ent-ClothingHeadHelmetUEGBallistic = UEG ballistic helmet
     .desc = Usual helmet.
 ent-ClothingHeadHelmetUEGRiot = light riot helmet
     .desc = It's a helmet specifically designed to protect against close range attacks.
+
+ent-ClothingHeadHelmetAllianceAssassin = шлем ассасина альянса

@@ -13,7 +13,6 @@ namespace Content.Server.Lathe;
 
 public sealed partial class LatheSystem
 {
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;
 
     private void OnLatheQueueResetMessage(Entity<LatheComponent> ent, ref LatheQueueResetMessage args)
@@ -65,7 +64,6 @@ public sealed partial class LatheSystem
         }
         UpdateUserInterfaceState(uid, component);
     }
-
     /// <summary>
     /// Produces 0-time items that output into the storage automatically.
     /// Used in order to prevent stack overflows (of the server) caused by printing a lot of materials at once.
@@ -123,8 +121,8 @@ public sealed partial class LatheSystem
 
                 // Dequeue recipes on a loop
                 // We do this after the main code since the first recipe is given outside of this method
-                if (!comp.Queue.TryDequeue(out var recipeProto))
-                    break;
+                var recipeProto = comp.Queue.First().Recipe;
+                comp.Queue.RemoveFirst();
 
                 var recipe = _proto.Index(recipeProto);
                 var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * comp.TimeMultiplier;
@@ -132,6 +130,7 @@ public sealed partial class LatheSystem
                     break; // Now it should be handled by another method
 
                 comp.CurrentRecipe = recipe;
+                AbortFabrication(ent, comp, null);
             }
         }
 

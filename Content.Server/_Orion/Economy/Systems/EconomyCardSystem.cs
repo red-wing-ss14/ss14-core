@@ -218,7 +218,7 @@ public sealed class EconomyCardSystem : EntitySystem
 
         ent.Comp.NextWithdrawTime = _timing.CurTime + TimeSpan.FromSeconds(2.0); // RW
 
-        var holochip = _stack.Spawn(args.Amount, stackProto, Transform(user).Coordinates);
+        var holochip = _stack.SpawnAtPosition(args.Amount, stackProto, Transform(user).Coordinates);
         _hands.PickupOrDrop(user, holochip);
 
         _openUiAccounts[ent.Owner] = account.Comp.AccountId;

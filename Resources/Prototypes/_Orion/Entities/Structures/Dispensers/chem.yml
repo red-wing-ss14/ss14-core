@@ -34,5 +34,6 @@
   - type: ItemMapper
     sprite: _Orion/Structures/Dispensers/mini_dispensers.rsi
   - type: Battery
+    netsync: false
     maxCharge: 500
     startingCharge: 500

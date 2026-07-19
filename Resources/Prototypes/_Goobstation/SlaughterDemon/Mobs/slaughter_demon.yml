@@ -4,14 +4,13 @@
     - MobPolymorphable
   id: BaseMobSlaughterDemon
   name: slaughter demon
-  suffix: ""
   description: A large, menacing creature covered in armored black scales. You should run.
   components:
   - type: Sprite
     sprite: _Goobstation/SlaughterDemon/demon.rsi
     state: daemon
   - type: Stamina
-    critThreshold: 150
+    baseCritThreshold: 150
   - type: NightVision
     color: "#AA4A44"
     activateSound: null
@@ -49,146 +48,14 @@
     description: ghost-role-information-slaughter-demon-description
     rules: ghost-role-information-slaughter-demon-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleSoloAntagonistGoob
     raffle:
       settings: default
     requirements:
       - !type:DiscordLinkRequirement # Amour edit
-  - type: GhostTakeoverAvailable
-  - type: Physics
-    bodyType: KinematicController
-  - type: MobState
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Dead
-  - type: Examiner
-  - type: CombatMode
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Effects/demon_attack1.ogg
-    animation: WeaponArcPunch
-    damage:
-      types:
-        Slash: 25
-        Structural: 50
-  - type: SlaughterDemon # main component
-    speedModWalk: 2.5
-    speedModRun: 2.5
-    bloodCrawlSounds:
-      collection: bloodCrawl
-      params:
-        volume: 2
-  - type: SlaughterDevour # allows the demon to devour
-    toHeal: # Healing done when eating someone
-      groups:
-        Brute: -100
-        Burn: -100
-        Airloss: -100
-        Toxin: -100
-        Genetic: -100
-        Metaphysical: -100
-    toHealNonCrew: # Healing done when eating a robot
-      groups:
-        Brute: -50
-        Burn: -50
-        Airloss: -50
-        Toxin: -50
-        Genetic: -50
-        Metaphysical: -50
-    toHealAnythingElse:  # Healing when previous conditions weren't met
-      groups:
-        Brute: -25
-        Burn: -25
-        Airloss: -25
-        Toxin: -25
-        Genetic: -25
-        Metaphysical: -25
-    doAfterDelay: 2
-  - type: DemonicWhisper # allows the demon to demonic whisper
-  - type: DemonicAccent # the accent
-  - type: Puller
-    needsHands: false
-  - type: GrabIntent
-    stageChangeCooldown: 0.5
-    grabThrowDamageModifier: 6.0
-    throwingDistance: 30
-  - type: Targeting
-  - type: Speech
-    speechVerb: SlaughterDemon
-    speechSounds: SlaughterDemon
-  - type: TypingIndicator
-    proto: guardian
-  - type: Gibbable
-  - type: Crawler
-  - type: RotationVisuals
-    defaultRotation: 90
-    horizontalRotation: 90
-  - type: Body
-    prototype: SlaughterDemon
-  - type: StandingState
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 666
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2
-  - type: NpcFactionMember
-    factions:
-    - DevilFaction
-  - type: ActionGrant
-    actions:
-      - DemonicWhisperAction
-  - type: ReplacementAccent
-    accent: slaughterDemon
-  - type: GrantHellRip
-  - type: WeakToHoly
-    alwaysTakeHoly: true
-  - type: Hands
-  - type: PressureImmunity
-  - type: TriggerOnMobstateChange
-    mobState:
-    - Dead
   - type: EmitSoundOnTrigger
     sound:
-      path: /Audio/Effects/demon_dies.ogg
-  - type: Vocal
-    sounds:
-      Male: SlaughterDemon
-      Female: SlaughterDemon
-      Unsexed: SlaughterDemon
-  - type: ZombieImmune
-  - type: GlobalAntagonist # Orion
-    antagonistPrototype: globalAntagonistSlaughterDemon
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      200: 1
-  - type: Bloodstream
-    bloodMaxVolume: 300
-    bloodReagent: Sulfur
-    bleedReductionAmount: 5
-  - type: Temperature
-    coldDamage:
-      types:
-        Cold: 0
-    heatDamage:
-      types:
-        Heat: 0
-    heatDamageThreshold: 666
-    coldDamageThreshold: 66
-  - type: LanguageKnowledge # Einstein Engines - Language
-    speaks:
-    - TauCetiBasic
-    understands:
-    - TauCetiBasic
+      path: /Audio/Effects/sadtrombone.ogg
 
 # laughter demon
 - type: entity
@@ -203,11 +70,41 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      190: Dead
+      190: Critical
+      215: Dead
   - type: SlaughterDevour
     feastSound: /Audio/_Goobstation/Misc/scary_horn2.ogg
+    doAfterDelay: 2
+    toHeal:
+      groups:
+        Brute: -100
+        Burn: -100
+        Airloss: -100
+        Toxin: -100
+        Genetic: -100
+        Metaphysical: -100
+    toHealNonCrew:
+      groups:
+        Brute: -50
+        Burn: -50
+        Airloss: -50
+        Toxin: -50
+        Genetic: -50
+        Metaphysical: -50
+    toHealAnythingElse:
+      groups:
+        Brute: -25
+        Burn: -25
+        Airloss: -25
+        Toxin: -25
+        Genetic: -25
+        Metaphysical: -25
   - type: SlaughterDemon
     isLaughter: true
+    bloodCrawlSounds:
+      collection: bloodCrawl
+      params:
+        volume: 2
   - type: Speech
     speechVerb: Cluwne
   - type: MeleeWeapon
@@ -216,7 +113,7 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Slash: 20
+        Slash: 25
         Structural: 50
   - type: GhostRole
     allowMovement: true
@@ -230,10 +127,8 @@
     raffle:
       settings: default
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Effects/sadtrombone.ogg
+    - !type:OverallPlaytimeRequirement
+      time: 18000
 
 # midround roll
 - type: entity

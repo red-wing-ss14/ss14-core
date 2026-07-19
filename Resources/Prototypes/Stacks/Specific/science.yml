@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: stack
+  parent: BaseMediumStack
+  id: ArtifactFragment
+  name: stack-artifact-fragment
+  icon: { sprite: /Textures/Objects/Specific/Xenoarchaeology/artifact_fragments.rsi, state: martianball1 }
+  spawn: ArtifactFragment1
+
+# Orion-Edit: Replaced with Servo
+#- type: stack
+#  id: Manipulator
+#  name: stack-micro-manipulator
+#  icon: { sprite: /Textures/Objects/Misc/stock_parts.rsi, state: micro_mani }
+#  spawn: MicroManipulatorStockPart
+#  maxCount: 10

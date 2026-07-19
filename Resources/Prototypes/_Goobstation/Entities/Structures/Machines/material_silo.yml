@@ -16,10 +16,10 @@
     anchored: true
     noRot: true
   - type: Sprite
-    sprite: _Goobstation/Structures/Machines/silo.rsi
+    sprite: Structures/Machines/silo.rsi
     layers:
-    - state: ore_silo
-    - state: inserting
+    - state: silo
+    - state: silo_active
       visible: false
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
   - type: DeviceNetwork
@@ -35,7 +35,7 @@
   - type: Appearance
   - type: MaterialStorage
     ignoreColor: true
-  - type: Silo
+  - type: OreSilo
   - type: DeviceLinkSink
     ports:
       - FillbotAnyItem
@@ -52,6 +52,6 @@
     ports:
       - FillbotAnyItem
       - MaterialSiloUtilizer
-  - type: SiloUtilizer
+  - type: OreSiloClient
   - type: MaterialStorage
     connectToSilo: true

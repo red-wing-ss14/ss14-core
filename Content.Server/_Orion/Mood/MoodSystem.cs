@@ -27,6 +27,8 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.Roles;
 using Content.Shared.Slippery;
 
+using Content.Shared.Roles.Components;
+
 namespace Content.Server._Orion.Mood;
 
 public sealed class MoodSystem : EntitySystem
@@ -41,6 +43,7 @@ public sealed class MoodSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     public override void Initialize()
     {
@@ -471,13 +474,13 @@ public sealed class MoodSystem : EntitySystem
         if (args.Mind.OwnedEntity is not { } ownedEntity || !HasComp<MoodComponent>(ownedEntity))
             return;
 
-        if (args.Mind.MindRoles.Any(HasComp<TraitorRoleComponent>))
+        if (_roles.MindHasRole<TraitorRoleComponent>(args.MindId))
             RaiseLocalEvent(ownedEntity, new MoodEffectEvent("TraitorFocused"));
 
-        if (args.Mind.MindRoles.Any(HasComp<RevolutionaryRoleComponent>))
+        if (_roles.MindHasRole<RevolutionaryRoleComponent>(args.MindId))
             RaiseLocalEvent(ownedEntity, new MoodEffectEvent("RevolutionFocused"));
 
-        if (args.Mind.MindRoles.Any(HasComp<CosmicCultRoleComponent>))
+        if (_roles.MindHasRole<CosmicCultRoleComponent>(args.MindId))
             RaiseLocalEvent(ownedEntity, new MoodEffectEvent("CultFocused"));
     }
 
@@ -486,13 +489,13 @@ public sealed class MoodSystem : EntitySystem
         if (args.Mind.OwnedEntity is not { } ownedEntity || !HasComp<MoodComponent>(ownedEntity))
             return;
 
-        if (!args.Mind.MindRoles.Any(HasComp<TraitorRoleComponent>))
+        if (!_roles.MindHasRole<TraitorRoleComponent>(args.MindId))
             RaiseLocalEvent(ownedEntity, new MoodRemoveEffectEvent("TraitorFocused"));
 
-        if (!args.Mind.MindRoles.Any(HasComp<RevolutionaryRoleComponent>))
+        if (!_roles.MindHasRole<RevolutionaryRoleComponent>(args.MindId))
             RaiseLocalEvent(ownedEntity, new MoodRemoveEffectEvent("RevolutionFocused"));
 
-        if (!args.Mind.MindRoles.Any(HasComp<CosmicCultRoleComponent>))
+        if (!_roles.MindHasRole<CosmicCultRoleComponent>(args.MindId))
             RaiseLocalEvent(ownedEntity, new MoodRemoveEffectEvent("CultFocused"));
     }
 

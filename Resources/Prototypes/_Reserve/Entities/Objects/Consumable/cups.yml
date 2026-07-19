@@ -8,7 +8,6 @@
   parent: DrinkBaseCup
   id: DrinkCup
   name: cup
-  suffix: ""
   description: A dark sturdy cup.
   components:
   - type: SolutionContainerManager

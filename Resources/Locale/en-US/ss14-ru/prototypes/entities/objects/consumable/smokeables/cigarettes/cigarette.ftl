@@ -59,3 +59,11 @@ ent-CigaretteBanana = Pun Pun's Tropical Getaway
     .desc = { ent-SoakedCigarette.desc }
 ent-CigaretteBlackPepper = English Spice
     .desc = { ent-SoakedCigarette.desc }
+
+ent-CigaretteIpecac = Бабушкин рождественский фруктовый кекс
+ent-CigarettePax = Швейцарский экспресс
+ent-CigaretteBread = Двойной тост
+ent-CigaretteMilk = Экстракт быка
+ent-CigaretteSpaceDrugs = Час силы 80-ых
+ent-CigaretteMuteToxin = Смешанные леденцы
+ent-CigaretteTHC = Хиппи-романтический роман

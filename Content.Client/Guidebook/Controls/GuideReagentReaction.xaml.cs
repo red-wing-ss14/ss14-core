@@ -1,9 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -41,18 +35,16 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
 
     public GuideReagentReaction(ReactionPrototype prototype, IPrototypeManager protoMan, IEntitySystemManager sysMan) : this(protoMan)
     {
-        // RW start
-        Container reactantsContainer = ReactantsContainer;
-        SetReagents(prototype.Reactants, ref reactantsContainer, protoMan);
-        Container productsContainer = ProductsContainer;
+        Container container = ReactantsContainer;
+        SetReagents(prototype.Reactants, ref container, protoMan);
+        Container productContainer = ProductsContainer;
         var products = new Dictionary<string, FixedPoint2>(prototype.Products);
         foreach (var (reagent, reactantProto) in prototype.Reactants)
         {
             if (reactantProto.Catalyst)
                 products.Add(reagent, reactantProto.Amount);
         }
-        SetReagents(products, ref productsContainer, protoMan, addLinks: false);
-        // RW end
+        SetReagents(products, ref productContainer, protoMan, false);
 
         var mixingCategories = new List<MixingCategoryPrototype>();
         if (prototype.MixingCategories != null)
@@ -137,10 +129,8 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         entContainer.AddChild(nameLabel);
         ReactantsContainer.AddChild(entContainer);
 
-        // RW start
-        Container productsContainer = ProductsContainer;
-        SetReagents(solution.Contents, ref productsContainer, protoMan, addLinks: false);
-        // RW end
+        Container productContainer = ProductsContainer;
+        SetReagents(solution.Contents, ref productContainer, protoMan, false);
         SetMixingCategory(categories, null, sysMan);
     }
 
@@ -163,8 +153,8 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
             {
                 { prototype.Reagent, FixedPoint2.New(0.21f) }
             };
-            Container productsContainer = ProductsContainer;
-            SetReagents(quantity, ref productsContainer, protoMan, addLinks: false);
+            Container productContainer = ProductsContainer;
+            SetReagents(quantity, ref productContainer, protoMan, false);
         }
         // RW end
         SetMixingCategory(categories, null, sysMan);
@@ -219,19 +209,11 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
             msg.AddMarkupOrThrow(Loc.GetString("guidebook-reagent-recipes-reagent-display",
                 ("reagent", productProto.LocalizedName), ("ratio", amount)));
 
+            var label = new GuidebookRichPrototypeLink();
             if (addLinks)
-            {
-                var link = new GuidebookCrossRefLabel();
-                link.TargetPrototype = productProto;
-                link.SetMessage(msg);
-                container.AddChild(link);
-            }
-            else
-            {
-                var label = new RichTextLabel();
-                label.SetMessage(msg);
-                container.AddChild(label);
-            }
+                label.LinkedPrototype = productProto;
+            label.SetMessage(msg);
+            container.AddChild(label);
         }
         container.Visible = true;
     }

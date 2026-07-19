@@ -35,7 +35,6 @@
           - Document
           - Mail
           components:
-          - Mail
           - Paper
           #- HyperlinkBook # Goobstation
         insertOnInteract: true
@@ -47,7 +46,7 @@
         startingItem: null
         whitelist:
           components:
-          - Food
+          - Edible
         insertOnInteract: true
         priority: 1 # Goob Edit - Spesos are both food and money, so check for money first
       cash_slot:
@@ -84,7 +83,7 @@
       icon-food:
         whitelist:
           components:
-          - Food
+          - Edible
       icon-cash:
         whitelist:
           components:
@@ -96,7 +95,6 @@
           - Document
           - Mail
           components:
-          - Mail
           - Paper
           #- HyperlinkBook # Goobstation
     sprite: _NF/Objects/Misc/mail_capsule.rsi

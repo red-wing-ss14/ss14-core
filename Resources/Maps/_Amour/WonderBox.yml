@@ -19211,7 +19211,7 @@ entities:
     - type: Transform
       pos: -12.5,64.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
     - type: TechnologyDatabase
       supportedDisciplines:
@@ -21093,7 +21093,7 @@ entities:
     - type: Transform
       pos: -27.5,-9.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
   - uid: 989
     components:
@@ -21105,14 +21105,14 @@ entities:
     - type: Transform
       pos: -20.5,20.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
   - uid: 991
     components:
     - type: Transform
       pos: -7.5,-40.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
   - uid: 992
     components:
@@ -60424,7 +60424,7 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
 - proto: Carpet
   entities:
@@ -69037,7 +69037,7 @@ entities:
     - type: Transform
       pos: -11.5,-39.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
 - proto: ClarkeCentralElectronics
   entities:
@@ -86388,7 +86388,7 @@ entities:
     - type: Transform
       pos: -11.5,-55.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
     - type: TechnologyDatabase
       supportedDisciplines:
@@ -86420,7 +86420,7 @@ entities:
     - type: Transform
       pos: -14.5,-39.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
 - proto: ExperiScanner
   entities:
@@ -131663,7 +131663,7 @@ entities:
     - type: Transform
       pos: 42.5,-17.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
 - proto: MedicatedSutureLingering0
   entities:
@@ -133347,7 +133347,7 @@ entities:
       - RipleyCentralElectronics
       - RipleyPeripheralsElectronics
       - MechEquipmentGrabberSmall
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
 - proto: OrganSpaceAnimalHeart
   entities:
@@ -149382,7 +149382,7 @@ entities:
       - RipleyCentralElectronics
       - RipleyPeripheralsElectronics
       - MechEquipmentGrabberSmall
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
 - proto: ScrapCanister1
   entities:
@@ -149437,7 +149437,7 @@ entities:
     - type: Transform
       pos: -18.5,58.5
       parent: 2
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
     - type: TechnologyDatabase
       currentTechnologyCards:
@@ -150891,7 +150891,7 @@ entities:
       - RipleyCentralElectronics
       - RipleyPeripheralsElectronics
       - MechEquipmentGrabberSmall
-    - type: SiloUtilizer
+    - type: OreSiloClient
       silo: 18894
 - proto: ShardGlass
   entities:
@@ -189553,7 +189553,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 27542
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: BulletEnergyTurretLaser
     - type: BatteryWeaponFireModes
       currentFireMode: 1

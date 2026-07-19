@@ -2,7 +2,7 @@
   parent: BaseItem
   id: ResearchDataDisk
   name: research data disk
-  description: Stores a fixed snapshot of researched technologies from a specific R&D server.
+  description: Stores a fixed snapshot of researched technologies from a specific R server.
   components:
   - type: EmitSoundOnPickup
     sound:

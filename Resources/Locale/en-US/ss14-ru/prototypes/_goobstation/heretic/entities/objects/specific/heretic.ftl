@@ -7,3 +7,5 @@ ent-HereticProtectiveBlade = eldritch blade
     .desc = Maelstrom of razors flashing right before your eyes. Why are you stopping to look at it!?
 ent-HereticProtectiveBladeProjectile = eldritch blade
     .desc = Maelstrom of razors flashing right before your eyes. Why are you stopping to look at it!?
+
+ent-Inkofimaginination = чернила воображения

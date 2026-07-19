@@ -4,3 +4,5 @@ ent-SpawnerRandomMobLavaland = lavaland heavy mob spawner
 ent-SpawnerRandomLightMobLavaland = lavaland light mob spawner
     .suffix = Lavaland
     .desc = { ent-MarkerBase.desc }
+
+ent-MobGoliathRandom = голиаф

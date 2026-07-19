@@ -72,7 +72,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         HashSet<EntityUid> items = new();
 
         EntityStorageComponent? entityStorageComp = null;
-        if (_storage.ResolveStorage(uid, ref entityStorageComp))
+        if (Resolve(uid, ref entityStorageComp, false))
             items = entityStorageComp.Contents.ContainedEntities.ToHashSet();
 
         component.WashingSoundStream = _audio.Stop(component.WashingSoundStream);
@@ -178,7 +178,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         HashSet<EntityUid> items = new();
 
         EntityStorageComponent? entityStorageComp = null;
-        if (_storage.ResolveStorage(ent.Owner, ref entityStorageComp))
+        if (Resolve(ent.Owner, ref entityStorageComp, false))
             items = entityStorageComp.Contents.ContainedEntities.ToHashSet();
 
         if (_net.IsServer)

@@ -21,3 +21,5 @@ ent-ClothingOuterArmorXenonautenMedium = medium shell armor
     .desc = XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant.
 ent-ClothingOuterArmorXenonautenHeavy = heavy shell armor
     .desc = XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant.
+
+ent-ClothingOuterArmorAllianceAssassin = панцирь ассасина альянса

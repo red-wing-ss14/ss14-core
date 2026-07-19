@@ -14,32 +14,55 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IsJobAllowedEvent>(OnIsJobAllowed);
+        SubscribeLocalEvent<IsRoleAllowedEvent>(OnIsRoleAllowed);
     }
 
-    private void OnIsJobAllowed(ref IsJobAllowedEvent ev)
+    private void OnIsRoleAllowed(ref IsRoleAllowedEvent ev)
     {
-        if (!_prototypeManager.TryIndex<JobPrototype>(ev.JobId, out var job))
+        if (ev.Requirements != null)
+        {
+            foreach (var requirement in ev.Requirements)
+            {
+                if (requirement is not Content.Shared._Amour.Discord.DiscordLinkRequirement { Inverted: false })
+                    continue;
+
+                if (!_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
+                {
+                    ev.Cancelled = true;
+                    _ = EntityManager.System<DiscordLinkSystem>().SendLinkStatus(ev.Player);
+                }
+
+                return;
+            }
+        }
+
+        if (ev.Jobs == null)
             return;
 
         var roleSystem = EntityManager.System<SharedRoleSystem>();
-        var requirements = roleSystem.GetJobRequirement(job);
 
-        if (requirements == null)
-            return;
-
-        foreach (var requirement in requirements)
+        foreach (var jobId in ev.Jobs)
         {
-            if (requirement is not Content.Shared._Amour.Discord.DiscordLinkRequirement { Inverted: false })
+            if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var job))
                 continue;
 
-            if (!_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
-            {
-                ev.Cancelled = true;
-                _ = EntityManager.System<DiscordLinkSystem>().SendLinkStatus(ev.Player);
-            }
+            var requirements = roleSystem.GetRoleRequirements(job);
+            if (requirements == null)
+                continue;
 
-            return;
+            foreach (var requirement in requirements)
+            {
+                if (requirement is not Content.Shared._Amour.Discord.DiscordLinkRequirement { Inverted: false })
+                    continue;
+
+                if (!_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
+                {
+                    ev.Cancelled = true;
+                    _ = EntityManager.System<DiscordLinkSystem>().SendLinkStatus(ev.Player);
+                }
+
+                return;
+            }
         }
     }
 }
