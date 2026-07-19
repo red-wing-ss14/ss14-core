@@ -49,12 +49,12 @@
   - ClothingShoesBootsCowboyFancy
   - ClothingShoesBootsSecFilled
 
-- type: entity
-  id: ClothingShoesHighheelBootsFilled
-  suffix: Filled # CorvaxGoob
-  parent:
-  - ClothingShoesHighheelBoots
-  - ClothingShoesBootsSecFilled
+#- type: entity
+#  id: ClothingShoesHighheelBootsFilled
+#  suffix: Filled # CorvaxGoob
+#  parent:
+#  - ClothingShoesHighheelBoots
+#  - ClothingShoesBootsSecFilled
 
 - type: entity
   parent: ClothingShoesBootsMerc

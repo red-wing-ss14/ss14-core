@@ -73,7 +73,6 @@
     equipDelay: 2.5
     unequipDelay: 2.5
   - type: PowerCell
-  - type: PowerCellVisuals
   - type: Battery
     maxCharge: 500000
     startingCharge: 500000

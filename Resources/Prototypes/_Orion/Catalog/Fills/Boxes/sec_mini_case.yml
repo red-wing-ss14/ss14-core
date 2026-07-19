@@ -102,5 +102,5 @@
   - type: StorageFill
     contents:
       - id: WeaponFlareGunSecurity
-        amount: 2
+        amount: 1
       - id: BoxLethalshot
