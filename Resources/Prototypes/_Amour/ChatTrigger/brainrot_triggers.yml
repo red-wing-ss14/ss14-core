@@ -1,12 +1,12 @@
 - type: brainrotBotTrigger
   id: Brainrot1
   trigger: "[фури; фурриеб; фурриёб; фурье; фурьё]"
-  description: brainrot-trigger-desc-brainrot21
+  description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
   id: Brainrot2
   trigger: "[хохол; хохлы; жид; ервей; евреи; русский; русня; кацап; москаль; индус]"
-  description: brainrot-trigger-desc-brainrot21
+  description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
   id: Brainrot3
@@ -16,12 +16,12 @@
 - type: brainrotBotTrigger
   id: Brainrot4
   trigger: даун
-  description: brainrot-trigger-desc-brainrot21
+  description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
   id: Brainrot5
   trigger: "[чурка; чурки; хач; хачи; хохлосрач]"
-  description: brainrot-trigger-desc-brainrot21
+  description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
   id: Brainrot6
@@ -233,7 +233,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot47
-  trigger: норм
+  trigger: "[норм; нормас]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
@@ -369,7 +369,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot74
-  trigger: ща
+  trigger: офни
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
