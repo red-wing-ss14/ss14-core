@@ -208,7 +208,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot42
-  trigger: "[маму ебал; твою мамку ебал; маму трахал; твою маму; твою мать]"
+  trigger: "[маму ебал; твою мамку ебал; маму трахал; мамку трахал]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
