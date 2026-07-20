@@ -1,0 +1,5 @@
+brainrot-panel-title = Панель Брейнрот Нази
+brainrot-panel-placeholder = Введите запретное слово...
+brainrot-panel-add = Добавить
+brainrot-panel-heading = Недефолтные запрещенные слова
+brainrot-panel-delete = Удалить

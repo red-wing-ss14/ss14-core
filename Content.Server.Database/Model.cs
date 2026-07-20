@@ -59,6 +59,7 @@ namespace Content.Server.Database
         public DbSet<RMCPatron> RMCPatrons { get; set; } = default!;
         public DbSet<AmourBooster> AmourBoosters { get; set; } = default!;
         public DbSet<AmourClientRecord> AmourClientRecords { get; set; } = default!; // Amour edit
+        public DbSet<RwBrainrotTrigger> RwBrainrotTriggers { get; set; } = default!; // RW
         public DbSet<RMCLinkingCodes> RMCLinkingCodes { get; set; } = default!;
         public DbSet<RMCLinkedAccountLogs> RMCLinkedAccountLogs { get; set; } = default!;
         public DbSet<RMCPatronLobbyMessage> RMCPatronLobbyMessages { get; set; } = default!;

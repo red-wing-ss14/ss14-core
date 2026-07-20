@@ -372,6 +372,12 @@ namespace Content.Server.Database
 
         #endregion
 
+        // RW start
+        Task<List<string>> GetBrainrotTriggersAsync();
+        Task AddBrainrotTriggerAsync(string trigger);
+        Task RemoveBrainrotTriggerAsync(string trigger);
+        // RW end
+
         #region IPintel
 
         Task<bool> UpsertIPIntelCache(DateTime time, IPAddress ip, float score);
@@ -1250,6 +1256,27 @@ namespace Content.Server.Database
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetClientRecords());
         }
+
+        // RW start
+        public Task<List<string>> GetBrainrotTriggersAsync()
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetBrainrotTriggersAsync());
+        }
+
+        public Task AddBrainrotTriggerAsync(string trigger)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddBrainrotTriggerAsync(trigger));
+        }
+
+        public Task RemoveBrainrotTriggerAsync(string trigger)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveBrainrotTriggerAsync(trigger));
+        }
+        // RW end
+
 
         public Task<bool> UpsertIPIntelCache(DateTime time, IPAddress ip, float score)
         {

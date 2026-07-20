@@ -13,6 +13,7 @@ public sealed class ChatTriggerSystem : EntitySystem
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly Content.Client._RW.Brainrot.RwBrainrotClientSystem _rwBrainrot = default!; // RW
 
     private ChatUIController? _chatController;
 
@@ -71,6 +72,18 @@ public sealed class ChatTriggerSystem : EntitySystem
             ShowBrainrotWarning(text, matched, Loc.GetString(proto.Description));
             return false;
         }
+
+        // RW start
+        foreach (var customTrigger in _rwBrainrot.CustomTriggers)
+        {
+            var matched = FindMatchedVariant(text, customTrigger);
+            if (matched == null)
+                continue;
+
+            ShowBrainrotWarning(text, matched, Loc.GetString("brainrot-trigger-desc-generic"));
+            return false;
+        }
+        // RW end
 
         return true;
     }

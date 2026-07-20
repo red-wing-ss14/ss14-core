@@ -2195,6 +2195,38 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             )).ToList();
         }
 
+        // RW start
+        public async Task<List<string>> GetBrainrotTriggersAsync()
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.RwBrainrotTriggers
+                .Select(t => t.Trigger)
+                .ToListAsync();
+        }
+
+        public async Task AddBrainrotTriggerAsync(string trigger)
+        {
+            await using var db = await GetDb();
+            var exists = await db.DbContext.RwBrainrotTriggers.AnyAsync(t => t.Trigger == trigger);
+            if (exists)
+                return;
+
+            db.DbContext.RwBrainrotTriggers.Add(new RwBrainrotTrigger { Trigger = trigger });
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveBrainrotTriggerAsync(string trigger)
+        {
+            await using var db = await GetDb();
+            var entry = await db.DbContext.RwBrainrotTriggers.FirstOrDefaultAsync(t => t.Trigger == trigger);
+            if (entry != null)
+            {
+                db.DbContext.RwBrainrotTriggers.Remove(entry);
+                await db.DbContext.SaveChangesAsync();
+            }
+        }
+        // RW end
+
         # region IPIntel
 
         public async Task<bool> UpsertIPIntelCache(DateTime time, IPAddress ip, float score)
