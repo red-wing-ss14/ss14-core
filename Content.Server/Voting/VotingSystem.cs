@@ -106,7 +106,7 @@ public sealed class VotingSystem : EntitySystem
                     return false;
 
                 // Must have been dead for x seconds
-                if ((int)_gameTiming.RealTime.Subtract(ghostComp.TimeOfDeath).TotalSeconds < _cfg.GetCVar(CCVars.VotekickEligibleVoterDeathtime))
+                if ((int)_gameTiming.CurTime.Subtract(ghostComp.TimeOfDeath).TotalSeconds < _cfg.GetCVar(CCVars.VotekickEligibleVoterDeathtime)) // RW
                     return false;
             }
         }
