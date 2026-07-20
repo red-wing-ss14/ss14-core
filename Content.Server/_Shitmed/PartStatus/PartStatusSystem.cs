@@ -244,6 +244,8 @@ public sealed class PartStatusSystem : EntitySystem
                 locString += "-styleless";
             }
 
+            var name = Loc.GetString("body-part-" + partStatus.PartName.Replace(" ", "-")); // Orion-Edit
+
             // RW start
             if (styleless)
             {

@@ -49,14 +49,15 @@ public abstract class BasedRadialSelectorMenuBUI : BoundUserInterface
         {
             if (entry.Category != null)
             {
-                var button = CreateButton(entry.Category.Name, _spriteSystem.Frame0(entry.Category.Icon));
+                var name = Loc.GetString(entry.Category.Name);
+                var button = CreateButton(name, _spriteSystem.Frame0(entry.Category.Icon));
                 button.TargetLayer = container;
                 CreateMenu(entry.Category.Entries, menu, entry.Category.Name);
                 container.AddChild(button);
             }
             else if (entry.Prototype != null)
             {
-                var name = GetName(entry.Prototype);
+                var name = entry.Name != null ? Loc.GetString(entry.Name) : GetName(entry.Prototype);
                 var icon = GetTextures(entry);
                 var button = CreateButton(name, icon);
                 button.OnButtonUp += _ =>
@@ -112,7 +113,7 @@ public abstract class BasedRadialSelectorMenuBUI : BoundUserInterface
     {
         var button = new RadialMenuButton
         {
-            ToolTip = Loc.GetString(name),
+            ToolTip = name,
             StyleClasses = { "RadialMenuButton" },
             SetSize = ItemSize
         };
@@ -134,7 +135,7 @@ public abstract class BasedRadialSelectorMenuBUI : BoundUserInterface
     {
         var button = new RadialMenuButton
         {
-            ToolTip = Loc.GetString(name),
+            ToolTip = name,
             StyleClasses = { "RadialMenuButton" },
             SetSize = ItemSize
         };

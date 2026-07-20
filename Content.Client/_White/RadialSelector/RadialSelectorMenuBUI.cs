@@ -1,4 +1,4 @@
-﻿using Content.Client.UserInterface.Controls;
+using Content.Client.UserInterface.Controls;
 using Content.Shared._White.RadialSelector;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
@@ -24,16 +24,14 @@ public sealed class AttachedRadialSelectorMenuBUI(EntityUid owner, Enum uiKey)
     };
 
     private bool _openCentered;
+    // RW start
+    private bool _positioned;
+    // RW end
 
     protected override void Open()
     {
         base.Open();
         _menu.OnClose += Close;
-
-        if (_openCentered)
-            _menu.OpenCentered();
-        else
-            _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / _displayManager.ScreenSize);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -46,6 +44,17 @@ public sealed class AttachedRadialSelectorMenuBUI(EntityUid owner, Enum uiKey)
         ClearExistingContainers(_menu);
         CreateMenu(radialSelectorState.Entries, _menu);
         _openCentered = radialSelectorState.OpenCentered;
+
+        // RW start
+        if (!_positioned)
+        {
+            _positioned = true;
+            if (_openCentered)
+                _menu.OpenCentered();
+            else
+                _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / _displayManager.ScreenSize);
+        }
+        // RW end
     }
 
     protected override void Dispose(bool disposing)

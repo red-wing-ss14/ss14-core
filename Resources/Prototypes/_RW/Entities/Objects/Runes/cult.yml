@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: CultRuneBase
   name: based rune
   abstract: true
@@ -16,9 +16,12 @@
         - ItemMask
         layer:
         - SlipLayer
+  - type: Transform
+    noRot: true
   - type: Physics
   - type: Clickable
   - type: Sprite
+    noRot: true
     sprite: _RW/BloodCult/Entities/Runes/regular.rsi
     state: "offering"
   - type: CultRuneBase

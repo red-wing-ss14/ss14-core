@@ -23,7 +23,7 @@
       - type: UserInterface
         interfaces:
           enum.RadialSelectorUiKey.Key:
-            type: AttachedRadialSelectorMenuBUI
+            type: TrackedRadialSelectorMenuBUI
           enum.ListViewSelectorUiKey.Key:
             type: ListViewSelectorBUI
       mindRoles:

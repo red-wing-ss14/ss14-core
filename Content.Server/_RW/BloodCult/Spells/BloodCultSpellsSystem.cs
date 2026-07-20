@@ -13,6 +13,7 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Inventory;
 using Content.Shared.Mindshield.Components;
+using Content.Goobstation.Common.Religion;
 using Content.Shared.Popups;
 using Content.Shared._White.RadialSelector;
 using Content.Shared.Speech.Muting;
@@ -75,7 +76,18 @@ public sealed class BloodCultSpellsSystem : EntitySystem
             return;
 
         if (HasComp<MindShieldComponent>(args.Target))
+        {
             args.Handled = true;
+            return;
+        }
+
+        var ev = new BeforeCastTouchSpellEvent(args.Target);
+        RaiseLocalEvent(args.Target, ev, true);
+        if (ev.Cancelled)
+        {
+            args.Handled = true;
+            return;
+        }
     }
 
     private void OnActionGettingDisabled(Entity<BaseCultSpellComponent> spell, ref ActionGettingDisabledEvent args)
@@ -325,7 +337,7 @@ public sealed class BloodCultSpellsSystem : EntitySystem
             radialList.Add(entry);
         }
 
-        var state = new RadialSelectorState(radialList, true);
+        var state = new TrackedRadialSelectorState(radialList);
 
         _ui.SetUiState(cultist.Owner, RadialSelectorUiKey.Key, state);
         _ui.TryToggleUi(cultist.Owner, RadialSelectorUiKey.Key, cultist.Owner);
@@ -354,7 +366,7 @@ public sealed class BloodCultSpellsSystem : EntitySystem
             radialList.Add(entry);
         }
 
-        var state = new RadialSelectorState(radialList, true);
+        var state = new TrackedRadialSelectorState(radialList);
 
         _ui.SetUiState(cultist.Owner, RadialSelectorUiKey.Key, state);
         _ui.TryToggleUi(cultist.Owner, RadialSelectorUiKey.Key, cultist.Owner);

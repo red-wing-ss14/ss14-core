@@ -38,6 +38,9 @@ public sealed class TrackedRadialSelectorMenuBUI(EntityUid owner, Enum uiKey) : 
         CreateMenu(trackedRadialSelectorState.Entries, _menu);
 
         _trackedEntity = EntMan.GetEntity(trackedRadialSelectorState.TrackedEntity);
+        // RW start
+        _menu.Track(_trackedEntity ?? Owner);
+        // RW end
     }
 
     protected override void Dispose(bool disposing)
