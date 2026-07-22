@@ -264,6 +264,7 @@ namespace Content.Client.LateJoin
                         if (!_jobRequirements.IsAllowed(prototype, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
                         {
                             jobButton.Disabled = true;
+                            jobButton.RequirementsLocked = true; // RW
 
                             if (!reason.IsEmpty)
                             {
@@ -316,7 +317,8 @@ namespace Content.Client.LateJoin
                                 if (matchingJobButton.Amount != updatedJobValue)
                                 {
                                     matchingJobButton.RefreshLabel(updatedJobValue);
-                                    matchingJobButton.Disabled |= matchingJobButton.Amount == 0;
+                                    if (!matchingJobButton.RequirementsLocked) // RW
+                                        matchingJobButton.Disabled = matchingJobButton.Amount == 0; // RW
                                 }
                             }
                         }
@@ -345,6 +347,7 @@ namespace Content.Client.LateJoin
         public string JobId { get; }
         public string JobLocalisedName { get; }
         public int? Amount { get; private set; }
+        public bool RequirementsLocked; // RW
         private bool _initialised = false;
 
         public JobButton(Label jobLabel, ProtoId<JobPrototype> jobId, string jobLocalisedName, int? amount)
