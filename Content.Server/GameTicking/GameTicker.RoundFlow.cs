@@ -619,7 +619,7 @@ namespace Content.Server.GameTicking
                     PlayerGuid = userId,
                     PlayerNetEntity = GetNetEntity(entity),
                     Role = antag
-                        ? roles.First(role => role.Antagonist).Name
+                        ? roles.FirstOrDefault(role => role.Antagonist).Name ?? roles.FirstOrDefault().Name ?? Loc.GetString("game-ticker-unknown-role") // RW
                         : roles.FirstOrDefault().Name ?? Loc.GetString("game-ticker-unknown-role"),
                     Antag = antag,
                     JobPrototypes = roles.Where(role => !role.Antagonist).Select(role => role.Prototype).ToArray(),
