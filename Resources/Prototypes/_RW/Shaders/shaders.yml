@@ -1,0 +1,19 @@
+- type: shader
+  id: DisplacedThermalDraw
+  kind: source
+  path: "/Textures/_RW/Shaders/displaced_thermal.swsl"
+  params:
+    pixelSize: 32.0
+    displacementSize: 127
+
+- type: shader
+  id: DisplacedThermalStencilDraw
+  kind: source
+  path: "/Textures/_RW/Shaders/displaced_thermal.swsl"
+  stencil:
+    ref: 1
+    op: Keep
+    func: NotEqual
+  params:
+    pixelSize: 32.0
+    displacementSize: 127

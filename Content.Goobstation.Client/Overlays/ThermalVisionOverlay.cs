@@ -153,11 +153,15 @@ public sealed class ThermalVisionOverlay : Overlay
                 if (allLayers[i] is not SpriteComponent.Layer { Visible: true } layer)
                     continue;
 
-                if (layer.ShaderPrototype?.Id is "DisplacedDraw" or "DisplacedStencilDraw")
-                    _sprite.LayerSetVisible((uid, sprite), i, false);
-
+// RW start - Apply displaced thermal shader to displaced layers (Dwarves, clothing) so displacement maps are used
                 layerData[i] = (layer.Shader, layer.Color);
-                layer.Shader = null;
+                if (layer.ShaderPrototype?.Id == "DisplacedDraw")
+                    layer.Shader = _protoMan.Index<ShaderPrototype>("DisplacedThermalDraw").InstanceUnique();
+                else if (layer.ShaderPrototype?.Id == "DisplacedStencilDraw")
+                    layer.Shader = _protoMan.Index<ShaderPrototype>("DisplacedThermalStencilDraw").InstanceUnique();
+                else
+                    layer.Shader = null;
+// RW end
                 _sprite.LayerSetColor(layer, Color.White.WithAlpha(layer.Color.A));
             }
 
