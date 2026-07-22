@@ -160,8 +160,10 @@ public abstract class SharedOreSiloSystem : EntitySystem
         if (_transform.GetGrid(client) != _transform.GetGrid(silo.Owner))
             return false;
 
-        if (!_transform.InRange(silo.Owner, client, silo.Comp.Range))
+        // RW start
+        if (silo.Comp.Range is { } range && !_transform.InRange(silo.Owner, client, range))
             return false;
+        // RW end
 
         return true;
     }
