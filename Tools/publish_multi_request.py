@@ -20,16 +20,27 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://main-cdn.reserve-station.space/" # reserve
-FORK_ID = "reserve" # reserve
+ROBUST_CDN_URL = os.environ.get("ROBUST_CDN_URL", "https://main-cdn.reserve-station.space/") # reserve
+FORK_ID = os.environ.get("FORK_ID", "reserve") # reserve
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Publish build to Robust.Cdn")
+    parser.add_argument("--fork-id", default=FORK_ID, help="Fork ID on Robust.Cdn")
+    parser.add_argument("--cdn-url", default=ROBUST_CDN_URL, help="Robust.Cdn base URL")
+    args, _ = parser.parse_known_args()
+
+    fork_id = args.fork_id
+    cdn_url = args.cdn_url
+    if not cdn_url.endswith("/"):
+        cdn_url += "/"
+
     session = requests.Session()
     session.headers = {
         "Authorization": f"Bearer {PUBLISH_TOKEN}",
     }
 
-    print(f"Starting publish on Robust.Cdn for version {VERSION}")
+    print(f"Starting publish on Robust.Cdn for version {VERSION} (fork: {fork_id})")
 
     data = {
         "version": VERSION,
@@ -38,7 +49,9 @@ def main():
     headers = {
         "Content-Type": "application/json"
     }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{FORK_ID}/publish/start", json=data, headers=headers)
+    resp = session.post(f"{cdn_url}fork/{fork_id}/publish/start", json=data, headers=headers)
+    if not resp.ok:
+        print(f"Failed to start publish: HTTP {resp.status_code} {resp.reason}\nServer response: {resp.text}")
     resp.raise_for_status()
     print("Publish successfully started, adding files...")
 
@@ -50,8 +63,10 @@ def main():
                 "Robust-Cdn-Publish-File": os.path.basename(file),
                 "Robust-Cdn-Publish-Version": VERSION
             }
-            resp = session.post(f"{ROBUST_CDN_URL}fork/{FORK_ID}/publish/file", data=f, headers=headers)
+            resp = session.post(f"{cdn_url}fork/{fork_id}/publish/file", data=f, headers=headers)
 
+        if not resp.ok:
+            print(f"Failed to publish file {file}: HTTP {resp.status_code} {resp.reason}\nServer response: {resp.text}")
         resp.raise_for_status()
 
     print("Successfully pushed files, finishing publish...")
@@ -62,7 +77,9 @@ def main():
     headers = {
         "Content-Type": "application/json"
     }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{FORK_ID}/publish/finish", json=data, headers=headers)
+    resp = session.post(f"{cdn_url}fork/{fork_id}/publish/finish", json=data, headers=headers)
+    if not resp.ok:
+        print(f"Failed to finish publish: HTTP {resp.status_code} {resp.reason}\nServer response: {resp.text}")
     resp.raise_for_status()
 
     print("SUCCESS!")
