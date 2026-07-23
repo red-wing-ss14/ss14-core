@@ -1,4 +1,4 @@
-﻿- type: species
+- type: species
   id: Chitinid
   name: species-name-chitinid
   roundStart: true
@@ -18,18 +18,18 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Chitinid.xml"
   pros:
-  - Получают на 80% меньше урона радиацией.
-  - Получают на 10% меньше режущего, тупого и колющего урона.
-  - Могут самостоятельно излечиваться от радиации в организме.
-  - Могут излучать биолюминесцентный свет от своего тела.
+  - species-chitinid-pro-radiation-resist
+  - species-chitinid-pro-damage-resist
+  - species-chitinid-pro-radiation-heal
+  - species-chitinid-pro-bioluminescence
   special:
-  - Вырабатывают слабо-радиоактивные камни, при достижении достаточного количества радиации.
-  - Обладают кровью жука.
+  - species-chitinid-special-radioactive-stones
+  - species-chitinid-special-bug-blood
   cons:
-  - Получают на 25% больше холодного урона.
-  - Получают на 15% больше шокового урона.
-  - Обычные шприцы не могут пробить хитин.
-  - Голодают на 33% быстрее.
+  - species-chitinid-con-cold-damage
+  - species-chitinid-con-shock-damage
+  - species-chitinid-con-syringes
+  - species-chitinid-con-hunger
   # Orion-End
 
 # Amour port: WD Slim body types START

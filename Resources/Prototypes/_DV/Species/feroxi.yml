@@ -18,17 +18,17 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Feroxi.xml"
   pros:
-  - Наносят 7 колющего урона своими укусами.
-  - Получают на 10% меньше урона от ушибов.
-  - Устойчивее к холоду на 10%.
+  - species-feroxi-pro-bite-damage
+  - species-feroxi-pro-blunt-resist
+  - species-feroxi-pro-cold-resist
   special:
-  - Могут дышать водяным паром.
-  - Когда состояние жажды доходит до критического состояния, начинают задыхаться.
-  - Употребление соли высасывает влагу.
-  - Лёгкие невозможно отделить от туловища.
+  - species-feroxi-special-steam-breathe
+  - species-feroxi-special-thirst-suffocation
+  - species-feroxi-special-salt-dehydration
+  - species-feroxi-special-inseparable-lungs
   cons:
-  - Получают на 10% больше режущего урона.
-  - Испытывают жажду на 100% быстрее.
+  - species-feroxi-con-slash-vulnerable
+  - species-feroxi-con-thirst-faster
   # Orion-End
 
 # Amour port: WD Slim body types START

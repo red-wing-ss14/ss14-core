@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2024 ScyronX <166930367+ScyronX@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 ScyronX <166930367+ScyronX@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
@@ -32,14 +32,14 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/IPC.xml"
   pros:
-  - Имеют встроенный радио-модуль, позволяющий использовать ключи вне гарнитуры.
-  - Могут воспроизводить MIDI музыку своими динамиками.
+  - species-ipc-pro-radio-module
+  - species-ipc-pro-midi
   special:
-  - Потребляют заряд батареи, без которого не смогут продолжать существование.
-  - Могут быть отремонтированы только инженерными инструментами.
+  - species-ipc-special-battery
+  - species-ipc-special-repair-tools
   cons:
-  - Не может быть клонирован.
-  - Бегают медленее, чем человек.
+  - species-ipc-con-uncloneable
+  - species-ipc-con-run-speed
   # Orion-End
 
 # The lack of a layer means that

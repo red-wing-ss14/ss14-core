@@ -19,15 +19,15 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Tajaran.xml"
   pros:
-  - Получают на 20% меньше холодного урона.
-  - Нейтрализуют 99% урона от падения, или удара об что-то.
+  - species-tajaran-pro-cold-resist
+  - species-tajaran-pro-fall-damage
   special:
-  - Не издают звуков ходьбы, если не носят обуви.
-  - Могут поместится в вещмешок.
+  - species-tajaran-special-silent-footsteps
+  - species-tajaran-special-fit-in-duffel
   cons:
-  - Получают на 15% больше тупого, колющего и режущего урона.
-  - Получают на 20% больше огненного урона.
-  - Стамина меньше на 25%, чем у человека.
+  - species-tajaran-con-physical-vulnerable
+  - species-tajaran-con-fire-vulnerable
+  - species-tajaran-con-stamina
   # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 0.85

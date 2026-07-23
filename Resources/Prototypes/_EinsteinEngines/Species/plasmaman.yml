@@ -1,4 +1,4 @@
-﻿- type: species
+- type: species
   id: Plasmaman
   name: species-name-plasmaman
   roundStart: true
@@ -23,20 +23,20 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Plasmaman.xml"
   pros:
-  - Получают на 25% меньше колющего урона.
-  - Получают на 20% меньше урона ядом.
-  - Получают на 15% меньше режущего урона.
-  - Не нуждаются в воде и еде.
-  - Имеют иммунитет к радиации и холоду.
-  - Не имеют крови, не подвержены кровотечениям.
-  - Имеют повышенный урон руками 5 ожогов и 2.25 тупого урона.
+  - species-plasmaman-pro-piercing-resist
+  - species-plasmaman-pro-poison-resist
+  - species-plasmaman-pro-slash-resist
+  - species-plasmaman-pro-no-food-water
+  - species-plasmaman-pro-radiation-cold-immune
+  - species-plasmaman-pro-no-blood
+  - species-plasmaman-pro-unarmed-damage
   special:
-  - Дышат плазмой, воздух очень токсичен.
-  - Могут лечится при помощи плазмы и молока.
+  - species-plasmaman-special-plasma-breathe
+  - species-plasmaman-special-plasma-milk-heal
   cons:
-  - Получают на 50% больше теплового урона.
-  - Отсутсвие скафандра вызывает неконтролируемое возгорание.
-  - Получают 1 ожог при ударе рукой.
+  - species-plasmaman-con-heat-vulnerable
+  - species-plasmaman-con-ignite-without-suit
+  - species-plasmaman-con-unarmed-self-burn
   # Orion-End
 
 # Amour port: WD Slim body types START

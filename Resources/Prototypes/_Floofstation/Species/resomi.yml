@@ -24,14 +24,14 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Resomi.xml"
   pros:
-  - Невосприимчивы к урону от холода и другим воздействиям.
+  - species-resomi-pro-cold-immunity
   special:
-  - Могут поместится в вещмешок.
+  - species-resomi-special-fit-in-duffel
   cons:
-  - Получают на 30% больше теплового урона.
-  - Получают на 15% больше тупого урона.
-  - Температура, которую большинство других видов считают комфортной, для них невыносимо высокая, и они начинают страдать начиная всего с 30°C.
-  - Не могут с лёгкостью тянуть другие расы и предметы, по сравнению с человеком.
+  - species-resomi-con-heat-vulnerable
+  - species-resomi-con-blunt-vulnerable
+  - species-resomi-con-heat-sensitivity
+  - species-resomi-con-weak-pull
   # Orion-End
   # begin Goobstation: port EE height/width sliders
   # resomi sprites look very wrong when too big or too wide

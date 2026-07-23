@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
@@ -34,11 +34,11 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Vulpkanin.xml"
   pros:
-  - Наносят урон тупым и режущим уроном.
+  - species-vulpkanin-pro-unarmed-damage
   special:
-  - Видят мир в красных и зеленых цветах.
+  - species-vulpkanin-special-red-green-vision
   cons:
-  - Получают на 15% больше теплового урона.
+  - species-vulpkanin-con-heat-vulnerable
   # Orion-End
 
 # Amour port: WD Slim body types START

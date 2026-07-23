@@ -21,15 +21,15 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Rodentia.xml"
   pros:
-  - Могут прятать мелкие предметы за щеками. Наличие предметов во рту делает их речь неразборчивой, и они роняют все предметы, которые были у них во рту, если на них нападают, оглушают или толкают.
-  - Может прятаться под столами.
+  - species-rodentia-pro-cheek-pouch
+  - species-rodentia-pro-hide-under-tables
   special:
-  - Помещаются в вещмешки.
-  - Может рыться в мусоропроводах, из которых иногда можно выкопать еду.
+  - species-rodentia-special-fit-in-duffel
+  - species-rodentia-special-trash-foraging
   cons:
-  - Получает на 15% больше тупого, режущего и колющего урона.
-  - Мышеловки всегда срабатывают.
-  - Голодают на 33% быстрее.
+  - species-rodentia-con-physical-vulnerable
+  - species-rodentia-con-mousetraps
+  - species-rodentia-con-hunger-faster
   # Orion-End
   # begin Goobstation: port EE height/width sliders
   sizeRatio: 1.1 # i don't know WHY, but disproportionate rodentia always look weird.

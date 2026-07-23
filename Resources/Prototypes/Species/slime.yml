@@ -18,20 +18,20 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/SlimePerson.xml"
   pros:
-  - Получают на 40% меньше урона от ушибов и на 20% меньше от ядов.
-  - Способны прожить в условиях вакуума дольше чем человек.
-  - Обладают встроенным хранилищем внутри себя.
-  - Могут переваривать одновременно 6 реагентов.
+  - species-slime-pro-blunt-poison-resist
+  - species-slime-pro-vacuum-survival
+  - species-slime-pro-internal-storage
+  - species-slime-pro-reagent-digest
   special:
-  - Быстрее пьянеют.
-  - Дышат реже человека в 5 раз, следовательно получают по 0.2 урона удушьем.
-  - Скорость метаболизма - 0.13 единиц. Это означает, что у них всё усваивается медленней, чем у человека.
-  - Дышат азотом (N2) и выдыхают его оксид (N2O).
-  - Слизь слаймолюда не восстанавливается железом. Тем не менее, слизь является умеренно питательным источником пищи для других существ, но пить кровь своих товарищей по команде обычно считается неприемлемым.
+  - species-slime-special-alcohol-sensitivity
+  - species-slime-special-infrequent-breathe
+  - species-slime-special-slow-metabolism
+  - species-slime-special-n2-breathe
+  - species-slime-special-slime-blood
   cons:
-  - Получают на 50% больше урона холодоми и на 20% больше от порезов и уколов.
-  - При контакте с водой получает 12 термического урона. Инъекции, питьё воды, хождение по лужам, вдыхание водяного пара - не наносят урон.
-  - Получают повышенный урон от давления.
+  - species-slime-con-cold-slash-pierce-vulnerable
+  - species-slime-con-water-vulnerable
+  - species-slime-con-pressure-vulnerable
   # Orion-End
 
 # Amour port: WD Slim body types START

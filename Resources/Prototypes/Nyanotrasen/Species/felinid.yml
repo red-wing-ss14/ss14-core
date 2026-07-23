@@ -1,4 +1,4 @@
-﻿# SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 Rank #1 Jonestown partygoer <mary@thughunt.ing>
 # SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
@@ -34,13 +34,13 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Felinid.xml"
   pros:
-  - Нейтрализуют 99% урона от падения, или удара об что-то.
+  - species-felinid-pro-fall-damage
   special:
-  - Не издают звуков ходьбы, если не носят обуви.
-  - Отхаркивают комок шерсти.
-  - Могут обрыгаться, при удержании.
+  - species-felinid-special-silent-footsteps
+  - species-felinid-special-hairball
+  - species-felinid-special-puke-on-grab
   cons:
-  - Стамина меньше на 25%, чем у человека.
+  - species-felinid-con-stamina
   # Orion-End
 
 - type: markingPoints

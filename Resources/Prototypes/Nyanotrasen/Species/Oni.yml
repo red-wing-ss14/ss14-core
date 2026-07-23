@@ -20,17 +20,17 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Oni.xml"
   pros:
-  - Получают на 15% меньше тупого, колющего и режущего урона.
-  - Наносят на 25% больше тупого, режущего, колющего, стамины, и структурного урона в ближнем бою.
-  - Могут с лёгкостью тянуть другие расы и предметы, по сравнению с человеком.
-  - Получают на 10% меньше урона от холода.
-  - Получают на 20% меньше урона от огня и тепла.
+  - species-oni-pro-damage-resist
+  - species-oni-pro-melee-damage
+  - species-oni-pro-strong-pull
+  - species-oni-pro-cold-resist
+  - species-oni-pro-fire-resist
   special:
-  - Они больше чем люди, из-за чего по ним легче попасть.
-  - Могут есть многие продукты даже сырыми.
+  - species-oni-special-large-target
+  - species-oni-special-raw-food
   cons:
-  - Они не способны метко стрелять ни из какого оружия.
-  - Получают на 50% больше урона от святого оружия и источников.
+  - species-oni-con-ranged-accuracy
+  - species-oni-con-holy-vulnerable
   # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 1.0 # RW 1.11 > 1.0

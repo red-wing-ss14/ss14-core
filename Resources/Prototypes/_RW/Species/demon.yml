@@ -20,12 +20,12 @@
   defaultWidth: 1
   maxWidth: 1.10
   pros:
-  - Получают на 80% меньше урона от огня и тепла.
-  - Получают на 20% меньше тупого, режущего и колющего урона.
-  - Получают на 20% меньше урона от холода.
-  - Наносят колющий урон безоружными атаками.
+  - species-demon-pro-fire-resist
+  - species-demon-pro-physical-resist
+  - species-demon-pro-cold-resist
+  - species-demon-pro-piercing-unarmed
   cons:
-  - Получают на 50% больше урона от святого оружия и источников.
+  - species-demon-con-holy-vulnerable
 
 - type: bodyType
   id: DemonNormal

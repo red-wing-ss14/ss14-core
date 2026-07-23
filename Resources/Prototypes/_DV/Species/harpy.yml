@@ -17,16 +17,16 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Harpy.xml"
   pros:
-  - Могут летать на своих крыльях.
-  - Бегают на 10% быстрее, чем человек.
-  - Умеют петь, без инструментов.
-  - Умеют имитировать чужие голоса.
-  - Не могут порезаться об стекло и активировать мины с мышеловками своими ногами.
+  - species-harpy-pro-fly
+  - species-harpy-pro-run-speed
+  - species-harpy-pro-singing
+  - species-harpy-pro-voice-mimic
+  - species-harpy-pro-glass-traps-immune
   special:
-  - Дышат в 3 раза чаще, чем человек.
+  - species-harpy-special-frequent-breathe
   cons:
-  - Получают на 15% больше тупого урона.
-  - Не могут с лёгкостью тянуть другие расы и предметы, по сравнению с человеком.
+  - species-harpy-con-blunt-vulnerable
+  - species-harpy-con-weak-pull
   # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 0.80

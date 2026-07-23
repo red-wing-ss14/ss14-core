@@ -21,13 +21,13 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Reptilian.xml"
   pros:
-  - Имеют большую толерантность к боли.
-  - Могут таскать предметы хвостом.
+  - species-reptilian-pro-pain-tolerance
+  - species-reptilian-pro-tail-drag
   special:
-  - Имеют отличимый от других рас порог температуры. При низкой температуре получают 0.1 холода в секунду. При высокой температуре получают 1.5 ожогов в секунду.
-  - Имеет животный желудок.
+  - species-reptilian-special-temperature-threshold
+  - species-reptilian-special-animal-stomach
   cons:
-  - На 30% чувствительнее к холоду, чем человек.
+  - species-reptilian-con-cold-sensitivity
   # Orion-End
 
 # Amour port: WD Slim body types START

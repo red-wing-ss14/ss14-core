@@ -16,13 +16,13 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Dwarf.xml"
   pros:
-  - Обладают врождённой чувствительностью к наличию рудоносных жил в радиусе 3х метров.
-  - Этанол лечит на 0.66 уколов и ушибов и на 0.68 порезов, при наличии менее 5 единиц в организме.
+  - species-dwarf-pro-ore-sense
+  - species-dwarf-pro-ethanol-heal
   special:
-  - Желудок вмещает 75 единиц веществ.
-  - Не может быть вызвана рвота от алкоголя.
+  - species-dwarf-special-stomach-capacity
+  - species-dwarf-special-no-vomit
   cons:
-  - Дышат чаще в 2 раза, следовательно без воздуха получают по 2 урона удушьем.
+  - species-dwarf-con-frequent-breathe
   # Orion-End
   # begin Goobstation: port EE height/width sliders
   sizeRatio: 1
