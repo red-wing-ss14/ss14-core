@@ -30,13 +30,17 @@ public sealed class EmojiPickerButton : ChatPopupButton<EmojiPickerPopup>
     {
         var globalPos = GlobalPosition;
         var rootSize = _uiManager.RootControl.Size;
-        var maxX = Math.Max(0, rootSize.X - EmojiPickerPopup.PopupWidth);
-        var x = Math.Clamp(globalPos.X, 0, maxX);
-        var y = Math.Max(0, globalPos.Y - EmojiPickerPopup.PopupHeight - PopupMargin);
+        var popupWidth = Popup.CustomWidth;
+        var popupHeight = EmojiPickerPopup.PopupHeight;
+
+        var preferredX = globalPos.X + Size.X - popupWidth;
+        var maxX = Math.Max(0f, rootSize.X - popupWidth);
+        var x = Math.Clamp(preferredX, 0f, maxX);
+        var y = Math.Max(0f, globalPos.Y - popupHeight - PopupMargin);
 
         return UIBox2.FromDimensions(
             new Vector2(x, y),
-            new Vector2(EmojiPickerPopup.PopupWidth, EmojiPickerPopup.PopupHeight));
+            new Vector2(popupWidth, popupHeight));
     }
 
     public void SetAvailable(bool available)

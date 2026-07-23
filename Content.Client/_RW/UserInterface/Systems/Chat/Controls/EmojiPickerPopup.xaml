@@ -21,10 +21,17 @@
                 SeparationOverride="6"
                 HorizontalExpand="True"
                 VerticalExpand="True">
-                <Label
-                    Name="HeaderLabel"
-                    Margin="4 0"
-                    StyleClasses="LabelHeading" />
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Label
+                        Name="HeaderLabel"
+                        Margin="4 0"
+                        HorizontalExpand="True"
+                        StyleClasses="LabelHeading" />
+                    <TextureButton
+                        Name="CloseButton"
+                        StyleClasses="windowCloseButton"
+                        VerticalAlignment="Center" />
+                </BoxContainer>
                 <ScrollContainer
                     HorizontalExpand="True"
                     VerticalExpand="True"
@@ -33,7 +40,7 @@
                     <PanelContainer HorizontalExpand="True" StyleClasses="Inset">
                         <GridContainer
                             Name="EmojiGrid"
-                            Columns="10"
+                            Columns="9"
                             HSeparationOverride="6"
                             VSeparationOverride="8"
                             Margin="8 8 8 8" />
