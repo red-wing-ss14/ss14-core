@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -14,4 +15,7 @@ public sealed partial class ChatCustomEmojiPrototype : IPrototype
 
     [DataField]
     public string? State;
+
+    [DataField]
+    public List<string>? Tags;
 }

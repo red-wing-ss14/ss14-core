@@ -21,12 +21,16 @@
                 SeparationOverride="6"
                 HorizontalExpand="True"
                 VerticalExpand="True">
-                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="6">
                     <Label
                         Name="HeaderLabel"
                         Margin="4 0"
-                        HorizontalExpand="True"
+                        VerticalAlignment="Center"
                         StyleClasses="LabelHeading" />
+                    <LineEdit
+                        Name="SearchLineEdit"
+                        HorizontalExpand="True"
+                        Margin="4 0" />
                     <TextureButton
                         Name="CloseButton"
                         StyleClasses="windowCloseButton"

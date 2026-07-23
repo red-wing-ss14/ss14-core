@@ -10,3 +10,6 @@ hud-chatbox-emoji-category-travel = Travel
 hud-chatbox-emoji-category-objects = Objects
 hud-chatbox-emoji-category-symbols = Symbols
 hud-chatbox-emoji-category-flags = Flags
+hud-chatbox-emoji-search-placeholder = Search emoji...
+hud-chatbox-emoji-search-results = Search results
+hud-chatbox-emoji-search-no-results = No emojis found

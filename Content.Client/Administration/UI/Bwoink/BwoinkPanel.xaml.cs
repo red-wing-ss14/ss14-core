@@ -141,7 +141,7 @@ namespace Content.Client.Administration.UI.Bwoink
 
             var formatted = new FormattedMessage(1);
             formatted.AddMarkupOrThrow($"[color=gray]{message.SentAt.ToShortTimeString()}[/color] {processedText}"); // RW
-            TextOutput.AddMessage(formatted);
+            TextOutput.AddMessage(formatted, tagsAllowed: null); // RW
             LastMessage = message.SentAt;
         }
 

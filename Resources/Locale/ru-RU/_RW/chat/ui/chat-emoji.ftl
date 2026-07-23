@@ -10,3 +10,6 @@ hud-chatbox-emoji-category-travel = Транспорт
 hud-chatbox-emoji-category-objects = Предметы
 hud-chatbox-emoji-category-symbols = Символы
 hud-chatbox-emoji-category-flags = Флаги
+hud-chatbox-emoji-search-placeholder = Поиск эмодзи...
+hud-chatbox-emoji-search-results = Результаты поиска
+hud-chatbox-emoji-search-no-results = Ничего не найдено

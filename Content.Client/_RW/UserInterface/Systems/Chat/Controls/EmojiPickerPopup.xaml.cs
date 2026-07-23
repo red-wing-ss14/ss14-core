@@ -60,6 +60,9 @@ public sealed partial class EmojiPickerPopup : Popup
 
         CloseButton.OnPressed += _ => Close();
         OnPopupOpen += OnPopupOpened;
+        SearchLineEdit.PlaceHolder = Loc.GetString("hud-chatbox-emoji-search-placeholder");
+        SearchLineEdit.OnTextChanged += OnSearchTextChanged;
+
         RebuildCategoryButtons();
         _selectedCategory = GetDefaultCategory();
         SelectCategory(_selectedCategory);
@@ -67,6 +70,11 @@ public sealed partial class EmojiPickerPopup : Popup
 
     private void SelectCategory(ChatEmojiCategory category)
     {
+        if (!string.IsNullOrEmpty(SearchLineEdit.Text))
+        {
+            SearchLineEdit.SetText(string.Empty, false);
+        }
+
         if (!_categoryButtons.ContainsKey(category))
             category = GetDefaultCategory();
 
@@ -97,8 +105,52 @@ public sealed partial class EmojiPickerPopup : Popup
         }
     }
 
+    private void OnSearchTextChanged(LineEdit.LineEditEventArgs args)
+    {
+        var query = args.Text;
+        if (string.IsNullOrWhiteSpace(query))
+        {
+            SelectCategory(_selectedCategory);
+            return;
+        }
+
+        HeaderLabel.Text = Loc.GetString("hud-chatbox-emoji-search-results");
+        PreviewLabel.SetMessage(
+            FormattedMessage.FromUnformatted(Loc.GetString("hud-chatbox-emoji-preview-empty")));
+
+        EmojiGrid.DisposeAllChildren();
+
+        var count = 0;
+        foreach (var emoji in ChatEmoji.EnumerateAll(_prototypeManager))
+        {
+            if (!ChatEmoji.MatchesSearch(emoji, query, _prototypeManager))
+                continue;
+
+            count++;
+            var emojiButton = new Button
+            {
+                MinSize = new Vector2(EmojiButtonSize),
+                ToolTip = $":{emoji.Alias}:",
+                StyleClasses = { StyleClass.ButtonSquare }
+            };
+
+            emojiButton.AddChild(ChatEmojiRichText.CreatePickerTextureRect(_resourceCache, emoji));
+            emojiButton.OnPressed += _ => OnEmojiPicked?.Invoke(emoji.InsertText);
+            emojiButton.OnMouseEntered += _ => PreviewLabel.SetMessage(
+                ChatEmojiRichText.BuildPreviewMessage(emoji));
+            EmojiGrid.AddChild(emojiButton);
+        }
+
+        if (count == 0)
+        {
+            PreviewLabel.SetMessage(
+                FormattedMessage.FromUnformatted(Loc.GetString("hud-chatbox-emoji-search-no-results")));
+        }
+    }
+
     private void OnPopupOpened()
     {
+        SearchLineEdit.SetText(string.Empty, false);
         RebuildCategoryButtons();
 
         if (!_categoryButtons.ContainsKey(_selectedCategory))

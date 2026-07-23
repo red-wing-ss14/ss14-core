@@ -87,14 +87,14 @@ public static class ChatEmojiRichText
         IResourceCache resourceCache,
         ChatEmojiDefinition emoji)
     {
-        return CreateTextureRect(resourceCache, emoji, 5f / 18f, 25f, new Thickness(1f, 2f));
+        return CreateTextureRect(resourceCache, emoji, 24f, 25f, new Thickness(1f, 2f));
     }
 
     public static TextureRect CreatePickerTextureRect(
         IResourceCache resourceCache,
         ChatEmojiDefinition emoji)
     {
-        return CreateTextureRect(resourceCache, emoji, 1f / 3f, 24f, new Thickness(3f));
+        return CreateTextureRect(resourceCache, emoji, 32f, 24f, new Thickness(2f));
     }
 
     public static TextureRect CreateCategoryTextureRect(
@@ -108,7 +108,7 @@ public static class ChatEmojiRichText
         IResourceCache resourceCache,
         ChatEmojiDefinition emoji)
     {
-        return CreateTextureRect(resourceCache, emoji, 11f / 36f, 22f, new Thickness(1f));
+        return CreateTextureRect(resourceCache, emoji, 24f, 22f, new Thickness(1f));
     }
 
     public static FormattedMessage BuildPreviewMessage(ChatEmojiDefinition emoji)
@@ -124,14 +124,18 @@ public static class ChatEmojiRichText
     private static TextureRect CreateTextureRect(
         IResourceCache resourceCache,
         ChatEmojiDefinition emoji,
-        float textureScale,
+        float targetSize,
         float minSize,
         Thickness margin)
     {
+        var texture = ResolveTexture(resourceCache, emoji);
+        var maxDimension = MathF.Max(texture.Width, texture.Height);
+        var scale = maxDimension > 0 ? targetSize / maxDimension : 1f;
+
         return new TextureRect
         {
-            Texture = ResolveTexture(resourceCache, emoji),
-            TextureScale = new Vector2(textureScale),
+            Texture = texture,
+            TextureScale = new Vector2(scale),
             Stretch = TextureRect.StretchMode.KeepCentered,
             HorizontalAlignment = Control.HAlignment.Center,
             VerticalAlignment = Control.VAlignment.Center,
