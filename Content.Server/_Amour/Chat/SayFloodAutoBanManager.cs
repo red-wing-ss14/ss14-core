@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Sockets;
 using System.Threading.Tasks;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
@@ -69,27 +67,12 @@ public sealed class SayFloodAutoBanManager
         {
             var banningAdmin = await ResolveBanningAdminAsync();
 
-            (IPAddress, int)? targetIp = null;
-            ImmutableTypedHwid? targetHwid = null;
-
-            var sessionData = await _locator.LookupIdAsync(player.UserId);
-            if (sessionData != null)
-            {
-                if (sessionData.LastAddress is not null)
-                {
-                    var prefix = sessionData.LastAddress.AddressFamily == AddressFamily.InterNetwork ? 32 : 64;
-                    targetIp = (sessionData.LastAddress, prefix);
-                }
-
-                targetHwid = sessionData.LastHWId;
-            }
-
             _banManager.CreateServerBan(
                 player.UserId,
                 player.Name,
                 banningAdmin,
-                targetIp,
-                targetHwid,
+                null,
+                null,
                 null,
                 NoteSeverity.High,
                 BanReason);
