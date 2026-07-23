@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 # Arachnid
 species-arachnid-pro-web = Do not receive movement debuffs from cobwebs.
 species-arachnid-special-silk = Can produce silk in exchange for hunger.
