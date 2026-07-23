@@ -190,6 +190,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_syndicate.rsi
+  - type: Airlock # RW
+    openUnlitVisible: false # RW
 
 # Glass
 - type: entity

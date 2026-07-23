@@ -45,7 +45,7 @@
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: Machine # Orion
-    board: SmartFridgeMachineCircuitboard
+    board: SmartFridgeCircuitboard
   - type: ExtensionCableReceiver
   - type: SmartFridge
     whitelist:
