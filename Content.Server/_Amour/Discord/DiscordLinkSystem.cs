@@ -32,7 +32,13 @@ public sealed class DiscordLinkSystem : EntitySystem
         _net.RegisterNetMessage<DiscordLinkStatusMsg>();
 
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
+        _userDb.AddOnLoadPlayer(LoadDataAsync);
         _userDb.AddOnFinishLoad(OnPlayerLoaded);
+    }
+
+    private async Task LoadDataAsync(ICommonSession session, CancellationToken cancel)
+    {
+        await _discordLinkChecker.IsDiscordLinkedAsync(session);
     }
 
     public override void Shutdown()
