@@ -143,11 +143,8 @@ namespace Content.Server.GameTicking
             var character = GetPlayerProfile(player);
 
             var jobBans = _banManager.GetJobBans(player.UserId);
-            if (jobBans != null && jobId != null && jobBans.Contains(jobId)) // RW
-            {
-                _chatManager.DispatchServerMessage(player, Loc.GetString("role-ban")); // RW
+            if (jobBans == null || jobId != null && jobBans.Contains(jobId)) //TODO: use IsRoleBanned directly?
                 return;
-            }
 
             if (jobId != null)
             {
@@ -155,10 +152,7 @@ namespace Content.Server.GameTicking
                 var ev = new IsRoleAllowedEvent(player, jobs, null);
                 RaiseLocalEvent(ref ev);
                 if (ev.Cancelled)
-                {
-                    _chatManager.DispatchServerMessage(player, Loc.GetString("game-ticker-player-no-jobs-available-when-joining")); // RW
                     return;
-                }
             }
 
             SpawnPlayer(player, character, station, jobId, lateJoin, silent);
