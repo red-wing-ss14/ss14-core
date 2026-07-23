@@ -60,12 +60,9 @@ public sealed class DiscordLinkChecker : IDiscordLinkChecker
     {
         if (_linkCache.TryGetValue(userId, out var cached))
         {
-            var age = DateTime.UtcNow - cached.LastCheck;
-            if (age < _cacheExpiry)
-            {
-                return cached.IsLinked;
-            }
+            return cached.IsLinked;
         }
+
         return false;
     }
 
