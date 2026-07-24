@@ -21,17 +21,35 @@ public sealed class BankSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("economy-bank");
+    private readonly Dictionary<string, EntityUid> _accountsById = new(StringComparer.OrdinalIgnoreCase); // RW
 
     public override void Initialize()
     {
         SubscribeLocalEvent<StationAccountComponent, ComponentStartup>(OnAccountStartup);
+        SubscribeLocalEvent<StationAccountComponent, ComponentShutdown>(OnAccountShutdown); // RW
     }
 
     private void OnAccountStartup(Entity<StationAccountComponent> ent, ref ComponentStartup args)
     {
         if (TryComp<MindComponent>(ent, out var mind) && !string.IsNullOrWhiteSpace(mind.CharacterName))
             ent.Comp.OwnerName = mind.CharacterName;
+
+        // RW start
+        if (!string.IsNullOrWhiteSpace(ent.Comp.AccountId))
+            _accountsById[ent.Comp.AccountId] = ent.Owner;
+        // RW end
     }
+
+    // RW start
+    private void OnAccountShutdown(Entity<StationAccountComponent> ent, ref ComponentShutdown args)
+    {
+        if (!string.IsNullOrWhiteSpace(ent.Comp.AccountId) &&
+            _accountsById.TryGetValue(ent.Comp.AccountId, out var cachedUid) && cachedUid == ent.Owner)
+        {
+            _accountsById.Remove(ent.Comp.AccountId);
+        }
+    }
+    // RW end
 
     public StationAccountComponent EnsurePlayerAccount(EntityUid mindUid, MindComponent? mind = null)
     {
@@ -39,6 +57,11 @@ public sealed class BankSystem : EntitySystem
 
         if (!IsValidAccountId(account.AccountId))
             account.AccountId = GenerateUniqueAccountId();
+
+        // RW start
+        if (!string.IsNullOrWhiteSpace(account.AccountId))
+            _accountsById[account.AccountId] = mindUid;
+        // RW end
 
         if (Resolve(mindUid, ref mind, false) && !string.IsNullOrWhiteSpace(mind.CharacterName) && account.OwnerName != mind.CharacterName)
             account.OwnerName = mind.CharacterName;
@@ -88,12 +111,33 @@ public sealed class BankSystem : EntitySystem
 
     public bool TryFindAccountById(string accountId, out Entity<StationAccountComponent> account)
     {
+        // RW start
+        if (string.IsNullOrWhiteSpace(accountId))
+        {
+            account = default;
+            return false;
+        }
+
+        if (_accountsById.TryGetValue(accountId, out var cachedUid))
+        {
+            if (TryComp<StationAccountComponent>(cachedUid, out var cachedAccount) &&
+                string.Equals(cachedAccount.AccountId, accountId, StringComparison.OrdinalIgnoreCase))
+            {
+                account = (cachedUid, cachedAccount);
+                return true;
+            }
+
+            _accountsById.Remove(accountId);
+        }
+        // RW end
+
         var query = EntityQueryEnumerator<StationAccountComponent>();
         while (query.MoveNext(out var uid, out var acc))
         {
             if (!string.Equals(acc.AccountId, accountId, StringComparison.OrdinalIgnoreCase))
                 continue;
 
+            _accountsById[accountId] = uid; // RW
             account = (uid, acc);
             return true;
         }

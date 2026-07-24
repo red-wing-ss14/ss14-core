@@ -71,6 +71,11 @@ public sealed class MoodSystem : EntitySystem
         SubscribeLocalEvent<RoleRemovedEvent>(OnRoleRemoved);
     }
 
+    // RW start
+    private float _sanityUpdateAccumulator;
+    private static readonly float SanityUpdateInterval = 1.0f;
+    // RW end
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -78,13 +83,22 @@ public sealed class MoodSystem : EntitySystem
         if (!_config.GetCVar(CCVars.MoodEnabled))
             return;
 
+        // RW start
+        _sanityUpdateAccumulator += frameTime;
+        if (_sanityUpdateAccumulator < SanityUpdateInterval)
+            return;
+
+        var elapsed = _sanityUpdateAccumulator;
+        _sanityUpdateAccumulator = 0f;
+        // RW end
+
         var query = EntityQueryEnumerator<MoodComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var mood, out var mobState))
         {
             if (mobState.CurrentState == MobState.Dead)
                 continue;
 
-            ProcessSanity(uid, mood, frameTime);
+            ProcessSanity(uid, mood, elapsed); // RW
         }
     }
 

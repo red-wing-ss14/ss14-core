@@ -37,9 +37,20 @@ public sealed class DisgustSystem : EntitySystem
         UpdateAlert(ent);
     }
 
+    private float _updateAccumulator; // RW
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // RW start
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < 1.0f)
+            return;
+
+        var elapsed = _updateAccumulator;
+        _updateAccumulator = 0f;
+        // RW end
 
         var siliconQuery = GetEntityQuery<SiliconComponent>();
         var godmodeQuery = GetEntityQuery<GodmodeComponent>();
@@ -47,7 +58,7 @@ public sealed class DisgustSystem : EntitySystem
         var query = EntityQueryEnumerator<DisgustComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var disgust, out var mobstete))
         {
-            disgust.Accumulator += frameTime;
+            disgust.Accumulator += elapsed;
 
             if (disgust.Accumulator < disgust.UpdateTime)
                 continue;

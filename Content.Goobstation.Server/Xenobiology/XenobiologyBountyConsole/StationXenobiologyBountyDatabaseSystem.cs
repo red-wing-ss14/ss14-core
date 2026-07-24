@@ -35,9 +35,19 @@ public sealed class StationXenobiologyBountyDatabaseSystem : EntitySystem
         FillBountyDatabase(database.AsNullable());
     }
 
+    private float _accumulator; // RW
+
     public override void Update(float frametime)
     {
         base.Update(frametime);
+
+        // RW start
+        _accumulator += frametime;
+        if (_accumulator < 1.0f)
+            return;
+
+        _accumulator -= 1.0f;
+        // RW end
 
         var query = EntityQueryEnumerator<StationXenobiologyBountyDatabaseComponent>();
         while (query.MoveNext(out var uid, out var db))

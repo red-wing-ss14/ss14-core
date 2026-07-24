@@ -18,9 +18,19 @@ public sealed class RadCollectorSignalSystem : EntitySystem
     public static readonly ProtoId<SourcePortPrototype> LowPort = "RadLow";
     public static readonly ProtoId<SourcePortPrototype> FullPort = "RadFull";
 
+    private float _accumulator; // RW
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // RW start
+        _accumulator += frameTime;
+        if (_accumulator < 1.0f)
+            return;
+
+        _accumulator -= 1.0f;
+        // RW end
 
         var query = EntityQueryEnumerator<RadCollectorSignalComponent>();
         while (query.MoveNext(out var uid, out var comp))

@@ -16,9 +16,19 @@ public sealed class KillOnOverheatSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mob = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
+    private float _accumulator; // RW
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // RW start
+        _accumulator += frameTime;
+        if (_accumulator < 1.0f)
+            return;
+
+        _accumulator -= 1.0f;
+        // RW end
 
         var query = EntityQueryEnumerator<KillOnOverheatComponent, TemperatureComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var comp, out var temp, out var mob))

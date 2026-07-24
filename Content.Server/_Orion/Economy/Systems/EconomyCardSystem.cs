@@ -39,7 +39,12 @@ public sealed class EconomyCardSystem : EntitySystem
     private static readonly ProtoId<StackPrototype> CreditStackId = "Credit";
 
     private float _uiRefreshAccumulator;
+    // RW start
+    private float _stationSyncAccumulator;
+    private static readonly float StationSyncInterval = 10.0f;
+    // RW end
     private readonly Dictionary<EntityUid, string> _openUiAccounts = new();
+    private readonly List<EntityUid> _closedUis = new(); // RW
 
     public override void Initialize()
     {
@@ -62,19 +67,27 @@ public sealed class EconomyCardSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // RW start
+        _stationSyncAccumulator += frameTime;
+        if (_stationSyncAccumulator >= StationSyncInterval)
+        {
+            _stationSyncAccumulator -= StationSyncInterval;
+            SyncAccountsOwningStations();
+        }
+        // RW end
+
         _uiRefreshAccumulator += frameTime;
         if (_uiRefreshAccumulator < 1f)
             return;
 
-        _uiRefreshAccumulator = 0f;
-        SyncAccountsOwningStations();
+        _uiRefreshAccumulator -= 1f; // RW
 
-        var closedUis = new List<EntityUid>();
+        _closedUis.Clear(); // RW
         foreach (var (uid, accountId) in _openUiAccounts)
         {
             if (!_ui.IsUiOpen(uid, EconomyCardUiKey.Key))
             {
-                closedUis.Add(uid);
+                _closedUis.Add(uid); // RW
                 continue;
             }
 
@@ -87,7 +100,7 @@ public sealed class EconomyCardSystem : EntitySystem
             _ui.SetUiState(uid, EconomyCardUiKey.Key, new EconomyCardBoundUiState(accountId, account.Comp.Balance));
         }
 
-        foreach (var uid in closedUis)
+        foreach (var uid in _closedUis) // RW
         {
             _openUiAccounts.Remove(uid);
         }

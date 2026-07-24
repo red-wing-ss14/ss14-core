@@ -60,21 +60,22 @@ public sealed class DormNotifier : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRestartCleanup);
     }
 
-    private int _clock;
+    private float _updateAccumulator; // RW
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        if (!_enabled || _frequency <= 0)
+        if (!_enabled)
             return;
 
-        if (_clock <= _frequency)
-        {
-            _clock++;
+        // RW start
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < 1.0f)
             return;
-        }
 
-        _clock = 0;
+        _updateAccumulator -= 1.0f;
+        // RW end
         Check();
     }
 

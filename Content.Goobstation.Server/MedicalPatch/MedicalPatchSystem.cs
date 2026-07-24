@@ -30,6 +30,8 @@ public sealed class MedicalPatchSystem : EntitySystem
         SubscribeLocalEvent<MedicalPatchComponent, EntityUnstuckEvent>(OnUnstuck);
         SubscribeLocalEvent<MedicalPatchComponent, EntityStuckEvent>(OnStuck);
     }
+    private float _updateAccumulator; // RW
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -37,16 +39,23 @@ public sealed class MedicalPatchSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        foreach (var comp in EntityManager.EntityQuery<MedicalPatchComponent>())
+        // RW start
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < 1.0f)
+            return;
+
+        _updateAccumulator -= 1.0f;
+
+        var query = EntityQueryEnumerator<MedicalPatchComponent, StickyComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var stickycomp))
+        // RW end
         {
             if (_timing.CurTime < comp.NextUpdate)
                 continue;
-            var uid = comp.Owner; // TODO update thsi to the
 
-            if (!TryComp<StickyComponent>(uid, out var stickycomp))
-                continue;
             if (stickycomp.StuckTo == null)
                 continue;
+
             comp.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(comp.UpdateTime);
 
             Cycle(uid, comp);

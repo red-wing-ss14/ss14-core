@@ -32,9 +32,19 @@ public sealed class RandomIntervalSoundSystem : EntitySystem
             ent.Comp.NextSound = _timing.CurTime + GetInterval(ent.Comp);
     }
 
+    private float _accumulator; // RW
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // RW start
+        _accumulator += frameTime;
+        if (_accumulator < 1.0f)
+            return;
+
+        _accumulator -= 1.0f;
+        // RW end
 
         var now = _timing.CurTime;
         var query = EntityQueryEnumerator<RandomIntervalSoundComponent>();

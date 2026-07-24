@@ -13,9 +13,20 @@ public sealed class SecondSkinSystem : SharedSecondSkinSystem
 {
     [Dependency] private readonly DamageableSystem _dmg = default!;
 
+    private float _updateAccumulator; // RW
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // RW start
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < 1.0f)
+            return;
+
+        var elapsed = _updateAccumulator;
+        _updateAccumulator = 0f;
+        // RW end
 
         var siliconQuery = GetEntityQuery<SiliconComponent>();
         var userQuery = GetEntityQuery<SecondSkinUserComponent>();
@@ -28,7 +39,7 @@ public sealed class SecondSkinSystem : SharedSecondSkinSystem
             if (skin.User == null)
                 continue;
 
-            skin.Accumulator += frameTime;
+            skin.Accumulator += elapsed;
 
             if (skin.Accumulator < skin.UpdateTime)
                 continue;

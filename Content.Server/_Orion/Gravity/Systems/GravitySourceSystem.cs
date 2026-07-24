@@ -20,9 +20,19 @@ public sealed class GravitySourceSystem : EntitySystem
         SubscribeLocalEvent<GravitySourceComponent, ComponentShutdown>(OnShutdown);
     }
 
+    private float _gravityUpdateAccumulator; // RW
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // RW start
+        _gravityUpdateAccumulator += frameTime;
+        if (_gravityUpdateAccumulator < 0.25f)
+            return;
+
+        _gravityUpdateAccumulator -= 0.25f;
+        // RW end
 
         var query = EntityQueryEnumerator<GravitySourceComponent, ApcComponent, PowerNetworkBatteryComponent, TransformComponent>();
         while (query.MoveNext(out _, out var gravitySource, out var apc, out var battery, out var xform))

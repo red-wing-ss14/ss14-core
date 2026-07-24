@@ -43,9 +43,19 @@ public sealed class BitrunningObjectiveSystem : EntitySystem
         SubscribeLocalEvent<AvatarConnectionComponent, FishCaughtEvent>(OnFishCaught);
     }
 
+    private float _accumulator; // RW
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // RW start
+        _accumulator += frameTime;
+        if (_accumulator < 1.0f)
+            return;
+
+        _accumulator -= 1.0f;
+        // RW end
 
         var servers = EntityQueryEnumerator<QuantumServerComponent>();
         while (servers.MoveNext(out var serverUid, out var server))

@@ -147,8 +147,18 @@ public sealed class NtrTaskSystem : EntitySystem
     #endregion
 
     #region Task Lifecycle
+    private float _updateAccumulator; // RW
+
     public override void Update(float frameTime)
     {
+        // RW start
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < 1.0f)
+            return;
+
+        _updateAccumulator -= 1.0f;
+        // RW end
+
         var query = EntityQueryEnumerator<NtrTaskDatabaseComponent>();
         while (query.MoveNext(out var uid, out var db))
         {

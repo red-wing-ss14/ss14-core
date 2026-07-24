@@ -75,6 +75,14 @@ public sealed class SupermatterConsoleSystem : SharedSupermatterConsoleSystem
     {
         base.Update(frameTime);
 
+        // RW start
+        _updateTimer += frameTime;
+        if (_updateTimer < UpdateTime)
+            return;
+
+        _updateTimer -= UpdateTime;
+        // RW end
+
         // Keep a list of UI entries for each gridUid, in case multiple consoles stand on the same grid
         var supermatterEntriesForEachGrid = new Dictionary<EntityUid, SupermatterConsoleEntry[]>();
 

@@ -37,8 +37,19 @@ public sealed partial class VirologyMachinesSystem : EntitySystem
         SubscribeLocalEvent<VirologyMachineComponent, GetVerbsEvent<AlternativeVerb>>(AddAltVerb);
     }
 
+    private float _updateAccumulator; // RW
+
     public override void Update(float frameTime)
     {
+        // RW start
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < 1.0f)
+            return;
+
+        var elapsed = _updateAccumulator;
+        _updateAccumulator = 0f;
+        // RW end
+
         var query = EntityQueryEnumerator<ActiveVirologyMachineComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -55,7 +66,7 @@ public sealed partial class VirologyMachinesSystem : EntitySystem
             if (!_power.IsPowered(uid))
             {
                 SetAppearance(uid, false);
-                comp.EndTime += TimeSpan.FromSeconds(frameTime);
+                comp.EndTime += TimeSpan.FromSeconds(elapsed);
                 continue;
             }
 

@@ -118,21 +118,34 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
         UpdateUiState(ent);
     }
 
+    // RW start
+    private float _borerUpdateAccumulator;
+    private static readonly float BorerUpdateInterval = 1.0f;
+    // RW end
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        foreach (var comp in EntityManager.EntityQuery<CorticalBorerComponent>())
+        // RW start
+        _borerUpdateAccumulator += frameTime;
+        if (_borerUpdateAccumulator < BorerUpdateInterval)
+            return;
+
+        _borerUpdateAccumulator -= BorerUpdateInterval;
+
+        var borerQuery = EntityQueryEnumerator<CorticalBorerComponent>();
+        while (borerQuery.MoveNext(out var uid, out var comp))
+        // RW end
         {
             if (_timing.CurTime < comp.UpdateTimer)
                 continue;
 
             comp.UpdateTimer = _timing.CurTime + TimeSpan.FromSeconds(comp.UpdateCooldown);
 
-#pragma warning disable CS0618
-             if (!comp.Host.HasValue)
+            if (!comp.Host.HasValue)
             {
-                _alerts.ClearAlert(comp.Owner, comp.SugarAlert);
+                _alerts.ClearAlert(uid, comp.SugarAlert);
                 continue;
             }
 
@@ -141,23 +154,23 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
             if (comp.WillingHosts.Contains(comp.Host.Value))
                 chemicalGeneration = (int) MathF.Ceiling(chemicalGeneration * comp.WillingHostChemicalGenerationMultiplier);
 
-            UpdateChemicals((comp.Owner, comp), chemicalGeneration);
-            _damageable.TryChangeDamage(comp.Owner, comp.HealingDamage); // Heal borer
+            UpdateChemicals((uid, comp), chemicalGeneration);
+            _damageable.TryChangeDamage(uid, comp.HealingDamage); // Heal borer
 
             if (HasBorerProtection(comp.Host.Value))
-                _alerts.ShowAlert(comp.Owner, comp.SugarAlert);
+                _alerts.ShowAlert(uid, comp.SugarAlert);
             else
-                _alerts.ClearAlert(comp.Owner, comp.SugarAlert);
-#pragma warning restore CS0618
+                _alerts.ClearAlert(uid, comp.SugarAlert);
         }
 
-        foreach (var comp in EntityManager.EntityQuery<CorticalBorerInfestedComponent>())
+        // RW start
+        var infestedQuery = EntityQueryEnumerator<CorticalBorerInfestedComponent>();
+        while (infestedQuery.MoveNext(out var uid, out var comp))
         {
-#pragma warning disable CS0618
             if (_timing.CurTime >= comp.ControlTimeEnd)
-                EndControl((comp.Owner, comp));
-#pragma warning restore CS0618
+                EndControl((uid, comp));
         }
+        // RW end
     }
 
     private static void OnSpeakEvent(Entity<CorticalBorerComponent> ent, ref CheckTargetedSpeechEvent args)
