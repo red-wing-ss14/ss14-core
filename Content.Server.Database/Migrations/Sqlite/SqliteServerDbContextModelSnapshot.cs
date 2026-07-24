@@ -1320,19 +1320,9 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("REAL")
                         .HasColumnName("height");
 
-                    b.Property<string>("LinksFlavorText")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("links_flavor_text");
-
                     b.Property<byte[]>("Markings")
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
-
-                    b.Property<string>("OOCFlavorText")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("oocflavor_text");
 
                     b.Property<int>("PreferenceId")
                         .HasColumnType("INTEGER")
@@ -1369,11 +1359,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
-
-                    b.Property<string>("TagsFlavorText")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("tags_flavor_text");
 
                     b.Property<string>("Voice")
                         .IsRequired()
