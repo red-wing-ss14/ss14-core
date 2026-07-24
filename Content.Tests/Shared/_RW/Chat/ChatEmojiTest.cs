@@ -22,14 +22,6 @@ public sealed class ChatEmojiTest
     }
 
     [Test]
-    public void QuietEmotesUseEmotePolicy()
-    {
-        Assert.That(
-            ChatEmoji.IsAllowed(ChatSelectChannel.Emotes, ChatSelectChannel.QuietEmotes),
-            Is.True);
-    }
-
-    [Test]
     public void ReplaceAliasesPreservesCursorPosition()
     {
         Assert.That(ChatEmoji.TryGet("smile", out var smile), Is.True);

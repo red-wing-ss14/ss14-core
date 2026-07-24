@@ -592,9 +592,6 @@ public static class ChatEmoji
 
     public static bool IsAllowed(ChatSelectChannel allowedChannels, ChatSelectChannel channel)
     {
-        if (channel == ChatSelectChannel.QuietEmotes)
-            channel = ChatSelectChannel.Emotes;
-
         return channel != ChatSelectChannel.None &&
                channel != ChatSelectChannel.Console &&
                (allowedChannels & channel) != 0;

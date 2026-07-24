@@ -15,29 +15,15 @@ public sealed partial class CCVars
     public static readonly CVarDef<bool> FlavorTraitsEnabled =
         CVarDef.Create("ic.flavor_traits_enabled", true, CVar.SERVER | CVar.REPLICATED);
 
-    /* RW EDIT
-    public static readonly CVarDef<bool> FlavorNsfwEnabled =
-        CVarDef.Create("ic.flavor_nsfw_enabled", true, CVar.SERVER | CVar.REPLICATED);
-    */
-
     public static readonly CVarDef<bool> FlavorGyrEnabled =
         CVarDef.Create("ic.flavor_gyr_enabled", true, CVar.SERVER | CVar.REPLICATED);
 
-    public static readonly CVarDef<bool> FlavorOocEnabled =
-        CVarDef.Create("ic.flavor_ooc_enabled", true, CVar.SERVER | CVar.REPLICATED);
 
-    public static readonly CVarDef<bool> FlavorLinksEnabled =
-        CVarDef.Create("ic.flavor_links_enabled", true, CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Flavor settings
      */
 
-    /// <summary>
-    ///     Sets the maximum length for OOC flavor text.
-    /// </summary>
-    public static readonly CVarDef<int> OOCMaxFlavorTextLength =
-        CVarDef.Create("ic.oocflavor_text_length", 4500, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Sets the maximum length for character description text.
@@ -63,21 +49,4 @@ public sealed partial class CCVars
     public static readonly CVarDef<int> RedPreferencesLength =
         CVarDef.Create("ic.red_preferences_length", 4500, CVar.SERVER | CVar.REPLICATED);
 
-    /// <summary>
-    ///     Sets the maximum length for tags text.
-    /// </summary>
-    public static readonly CVarDef<int> TagsLength =
-        CVarDef.Create("ic.tags_length", 256, CVar.SERVER | CVar.REPLICATED);
-
-    /// <summary>
-    ///     Sets the maximum length for links text.
-    /// </summary>
-    public static readonly CVarDef<int> LinksLength =
-        CVarDef.Create("ic.links_length", 512, CVar.SERVER | CVar.REPLICATED);
-
-    /// <summary>
-    ///     Sets the maximum length for NSFW preferences text.
-    /// </summary>
-    public static readonly CVarDef<int> NsfwPreferencesLength =
-        CVarDef.Create("ic.nsfw_preferences_length", 4500, CVar.SERVER | CVar.REPLICATED);
 }

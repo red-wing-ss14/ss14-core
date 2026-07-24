@@ -86,11 +86,10 @@ public sealed partial class DetailExaminableWindow : FancyWindow
 
         // Hide things if they are disabled in CCVars
         var showTraits = config.GetCVar(CCVars.FlavorTraitsEnabled);
-        var showOoc = config.GetCVar(CCVars.FlavorOocEnabled);
+        var showFlavor = config.GetCVar(CCVars.FlavorText);
         var showGyr = config.GetCVar(CCVars.FlavorGyrEnabled);
-        var showLinks = config.GetCVar(CCVars.FlavorLinksEnabled);
 
-        PreviewTabs.SetTabVisible(0, showOoc);
+        PreviewTabs.SetTabVisible(0, showFlavor);
         PreviewTabs.SetTabVisible(1, showTraits);
         PreviewTabs.SetTabVisible(2, showGyr);
 
@@ -108,10 +107,6 @@ public sealed partial class DetailExaminableWindow : FancyWindow
 
         SetDescriptionMarkup(PreviewAppearanceText, state.FlavorText, "detail-examinable-empty-flavor");
 
-        if (showOoc)
-        {
-            SetDescriptionMarkup(PreviewOOCText, state.OOCFlavorText, "detail-examinable-empty-ooc");
-        }
 
         if (showTraits)
             SetDescriptionMarkup(PreviewTraitsText, state.CharacterFlavorText, "detail-examinable-empty-character");
@@ -130,16 +125,6 @@ public sealed partial class DetailExaminableWindow : FancyWindow
             CreateGyrTextLabel(GetContentWithEmptyMessage(state.RedFlavorText, "detail-examinable-empty-red"));
         }
 
-        PreviewTagsText.Text = state.TagsFlavorText;
-
-        if (showLinks)
-        {
-            ProcessLinks(state.LinksFlavorText, PreviewLinksContainer);
-        }
-        else // TODO: Remove all container, now its just remove links
-        {
-            PreviewLinksContainer?.RemoveAllChildren();
-        }
 
         Badge.Visible = PlayerBadge();
     }
@@ -163,106 +148,6 @@ public sealed partial class DetailExaminableWindow : FancyWindow
         PreviewGYRContainer.AddChild(label);
     }
 
-    private void ProcessLinks(string linksText, BoxContainer linksContainer)
-    {
-        linksContainer.RemoveAllChildren();
-        if (string.IsNullOrEmpty(linksText))
-        {
-            var emptyLabel = new Label
-            {
-                Text = Loc.GetString("detail-examinable-empty-links"),
-                HorizontalExpand = true,
-                HorizontalAlignment = HAlignment.Center,
-                FontColorOverride = Color.Gray,
-            };
-
-            linksContainer.AddChild(emptyLabel);
-            return;
-        }
-
-        var links = linksText.Split(new[] { ',', ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-        foreach (var link in links)
-        {
-            if (IsValidUrl(link))
-            {
-                CreateLinkButton(link, linksContainer);
-            }
-            else
-            {
-                CreateLinkTextLabel(link, linksContainer);
-            }
-        }
-    }
-
-    private static bool IsValidUrl(string url)
-    {
-        return url.StartsWith("https://docs.google.com", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://disk.yandex.by", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://disk.yandex.ru", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://docs.yandex.by", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://docs.yandex.ru", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://eblo.id", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://ru.imgbb.com", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://gyazo.com", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://i.gyazo.com", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://e621.net", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://static1.e621.net", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://e926.net", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://static1.e926.net", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://ibb.co", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://steamcommunity.com/id/", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://steamcommunity.com/sharedfiles", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://images.steamusercontent.com", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://media.discordapp.net/attachments", StringComparison.OrdinalIgnoreCase) ||
-            url.StartsWith("https://cdn.discordapp.com/attachments", StringComparison.OrdinalIgnoreCase);
-    }
-
-    private void CreateLinkButton(string url, BoxContainer linksContainer)
-    {
-        var button = new Button
-        {
-            Text = GetLinkDisplayText(url),
-            ToolTip = Loc.GetString("humanoid-profile-editor-link-tooltip", ("url", url)),
-            HorizontalExpand = true,
-            HorizontalAlignment = HAlignment.Center,
-            StyleClasses = { StyleClass.ButtonOpenBoth },
-        };
-
-        button.OnPressed += _ => OpenLink(url);
-
-        linksContainer.AddChild(button);
-    }
-
-    private void CreateLinkTextLabel(string text, BoxContainer linksContainer)
-    {
-        var label = new Label
-        {
-            Text = text,
-            HorizontalExpand = true,
-            HorizontalAlignment = HAlignment.Center,
-            FontColorOverride = Color.Gray,
-        };
-
-        linksContainer.AddChild(label);
-    }
-
-    private static string GetLinkDisplayText(string url)
-    {
-        if (url.Length > 40)
-        {
-            return url[..37] + "...";
-        }
-        return url;
-    }
-
-    private static void OpenLink(string url)
-    {
-        if (url.StartsWith("www.", StringComparison.OrdinalIgnoreCase))
-            url = "https://" + url;
-
-        var uriOpener = IoCManager.Resolve<IUriOpener>();
-        uriOpener.OpenUri(url);
-    }
 
     private Control CreateSectionHeader(string text, Color? color = null, bool useStripeBack = true)
     {

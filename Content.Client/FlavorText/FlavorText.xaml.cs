@@ -13,16 +13,9 @@ namespace Content.Client.FlavorText
         public Action<string>? OnFlavorTextChanged;
         // Orion-Start
         public Action<string>? OnCharacterTextChanged;
-        public Action<string>? OnOOCTextChanged;
         public Action<string>? OnGreenTextChanged;
         public Action<string>? OnYellowTextChanged;
         public Action<string>? OnRedTextChanged;
-        public Action<string>? OnTagsTextChanged;
-        public Action<string>? OnLinksTextChanged;
-        public Action<string>? OnNsfwTextChanged;
-        public Action<string>? OnNsfwOOCTextChanged;
-        public Action<string>? OnNsfwLinksTextChanged;
-        public Action<string>? OnNsfwTagsTextChanged;
         public Action<int>? OnTabChanged;
         // Orion-End
 
@@ -36,16 +29,12 @@ namespace Content.Client.FlavorText
             // Orion-Start
             FlavorTabs.SetTabTitle(0, Loc.GetString("flavor-tab-flavor"));
             FlavorTabs.SetTabTitle(1, Loc.GetString("flavor-tab-character"));
-            FlavorTabs.SetTabTitle(2, Loc.GetString("flavor-tab-ooc-flavor"));
-            FlavorTabs.SetTabTitle(3, Loc.GetString("flavor-tab-gyr"));
-            FlavorTabs.SetTabTitle(4, Loc.GetString("flavor-tab-nsfw"));
-            FlavorTabs.SetTabTitle(5, Loc.GetString("flavor-tab-nsfw-ooc-flavor"));
-            FlavorTabs.SetTabTitle(6, Loc.GetString("flavor-tab-preview"));
+            FlavorTabs.SetTabTitle(2, Loc.GetString("flavor-tab-gyr"));
+            FlavorTabs.SetTabTitle(3, Loc.GetString("flavor-tab-preview"));
 
             PreviewTabs.SetTabTitle(0, Loc.GetString("flavor-tab-flavor"));
             PreviewTabs.SetTabTitle(1, Loc.GetString("flavor-tab-character"));
             PreviewTabs.SetTabTitle(2, Loc.GetString("flavor-tab-gyr"));
-            PreviewTabs.SetTabTitle(3, Loc.GetString("flavor-tab-nsfw"));
 
             CFlavorTextInput.Placeholder = new Rope.Leaf(loc.GetString("flavor-text-placeholder"));
             CFlavorTextInput.OnTextChanged += _ => FlavorTextChanged();
@@ -53,14 +42,7 @@ namespace Content.Client.FlavorText
             CCharacterTextInput.Placeholder = new Rope.Leaf(loc.GetString("character-flavor-text-placeholder"));
             CCharacterTextInput.OnTextChanged += _ => CharacterTextChanged();
 
-            CFlavorOOCTextInput.Placeholder = new Rope.Leaf(loc.GetString("ooc-flavor-text-placeholder"));
-            CFlavorOOCTextInput.OnTextChanged += _ => FlavorOOCTextChanged();
 
-            CTagsTextInput.Placeholder = new Rope.Leaf(loc.GetString("tags-flavor-text-placeholder"));
-            CTagsTextInput.OnTextChanged += _ => TagsTextChanged();
-
-            CLinksTextInput.Placeholder = new Rope.Leaf(loc.GetString("links-flavor-text-placeholder"));
-            CLinksTextInput.OnTextChanged += _ => LinksTextChanged();
 
             CGreenTextInput.Placeholder = new Rope.Leaf(loc.GetString("green-flavor-text-placeholder"));
             CGreenTextInput.OnTextChanged += _ => GreenTextChanged();
@@ -71,18 +53,6 @@ namespace Content.Client.FlavorText
             CRedTextInput.Placeholder = new Rope.Leaf(loc.GetString("red-flavor-text-placeholder"));
             CRedTextInput.OnTextChanged += _ => RedTextChanged();
 
-            CNSFWTextInput.Placeholder = new Rope.Leaf(loc.GetString("nsfw-flavor-text-placeholder"));
-            CNSFWTextInput.OnTextChanged += _ => NsfwTextChanged();
-
-            CFlavorNSFWOOCTextInput.Placeholder = new Rope.Leaf(loc.GetString("ooc-flavor-text-placeholder"));
-            CFlavorNSFWOOCTextInput.OnTextChanged += _ => FlavorNsfwOOCTextChanged();
-
-            CNSFWLinksTextInput.Placeholder = new Rope.Leaf(loc.GetString("links-flavor-text-placeholder"));
-            CNSFWLinksTextInput.OnTextChanged += _ => NsfwLinksTextChanged();
-
-            CNSFWTagsTextInput.Placeholder = new Rope.Leaf(loc.GetString("tags-flavor-text-placeholder"));
-            CNSFWTagsTextInput.OnTextChanged += _ => NsfwTagsTextChanged();
-
             PreviewTabs.OnTabChanged += FlavorTabChanged;
             // Orion-End
         }
@@ -92,11 +62,6 @@ namespace Content.Client.FlavorText
             OnFlavorTextChanged?.Invoke(Rope.Collapse(CFlavorTextInput.TextRope).Trim());
         }
 
-        // Orion-Start
-        public void FlavorOOCTextChanged()
-        {
-            OnOOCTextChanged?.Invoke(Rope.Collapse(CFlavorOOCTextInput.TextRope).Trim());
-        }
 
         public void CharacterTextChanged()
         {
@@ -118,35 +83,7 @@ namespace Content.Client.FlavorText
             OnRedTextChanged?.Invoke(Rope.Collapse(CRedTextInput.TextRope).Trim());
         }
 
-        public void TagsTextChanged()
-        {
-            OnTagsTextChanged?.Invoke(Rope.Collapse(CTagsTextInput.TextRope).Trim());
-        }
 
-        public void LinksTextChanged()
-        {
-            OnLinksTextChanged?.Invoke(Rope.Collapse(CLinksTextInput.TextRope).Trim());
-        }
-
-        public void NsfwTextChanged()
-        {
-            OnNsfwTextChanged?.Invoke(Rope.Collapse(CNSFWTextInput.TextRope).Trim());
-        }
-
-        public void FlavorNsfwOOCTextChanged()
-        {
-            OnNsfwOOCTextChanged?.Invoke(Rope.Collapse(CFlavorNSFWOOCTextInput.TextRope).Trim());
-        }
-
-        public void NsfwLinksTextChanged()
-        {
-            OnNsfwLinksTextChanged?.Invoke(Rope.Collapse(CNSFWLinksTextInput.TextRope).Trim());
-        }
-
-        public void NsfwTagsTextChanged()
-        {
-            OnNsfwTagsTextChanged?.Invoke(Rope.Collapse(CNSFWTagsTextInput.TextRope).Trim());
-        }
 
         public void FlavorTabChanged(int tab)
         {

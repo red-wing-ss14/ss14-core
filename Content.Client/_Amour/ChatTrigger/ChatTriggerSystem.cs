@@ -24,8 +24,7 @@ public sealed class ChatTriggerSystem : EntitySystem
         ChatSelectChannel.Local |
         ChatSelectChannel.Whisper |
         ChatSelectChannel.Radio |
-        ChatSelectChannel.Emotes |
-        ChatSelectChannel.QuietEmotes;
+        ChatSelectChannel.Emotes;
 
     public override void Initialize()
     {

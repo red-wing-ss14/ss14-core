@@ -87,7 +87,6 @@ public sealed partial class ChatUIController : UIController
         {SharedChatSystem.OOCPrefix, ChatSelectChannel.OOC},
         {SharedChatSystem.EmotesPrefix, ChatSelectChannel.Emotes},
         {SharedChatSystem.EmotesAltPrefix, ChatSelectChannel.Emotes},
-        {SharedChatSystem.QuietEmotePrefix, ChatSelectChannel.QuietEmotes}, // Amour - Quiet emote
         {SharedChatSystem.AdminPrefix, ChatSelectChannel.Admin},
         {SharedChatSystem.RadioCommonPrefix, ChatSelectChannel.Radio},
         {SharedChatSystem.DeadPrefix, ChatSelectChannel.Dead},
@@ -103,7 +102,6 @@ public sealed partial class ChatUIController : UIController
         {ChatSelectChannel.LOOC, SharedChatSystem.LOOCPrefix},
         {ChatSelectChannel.OOC, SharedChatSystem.OOCPrefix},
         {ChatSelectChannel.Emotes, SharedChatSystem.EmotesPrefix},
-        {ChatSelectChannel.QuietEmotes, SharedChatSystem.QuietEmotePrefix}, // Amour - Quiet emote
         {ChatSelectChannel.Admin, SharedChatSystem.AdminPrefix},
         {ChatSelectChannel.Radio, SharedChatSystem.RadioCommonPrefix},
         {ChatSelectChannel.Dead, SharedChatSystem.DeadPrefix},
@@ -208,7 +206,6 @@ public sealed partial class ChatUIController : UIController
         _config.OnValueChanged(CCVars.ChatEnableColorName, (value) => { _chatNameColorsEnabled = value; });
         _chatNameColorsEnabled = _config.GetCVar(CCVars.ChatEnableColorName);
         _config.OnValueChanged(CCVars.ChatEmojiAllowedChannels, OnEmojiAllowedChannelsChanged, true); // RW
-        _config.OnValueChanged(CCVars.NsfwContentEnabled, _ => UpdateChannelPermissions()); // RW
 
         _speechBubbleRoot = new LayoutContainer();
 
@@ -571,8 +568,6 @@ public sealed partial class ChatUIController : UIController
                 CanSendChannels |= ChatSelectChannel.Whisper;
                 CanSendChannels |= ChatSelectChannel.Radio;
                 CanSendChannels |= ChatSelectChannel.Emotes;
-                if (_config.GetCVar(CCVars.NsfwContentEnabled)) // RW
-                    CanSendChannels |= ChatSelectChannel.QuietEmotes; // Amour - Quiet emote
             }
         }
 

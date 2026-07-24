@@ -83,9 +83,6 @@ internal sealed class ChatManager : IChatManager
                 _consoleHost.ExecuteCommand($"me \"{CommandParsing.Escape(str)}\"");
                 break;
 
-            case ChatSelectChannel.QuietEmotes: // Amour - Quiet emote
-                _consoleHost.ExecuteCommand($"qme \"{CommandParsing.Escape(str)}\"");
-                break;
 
             case ChatSelectChannel.Dead:
                 if (_systems.GetEntitySystemOrNull<GhostSystem>() is {IsGhost: true})

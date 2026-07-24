@@ -15,14 +15,7 @@ public sealed partial class DetailExaminableComponent : Component
     [DataField, AutoNetworkedField]
     public string CharacterContent { get; set; } = string.Empty;
 
-    [DataField, AutoNetworkedField]
-    public string OOCContent { get; set; } = string.Empty;
 
-    [DataField, AutoNetworkedField]
-    public string TagsContent { get; set; } = string.Empty;
-
-    [DataField, AutoNetworkedField]
-    public string LinksContent { get; set; } = string.Empty;
 
     [DataField, AutoNetworkedField]
     public string GreenContent { get; set; } = string.Empty;
@@ -32,33 +25,13 @@ public sealed partial class DetailExaminableComponent : Component
 
     [DataField, AutoNetworkedField]
     public string RedContent { get; set; } = string.Empty;
-
-    [DataField, AutoNetworkedField]
-    public string NsfwContent { get; set; } = string.Empty;
-
-    [DataField, AutoNetworkedField]
-    public string NsfwOOCContent { get; set; } = string.Empty;
-
-    [DataField, AutoNetworkedField]
-    public string NsfwLinksContent { get; set; } = string.Empty;
-
-    [DataField, AutoNetworkedField]
-    public string NsfwTagsContent { get; set; } = string.Empty;
-
     public void SetProfile(HumanoidCharacterProfile profile)
     {
         Content = profile.FlavorText;
         CharacterContent = profile.CharacterFlavorText;
-        OOCContent = profile.OocFlavorText;
-        TagsContent = profile.TagsFlavorText;
-        LinksContent = profile.LinksFlavorText;
         GreenContent = profile.GreenFlavorText;
         YellowContent = profile.YellowFlavorText;
         RedContent = profile.RedFlavorText;
-        NsfwContent = profile.NsfwFlavorText;
-        NsfwOOCContent = profile.NsfwOOCFlavorText;
-        NsfwLinksContent = profile.NsfwLinksFlavorText;
-        NsfwTagsContent = profile.NsfwTagsFlavorText;
     }
     // Orion-End
 }

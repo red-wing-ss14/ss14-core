@@ -74,18 +74,11 @@ namespace Content.Client.Lobby.UI
 
         private FlavorText.FlavorText? _flavorText;
         private TextEdit? _flavorTextEdit;
-        // Orion-Start
-        private TextEdit? _flavorTextOOCEdit;
+
         private TextEdit? _characterTextEdit;
         private TextEdit? _greenTextEdit;
         private TextEdit? _yellowTextEdit;
         private TextEdit? _redTextEdit;
-        private TextEdit? _tagsTextEdit;
-        private TextEdit? _linksTextEdit;
-        private TextEdit? _nsfwTextEdit;
-        private TextEdit? _nsfwLinksTextEdit;
-        private TextEdit? _nsfwOOCTextEdit;
-        private TextEdit? _nsfwTagsTextEdit;
         // Orion-End
 
         // One at a time.
@@ -739,35 +732,20 @@ namespace Content.Client.Lobby.UI
 
                 _flavorTextEdit = _flavorText.CFlavorTextInput;
                 // Orion-Start
-                _flavorTextOOCEdit = _flavorText.CFlavorOOCTextInput;
                 _characterTextEdit = _flavorText.CCharacterTextInput;
                 _greenTextEdit = _flavorText.CGreenTextInput;
                 _yellowTextEdit = _flavorText.CYellowTextInput;
                 _redTextEdit = _flavorText.CRedTextInput;
-                _tagsTextEdit = _flavorText.CTagsTextInput;
-                _linksTextEdit = _flavorText.CLinksTextInput;
-                _nsfwTextEdit = _flavorText.CNSFWTextInput;
-                _nsfwOOCTextEdit = _flavorText.CFlavorNSFWOOCTextInput;
-                _nsfwLinksTextEdit = _flavorText.CNSFWLinksTextInput;
-                _nsfwTagsTextEdit = _flavorText.CNSFWTagsTextInput;
 
                 UpdateFlavorPreview();
                 // Orion-End
 
                 _flavorText.OnFlavorTextChanged += OnFlavorTextChange;
                 // Orion-Start
-                _flavorText.OnOOCTextChanged += OnFlavorOOCTextChange;
                 _flavorText.OnCharacterTextChanged += OnCharacterFlavorTextChange;
                 _flavorText.OnGreenTextChanged += OnGreenFlavorTextChange;
                 _flavorText.OnYellowTextChanged += OnYellowFlavorTextChange;
                 _flavorText.OnRedTextChanged += OnRedFlavorTextChange;
-                _flavorText.OnTagsTextChanged += OnTagsFlavorTextChange;
-                _flavorText.OnLinksTextChanged += OnLinksFlavorTextChange;
-                _flavorText.OnNsfwTextChanged += OnNSFWFlavorTextChange;
-                _flavorText.OnNsfwLinksTextChanged += OnNsfwLinksFlavorTextChange;
-                _flavorText.OnNsfwOOCTextChanged += OnFlavorNsfwOOCTextChange;
-                _flavorText.OnNsfwTagsTextChanged += OnNsfwTagsFlavorTextChange;
-                _flavorText.OnTabChanged += OnTabChanged;
                 // Orion-End
             }
             else
@@ -777,18 +755,10 @@ namespace Content.Client.Lobby.UI
 
                 _flavorText.OnFlavorTextChanged -= OnFlavorTextChange;
                 // Orion-Start
-                _flavorText.OnOOCTextChanged -= OnFlavorOOCTextChange;
                 _flavorText.OnCharacterTextChanged -= OnCharacterFlavorTextChange;
                 _flavorText.OnGreenTextChanged -= OnGreenFlavorTextChange;
                 _flavorText.OnYellowTextChanged -= OnYellowFlavorTextChange;
                 _flavorText.OnRedTextChanged -= OnRedFlavorTextChange;
-                _flavorText.OnTagsTextChanged -= OnTagsFlavorTextChange;
-                _flavorText.OnLinksTextChanged -= OnLinksFlavorTextChange;
-                _flavorText.OnNsfwTextChanged -= OnNSFWFlavorTextChange;
-                _flavorText.OnNsfwLinksTextChanged -= OnNsfwLinksFlavorTextChange;
-                _flavorText.OnNsfwOOCTextChanged -= OnFlavorNsfwOOCTextChange;
-                _flavorText.OnNsfwTagsTextChanged -= OnNsfwTagsFlavorTextChange;
-                _flavorText.OnTabChanged -= OnTabChanged;
                 // Orion-End
 
                 TabContainer.RemoveChild(_flavorText);
@@ -797,17 +767,10 @@ namespace Content.Client.Lobby.UI
 
                 _flavorTextEdit = null;
                 // Orion-Start
-                _flavorTextOOCEdit = null;
                 _characterTextEdit = null;
                 _greenTextEdit = null;
                 _yellowTextEdit = null;
                 _redTextEdit = null;
-                _tagsTextEdit = null;
-                _linksTextEdit = null;
-                _nsfwTextEdit = null;
-                _nsfwLinksTextEdit = null;
-                _nsfwOOCTextEdit = null;
-                _nsfwTagsTextEdit = null;
                 // Orion-End
 
                 _flavorText = null;
@@ -822,13 +785,6 @@ namespace Content.Client.Lobby.UI
 
             SetFlavorPreviewMarkup(_flavorText.PreviewAppearanceText, Profile.FlavorText);
             SetFlavorPreviewMarkup(_flavorText.PreviewTraitsText, Profile.CharacterFlavorText);
-            SetFlavorPreviewMarkup(_flavorText.PreviewOOCText, Profile.OocFlavorText);
-            _flavorText.PreviewTagsText.Text = Profile.TagsFlavorText;
-            SetFlavorPreviewMarkup(_flavorText.PreviewNSFWOOCText, Profile.NsfwOOCFlavorText);
-            _flavorText.PreviewNSFWTagsText.Text = Profile.NsfwTagsFlavorText;
-
-            ProcessLinks(Profile.LinksFlavorText, _flavorText.PreviewLinksContainer);
-            ProcessLinks(Profile.NsfwLinksFlavorText, _flavorText.PreviewNSFWLinksContainer);
 
             _flavorText.PreviewGYRContainer.RemoveAllChildren();
             CreateGyrBigTextLabel(Loc.GetString($"humanoid-profile-editor-gyr-green"), Color.Green);
@@ -837,8 +793,6 @@ namespace Content.Client.Lobby.UI
             CreateGyrTextLabel(Profile.YellowFlavorText);
             CreateGyrBigTextLabel(Loc.GetString($"humanoid-profile-editor-gyr-red"), Color.Red);
             CreateGyrTextLabel(Profile.RedFlavorText);
-
-            SetFlavorPreviewMarkup(_flavorText.PreviewNSFWText, Profile.NsfwFlavorText);
 
             var species = _prototypeManager.TryIndex(Profile.Species, out var speciesProto)
                 ? Loc.GetString(speciesProto.Name)
@@ -850,36 +804,7 @@ namespace Content.Client.Lobby.UI
             _flavorText.PreviewGenderText.Text = $"{species} | {sex} | {gender}";
         }
 
-        private void UpdateNsfwPreviewVisibility(bool showNsfw)
-        {
-            if (_flavorText == null)
-                return;
 
-            if (_flavorText.PreviewOOCText.Visible == !showNsfw)
-                return;
-
-            _flavorText!.PreviewOOCText.Visible = !showNsfw;
-            _flavorText!.PreviewNSFWOOCText.Visible = showNsfw;
-
-            _flavorText!.PreviewLinksContainer.Visible = !showNsfw;
-            _flavorText!.PreviewNSFWLinksContainer.Visible = showNsfw;
-
-            _flavorText!.PreviewTagsText.Visible = !showNsfw;
-            _flavorText!.PreviewNSFWTagsText.Visible = showNsfw;
-        }
-
-        private void OnTabChanged(int tab)
-        {
-            switch (tab)
-            {
-                case 3:
-                    UpdateNsfwPreviewVisibility(true);
-                    break;
-                default:
-                    UpdateNsfwPreviewVisibility(false);
-                    break;
-            }
-        }
 
         private void CreateGyrBigTextLabel(string text, Color color)
         {
@@ -980,38 +905,6 @@ namespace Content.Client.Lobby.UI
             uriOpener.OpenUri(url);
         }
 
-        private void OnFlavorNsfwOOCTextChange(string content)
-        {
-            if (Profile is null)
-                return;
-
-            Profile = Profile.WithNsfwOOCFlavorText(content);
-            SetDirty();
-
-            UpdateFlavorPreview();
-        }
-
-        private void OnNsfwLinksFlavorTextChange(string content)
-        {
-            if (Profile is null)
-                return;
-
-            Profile = Profile.WithNsfwLinksText(content);
-            SetDirty();
-
-            UpdateFlavorPreview();
-        }
-
-        private void OnNsfwTagsFlavorTextChange(string content)
-        {
-            if (Profile is null)
-                return;
-
-            Profile = Profile.WithNsfwTagsText(content);
-            SetDirty();
-
-            UpdateFlavorPreview();
-        }
         // Orion-End
 
         /// <summary>
@@ -1918,18 +1811,6 @@ namespace Content.Client.Lobby.UI
             UpdateFlavorPreview(); // Orion
         }
 
-        // Orion-Start
-        private void OnFlavorOOCTextChange(string content)
-        {
-            if (Profile is null)
-                return;
-
-            Profile = Profile.WithOOCFlavorText(content);
-            SetDirty();
-
-            UpdateFlavorPreview();
-        }
-
         private void OnCharacterFlavorTextChange(string content)
         {
             if (Profile is null)
@@ -1974,38 +1855,7 @@ namespace Content.Client.Lobby.UI
             UpdateFlavorPreview();
         }
 
-        private void OnTagsFlavorTextChange(string content)
-        {
-            if (Profile is null)
-                return;
 
-            Profile = Profile.WithTagsText(content);
-            SetDirty();
-
-            UpdateFlavorPreview();
-        }
-
-        private void OnLinksFlavorTextChange(string content)
-        {
-            if (Profile is null)
-                return;
-
-            Profile = Profile.WithLinksText(content);
-            SetDirty();
-
-            UpdateFlavorPreview();
-        }
-
-        private void OnNSFWFlavorTextChange(string content)
-        {
-            if (Profile is null)
-                return;
-
-            Profile = Profile.WithNsfwPreferencesText(content);
-            SetDirty();
-
-            UpdateFlavorPreview();
-        }
         // Orion-End
 
         private void OnMarkingChange(MarkingSet markings)
@@ -2314,9 +2164,6 @@ namespace Content.Client.Lobby.UI
             if (_flavorTextEdit != null)
                 _flavorTextEdit.TextRope = new Rope.Leaf(Profile?.FlavorText ?? "");
 
-            if (_flavorTextOOCEdit != null)
-                _flavorTextOOCEdit.TextRope = new Rope.Leaf(Profile?.OocFlavorText ?? "");
-
             if (_characterTextEdit != null)
                 _characterTextEdit.TextRope = new Rope.Leaf(Profile?.CharacterFlavorText ?? "");
 
@@ -2329,23 +2176,6 @@ namespace Content.Client.Lobby.UI
             if (_redTextEdit != null)
                 _redTextEdit.TextRope = new Rope.Leaf(Profile?.RedFlavorText ?? "");
 
-            if (_tagsTextEdit != null)
-                _tagsTextEdit.TextRope = new Rope.Leaf(Profile?.TagsFlavorText ?? "");
-
-            if (_linksTextEdit != null)
-                _linksTextEdit.TextRope = new Rope.Leaf(Profile?.LinksFlavorText ?? "");
-
-            if (_nsfwTextEdit != null)
-                _nsfwTextEdit.TextRope = new Rope.Leaf(Profile?.NsfwFlavorText ?? "");
-
-            if (_nsfwOOCTextEdit != null)
-                _nsfwOOCTextEdit.TextRope = new Rope.Leaf(Profile?.NsfwOOCFlavorText ?? "");
-
-            if (_nsfwLinksTextEdit != null)
-                _nsfwLinksTextEdit.TextRope = new Rope.Leaf(Profile?.NsfwLinksFlavorText ?? "");
-
-            if (_nsfwTagsTextEdit != null)
-                _nsfwTagsTextEdit.TextRope = new Rope.Leaf(Profile?.NsfwTagsFlavorText ?? "");
         }
         // Orion-Edit-End
 

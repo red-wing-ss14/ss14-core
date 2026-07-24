@@ -68,17 +68,10 @@ public sealed class DetailExaminableSystem : EntitySystem
             humanoid.Sex,
             humanoid.Gender,
             detail.Content,
-            detail.OOCContent,
             detail.CharacterContent,
             detail.GreenContent,
             detail.YellowContent,
-            detail.RedContent,
-            detail.TagsContent,
-            detail.LinksContent,
-            detail.NsfwContent,
-            detail.NsfwOOCContent,
-            detail.NsfwLinksContent,
-            detail.NsfwTagsContent
+            detail.RedContent
         );
 
         var window = new DetailExaminableEui(state);

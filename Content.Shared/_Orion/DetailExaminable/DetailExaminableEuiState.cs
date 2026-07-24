@@ -20,17 +20,10 @@ public sealed class DetailExaminableEuiState : EuiStateBase
     public Sex Sex;
     public Gender Gender;
     public string FlavorText;
-    public string OOCFlavorText;
     public string CharacterFlavorText;
     public string GreenFlavorText;
     public string YellowFlavorText;
     public string RedFlavorText;
-    public string TagsFlavorText;
-    public string LinksFlavorText;
-    public string NsfwFlavorText;
-    public string NsfwOOCFlavorText;
-    public string NsfwLinksFlavorText;
-    public string NsfwTagsFlavorText;
 
     public DetailExaminableEuiState(
         NetEntity target,
@@ -39,17 +32,10 @@ public sealed class DetailExaminableEuiState : EuiStateBase
         Sex sex,
         Gender gender,
         string flavorText,
-        string oocFlavorText,
         string characterFlavorText,
         string greenFlavorText,
         string yellowFlavorText,
-        string redFlavorText,
-        string tagsFlavorText,
-        string linksFlavorText,
-        string nsfwFlavorText,
-        string nsfwOOCFlavorText,
-        string nsfwLinksFlavorText,
-        string nsfwTagsFlavorText
+        string redFlavorText
     )
     {
         Target = target;
@@ -58,16 +44,9 @@ public sealed class DetailExaminableEuiState : EuiStateBase
         Sex = sex;
         Gender = gender;
         FlavorText = flavorText;
-        OOCFlavorText = oocFlavorText;
         CharacterFlavorText = characterFlavorText;
         GreenFlavorText = greenFlavorText;
         YellowFlavorText = yellowFlavorText;
         RedFlavorText = redFlavorText;
-        TagsFlavorText = tagsFlavorText;
-        LinksFlavorText = linksFlavorText;
-        NsfwFlavorText = nsfwFlavorText;
-        NsfwOOCFlavorText = nsfwOOCFlavorText;
-        NsfwLinksFlavorText = nsfwLinksFlavorText;
-        NsfwTagsFlavorText = nsfwTagsFlavorText;
     }
 }
