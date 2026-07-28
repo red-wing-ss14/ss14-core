@@ -916,6 +916,22 @@
     Uranium: 1
 
 - type: reaction
+  id: Orchito
+  requiredMixerCategories:
+  - Shake
+  reactants:
+    IcedTea:
+      amount: 3
+    JuiceLemon:
+      amount: 1
+    JuiceLime:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    Orchito: 6
+
+- type: reaction
   id: Patron
   requiredMixerCategories:
   - Shake

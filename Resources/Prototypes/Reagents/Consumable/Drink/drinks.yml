@@ -679,6 +679,21 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
 - type: reagent
+  id: Orchito
+  name: reagent-name-orchito
+  parent: BaseDrink
+  desc: reagent-desc-orchito
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: icedtea
+  color: "#a0f080"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/orchito.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 6
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+- type: reagent
   id: Rewriter
   name: reagent-name-rewriter
   parent: BaseDrink

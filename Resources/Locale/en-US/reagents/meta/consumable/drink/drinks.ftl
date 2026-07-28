@@ -75,6 +75,9 @@ reagent-desc-nothing = Absolutely nothing.
 reagent-name-nuclear-cola = nuclear cola
 reagent-desc-nuclear-cola = Cola, cola never changes.
 
+reagent-name-orchito = Orchito
+reagent-desc-orchito = A refreshing non-alcoholic tea mojito special from Stardust Orchid.
+
 reagent-name-hot-cocoa = hot cocoa
 reagent-desc-hot-cocoa = Smells like the holidays!
 
