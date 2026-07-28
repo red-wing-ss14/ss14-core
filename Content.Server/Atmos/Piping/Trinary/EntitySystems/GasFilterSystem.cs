@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
@@ -42,13 +43,17 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             SubscribeLocalEvent<GasFilterComponent, GasAnalyzerScanEvent>(OnFilterAnalyzed);
             // Bound UI subscriptions
             SubscribeLocalEvent<GasFilterComponent, GasFilterChangeRateMessage>(OnTransferRateChangeMessage);
-            SubscribeLocalEvent<GasFilterComponent, GasFilterSelectGasMessage>(OnSelectGasMessage);
             SubscribeLocalEvent<GasFilterComponent, GasFilterToggleStatusMessage>(OnToggleStatusMessage);
+            SubscribeLocalEvent<GasFilterComponent, GasFilterToggleGasMessage>(OnToggleGasMessage); // Moffstation - filter multiple gases
 
         }
 
         private void OnInit(EntityUid uid, GasFilterComponent filter, ComponentInit args)
         {
+            // Moffstation - Begin (filter multiple gases)
+            if (filter.FilteredGas is {} filteredGas)
+                filter.FilteredGases.Add(filteredGas);
+            // Moffstation - End
             UpdateAppearance(uid, filter);
         }
 
@@ -74,19 +79,16 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             var removed = inletNode.Air.RemoveVolume(transferVol);
 
-            if (filter.FilteredGas.HasValue)
-            {
-                var filteredOut = new GasMixture { Temperature = removed.Temperature };
+            // Moffstation - Begin (filter multiple gases)
+            var passingGasses = Enum.GetValues<Gas>().Except(filter.FilteredGases).ToHashSet();
 
-                filteredOut.SetMoles(filter.FilteredGas.Value, removed.GetMoles(filter.FilteredGas.Value));
-                removed.SetMoles(filter.FilteredGas.Value, 0f);
+            var success = false;
+            success |= TryTransfer(removed, filter.FilteredGases, filterNode.Air);
+            success |= TryTransfer(removed, passingGasses, outletNode.Air);
 
-                var target = filterNode.Air.Pressure < Atmospherics.MaxOutputPressure ? filterNode : inletNode;
-                _atmosphereSystem.Merge(target.Air, filteredOut);
-                _ambientSoundSystem.SetAmbience(uid, filteredOut.TotalMoles > 0f);
-            }
-
-            _atmosphereSystem.Merge(outletNode.Air, removed);
+            _ambientSoundSystem.SetAmbience(uid, success);
+            _atmosphereSystem.Merge(inletNode.Air, removed);
+            // Moffstation - End
         }
 
         private void OnFilterLeaveAtmosphere(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceDisabledEvent args)
@@ -127,7 +129,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 return;
 
             _userInterfaceSystem.SetUiState(uid, GasFilterUiKey.Key,
-                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGas));
+                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGases)); // Moffstation - filter multiple gases
         }
 
         private void UpdateAppearance(EntityUid uid, GasFilterComponent? filter = null)
@@ -156,30 +158,32 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         }
 
-        private void OnSelectGasMessage(EntityUid uid, GasFilterComponent filter, GasFilterSelectGasMessage args)
+        // Moffstation - Begin (filter multiple gases)
+        private void OnToggleGasMessage(Entity<GasFilterComponent> ent, ref GasFilterToggleGasMessage args)
         {
-            if (args.Gas.HasValue)
+            if (!Enum.IsDefined(args.Gas))
             {
-                if (Enum.IsDefined(typeof(Gas), args.Gas))
-                {
-                    filter.FilteredGas = args.Gas;
-                    _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
-                        $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to {args.Gas.ToString()}");
-                    DirtyUI(uid, filter);
-                }
-                else
-                {
-                    Log.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with an invalid ID: {args.Gas}");
-                }
+                Log.Warning($"{ToPrettyString(ent.Owner)} received GasFilterSelectGasMessage with an invalid ID: {args.Gas}");
+                return;
+            }
+
+            if (args.Filtered)
+            {
+                ent.Comp.FilteredGases.Add(args.Gas);
             }
             else
             {
-                filter.FilteredGas = null;
-                _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
-                    $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to none");
-                DirtyUI(uid, filter);
+                ent.Comp.FilteredGases.Remove(args.Gas);
             }
+
+            var proto = _atmosphereSystem.GetGas((int) args.Gas);
+            _adminLogger.Add(
+                LogType.AtmosFilterChanged,
+                LogImpact.Medium,
+                $"{ToPrettyString(args.Actor):player} set the filter of {Loc.GetString(proto.Name)} on {ToPrettyString(ent.Owner):device} to {args.Filtered.ToString()}");
+            DirtyUI(ent.Owner, ent.Comp);
         }
+        // Moffstation - End
 
         /// <summary>
         /// Returns the gas mixture for the gas analyzer
@@ -217,5 +221,32 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             args.DeviceFlipped = inlet != null && filterNode != null && inlet.CurrentPipeDirection.ToDirection() == filterNode.CurrentPipeDirection.ToDirection().GetClockwise90Degrees();
         }
+
+
+        // Moffstation - Begin (filter multiple gases)
+        private bool TryTransfer(GasMixture source, HashSet<Gas> gasses, GasMixture target)
+        {
+            var limitMoles = target.Temperature > 0
+                ? (Atmospherics.MaxOutputPressure - target.Pressure) * target.Volume / (Atmospherics.R * target.Temperature)
+                : 0f;
+            var availableMoles = gasses.Aggregate(0f, (x, gas) => x + source.GetMoles(gas));
+
+            var transferredMoles = Math.Clamp(availableMoles, 0f, limitMoles);
+
+            if (transferredMoles <= Atmospherics.GasMinMoles)
+                return false;
+
+            var transferredMixture = new GasMixture { Temperature = source.Temperature };
+            foreach (var gas in gasses)
+            {
+                var value = (source.GetMoles(gas) / availableMoles) * transferredMoles;
+                transferredMixture.SetMoles(gas, value);
+                source.AdjustMoles(gas, -value);
+            }
+
+            _atmosphereSystem.Merge(target, transferredMixture);
+            return true;
+        }
+        // Moffstation - End
     }
 }
