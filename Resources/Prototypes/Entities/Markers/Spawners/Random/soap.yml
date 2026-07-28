@@ -48,7 +48,6 @@
   parent: MarkerBase
   id: RandomSoap
   name: random soap spawner
-  parent: MarkerBase
   components:
   - type: Sprite
     layers:
