@@ -251,6 +251,9 @@ reagent-desc-moonshine = Artisanal homemade liquor. What could go wrong?
 reagent-name-neurotoxin = neurotoxin
 reagent-desc-neurotoxin = A strong neurotoxin that puts the subject into a death-like state.
 
+reagent-name-orchito = Orchito
+reagent-desc-orchito = A refreshing non-alcoholic tea mojito special from Stardust Orchid.
+
 reagent-name-painkiller = painkiller
 reagent-desc-painkiller = A cure for what ails you.
 
