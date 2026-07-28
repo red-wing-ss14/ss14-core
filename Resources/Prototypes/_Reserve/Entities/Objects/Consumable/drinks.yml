@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-# region Cocktails
-
 # Orchito start
 - type: entity
   parent: DrinkGlass
@@ -22,9 +20,9 @@
     state: icon
 # Orchito end
 
-# endregion
+# Orchid's Barmania - Visual Fixes start
 
-# region Juices
+# - Juices -
 
 - type: entity
   parent: DrinkGlass
@@ -108,22 +106,6 @@
 
 - type: entity
   parent: DrinkGlass
-  id: DrinkMangoJuice
-  suffix: mango juice
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: JuiceMango
-          Quantity: 30
-  - type: Icon
-    sprite: _Reserve/Objects/Consumable/Drinks/mango.rsi
-    state: icon
-
-- type: entity
-  parent: DrinkGlass
   id: DrinkPineappleJuice
   suffix: pineapple juice
   components:
@@ -154,9 +136,7 @@
     sprite: Objects/Consumable/Drinks/glass_brown.rsi
     state: icon
 
-# endregion
-
-# region Sodas
+# - Sodas -
 
 - type: entity
   parent: DrinkGlass
@@ -254,9 +234,7 @@
     sprite: _Reserve/Objects/Consumable/Drinks/shambler.rsi
     state: icon
 
-# endregion
-
-# region Other
+# - Other -
 
 - type: entity
   parent: DrinkGlass
@@ -418,9 +396,7 @@
     sprite: _Reserve/Objects/Consumable/Drinks/mopwata.rsi
     state: icon
 
-# endregion
-
-# region Food
+# - Food -
 
 - type: entity
   parent: DrinkGlass
@@ -645,5 +621,4 @@
   - type: Icon
     sprite: _Reserve/Objects/Consumable/Drinks/syrup.rsi
     state: icon
-
-# endregion
+# Orchid's Barmania - Visual Fixes end
