@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-# Orchito start
+# Reserve Orchito start
 - type: entity
   parent: DrinkGlass
   id: DrinkOrchitoGlass
@@ -18,4 +18,4 @@
   - type: Icon
     sprite: _Reserve/Objects/Consumable/Drinks/orchito.rsi
     state: icon
-# Orchito end
+# Reserve Orchito end
