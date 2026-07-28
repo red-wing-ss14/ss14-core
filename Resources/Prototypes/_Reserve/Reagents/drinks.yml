@@ -12,7 +12,7 @@
   flavor: icedtea
   color: "#a0f080"
   metamorphicSprite:
-    sprite: _Reserve/Objects/Consumable/Drinks/orchito.rsi
+    sprite: Objects/Consumable/Drinks/orchito.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 6
   metamorphicFillBaseName: fill-

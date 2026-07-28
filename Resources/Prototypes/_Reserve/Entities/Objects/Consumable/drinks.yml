@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2026 Ceterai <ceterai@protonmail.com>
+# SPDX-FileCopyrightText: 2026 Space Station 14 Contributors
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -16,6 +16,6 @@
         - ReagentId: Orchito
           Quantity: 30
   - type: Icon
-    sprite: _Reserve/Objects/Consumable/Drinks/orchito.rsi
+    sprite: Objects/Consumable/Drinks/orchito.rsi
     state: icon
 # Reserve Orchito end
