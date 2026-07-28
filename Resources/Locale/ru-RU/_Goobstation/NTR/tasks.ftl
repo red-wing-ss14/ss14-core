@@ -39,7 +39,6 @@ task-ntr-thc-name = Отправка ТГК на ЦК
 task-ntr-thc-desc = Отправить кувшин с 100u ТГК на ЦК для "особой вечеринки".
 # Drink descriptions
 task-ntr-kira-special-desc = Отправить 30u киры спешл на ЦК.
-task-ntr-orchito-desc = Отправить 30u Орхито на ЦК.
 task-ntr-nuclear-cola-desc = Отправить 30u ядерной колы на ЦК. Особо засекречено!
 task-ntr-gildlager-desc = Отправить 30u гильдлагера для проверки качества.
 task-ntr-grog-desc = Отправить 30u грога.

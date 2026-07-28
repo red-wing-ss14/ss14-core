@@ -58,7 +58,6 @@ task-ntr-thc-desc = Send a jug with 100u of THC to CC for a "special party".
 
 # Drink descriptions
 task-ntr-kira-special-desc = Send 30u of Kira Special cocktail to CC.
-task-ntr-orchito-desc = Send 30u of Orchito to CC.
 task-ntr-nuclear-cola-desc = Send 30u of Nuclear Cola to CC. Highly classified!
 task-ntr-gildlager-desc = Deliver 30u of Gildlager beer for quality check.
 task-ntr-grog-desc = Provide 30u of authentic Space Grog.

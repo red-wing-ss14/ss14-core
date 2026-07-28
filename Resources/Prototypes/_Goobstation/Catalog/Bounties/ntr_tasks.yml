@@ -400,23 +400,6 @@
       components: [ ]
 
 - type: ntrTask
-  id: TaskOrchito
-  proto: TaskBottle
-  reward: 2
-  weight: 0.2
-  cooldown: 300
-  description: task-ntr-orchito-desc
-  reagentTask: true
-  reagents:
-    Orchito: 3000
-  entries:
-  - name: task-ntr-drink-base-name
-    stamps: [ ]
-    whitelist:
-      tags: [ ]
-      components: [ ]
-
-- type: ntrTask
   id: TaskNuclearCola
   proto: TaskBottle
   reward: 5
