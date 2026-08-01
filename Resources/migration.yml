@@ -1171,3 +1171,16 @@ HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
 
 #2026-01-09
 BorgModuleAdvancedChemical: BorgModuleAdvancedTopical
+
+# 2026-08-01 — deleted Goob mail entities still present on WonderBox
+MailCosplayMaid: null
+MailCosplayTacticalMaid: null
+MailCosplayWizard: null
+MailCrayons: null
+MailJoints: null
+MailMedicalEmergencyPens: null
+MailMimeBottleOfNothing: null
+MailNFSodaSpaceCola: null
+MailSmoke: null
+MailNoir: null
+MailCosplayNurse: null
