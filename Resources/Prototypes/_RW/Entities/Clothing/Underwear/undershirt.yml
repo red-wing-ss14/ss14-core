@@ -63,15 +63,6 @@
 
 - type: entity
   parent: ClothingBraBase
-  id: ClothingUndershirtBraLizared
-  name: Lizared bra
-  description: A striking red bra inspired by Liza-style designs, combining elegance and allure.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/bra_lizared.rsi
-
-- type: entity
-  parent: ClothingBraBase
   id: ClothingUndershirtBraSport
   name: sports bra
   description: A functional sports bra designed for comfort and support during physical activities.

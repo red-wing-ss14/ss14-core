@@ -34,11 +34,6 @@
     undershirt: ClothingUndershirtBraHarley
 
 - type: loadout
-  id: BraLizared
-  equipment:
-    undershirt: ClothingUndershirtBraLizared
-
-- type: loadout
   id: BraSport
   equipment:
     undershirt: ClothingUndershirtBraSport
