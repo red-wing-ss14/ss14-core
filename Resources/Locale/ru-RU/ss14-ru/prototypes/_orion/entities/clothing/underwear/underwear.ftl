@@ -41,4 +41,4 @@ ent-ClothingUnderwearPantiesThin = тонкие трусы
 ent-ClothingUnderwearPantiesUK = британские трусы
     .desc = трусы с британскими мотивами — для проявления национальной гордости.
 ent-ClothingUnderwearPantiesAlt = трусы
-    .desc = Альтернативный дизайн трусиков — уникальный стиль или конструкция.
+    .desc = Альтернативный дизайн трусов — уникальный стиль или конструкция.
