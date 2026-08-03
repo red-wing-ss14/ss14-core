@@ -49,11 +49,6 @@
     underwear: ClothingUnderwearBoxerShortsUK
 
 - type: loadout
-  id: Mankini
-  equipment:
-    underwear: ClothingUnderwearMankini
-
-- type: loadout
   id: Panties
   equipment:
     underwear: ClothingUnderwearPanties
@@ -79,44 +74,9 @@
     underwear: ClothingUnderwearPantiesCommie
 
 - type: loadout
-  id: PantiesFishnet
-  equipment:
-    underwear: ClothingUnderwearPantiesFishnet
-
-- type: loadout
-  id: PantiesFishnetLower
-  equipment:
-    underwear: ClothingUnderwearPantiesFishnetLower
-
-- type: loadout
-  id: PantiesFishnetLowerAlt
-  equipment:
-    underwear: ClothingUnderwearPantiesFishnetLowerAlt
-
-- type: loadout
   id: PantiesHarley
   equipment:
     underwear: ClothingUnderwearPantiesHarley
-
-- type: loadout
-  id: PantiesJockstrap
-  equipment:
-    underwear: ClothingUnderwearPantiesJockstrap
-
-- type: loadout
-  id: PantiesKinky
-  equipment:
-    underwear: ClothingUnderwearPantiesKinky
-
-- type: loadout
-  id: PantiesLizared
-  equipment:
-    underwear: ClothingUnderwearPantiesLizared
-
-- type: loadout
-  id: PantiesNeko
-  equipment:
-    underwear: ClothingUnderwearPantiesNeko
 
 - type: loadout
   id: PantiesSlim
@@ -147,13 +107,3 @@
   id: PantiesAlt
   equipment:
     underwear: ClothingUnderwearPantiesAlt
-
-- type: loadout
-  id: Thong
-  equipment:
-    underwear: ClothingUnderwearThong
-
-- type: loadout
-  id: ThongBabydoll
-  equipment:
-    underwear: ClothingUnderwearThongBabydoll

@@ -1,9 +1,4 @@
 - type: loadout
-  id: Babydoll
-  equipment:
-    undershirt: ClothingUndershirtBabydoll
-
-- type: loadout
   id: Bra
   equipment:
     undershirt: ClothingUndershirtBra
@@ -34,29 +29,14 @@
     undershirt: ClothingUndershirtBraCommie
 
 - type: loadout
-  id: BraHalterneck
-  equipment:
-    undershirt: ClothingUndershirtBraHalterneck
-
-- type: loadout
   id: BraHarley
   equipment:
     undershirt: ClothingUndershirtBraHarley
 
 - type: loadout
-  id: BraKinky
-  equipment:
-    undershirt: ClothingUndershirtBraKinky
-
-- type: loadout
   id: BraLizared
   equipment:
     undershirt: ClothingUndershirtBraLizared
-
-- type: loadout
-  id: BraNeko
-  equipment:
-    undershirt: ClothingUndershirtBraNeko
 
 - type: loadout
   id: BraSport
@@ -117,41 +97,6 @@
   id: Corset
   equipment:
     undershirt: ClothingUndershirtCorset
-
-- type: loadout
-  id: FishnetBody
-  equipment:
-    undershirt: ClothingUndershirtFishnetBody
-
-- type: loadout
-  id: FishnetBodyAlt
-  equipment:
-    undershirt: ClothingUndershirtFishnetBodyAlt
-
-- type: loadout
-  id: FishnetGloves
-  equipment:
-    undershirt: ClothingUndershirtFishnetGloves
-
-- type: loadout
-  id: FishnetSleeves
-  equipment:
-    undershirt: ClothingUndershirtFishnetSleeves
-
-- type: loadout
-  id: FishnetSleevesAlt
-  equipment:
-    undershirt: ClothingUndershirtFishnetSleevesAlt
-
-- type: loadout
-  id: Shibari
-  equipment:
-    undershirt: ClothingUndershirtShibari
-
-- type: loadout
-  id: ShibariSleeves
-  equipment:
-    undershirt: ClothingUndershirtShibariSleeves
 
 - type: loadout
   id: Shirt

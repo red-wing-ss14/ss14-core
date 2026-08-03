@@ -36,15 +36,6 @@
 
 - type: entity
   parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopBraNeko
-  name: Neko bra
-  description: Neko bra.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Top/bra_neko.rsi
-
-- type: entity
-  parent: ClothingUnderwearTopBase
   id: ClothingUnderwearTopBraStrapless
   name: Strapless Bra
   description: Strapless bra.
@@ -60,48 +51,3 @@
   components:
   - type: Sprite
     sprite: _RW/Clothing/Underwear/Top/bra_swimming.rsi
-
-- type: entity
-  parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopFishnetBody
-  name: Fishnet Bra
-  description: Fishnet bra.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Top/fishnet_body.rsi
-
-- type: entity
-  parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopFishnetBodyGloves
-  name: Fishnet Bra with gloves
-  description: Fishnet bra with gloves.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Top/fishnet_gloves.rsi
-
-- type: entity
-  parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopFishnetSleeves
-  name: Fishnet sleeves
-  description: Fishnet sleeves.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Top/fishnet_sleeves.rsi
-
-- type: entity
-  parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopBraShibari
-  name: Shibari Bra
-  description: Shibari bra.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Top/shibari.rsi
-
-- type: entity
-  parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopBraKinky
-  name: Kinky bra
-  description: Kinky bra.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Top/bra_kinky.rsi

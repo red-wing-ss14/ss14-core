@@ -198,30 +198,12 @@
 
 - type: entity
   parent: ClothingSocksBase
-  id: ClothingSocksPantyhoseRipped
-  name: ripped pantyhose
-  description: Ripped pantyhose for a trendy and edgy fashion statement.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Socks/pantyhose_ripped.rsi
-
-- type: entity
-  parent: ClothingSocksBase
   id: ClothingSocksKnee
   name: knee socks
   description: Simple knee socks for a classic and versatile style.
   components:
   - type: Sprite
     sprite: _RW/Clothing/Underwear/Socks/socks_knee.rsi
-
-- type: entity
-  parent: ClothingSocksBase
-  id: ClothingSocksLatex
-  name: latex socks
-  description: Smooth and shiny latex socks for a bold and unique fashion statement.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Socks/socks_latex.rsi
 
 - type: entity
   parent: ClothingSocksBase

@@ -63,15 +63,6 @@
 
 - type: entity
   parent: ClothingBraBase
-  id: ClothingUndershirtBraHalterneck
-  name: halterneck bra
-  description: A stylish halterneck bra that combines support with a fashionable neckline design.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/bra_halterneck.rsi
-
-- type: entity
-  parent: ClothingBraBase
   id: ClothingUndershirtBraHarley
   name: Harley-style bra
   description: A bold bra inspired by Harley-style designs, perfect for making a statement.
@@ -81,30 +72,12 @@
 
 - type: entity
   parent: ClothingBraBase
-  id: ClothingUndershirtBraKinky
-  name: kinky bra
-  description: A provocative kinky-style bra for those who like to push fashion boundaries.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/bra_kinky.rsi
-
-- type: entity
-  parent: ClothingBraBase
   id: ClothingUndershirtBraLizared
   name: Lizared bra
   description: A striking red bra inspired by Liza-style designs, combining elegance and allure.
   components:
   - type: Sprite
     sprite: _RW/Clothing/Underwear/Undershirt/bra_lizared.rsi
-
-- type: entity
-  parent: ClothingBraBase
-  id: ClothingUndershirtBraNeko
-  name: neko bra
-  description: A cute neko-themed bra featuring cat-ear details for a playful and whimsical look.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/bra_neko.rsi
 
 - type: entity
   parent: ClothingBraBase
@@ -213,69 +186,6 @@
   components:
   - type: Sprite
     sprite: _RW/Clothing/Underwear/Undershirt/corset.rsi
-
-- type: entity
-  parent: ClothingShirtBase
-  id: ClothingUndershirtFishnetBody
-  name: fishnet bodysuit
-  description: A fishnet bodysuit adding an edgy, see-through element to your outfit.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/fishnet_body.rsi
-
-- type: entity
-  parent: ClothingShirtBase
-  id: ClothingUndershirtFishnetBodyAlt
-  name: fishnet bodysuit
-  description: An alternate version of the fishnet bodysuit with a different pattern or design.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/fishnet_body-alt.rsi
-
-- type: entity
-  parent: ClothingShirtBase
-  id: ClothingUndershirtFishnetGloves
-  name: fishnet gloves
-  description: Fishnet gloves adding a touch of edginess to your hands and arms.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/fishnet_gloves.rsi
-
-- type: entity
-  parent: ClothingShirtBase
-  id: ClothingUndershirtFishnetSleeves
-  name: fishnet sleeves
-  description: Fishnet sleeves that cover the arms, creating a stylish and revealing look.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/fishnet_sleeves.rsi
-
-- type: entity
-  parent: ClothingShirtBase
-  id: ClothingUndershirtFishnetSleevesAlt
-  name: fishnet sleeves
-  description: Alternate fishnet sleeves with a different pattern or construction.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/fishnet_sleeves-alt.rsi
-
-- type: entity
-  parent: ClothingShirtBase
-  id: ClothingUndershirtShibari
-  name: shibari top
-  description: A shibari-inspired top featuring intricate rope-like patterns and designs.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/shibari.rsi
-
-- type: entity
-  parent: ClothingShirtBase
-  id: ClothingUndershirtShibariSleeves
-  name: shibari sleeves
-  description: Shibari-style sleeves with detailed rope patterns, adding an artistic touch to your look.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/shibari_sleeves.rsi
 
 - type: entity
   parent: ClothingShirtBase
