@@ -1,13 +1,4 @@
 - type: entity
-  parent: ClothingShirtBase
-  id: ClothingUndershirtBabydoll
-  name: babydoll shirt
-  description: A babydoll shirt, perfect for feeling flirty and fabulous.
-  components:
-  - type: Sprite
-    sprite: _RW/Clothing/Underwear/Undershirt/babydoll.rsi
-
-- type: entity
   parent: ClothingBraBase
   id: ClothingUndershirtBra
   name: bra
