@@ -56,18 +56,13 @@
   name: loadout-group-undershirt
   minLimit: 0
   loadouts:
-  - Babydoll
   - Bra
   - BraAssBlastUSA
   - BraBeeKini
   - BraBinder
   - BraBinderStrapless
   - BraCommie
-  - BraHalterneck
   - BraHarley
-  - BraKinky
-  - BraLizared
-  - BraNeko
   - BraSport
   - BraSportAlt
   - BraStrapless
@@ -80,13 +75,6 @@
   - BraUK
   - BraAlt
   - Corset
-  - FishnetBody
-  - FishnetBodyAlt
-  - FishnetGloves
-  - FishnetSleeves
-  - FishnetSleevesAlt
-  - Shibari
-  - ShibariSleeves
   - Shirt
   - ShirtAlien
   - ShirtAssBlastUSA
@@ -158,28 +146,18 @@
   - BoxerShortsSponge
   - BoxerShortsStriped
   - BoxerShortsUK
-  - Mankini
   - Panties
   - PantiesAssBlastUSA
   - PantiesBeeKini
   - PantiesBriefs
   - PantiesCommie
-  - PantiesFishnet
-  - PantiesFishnetLower
-  - PantiesFishnetLowerAlt
   - PantiesHarley
-  - PantiesJockstrap
-  - PantiesKinky
-  - PantiesLizared
-  - PantiesNeko
   - PantiesSlim
   - PantiesStriped
   - PantiesSwimming
   - PantiesThin
   - PantiesUK
   - PantiesAlt
-  - Thong
-  - ThongBabydoll
 
 - type: loadoutGroup
   id: Socks
@@ -207,9 +185,7 @@
   - SocksLeggings
   - SocksLeggingsBlack
   - SocksPantyhose
-  - SocksPantyhoseRipped
   - SocksKnee
-  - SocksLatex
   - Socks
   - SocksShort
   - SocksThigh
