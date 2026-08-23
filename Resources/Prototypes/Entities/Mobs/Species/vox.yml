@@ -132,8 +132,6 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: [ "underwear" ] # RW
-    - map: [ "undershirt" ] # RW
     - map: [ "jumpsuit" ]
     - map: [ "enum.HumanoidVisualLayers.LFoot" ]
     - map: [ "enum.HumanoidVisualLayers.RFoot" ]
@@ -225,16 +223,6 @@
             sprite: Mobs/Species/Vox/displacement.rsi
             state: outerClothing
       # RW-Start
-      undershirt:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: jumpsuit
-      underwear:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: jumpsuit
       socks:
         sizeMaps:
           32:
@@ -400,16 +388,6 @@
             sprite: Mobs/Species/Vox/displacement.rsi
             state: outerClothing
       # RW-Start
-      undershirt:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: jumpsuit
-      underwear:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: jumpsuit
       socks:
         sizeMaps:
           32:
