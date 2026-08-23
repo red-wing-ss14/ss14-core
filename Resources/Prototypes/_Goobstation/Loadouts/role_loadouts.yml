@@ -22,6 +22,8 @@
   - NanotrasenRepresentativeEnvirosuit
   - NanotrasenRepresentativeEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -47,6 +49,8 @@
   - BlueshieldOfficerEnvirogloves
   - BlueshieldOfficerGloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -72,6 +76,8 @@
   - CentComOfficerEnvirosuit
   - CentComOfficerEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -104,6 +110,8 @@
   - ScientistEnvirosuit
   - ScientistEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -130,6 +138,8 @@
   - BrigmedicEnvirosuit
   - BrigmedicEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -149,6 +159,8 @@
   - ServiceWorkerEnvirosuit
   - ServiceWorkerEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -169,6 +181,8 @@
   - SurvivalSecurity
   - GroupSpeciesBreathToolSecurity
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -180,6 +194,8 @@
   - Survival
   - GroupSpeciesBreathTool
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -192,6 +208,8 @@
   - Survival
   - GroupSpeciesBreathTool
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -216,6 +234,8 @@
    - VirologyEnvirosuit
    - VirologyEnvirogloves
    # RW-Start
+   - Undershirt
+   - Underwear
    - Socks
    - Wrists
    # RW-End

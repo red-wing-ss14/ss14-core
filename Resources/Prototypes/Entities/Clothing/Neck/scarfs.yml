@@ -140,10 +140,11 @@
   - type: Clothing
     sprite: Clothing/Neck/Scarfs/zebra.rsi
 
-# Pride Scarves
+# Pride Scarves | No, fuck you
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedAce
+  categories: [ HideSpawnMenu ] # RW
   name: striped asexual scarf
   description: A stylish striped asexual scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -155,6 +156,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedAro
+  categories: [ HideSpawnMenu ] # RW
   name: striped aromantic scarf
   description: A stylish striped aromantic scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -166,6 +168,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedAroace
+  categories: [ HideSpawnMenu ] # RW
   name: striped aroace scarf
   description: A stylish striped aroace scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -177,6 +180,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedBiSexual
+  categories: [ HideSpawnMenu ] # RW
   name: striped bisexual scarf
   description: A stylish striped bisexual scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -188,6 +192,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedGay
+  categories: [ HideSpawnMenu ] # RW
   name: striped gay scarf
   description: A stylish striped gay scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -199,6 +204,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedInter
+  categories: [ HideSpawnMenu ] # RW
   name: striped intersex scarf
   description: A stylish striped intersex scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -210,6 +216,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedLesbian
+  categories: [ HideSpawnMenu ] # RW
   name: striped lesbian scarf
   description: A stylish striped lesbian scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -221,6 +228,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedPan
+  categories: [ HideSpawnMenu ] # RW
   name: striped pan scarf
   description: A stylish striped pan scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -232,6 +240,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedNonBinary
+  categories: [ HideSpawnMenu ] # RW
   name: striped non-binary scarf
   description: A stylish striped non-binary scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -243,6 +252,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedRainbow
+  categories: [ HideSpawnMenu ] # RW
   name: rainbow scarf
   description: A stylish rainbow scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -254,6 +264,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedTrans
+  categories: [ HideSpawnMenu ] # RW
   name: striped trans scarf
   description: A stylish striped trans scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
   components:
@@ -265,6 +276,7 @@
 - type: entity
   parent: ClothingScarfBase
   id: ClothingNeckScarfStripedLesbianLong
+  categories: [ HideSpawnMenu ] # RW
   name: long bacon
   description: Long bacon! Perfect for sharing with your girlfriend!
   components:

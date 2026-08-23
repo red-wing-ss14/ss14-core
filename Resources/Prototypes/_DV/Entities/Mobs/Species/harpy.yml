@@ -57,6 +57,8 @@
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+      - map: [ "underwear" ] # RW
+      - map: [ "undershirt" ]
       # RW-End
       # RW-Edit-Start: Moved under jumpsuit
       - map: ["enum.HumanoidVisualLayers.LFoot"]
@@ -163,6 +165,13 @@
           32:
             sprite: _DV/Mobs/Species/Harpy/displacement.rsi
             state: jumpsuit
+      # RW-Start
+      underwear:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+      # RW-End
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -174,6 +183,13 @@
               layerKey: dummy
               parameterTexture: displacementMap
               parameterUV: displacementUV
+      # RW-Start
+      underwear:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+      # RW-End
       # RW-Start
       jumpsuit-body-slim:
         sizeMaps:
@@ -215,6 +231,13 @@
           32:
             sprite: _DV/Mobs/Species/Harpy/displacement.rsi
             state: jumpsuit
+      # RW-Start
+      underwear:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+      # RW-End
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -226,6 +249,13 @@
               layerKey: dummy
               parameterTexture: displacementMap
               parameterUV: displacementUV
+      # RW-Start
+      underwear:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+      # RW-End
       jumpsuit-body-slim:
         sizeMaps:
           32:
@@ -245,6 +275,10 @@
 #      - map: [ "underpants" ] # RW-Edit: Removed
 #      - map: [ "undershirt" ] # RW-Edit: Removed
 #      - map: [ "socks" ] # RW-Edit: Removed
+      # RW-Start
+      - map: [ "underwear" ]
+      - map: [ "undershirt" ]
+      # RW-End
       # RW-Edit-Start: Moved under jumpsuit
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]

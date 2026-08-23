@@ -109,9 +109,19 @@
     socks: ClothingSocksPantyhose
 
 - type: loadout
+  id: SocksPantyhoseRipped
+  equipment:
+    socks: ClothingSocksPantyhoseRipped
+
+- type: loadout
   id: SocksKnee
   equipment:
     socks: ClothingSocksKnee
+
+- type: loadout
+  id: SocksLatex
+  equipment:
+    socks: ClothingSocksLatex
 
 - type: loadout
   id: Socks

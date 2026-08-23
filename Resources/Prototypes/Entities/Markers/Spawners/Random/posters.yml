@@ -38,6 +38,11 @@
       - PosterContrabandInteQWorkship
       - PosterContrabandInteQWorkship2
       - PosterContrabandInteQ
+      - PosterContrabandInteQNoSex
+      - PosterContrabandInteQVulp
+      - PosterContrabandInteQJulie
+      - PosterContrabandLustyXenomorph
+      - PosterContrabandBustyBackdoorXenoBabes6
       - PosterContrabandBreadLies
       # RW-End
       - PosterContrabandFreeTonto
@@ -107,7 +112,14 @@
       - PosterContrabandGoobChuckler # Goobstation
       - PosterContrabandGoobYakub # Goobstation
       - PosterContrabandGoobRedFOSS # Goobstation
-    chance: 1
+    chance: 0.99 # RW-Edit: 1 > 0.99
+    # RW-Start
+    rarePrototypes:
+      - FlagCoder
+      - FlagSyndicate
+      - FlagInteQ
+    rareChance: 0.01
+    # RW-End
 
 - type: entity
   parent: MarkerBase
@@ -214,4 +226,23 @@
       - PosterLegitTyrone
       - PosterLegitHelio
       - PosterLegitBotanyFear
-    chance: 1
+    chance: 0.99 # RW-Edit: 1 > 0.99
+    # RW-Start
+    rarePrototypes:
+      - FlagAgurk
+      - FlagGermanySolfed
+      - FlagGoldRing
+      - FlagHCA
+      - FlagLizard
+      - FlagCaliforniaSolfed
+      - FlagMothic
+      - FlagNRI
+      - FlagNanoTrasen
+      - FlagShigu
+      - FlagSolfed
+      - FlagSolfedAlt
+      - FlagSovietUSSP
+      - FlagTizira
+      - FlagVulp
+    rareChance: 0.01
+    # RW-End

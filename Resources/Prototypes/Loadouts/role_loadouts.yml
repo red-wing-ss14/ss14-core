@@ -22,6 +22,8 @@
   - CaptainEnvirogloves
 #  - CaptainGloves # RW-Edit: Moved up
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -47,6 +49,8 @@
   - HoPEnvirogloves
   - HoPGloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -86,6 +90,8 @@
   - AssistantEnvirosuit
   - AssistantEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -109,6 +115,8 @@
   - BartenderEnvirosuit
   - BartenderEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -130,6 +138,8 @@
   - ServiceWorkerEnvirosuit
   - ServiceWorkerEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -154,6 +164,8 @@
   - ChefEnvirosuit
   - ChefEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -175,6 +187,8 @@
   - LibrarianEnvirosuit
   - LibrarianEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -197,6 +211,8 @@
   - LawyerEnvirosuit
   - LawyerEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -223,6 +239,8 @@
   - ChaplainEnvirosuit
   - ChaplainEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -247,6 +265,8 @@
   - JanitorEnvirosuit
   - JanitorEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -270,6 +290,8 @@
   - BotanistEnvirosuit
   - BotanistEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -294,6 +316,8 @@
   - ClownEnvirosuit
   - ClownEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -322,6 +346,8 @@
   - MimeEnvirogloves
   - MimeGloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -346,6 +372,8 @@
   - MusicianEnvirosuit
   - MusicianEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -372,6 +400,8 @@
   - QuartermasterEnvirosuit
   - QuartermasterEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -397,6 +427,8 @@
   - CargoTechnicianEnvirosuit
   - CargoTechnicianEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -421,6 +453,8 @@
   - SalvageEnvirosuit
   - SalvageEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -447,6 +481,8 @@
   - ChiefEngineerEnvirosuit
   - ChiefEngineerEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -467,6 +503,8 @@
   - TechnicalAssistantEnvirosuit
   - TechnicalAssistantEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -492,6 +530,8 @@
   - StationEngineerEnvirosuit
   - StationEngineerEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -516,6 +556,8 @@
   - AtmosEnvirosuit
   - AtmosEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -543,6 +585,8 @@
   - ResearchDirectorEnvirohelm
   - ResearchDirectorEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -570,6 +614,8 @@
   - ScientistEnvirosuit
   - ScientistEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -591,6 +637,8 @@
   - ResearchAssistantEnvirosuit
   - ResearchAssistantEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -620,6 +668,8 @@
   - HeadofSecurityEnvirogloves
   - HeadofSecurityGloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -647,6 +697,8 @@
   - WardenEnvirosuit
   - WardenEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -675,6 +727,8 @@
   - SecurityOfficerEnvirosuit
   - SecurityOfficerEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -699,6 +753,8 @@
   - DetectiveEnvirogloves
   - DetectiveGloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -721,6 +777,8 @@
   - SecurityCadetEnvirosuit
   - SecurityCadetEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -750,6 +808,8 @@
   - ChiefMedicalOfficerEnvirosuit
   - ChiefMedicalOfficerEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -777,6 +837,8 @@
   - MedicalDoctorEnvirosuit
   - MedicalDoctorEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -798,6 +860,8 @@
   - MedicalInternEnvirosuit
   - MedicalInternEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -823,6 +887,8 @@
   - ChemistEnvirosuit
   - ChemistEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -849,29 +915,13 @@
   - ParamedicEnvirosuit
   - ParamedicEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
 
 # Wildcards
-- type: roleLoadout
-  id: JobZookeeper
-  groups:
-  - ZookeeperHead
-  - ZookeeperJumpsuit
-  - GroupTankHarness
-  - CommonBackpack
-  - Glasses
-  - Survival
-  - Trinkets
-  - ZookeeperJobTrinkets
-  - Animals # Goobstation
-  - GroupSpeciesBreathTool
-  # Goobstation - EE Plasmeme Change.
-  - ZookeeperEnvirohelm
-  - ZookeeperEnvirosuit
-  - ZookeeperEnvirogloves
-
 - type: roleLoadout
   id: JobReporter
   groups:
@@ -890,6 +940,8 @@
   - ReporterEnvirosuit
   - ReporterEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
@@ -911,26 +963,11 @@
   - PsychologistEnvirosuit
   - PsychologistEnvirogloves
   # RW-Start
+  - Undershirt
+  - Underwear
   - Socks
   - Wrists
   # RW-End
-
-- type: roleLoadout
-  id: JobBoxer
-  groups:
-  - GroupTankHarness
-  - BoxerJumpsuit
-  - BoxerGloves
-  - CommonBackpack
-  - Glasses
-  - Survival
-  - Trinkets
-  - BoxerJobTrinkets
-  - Animals # Goobstation
-  - GroupSpeciesBreathTool
-  # Goobstation - EE Plasmeme Change.
-  - BoxerEnvirohelm
-  - BoxerEnvirosuit
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
