@@ -38,6 +38,7 @@
 - type: entity
   parent: BaseFlag
   id: LGBTQFlag
+  categories: [ HideSpawnMenu ] # RW
   name: LGBTQ flag
   description: "\"Be gay do crime\" flag."
   components:

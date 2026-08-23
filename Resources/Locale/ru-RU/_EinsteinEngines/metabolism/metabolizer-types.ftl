@@ -1,2 +1,2 @@
-metabolizer-type-shadowkin = Шэдоукин
+metabolizer-type-shadowkin = Сумеречник
 metabolizer-type-plasmaman = Плазмалюд

@@ -31,6 +31,7 @@
     - Tajaran
     - Chitinid # DeltaV
     - Shadowkin
+    - Demon # RW
 
 # Goobstation start
 - type: loadoutEffectGroup
@@ -109,6 +110,7 @@
     - Resomi
     - Tajaran
     - Shadowkin
+    - Demon # RW
 
 - type: loadoutEffectGroup
   id: OxygenBreatherMimeMoth

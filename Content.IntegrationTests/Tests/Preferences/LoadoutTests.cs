@@ -41,7 +41,8 @@ public sealed class LoadoutTests
 
     private readonly Dictionary<string, EntProtoId> _expectedEquipment = new()
     {
-        ["jumpsuit"] = "ClothingUniformJumpsuitColorGrey"
+        ["jumpsuit"] = "ClothingUniformJumpsuitColorGrey",
+        ["underwear"] = "ClothingUnderwearBoxerShorts"
     };
 
     /// <summary>

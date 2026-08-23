@@ -14,7 +14,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 [build]
-fork_id = "Reserve"
+fork_id = "Orion"
 
 [game]
 # Straight in-game baby

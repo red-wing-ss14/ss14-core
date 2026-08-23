@@ -8,6 +8,12 @@
     },
     "states": [
         {
+            "name": "xenomorph_poster1"
+        },
+        {
+            "name": "xenomorph_poster2"
+        },
+        {
             "name": "bar"
         },
         {

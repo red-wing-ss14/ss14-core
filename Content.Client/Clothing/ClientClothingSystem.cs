@@ -52,6 +52,8 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"suitstorage", "SUITSTORAGE"},
         // RW-Start
         {"earsright", "EARSRIGHT"},
+        {"underwear", "UNDERWEAR"},
+        {"undershirt", "UNDERSHIRT"},
         {"socks", "SOCKS"},
         {"wrists", "WRISTS"},
         // RW-End

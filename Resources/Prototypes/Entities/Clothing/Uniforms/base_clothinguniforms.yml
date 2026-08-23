@@ -113,6 +113,11 @@
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop
+  # RW-Start
+  - type: SlotBlock
+    blockList: [ UNDERSHIRT ]
+    hideList: [ UNDERWEAR ]
+  # RW-End
   # RW start
   - type: Stainable
     clothingVisuals:
@@ -137,6 +142,10 @@
   parent: UnsensoredClothingUniformBase
   id: ClothingUniformBase
   components:
+  # RW-Start
+  - type: SlotBlock
+    blockList: [ UNDERSHIRT, UNDERWEAR ]
+  # RW-End
   - type: SuitSensor
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -158,6 +167,11 @@
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop
+  # RW-Start
+  - type: SlotBlock
+    blockList: [ UNDERSHIRT ]
+    hideList: [ UNDERWEAR ]
+  # RW-End
   - type: Tag
     tags:
     - Skirt

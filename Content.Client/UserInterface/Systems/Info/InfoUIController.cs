@@ -21,7 +21,7 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
     private RulesPopup? _rulesPopup;
     private RulesAndInfoWindow? _infoWindow;
 
-    private static readonly ProtoId<GuideEntryPrototype> DefaultRuleset = "DefaultRulesetReserve";  // Reserve edit: Ruleset
+    private static readonly ProtoId<GuideEntryPrototype> DefaultRuleset = "RWRuleset"; // RW
 
     public ProtoId<GuideEntryPrototype> RulesEntryId = DefaultRuleset;
 
